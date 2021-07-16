@@ -15,3 +15,4 @@ afetch
 
 #aliases
 alias la='ls -A'
+alias ll='ls -lha'
