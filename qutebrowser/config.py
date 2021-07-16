@@ -46,6 +46,7 @@ config.bind(',xb', 'config-cycle statusbar.show always never')
 config.bind(',xt', 'config-cycle tabs.show always never')
 config.bind(',xx', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
 
+
 # TODO: settle on style
 style={
 ## CSS border value for hints.
