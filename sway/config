@@ -15,6 +15,11 @@ input * {
 xkb_layout "de"
 }
 
+seat * hide_cursor {
+1000
+when-typing enable
+}
+
     bindsym $mod+Return exec $term
     bindsym $mod+Shift+q kill
     bindsym $mod+d exec $menu
