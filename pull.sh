@@ -6,3 +6,5 @@ cp ~/.vimrc vim
 cp ~/.bashrc bash
 cp ~/.config/sway/config sway
 cp ~/.config/sway/colorscheme sway
+cp ~/.config/waybar/config waybar
+cp ~/.config/waybar/style.css waybar
