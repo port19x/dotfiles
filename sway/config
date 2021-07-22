@@ -28,7 +28,7 @@ when-typing enable
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'ooga booga' -b 'Yes, ooga booga' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaymsg exit
     
     # Move your focus around
     bindsym $mod+$left focus left
