@@ -112,10 +112,8 @@ bindsym $mod+r mode "resize"
 
 include colorscheme
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
+default_border pixel 1
+
 bar {
     position top
 
