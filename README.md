@@ -1,4 +1,4 @@
-*My Dotfiles*
+#My Dotfiles
 
 This is where my dotfiles live
 
