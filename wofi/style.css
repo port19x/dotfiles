@@ -1,14 +1,14 @@
 window {
-    border: 2px solid  #2aa198;
+    border: 2px solid  #073642;
     border-radius: 12px;
-    background-color: rgba(4, 30, 37, 0.88); 
+    background-color: #002b36; 
 }
 
 #input {
-    color: #859900;
-    border: 2px solid #2aa198;
+    color: #93a1a1;
+    border: 2px solid #073642;
     border-radius: 12px;
-    background-color: rgba(4, 30, 37, 0.88);
+    background-color: #002b36;
     font-size: 18px;
 }
 
@@ -20,7 +20,7 @@ window {
 #scroll {
     margin: 5px 0px;
     font-size: 16px;
-    color: #859900;
+    color: #93a1a1;
 }
 
 #scroll label {
@@ -28,6 +28,6 @@ window {
 }
 
 #entry:selected {
-    color: #000000;
-    background-color: #d33682;
+    color: #93a1a1;
+    background-color: #073642;
 }
