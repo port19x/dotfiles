@@ -30,6 +30,9 @@
     * otf-font-awesome
 * wofi
 
+**Miscellaneous Notes**
+* No wallpaper included due to copyright
+
 **Copy Pasta**
 
     sudo apt install $(tail -1 README.md)
