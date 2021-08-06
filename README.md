@@ -1,7 +1,5 @@
 # My Dotfiles
 
-This is where my dotfiles live
-
 **Purposes**
 * Portability of configuration
 * Sharing is caring
@@ -13,14 +11,12 @@ This is where my dotfiles live
 * Auxiliary info through widgets on the panel
 
 **Non Goals**
-
 * No Transparency
 * No Animations
 * No Distractions
 * Nothing Distrospecific
 
-**Dependencies**
-
+**Components**
 * bash
 * kitty
 * mononoki
