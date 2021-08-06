@@ -10,9 +10,6 @@ HISTFILESIZE=-1
 
 PS1='\u@\h:\w\$ '
 
-#autorun
-afetch
-
 #aliases
 alias la='ls -A'
 alias ll='ls -lha'
