@@ -35,12 +35,12 @@ c.tabs.undo_stack_size = 10
 c.url.default_page = 'https://start.duckduckgo.com/'
 c.url.start_pages = ['https://start.duckduckgo.com']
 
-config.bind(',m', 'hint links spawn alacritty -e mpv {hint-url}')
-config.bind(',cm', 'spawn alacritty -e mpv {url}')
-config.bind(',y', 'hint links spawn alacritty -e youtube-dl {hint-url}')
-config.bind(',cy', 'spawn alacritty -e youtube-dl {url}')
-config.bind(',a', 'hint links spawn alacritty -e youtube-dl -f bestaudio {hint-url}')
-config.bind(',ca', 'spawn alacritty -e youtube-dl -f bestaudio {url}')
+config.bind(',m', 'hint links spawn kitty -e mpv {hint-url}')
+config.bind(',cm', 'spawn kitty -e mpv {url}')
+config.bind(',y', 'hint links spawn kitty -e youtube-dl {hint-url}')
+config.bind(',cy', 'spawn kitty -e youtube-dl {url}')
+config.bind(',a', 'hint links spawn kitty -e youtube-dl -f bestaudio {hint-url}')
+config.bind(',ca', 'spawn kitty -e youtube-dl -f bestaudio {url}')
 config.bind(',r', 'restart')
 config.bind(',xb', 'config-cycle statusbar.show always never')
 config.bind(',xt', 'config-cycle tabs.show always never')
