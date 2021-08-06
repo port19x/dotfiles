@@ -19,3 +19,23 @@ This is where my dotfiles live
 * No Distractions
 * Nothing Distrospecific
 
+**Dependencies**
+
+* bash
+* kitty
+* qutebrowser
+* ranger
+* sway
+* vim
+* waybar
+* wofi
+
+* afetch (bash)
+* mononoki (kitty)
+* youtube-dl (qutebrowser)
+* mpv (qutebrowser)
+* otf-font-awesome (waybar)
+
+**Copy Pasta**
+    bash kitty qutebrowser ranger sway vim waybar wofi afetch mononoki youtube-dl mpv otf-font-awesome
+
