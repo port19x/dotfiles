@@ -46,63 +46,21 @@ config.bind(',xb', 'config-cycle statusbar.show always never')
 config.bind(',xt', 'config-cycle tabs.show always never')
 config.bind(',xx', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
 
-
-# TODO: settle on style
-style={
-## CSS border value for hints.
-## Type: String
-# c.hints.border = '1px solid #E3BE23'
-
-## Padding (in pixels) for hints.
-## Type: Padding
-# c.hints.padding = {'top': 0, 'bottom': 0, 'left': 3, 'right': 3}
-
-## Rounding radius (in pixels) for the edges of hints.
-## Type: Int
-# c.hints.radius = 3
-
-## Rounding radius (in pixels) for the edges of the keyhint dialog.
-## Type: Int
-# c.keyhint.radius = 6
-
-## Rounding radius (in pixels) for the edges of prompts.
-## Type: Int
-# c.prompt.radius = 8
-
-## Padding (in pixels) for the statusbar.
-## Type: Padding
-# c.statusbar.padding = {'top': 1, 'bottom': 1, 'left': 0, 'right': 0}
-
-## Padding (in pixels) for tab indicators.
-## Type: Padding
-# c.tabs.indicator.padding = {'top': 2, 'bottom': 2, 'left': 0, 'right': 4}
-
-## Padding (in pixels) around text for tabs.
-## Type: Padding
-# c.tabs.padding = {'top': 0, 'bottom': 0, 'left': 5, 'right': 5}
-
-## Hide the window decoration.  This setting requires a restart on
-## Wayland.
-## Type: Bool
-# c.window.hide_decoration = False
-
-}
-
-# TODO: make fonts .Xresources compliant
-fonts={
-## Default font families to use. Whenever "default_family" is used in a
-## font setting, it's replaced with the fonts listed here. If set to an
-## empty value, a system-specific monospace default is used.
-## Type: List of Font, or Font
-# c.fonts.default_family = []
-
-## Default font size to use. Whenever "default_size" is used in a font
-## setting, it's replaced with the size listed here. Valid values are
-## either a float value with a "pt" suffix, or an integer value with a
-## "px" suffix.
-## Type: String
-# c.fonts.default_size = '10pt'
-}
+c.fonts.default_family = ["mononoki"]
+c.fonts.default_size = '10pt'
+c.fonts.completion.category = 'default_size default_family'
+c.fonts.completion.entry = 'default_size default_family'
+c.fonts.contextmenu = 'default_size default_family'
+c.fonts.debug_console = 'default_size default_family'
+c.fonts.downloads = 'default_size default_family'
+c.fonts.hints = 'default_size default_family'
+c.fonts.keyhint = 'default_size default_family'
+c.fonts.messages.error = 'default_size default_family'
+c.fonts.messages.info = 'default_size default_family'
+c.fonts.messages.warning = 'default_size default_family'
+c.fonts.prompts = 'default_size default_family'
+c.fonts.statusbar = 'default_size default_family'
+c.fonts.tabs.unselected = 'default_size default_family'
 
 # base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
 # Base16 qutebrowser template by theova
