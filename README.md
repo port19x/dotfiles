@@ -22,20 +22,20 @@ This is where my dotfiles live
 **Dependencies**
 
 * bash
+    * afetch
 * kitty
+    * mononoki
 * qutebrowser
+    * youtube-dl
+    * mpv
 * ranger
 * sway
 * vim
 * waybar
+    * otf-font-awesome
 * wofi
 
-* afetch (bash)
-* mononoki (kitty)
-* youtube-dl (qutebrowser)
-* mpv (qutebrowser)
-* otf-font-awesome (waybar)
-
 **Copy Pasta**
+
     bash kitty qutebrowser ranger sway vim waybar wofi afetch mononoki youtube-dl mpv otf-font-awesome
 
