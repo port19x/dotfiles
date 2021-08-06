@@ -1,4 +1,4 @@
-#My Dotfiles
+# My Dotfiles
 
 This is where my dotfiles live
 
@@ -22,9 +22,8 @@ This is where my dotfiles live
 **Dependencies**
 
 * bash
-    * afetch
 * kitty
-    * mononoki
+* mononoki
 * qutebrowser
     * youtube-dl
     * mpv
@@ -37,5 +36,5 @@ This is where my dotfiles live
 
 **Copy Pasta**
 
-    bash kitty qutebrowser ranger sway vim waybar wofi afetch mononoki youtube-dl mpv otf-font-awesome
+    bash kitty mononoki qutebrowser ranger sway vim waybar wofi youtube-dl mpv otf-font-awesome
 
