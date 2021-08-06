@@ -32,5 +32,10 @@
 
 **Copy Pasta**
 
-    bash kitty mononoki qutebrowser ranger sway vim waybar wofi youtube-dl mpv otf-font-awesome
+    sudo apt install $(tail -1 README.md)
 
+    sudo dnf install $(tail -1 README.md)
+
+    sudo pacman -S $(tail -1 README.md)
+
+    bash kitty mononoki qutebrowser ranger sway vim waybar wofi youtube-dl mpv otf-font-awesome
