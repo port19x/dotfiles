@@ -13,3 +13,6 @@ PS1='\u@\h:\w\$ '
 #aliases
 alias la='ls -A'
 alias ll='ls -lha'
+
+#autorun
+cal
