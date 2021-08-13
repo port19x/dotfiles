@@ -5,7 +5,6 @@ cp  kitty/kitty.conf ~/.config/kitty
 cp  vim/.vimrc ~/.vimrc
 cp  bash/.bashrc ~/
 cp  sway/config ~/.config/sway
-cp  sway/colorscheme ~/.config/sway
 cp  waybar/config ~/.config/waybar
 cp  waybar/style.css ~/.config/waybar 
 cp  wofi/config ~/.config/wofi

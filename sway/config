@@ -1,5 +1,4 @@
 set $mod Mod4
-
 set $left h
 set $down j
 set $up k
@@ -26,7 +25,6 @@ when-typing enable
 
     bindsym $mod+Shift+c reload
     bindsym $mod+Shift+e exec swaymsg exit
-
     
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
@@ -68,13 +66,29 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-include colorscheme
-
-default_border pixel 1
-
 bar {
     swaybar_command waybar
 }
+
+default_border pixel 1
+
+## Base16 Solarized Dark
+set $base00 #002b36
+set $base01 #073642
+set $base02 #586e75
+set $base03 #657b83
+set $base04 #839496
+set $base05 #93a1a1
+set $base06 #eee8d5
+set $base07 #fdf6e3
+set $base08 #dc322f
+set $base09 #cb4b16
+set $base0A #b58900
+set $base0B #859900
+set $base0C #2aa198
+set $base0D #268bd2
+set $base0E #6c71c4
+set $base0F #d33682
 
 # Property Name         Border  BG      Text    Indicator Child Border
 client.focused          $base05 $base0D $base00 $base0D $base0D
