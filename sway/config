@@ -8,11 +8,11 @@ set $right l
 set $term kitty
 set $menu wofi
 
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg ~/Pictures/Wallpapers/vim-solarized.png fill
 
 input * {
 xkb_layout "de"
+# xkb_layout "us"
 }
 
 seat * hide_cursor {
@@ -24,87 +24,45 @@ when-typing enable
     bindsym $mod+Shift+q kill
     bindsym $mod+d exec $menu
 
-    floating_modifier $mod normal
     bindsym $mod+Shift+c reload
-
-    # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaymsg exit
+
     
-    # Move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
 
-    # Move the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
     
-    # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
     bindsym $mod+3 workspace number 3
-    # Move focused container to workspace
+
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
     bindsym $mod+Shift+3 move container to workspace number 3
     
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
     bindsym $mod+b splith
     bindsym $mod+v splitv
-
-    # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
     bindsym $mod+e layout toggle split
-
-    # Make the current focus fullscreen
     bindsym $mod+f fullscreen
 
-    # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
-
-    # Swap focus between the tiling area and the floating area
     bindsym $mod+space focus mode_toggle
 
-    # Move focus to the parent container
-    bindsym $mod+a focus parent
-#
-# Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
-
-    # Move the currently focused window to the scratchpad
     bindsym $mod+Shift+minus move scratchpad
-
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
-#
-# Resizing containers:
-#
+
 mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
     bindsym $left resize shrink width 10px
     bindsym $down resize grow height 10px
     bindsym $up resize shrink height 10px
     bindsym $right resize grow width 10px
 
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
-
-    # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -114,31 +72,10 @@ include colorscheme
 
 default_border pixel 1
 
-#bar {
-#    position top
-#
-#    # When the status_command prints a new line to stdout, swaybar updates.
-#    # The default just shows the current date and time.
-#    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-#
-#    colors {
-#    background $base00
-#    separator  $base01
-#    statusline $base04
-#
-#    # State             Border  BG      Text
-#    focused_workspace   $base05 $base0D $base00
-#    active_workspace    $base05 $base03 $base00
-#    inactive_workspace  $base03 $base01 $base05
-#    urgent_workspace    $base08 $base08 $base00
-#    binding_mode        $base00 $base0A $base00
-#    }
-#}
-
 bar {
     swaybar_command waybar
 }
-# Basic color configuration using the Base16 variables for windows and borders.
+
 # Property Name         Border  BG      Text    Indicator Child Border
 client.focused          $base05 $base0D $base00 $base0D $base0D
 client.focused_inactive $base01 $base01 $base05 $base03 $base01
