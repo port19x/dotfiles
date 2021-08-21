@@ -16,6 +16,3 @@ alias ll='ls -lha'
 alias gts='git status'
 alias gta='git add'
 alias gtc='git commit -m'
-
-#autorun
-cal
