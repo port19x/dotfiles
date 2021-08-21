@@ -1,21 +1,21 @@
 config.load_autoconfig(True)
 
 c.changelog_after_upgrade = 'patch'
-c.colors.webpage.preferred_color_scheme = 'dark'
+#c.colors.webpage.preferred_color_scheme = 'dark'
 c.completion.cmd_history_max_items = 0
 c.completion.shrink = True
 c.completion.timestamp_format = '%H:%M %d.%m.%Y'
 c.completion.web_history.max_items = 100
 c.confirm_quit = ['downloads']
 c.content.autoplay = False
-c.content.blocking.method = 'both'
+c.content.blocking.method = 'adblock'
 c.content.canvas_reading = False
 c.content.cookies.accept = 'no-3rdparty'
 c.content.cookies.store = False
 c.content.fullscreen.overlay_timeout = 0
 c.content.geolocation = False
 c.content.mouse_lock = False
-c.content.notifications.enabled = False
+c.content.notifications = False
 c.content.webrtc_ip_handling_policy = 'default-public-interface-only'
 c.downloads.location.prompt = False
 c.downloads.remove_finished = 10
@@ -214,7 +214,7 @@ c.colors.messages.info.bg = base00
 c.colors.messages.info.border = base00
 
 # Foreground color for prompts.
-c.colors.prompts.fg = base05
+#c.colors.prompts.fg = base05
 
 # Border used around UI elements in prompts.
 c.colors.prompts.border = base00
@@ -226,7 +226,7 @@ c.colors.prompts.bg = base00
 c.colors.prompts.selected.bg = base02
 
 # Foreground color for the selected item in filename prompts.
-c.colors.prompts.selected.fg = base05
+#c.colors.prompts.selected.fg = base05
 
 # Foreground color of the statusbar.
 c.colors.statusbar.normal.fg = base0B

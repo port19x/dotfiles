@@ -1,3 +1,5 @@
+include /etc/sway/config-vars.d/*
+
 set $mod Mod4
 set $left h
 set $down j
@@ -14,10 +16,7 @@ xkb_layout "de"
 # xkb_layout "us"
 }
 
-seat * hide_cursor {
-1000
-when-typing enable
-}
+seat * hide_cursor 1000
 
     bindsym $mod+Return exec $term
     bindsym $mod+Shift+q kill
