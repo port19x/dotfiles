@@ -54,6 +54,7 @@ window#waybar.hidden {
     box-shadow: inherit;
 }
 
+#custom-clock1,
 #custom-clock2,
 #battery,
 #cpu,
