@@ -79,7 +79,8 @@
     },
     "custom/clock1": {
         "exec": "date +%a-%d.%m.%y",
-        "interval":60
+        "format": "{} ",
+        "interval": 60
     },
     "custom/clock2": {
         "exec": "date +%H:%M",
