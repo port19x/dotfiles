@@ -7,6 +7,7 @@ esac
 #Infinite non-duplicate bashhistory
 HISTSIZE=-1
 HISTFILESIZE=-1
+HISTCONTROL=ignoreboth:erasedups
 
 PS1='\u@\h:\w\$ '
 

@@ -54,7 +54,7 @@ window#waybar.hidden {
     box-shadow: inherit;
 }
 
-#clock,
+#custom-clock2,
 #battery,
 #cpu,
 #memory,
@@ -85,6 +85,6 @@ window#waybar.hidden {
 }
 
 /* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
+.modules-right > widget:last-child > #custom-clock2 {
     margin-right: 0;
 }
