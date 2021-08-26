@@ -56,6 +56,8 @@ window#waybar.hidden {
 
 #custom-clock1,
 #custom-clock2,
+#custom-voltage,
+#custom-wttr,
 #battery,
 #cpu,
 #memory,
