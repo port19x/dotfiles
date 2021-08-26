@@ -84,6 +84,7 @@
     },
     "custom/clock2": {
         "exec": "date +%H:%M",
+        "format": "{} ",
         "interval": 30
     }
 
