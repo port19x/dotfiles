@@ -3,7 +3,7 @@
 
     "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
     "modules-center": [],
-    "modules-right": ["custom/wttr", "pulseaudio", "network", "cpu", "memory", "disk", "temperature", "custom/voltage", "battery", "custom/clock1", "custom/clock2"],
+    "modules-right": ["pulseaudio", "network", "cpu", "memory", "disk", "temperature", "custom/voltage", "battery", "custom/clock1", "custom/clock2"],
 
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
