@@ -9,7 +9,7 @@ set $right l
 set $term kitty
 set $menu wofi
 
-output * bg ~/Pictures/Wallpapers/vim-solarized.png fill
+output * bg ~/dotfiles/vim-solarized.png fill
 
 input * {
 xkb_layout "de"
