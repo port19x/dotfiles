@@ -24,9 +24,12 @@
     * youtube-dl
     * mpv
 * ranger
+    * python-pillow
+    * ffmpegthumbnailer
 * sway
 * vim
 * waybar
+    * python-psutil
     * otf-font-awesome
 * wofi
 
