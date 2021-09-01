@@ -38,4 +38,4 @@
 
     sudo apt install $(tail -1 README.md)
 
-    bash kitty qutebrowser youtube-dl mpv ranger python3-pillow ffmpegthumbnailer sway vim waybar wofi
+    bash kitty qutebrowser youtube-dl mpv ranger python3-pillow ffmpegthumbnailer sway vim waybar wofi fonts-font-awesome fonts-mononoki
