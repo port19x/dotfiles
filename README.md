@@ -35,6 +35,9 @@
 * fonts-mononoki
 
 **Quick Setup**
+    sudo apt install stow
+
+    stow dots
 
     sudo apt install $(tail -1 README.md)
 
