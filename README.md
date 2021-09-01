@@ -28,6 +28,8 @@
 * waybar
 * wofi
 
+* stow (optional)
+
 **Fonts**
 * fonts-font-awesome
 * fonts-mononoki
@@ -36,4 +38,4 @@
 
     sudo apt install $(tail -1 README.md)
 
-    bash kitty qutebrowser ranger sway vim waybar wofi youtube-dl mpv 
+    bash kitty qutebrowser youtube-dl mpv ranger python3-pillow ffmpegthumbnailer sway vim waybar wofi
