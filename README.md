@@ -44,4 +44,4 @@
 
     sudo pacman -S $(tail -1 README.md)
 
-    bash kitty mononoki qutebrowser ranger sway vim waybar wofi youtube-dl mpv otf-font-awesome
+    bash kitty qutebrowser ranger sway vim waybar wofi youtube-dl mpv 
