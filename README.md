@@ -8,7 +8,6 @@
 * Systemwide font configuration
 * Systemwide color configuration
 * Syntaxbased color consistency through base16
-* Auxiliary info through widgets on the panel
 
 **Non Goals**
 * No Transparency
