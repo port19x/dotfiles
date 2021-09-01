@@ -14,34 +14,27 @@
 * No Transparency
 * No Animations
 * No Distractions
-* Nothing Distrospecific
 
 **Components**
 * bash
 * kitty
-* mononoki
 * qutebrowser
     * youtube-dl
     * mpv
 * ranger
-    * python-pillow
+    * python3-pillow
     * ffmpegthumbnailer
 * sway
 * vim
 * waybar
-    * python-psutil
-    * otf-font-awesome
 * wofi
 
-**Miscellaneous Notes**
-* No wallpaper included due to copyright
+**Fonts**
+* fonts-font-awesome
+* fonts-mononoki
 
-**Copy Pasta**
+**Quick Setup**
 
     sudo apt install $(tail -1 README.md)
-
-    sudo dnf install $(tail -1 README.md)
-
-    sudo pacman -S $(tail -1 README.md)
 
     bash kitty qutebrowser ranger sway vim waybar wofi youtube-dl mpv 
