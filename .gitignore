@@ -1,1 +1,4 @@
 .token
+*.swp
+dots/.config/qutebrowser/bookmarks
+dots/.config/qutebrowser/quickmarks
