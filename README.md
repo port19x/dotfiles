@@ -20,13 +20,9 @@
 * qutebrowser
     * youtube-dl
     * mpv
-* ranger
-    * python3-pillow
-    * ffmpegthumbnailer
 * sway
 * vim
 * waybar
-* wofi
 
 * stow (optional)
 
@@ -42,4 +38,4 @@
 
     sudo apt install $(tail -1 README.md)
 
-    bash kitty qutebrowser youtube-dl mpv ranger python3-pillow ffmpegthumbnailer sway vim waybar wofi fonts-font-awesome fonts-mononoki
+    bash kitty qutebrowser youtube-dl mpv sway vim waybar fonts-font-awesome fonts-mononoki
