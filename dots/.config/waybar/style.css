@@ -1,11 +1,9 @@
 @import "colors.css";
+@import "fonts.css";
 
 * {
     border: none;
     border-radius: 0;
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: mononoki, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
     min-height: 0;
     background-color: @base00;
     color: @base05;
