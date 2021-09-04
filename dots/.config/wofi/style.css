@@ -1,15 +1,17 @@
+@import "colors.css";
+
 window {
     font-family: mononoki;
-    border: 2px solid  #073642;
+    border: 2px solid  @base01;
     border-radius: 12px;
-    background-color: #002b36; 
+    background-color: @base00; 
 }
 
 #input {
-    color: #93a1a1;
-    border: 2px solid #073642;
+    color: @base05;
+    border: 2px solid @base01;
     border-radius: 12px;
-    background-color: #002b36;
+    background-color: @base00;
     font-size: 18px;
 }
 
@@ -21,7 +23,7 @@ window {
 #scroll {
     margin: 5px 0px;
     font-size: 16px;
-    color: #93a1a1;
+    color: @base05;
 }
 
 #scroll label {
@@ -29,6 +31,6 @@ window {
 }
 
 #entry:selected {
-    color: #93a1a1;
-    background-color: #073642;
+    color: @base05;
+    background-color: @base01;
 }
