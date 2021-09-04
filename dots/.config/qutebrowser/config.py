@@ -46,8 +46,10 @@ config.bind(',xb', 'config-cycle statusbar.show always never')
 config.bind(',xt', 'config-cycle tabs.show always never')
 config.bind(',xx', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
 
-c.fonts.default_family = ["mononoki"]
-c.fonts.default_size = '10pt'
+from fonts import *
+
+c.fonts.default_family = [fontname]
+c.fonts.default_size = fontsize
 c.fonts.completion.category = 'default_size default_family'
 c.fonts.completion.entry = 'default_size default_family'
 c.fonts.contextmenu = 'default_size default_family'
