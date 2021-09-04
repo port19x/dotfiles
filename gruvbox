@@ -1,0 +1,18 @@
+#!/bin/bash
+
+oldfont="mononoki"
+newfont="inconsolata"
+oldsize="12"
+newsize="14"
+
+fontfiles=$(find . -maxdepth 4 -name fonts*)
+for i in $fontfiles; do
+    sed -i -e "s/$oldfont/$newfont/" -e "s/$oldsize/$newsize/" $i;
+done
+
+colorfiles=$(find . -maxdepth 4 -name colors*)
+for i in $colorfiles
+do
+    #sed from solarized-dark to gruvbox-dark-hard
+    sed -i -e "s/002b36/1d2021/" -e "s/073642/3c3836/" -e "s/586e75/504945/" -e "s/657b83/665c54/" -e "s/839496/bdae93/" -e "s/93a1a1/d5c4a1/" -e "s/eee8d5/ebdbb2/" -e "s/fdf6e3/fbf1c7/" -e "s/dc322f/fb4934/" -e "s/cb4b16/fe8019/" -e "s/b58900/fabd2f/" -e "s/859900/b8bb26/" -e "s/2aa198/8ec07c/" -e "s/268bd2/83a598/" -e "s/6c71c4/d3869b/" -e "s/d33682/d65d0e/" $i
+done
