@@ -16,19 +16,17 @@
         "format": "{}% "
     },
     "disk": {
-        "interval": 30,
         "format": "{percentage_used}% ",
     },
     "temperature": {
         "thermal-zone": 2,
         "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 60,
+        "critical-threshold": 50,
         "format-critical": "{temperatureC}°C ",
         "format": "{temperatureC}°C ",
     },
     "battery": {
         "states": {
-            // "good": 95,
             "warning": 30,
             "critical": 15
         },
@@ -40,28 +38,9 @@
     },
     "network": {
         "format-wifi": "{bandwidthDownBits} {bandwidthUpBits} {signalStrength}% ",
-        "format-disconnected": "Disconnected ⚠",
+        "format-disconnected": "⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
         "interval": 1
-    },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
     },
     "custom/clock1": {
         "exec": "date +%a-%d.%m.%y",
