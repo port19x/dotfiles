@@ -8,8 +8,6 @@ set $right l
 
 set $term kitty
 set $brow qutebrowser
-set $pass keepassxc
-set $type klavaro
 
 output * bg ~/dotfiles/vim-solarized.png fill
 
@@ -24,8 +22,8 @@ seat * hide_cursor 1000
     bindsym $mod+Shift+q kill
 
     bindsym $mod+d exec $brow
-    bindsym $mod+s exec $pass
-    bindsym $mod+a exec $type
+    bindsym $mod+s exec keepassxc
+    bindsym $mod+a exec nextcloud
 
     bindsym $mod+Shift+c reload
     bindsym $mod+Shift+e exec swaymsg exit
