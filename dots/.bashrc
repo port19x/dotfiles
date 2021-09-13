@@ -21,6 +21,8 @@ alias gtc='git commit -m'
 alias gtd='git diff'
 alias gtp='git push -u origin main'
 alias gtl='git log'
+alias yta='youtube-dl -f bestaudio/m4a'
+alias ytd="youtube-dl -f 'bestvideo[height<=?1080]+bestaudio/best'"
 
 #set vi mode
 set -o vi
