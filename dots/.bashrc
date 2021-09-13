@@ -14,6 +14,7 @@ PS1='\u@\h:\w\$ '
 #aliases
 alias la='ls -A'
 alias ll='ls -lha'
+alias br='brightnessctl set 0 && read && brightnessctl set 4095'
 alias gts='git status'
 alias gta='git add'
 alias gtc='git commit -m'
