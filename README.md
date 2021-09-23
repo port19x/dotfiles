@@ -32,6 +32,8 @@
 
 **Quick Setup**
 
+    git clone --recurse-submodules git@github.com:ura43/dotfiles.git
+
     sudo apt install stow
 
     stow dots
