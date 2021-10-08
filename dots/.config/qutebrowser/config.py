@@ -1,3 +1,8 @@
+from fonts import fontname, fontsize
+
+from colors import base00, base01, base02, base04, base05, base07
+from colors import base08, base0A, base0B, base0C, base0D, base0E
+
 config.load_autoconfig(True)
 
 c.changelog_after_upgrade = 'patch'
@@ -31,7 +36,6 @@ c.tabs.last_close = 'default-page'
 c.tabs.new_position.related = 'last'
 c.tabs.undo_stack_size = 10
 
-# TODO: make custom default page and startpage
 c.url.default_page = 'https://start.duckduckgo.com/'
 c.url.start_pages = ['https://start.duckduckgo.com']
 
@@ -45,8 +49,6 @@ config.bind(',r', 'restart')
 config.bind(',xb', 'config-cycle statusbar.show always never')
 config.bind(',xt', 'config-cycle tabs.show always never')
 config.bind(',xx', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
-
-from fonts import *
 
 c.fonts.default_family = [fontname]
 c.fonts.default_size = fontsize
@@ -63,8 +65,6 @@ c.fonts.messages.warning = 'default_size default_family'
 c.fonts.prompts = 'default_size default_family'
 c.fonts.statusbar = 'default_size default_family'
 c.fonts.tabs.unselected = 'default_size default_family'
-
-from colors import *
 
 # Text color of the completion widget. May be a single color to use for
 # all columns or a list of three colors, one for each column.
@@ -147,7 +147,6 @@ c.colors.downloads.stop.bg = base0C
 
 # Foreground color for downloads with errors.
 c.colors.downloads.error.fg = base08
-
 # Font color for hints.
 c.colors.hints.fg = base00
 
