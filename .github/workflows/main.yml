@@ -31,5 +31,5 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
-        pylint `find . -name "*.py"|xargs`
+        pylint -d E0602 -d C0114 -d C0103 `find . -name "*.py"|xargs`
 
