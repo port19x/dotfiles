@@ -1,9 +1,9 @@
 on:
   push:
     branches:
-      - master
+      - main
 
-name: 'Trigger: Push action'
+name: 'Checks'
 
 jobs:
   shellcheck:
