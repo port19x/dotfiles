@@ -38,7 +38,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: actions-hub/stylelint@master
-      env:
-        PATTERN: "./dots/.config/*/*.css"
+      - name: Analysing the css with stylelint
+        uses: actions-hub/stylelint@master
+        env:
+          PATTERN: "./dots/.config/*/*.css"
 
