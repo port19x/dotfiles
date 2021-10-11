@@ -26,6 +26,7 @@
   margin: 1px 1px;
 }
 
+/* stylelint-disable-next-line selector-pseudo-class-no-unknown */
 #entry:selected {
   color: @base05;
   background-color: @base01;
