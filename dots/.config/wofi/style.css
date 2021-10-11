@@ -1,36 +1,36 @@
 @import "~/dotfiles/dots/.config/wofi/colors.css";
 
 window {
-    font-family: mononoki;
-    border: 2px solid  @base01;
-    border-radius: 12px;
-    background-color: @base00; 
+  font-family: mononoki;
+  border: 2px solid  @base01;
+  border-radius: 12px;
+  background-color: @base00; 
 }
 
 #input {
-    color: @base05;
-    border: 2px solid @base01;
-    border-radius: 12px;
-    background-color: @base00;
-    font-size: 18px;
+  color: @base05;
+  border: 2px solid @base01;
+  border-radius: 12px;
+  background-color: @base00;
+  font-size: 18px;
 }
 
 
 #outer-box {
-    margin: 10px;
+  margin: 10px;
 }
 
 #scroll {
-    margin: 5px 0px;
-    font-size: 16px;
-    color: @base05;
+  margin: 5px 0px;
+  font-size: 16px;
+  color: @base05;
 }
 
 #scroll label {
-    margin: 1px 1px;
+  margin: 1px 1px;
 }
 
 #entry:selected {
-    color: @base05;
-    background-color: @base01;
+  color: @base05;
+  background-color: @base01;
 }
