@@ -13,7 +13,7 @@ output * bg ~/dotfiles/vim-solarized.png fill
 
 input * {
 xkb_layout "de"
-# xkb_layout "us"
+#xkb_variant "neo"
 }
 
 seat * hide_cursor 1000
