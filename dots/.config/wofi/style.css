@@ -1,7 +1,7 @@
 @import "colors.css";
 @import "fonts.css";
 
-window {
+#window {
   border: 2px solid  @base01;
   border-radius: 12px;
   background-color: @base00;
@@ -27,7 +27,7 @@ window {
   margin: 1px 1px;
 }
 
-#entry:selected {
+#entry:selected{
   color: @base05;
   background-color: @base01;
 }
