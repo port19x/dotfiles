@@ -1,7 +1,7 @@
-@import "~/dotfiles/dots/.config/wofi/colors.css";
+@import "colors.css";
+@import "fonts.css";
 
 window {
-  font-family: mononoki;
   border: 2px solid  @base01;
   border-radius: 12px;
   background-color: @base00; 
@@ -12,7 +12,6 @@ window {
   border: 2px solid @base01;
   border-radius: 12px;
   background-color: @base00;
-  font-size: 18px;
 }
 
 
@@ -22,7 +21,6 @@ window {
 
 #scroll {
   margin: 5px 0px;
-  font-size: 16px;
   color: @base05;
 }
 
