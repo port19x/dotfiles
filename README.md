@@ -23,6 +23,8 @@
 * sway
 * vim
 * waybar
+    * htop
+    * ncdu
 
 * stow (optional)
 
