@@ -1,4 +1,4 @@
-@import "wofi/colors.css";
+@import "~/dotfiles/dots/.config/wofi/colors.css";
 
 window {
     font-family: mononoki;
