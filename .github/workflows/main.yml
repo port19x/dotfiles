@@ -32,4 +32,11 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pylint -d E0602 -d C0114 -d C0103 `find . -name "*.py"|xargs`
+  stylelint:
+    name: Stylelint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions-hub/stylelint@master
 
