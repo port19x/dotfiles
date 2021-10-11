@@ -3,7 +3,7 @@
 
     "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
     "modules-center": [],
-    "modules-right": ["custom/wttr", "network", "cpu", "memory", "disk", "temperature", "custom/voltage", "battery", "custom/clock1", "custom/clock2"],
+    "modules-right": ["custom/wttr", "network", "cpu", "memory", "disk", "temperature", "battery", "custom/clock1", "custom/clock2"],
 
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
@@ -16,22 +16,18 @@
         "format": "{}% "
     },
     "disk": {
-        "format": "{percentage_used}% ",
+        "format": "{percentage_used}% "
     },
     "temperature": {
         "thermal-zone": 2,
-        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 50,
+        "hwmon-path": "/sys/class/hwmon/hwmon7/temp1_input",
+        "critical-threshold": 60,
         "format-critical": "{temperatureC}°C ",
         "format": "{temperatureC}°C ",
     },
     "battery": {
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
         "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
+        "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
         "format-icons": ["", "", "", "", ""]
@@ -52,13 +48,7 @@
         "format": "{} ",
         "interval": 30
     },
-    "custom/voltage": {
-        "exec": "cat /sys/class/power_supply/cw2015-battery/uevent | grep POWER_SUPPLY_VOLTAGE_NOW | sed 's/.*=//' | sed 's/000//'",
-        "format": "{} ",
-        "interval": 1
-    },
     "custom/wttr": {
         "exec": "curl wttr.in/?view=1"
     }
-
 }
