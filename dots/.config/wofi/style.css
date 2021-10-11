@@ -4,7 +4,7 @@
 window {
   border: 2px solid  @base01;
   border-radius: 12px;
-  background-color: @base00; 
+  background-color: @base00;
 }
 
 #input {
@@ -13,7 +13,6 @@ window {
   border-radius: 12px;
   background-color: @base00;
 }
-
 
 #outer-box {
   margin: 10px;
