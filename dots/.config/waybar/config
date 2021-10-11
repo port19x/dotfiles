@@ -10,7 +10,8 @@
     },
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false
+        "tooltip": false,
+        //"on-click": "kitty -e --hold uptime" 
     },
     "memory": {
         "format": "{}% "
