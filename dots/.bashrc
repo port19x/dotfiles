@@ -23,6 +23,12 @@ alias gtp='git push -u origin main'
 alias gtl='git log'
 alias yta='youtube-dl -f bestaudio/m4a'
 alias ytd="youtube-dl -f 'bestvideo[height<=?1080]+bestaudio/best'"
+alias icat="kitty +kitten icat"
+alias cd1="cd .."
+alias cd2="cd ../.."
+alias cd3="cd ../../.."
+alias cd4="cd ../../../.."
+alias cd5="cd ../../../../.."
 
 #set vi mode
 set -o vi
