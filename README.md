@@ -17,14 +17,14 @@
 **Components**
 * bash
 * kitty
+* mako
 * qutebrowser
     * youtube-dl
     * mpv
 * sway
 * vim
 * waybar
-    * htop
-    * ncdu
+* wofi
 
 * stow (optional)
 
@@ -42,4 +42,4 @@
 
     sudo apt install $(tail -1 README.md)
 
-    bash kitty qutebrowser youtube-dl mpv sway vim waybar fonts-font-awesome fonts-mononoki
+    bash kitty mako qutebrowser youtube-dl mpv sway vim waybar wofi fonts-font-awesome fonts-mononoki 
