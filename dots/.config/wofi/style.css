@@ -1,5 +1,5 @@
-@import "colors.css";
-@import "fonts.css";
+@import "/home/konstantin/dotfiles/dots/.config/wofi/colors.css";
+@import "/home/konstantin/dotfiles/dots/.config/wofi/fonts.css";
 
 #window {
   border: 2px solid  @base01;
