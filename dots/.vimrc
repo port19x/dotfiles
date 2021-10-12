@@ -2,6 +2,11 @@ syntax on
 set expandtab
 set relativenumber
 set softtabstop=4
+set title
+set laststatus=2
+
+let g:netrw_banner=0
+let g:netrw_liststyle=3
 
 autocmd! BufWrite * mark ' | silent! %s/\s\+$// | norm '
 
