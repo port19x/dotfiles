@@ -10,6 +10,7 @@ HISTFILESIZE=-1
 HISTCONTROL=ignoreboth:erasedups
 
 PS1='\u@\h:\w\$ '
+TERM='xterm'
 
 #aliases
 alias la='ls -A'
