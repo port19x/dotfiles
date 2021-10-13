@@ -20,7 +20,6 @@ c.content.cookies.store = False
 c.content.fullscreen.overlay_timeout = 0
 c.content.geolocation = False
 c.content.mouse_lock = False
-c.content.notifications = False
 c.content.webrtc_ip_handling_policy = 'default-public-interface-only'
 c.downloads.location.prompt = False
 c.downloads.remove_finished = 10
