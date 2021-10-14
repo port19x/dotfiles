@@ -1,6 +1,7 @@
 #!/bin/sh
 mkdir ~/.config/fontconfig ~/.config/kitty ~/.config/qutebrowser ~/.config/qtile
-sudo apt install python3-cffi xserver-xorg python3-xcffib python3-cairocffi libpangocairo-1.0-0 xinit stow python3-pip
-sudo pip install qtile
-sudo apt install qutebrowser kitty fonts-mononoki youtube-dl mpv vim
+sudo apt install python3-cffi xserver-xorg python3-xcffib python3-cairocffi libpangocairo-1.0-0 xinit stow python3-pip python3-psutil
+sudo pip install qtile adblock
+sudo apt install qutebrowser kitty fonts-mononoki fonts-font-awesome youtube-dl mpv vim
+sudo apt install pavucontrol brightnessctl chromium shellcheck flake8 tipp10
 stow dots

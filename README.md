@@ -26,6 +26,7 @@
 
 **Fonts**
 * fonts-mononoki
+* fonts-font-awesome
 
 **Quick Setup**
 
