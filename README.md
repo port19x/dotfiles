@@ -1,28 +1,15 @@
 # My Dotfiles
 
-**Purposes**
-* Portability of configuration
-* Sharing is caring
-
 **Goals**
 * Systemwide font configuration
 * Systemwide color configuration
 * Syntaxbased color consistency through base16
 
-**Non Goals**
-* No Transparency
-* No Animations
-* No Distractions
-
 **Components**
-* bash
-* kitty
+* qtile
 * qutebrowser
-    * youtube-dl
-    * mpv
+* kitty
 * vim
-
-* stow (optional)
 
 **Fonts**
 * fonts-mononoki
@@ -31,9 +18,6 @@
 **Quick Setup**
 
     sudo apt install git
-
     git clone --recurse-submodules https://github.com/ura43/dotfiles
-
     cd dotfiles
-
     sudo ./install
