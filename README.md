@@ -5,7 +5,7 @@
 * Systemwide color configuration
 * Syntaxbased color consistency through base16
 
-**Components**
+**Main Components**
 * qtile
 * qutebrowser
 * kitty
@@ -21,3 +21,5 @@
     git clone --recurse-submodules https://github.com/ura43/dotfiles
     cd dotfiles
     sudo ./install
+
+###### Currently deployed on Debian 11 Bullseye
