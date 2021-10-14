@@ -2,5 +2,5 @@
 mkdir ~/.config/fontconfig ~/.config/kitty ~/.config/qutebrowser ~/.config/qtile
 sudo apt install python3-cffi xserver-xorg python3-xcffib python3-cairocffi libpangocairo-1.0-0 xinit stow python3-pip
 sudo pip install qtile
+sudo apt install qutebrowser kitty fonts-mononoki youtube-dl mpv vim
 stow dots
-#sudo apt install qutebrowser kitty fonts-mononoki youtube-dl mpv vim
