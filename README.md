@@ -36,3 +36,7 @@
     mkdir -p ~/.config/{$(ls ~/dofiles/dots/.config)}
 
     stow dots
+
+    sudo apt install python3-cffi xserver-xorg python3-xcffib python3-cairocffi libpangocairo-1.0-0
+
+    sudo pip install qtile
