@@ -6,15 +6,15 @@ on:
 name: 'Checks'
 
 jobs:
-  shellcheck:
-    name: Shellcheck
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Run ShellCheck
-      uses: ludeeus/action-shellcheck@master
-      env:
-        SHELLCHECK_OPTS: -s sh
+#  shellcheck:
+#    name: Shellcheck
+#    runs-on: ubuntu-latest
+#    steps:
+#    - uses: actions/checkout@v2
+#    - name: Run ShellCheck
+#      uses: ludeeus/action-shellcheck@master
+#      env:
+#        SHELLCHECK_OPTS: -s sh
   pylint:
     name: Pylint
     runs-on: ubuntu-latest
@@ -32,14 +32,14 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pylint -d E0602 -d C0114 -d C0103 `find . -name "*.py"|xargs`
-  stylelint:
-    name: Stylelint
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v1
-      - name: Analysing the css with stylelint
-        uses: actions-hub/stylelint@master
-        env:
-          PATTERN: "./dots/.config/*/*.css"
+#  stylelint:
+#    name: Stylelint
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - uses: actions/checkout@v1
+#      - name: Analysing the css with stylelint
+#        uses: actions-hub/stylelint@master
+#        env:
+#          PATTERN: "./dots/.config/*/*.css"
 
