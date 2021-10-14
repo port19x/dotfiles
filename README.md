@@ -33,10 +33,6 @@
 
     git clone --recurse-submodules git@github.com:ura43/dotfiles.git
 
-    mkdir -p ~/.config/{$(ls ~/dofiles/dots/.config)}
+    cd dotfiles
 
-    stow dots
-
-    sudo apt install python3-cffi xserver-xorg python3-xcffib python3-cairocffi libpangocairo-1.0-0
-
-    sudo pip install qtile
+    sudo ./install
