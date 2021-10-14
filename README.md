@@ -17,29 +17,22 @@
 **Components**
 * bash
 * kitty
-* mako
 * qutebrowser
     * youtube-dl
     * mpv
-* sway
 * vim
-* waybar
-* wofi
 
 * stow (optional)
 
 **Fonts**
-* fonts-font-awesome
 * fonts-mononoki
 
 **Quick Setup**
 
+    sudo apt install git stow python3-pip
+
     git clone --recurse-submodules git@github.com:ura43/dotfiles.git
 
-    sudo apt install stow
+    mkdir -p ~/.config/{$(ls ~/dofiles/dots/.config)}
 
     stow dots
-
-    sudo apt install $(tail -1 README.md)
-
-    bash kitty mako qutebrowser youtube-dl mpv sway vim waybar wofi fonts-font-awesome fonts-mononoki 
