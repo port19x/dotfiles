@@ -32,7 +32,7 @@
 
     sudo apt install git
 
-    git clone --recurse-submodules git@github.com:ura43/dotfiles.git
+    git clone --recurse-submodules https://github.com/ura43/dotfiles
 
     cd dotfiles
 
