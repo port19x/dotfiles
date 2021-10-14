@@ -1,8 +1,3 @@
-from fonts import fontname, fontsize
-
-from colors import base00, base01, base02, base04, base05, base07
-from colors import base08, base0A, base0B, base0C, base0D, base0E
-
 config.load_autoconfig(True)
 
 c.changelog_after_upgrade = 'patch'
@@ -49,6 +44,9 @@ config.bind(',xb', 'config-cycle statusbar.show always never')
 config.bind(',xt', 'config-cycle tabs.show always never')
 config.bind(',xx', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
 
+fontname = "mononoki"
+fontsize = "12pt"
+
 c.fonts.default_family = [fontname]
 c.fonts.default_size = fontsize
 c.fonts.completion.category = 'default_size default_family'
@@ -64,6 +62,23 @@ c.fonts.messages.warning = 'default_size default_family'
 c.fonts.prompts = 'default_size default_family'
 c.fonts.statusbar = 'default_size default_family'
 c.fonts.tabs.unselected = 'default_size default_family'
+
+base00 = "#002b36"
+base01 = "#073642"
+base02 = "#586e75"
+base03 = "#657b83"
+base04 = "#839496"
+base05 = "#93a1a1"
+base06 = "#eee8d5"
+base07 = "#fdf6e3"
+base08 = "#dc322f"
+base09 = "#cb4b16"
+base0A = "#b58900"
+base0B = "#859900"
+base0C = "#2aa198"
+base0D = "#268bd2"
+base0E = "#6c71c4"
+base0F = "#d33682"
 
 # Text color of the completion widget. May be a single color to use for
 # all columns or a list of three colors, one for each column.
