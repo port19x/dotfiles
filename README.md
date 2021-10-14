@@ -29,7 +29,7 @@
 
 **Quick Setup**
 
-    sudo apt install git stow python3-pip
+    sudo apt install git
 
     git clone --recurse-submodules git@github.com:ura43/dotfiles.git
 
