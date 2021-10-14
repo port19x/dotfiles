@@ -1,6 +1,1 @@
 .token
-*.swp
-dots/.config/qutebrowser/bookmarks
-dots/.config/qutebrowser/quickmarks
-dots/.config/qutebrowser/__pycache__
-dots/.config/qutebrowser/autoconfig.yml
