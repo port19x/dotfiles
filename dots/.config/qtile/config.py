@@ -98,7 +98,7 @@ screens = [
                 widget.Net(fmt="{} ", format="{up}"),
                 widget.PulseVolume(fmt="{} "),
                 widget.CPU(fmt="{}% ", format="{load_percent}"),
-                widget.Memory(fmt="{} ", format="{MemPercent}"),
+                widget.Memory(fmt="{}% ", format="{MemPercent}"),
                 widget.DF(fmt="{} ", format="{r:.0f}%", visible_on_warn = False),
                 widget.ThermalSensor(fmt="{} ", foreground=base05),
                 widget.Battery(fmt="{} ", format="{percent:1.0%}"),
