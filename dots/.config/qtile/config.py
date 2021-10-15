@@ -11,6 +11,7 @@ base00 = "#002b36"
 base01 = "#073642"
 base05 = "#93a1a1"
 base0D = "#268bd2"
+
 keys = [
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
@@ -72,14 +73,13 @@ for i in groups:
 
 layouts = [
     layout.Max(),
-    layout.Matrix(border_focus=base0D, border_normal=base00),
     layout.MonadTall(border_width=1, border_focus=base0D, border_normal=base00),
 ]
 
 widget_defaults = dict(
     font='mononoki',
     fontsize=14,
-    padding=20,
+    padding=10,
     background=base00,
     foreground=base05,
 )
@@ -89,19 +89,21 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-#                widget.CurrentLayout(),
+                widget.GroupBox(active=base05, inactive=base05, padding=0),
                 widget.Prompt(),
                 widget.WindowName(),
                 widget.Spacer(),
-                widget.Battery(fmt="{}% ", format="{percent:1.0}"),
+                widget.CurrentLayout(fmt="{} "),
+                widget.Net(fmt="{} ", format="{down}"),
+                widget.Net(fmt="{} ", format="{up}"),
+                widget.PulseVolume(fmt="{} "),
                 widget.CPU(fmt="{}% ", format="{load_percent}"),
-#                widget.Cmus(),
-                widget.DF(partition="~", fmt="{}% "),
-#                widget.ImapWidget(),
-                widget.Memory(fmt="{}% ", format="{MemPercent}"),
-                widget.CheckUpdates(distro="Debian"),
-                widget.Clock(fmt="{} ", format='%d.%m.'),
-                widget.Clock(fmt="{} ", format='%H:%M'),#
+                widget.Memory(fmt="{} ", format="{MemPercent}"),
+                widget.DF(fmt="{} ", format="{r:.0f}%", visible_on_warn = False),
+                widget.ThermalSensor(fmt="{} ", foreground=base05),
+                widget.Battery(fmt="{} ", format="{percent:1.0%}"),
+                widget.Clock(fmt="{} ", format='%a-%d.%m.%y'),
+                widget.Clock(fmt="{} ", format='%H:%M'),
             ],
             24,
         ),
