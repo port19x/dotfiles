@@ -1,8 +1,12 @@
 # My Dotfiles
 
-[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 [![Linux](https://svgshare.com/i/Zhy.svg)](https://svgshare.com/i/Zhy.svg)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://Github.com/ura43/dotfiles/graphs/commit-activity)
+[![Vim](https://img.shields.io/badge/--019733?logo=vim)](https://www.vim.org/)
+[![Open Source Love svg3](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+[![Github CI](https://github.com/ura43/dotfiles/workflows/CI/badge.svg)](https://github.com/ura43/dotfiles/actions)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/ura43/dotfiles/graphs/commit-activity)
+
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
 **Goals**
 * Systemwide font configuration
