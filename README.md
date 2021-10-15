@@ -14,8 +14,8 @@
 * vim
 
 **Fonts**
-* fonts-mononoki
-* fonts-font-awesome
+* mononoki
+* font awesome
 
 **Quick Setup**
 
