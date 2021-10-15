@@ -1,9 +1,5 @@
 # My Dotfiles
 
-[![Linux](https://svgshare.com/i/Zhy.svg)](https://svgshare.com/i/Zhy.svg)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/ura43/dotfiles/graphs/commit-activity)
-[![Checks](https://github.com/ura43/dotfiles/actions/workflows/main.yml/badge.svg)](https://github.com/ura43/dotfiles/actions/workflows/main.yml)
-
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
 **Goals**
