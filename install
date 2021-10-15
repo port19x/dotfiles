@@ -1,7 +1,12 @@
 #!/bin/sh
 mkdir ~/.config/fontconfig ~/.config/kitty ~/.config/qutebrowser ~/.config/qtile
-sudo apt install python3-cffi xserver-xorg python3-xcffib python3-cairocffi libpangocairo-1.0-0 xinit stow python3-pip python3-psutil lm-sensors
-sudo pip install qtile adblock
-sudo apt install qutebrowser kitty fonts-mononoki fonts-font-awesome youtube-dl mpv vim
-sudo apt install pavucontrol brightnessctl chromium shellcheck flake8 tipp10 imagemagick clamav neofetch ncdu feh
+
+QtileDeps="python3-cffi xserver-xorg python3-xcffib python3-cairocffi libpangocairo-1.0-0 xinit python3-pip python3-psutil lm-sensors"
+PipPkgs="qtile adblock"
+Desktop="qutebrowser kitty fonts-mononoki fonts-font-awesome chromium pavucontrol tipp10"
+Utils="brightnessctl shellcheck flake8 imagemagick clamav neofetch ncdu feh mpv youtube-dl vim stow cifs-utils"
+DebPkgs="$QtileDeps $Desktop $Utils"
+
+sudo apt install $DebPkgs
+sudo pip install $PipPkgs
 stow dots
