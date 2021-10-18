@@ -87,6 +87,7 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
+        wallpaper="~/Pictures/base00.png",
         top=bar.Bar(
             [
                 widget.GroupBox(active=base05, inactive=base05, padding=0),
