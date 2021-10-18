@@ -1,6 +1,8 @@
 # My Dotfiles
 
-[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+[![forthebadge wors-on-my-machine](https://forthebadge.com/images/badges/works-on-my-machine.svg)](https://forthebadge.com)
+[![forthebadge made-with-python](http://forthebadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+[![forthebadge wors-on-my-machine](https://forthebadge.com/images/badges/works-on-my-machine.svg)](https://www.gnu.org/philosophy/free-sw.en.html#four-freedoms)
 
 **Goals**
 * Systemwide font configuration
