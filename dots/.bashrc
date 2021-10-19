@@ -15,7 +15,7 @@ TERM='xterm'
 #aliases
 alias la='ls -A'
 alias ll='ls -lha'
-alias br='brightnessctl set 0 && read && brightnessctl set 4095'
+alias br='brightnessctl set 0 && read && brightnessctl set 100%'
 alias gts='git status'
 alias gta='git add'
 alias gtc='git commit -m'
