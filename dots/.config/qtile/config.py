@@ -106,7 +106,8 @@ screens = [
                 widget.ThermalSensor(fmt="{} ", foreground=base05),
 #                widget.Backlight(fmt="{} ", format="{percent:1%}"),
 #                widget.Battery(fmt="{} ", format="{percent:1%}"),
-                widget.CheckUpdates(distro="Debian", fmt="{} ", display_format="{updates}", no_update_string="0", colour_have_updates=base05, colour_no_updates=base05),
+                widget.CheckUpdates(distro="Debian", fmt="{} ", display_format="{updates}",\
+ no_update_string="0", colour_have_updates=base05, colour_no_updates=base05),
 #                widget.ImapWidget(fmt="{} "),
 #                widget.KhalCalendar(fmt="{} "),
                 widget.Clock(fmt="{} ", format='%a-%d.%m.%y'),
