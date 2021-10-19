@@ -1,7 +1,6 @@
 config.load_autoconfig(True)
 
 c.changelog_after_upgrade = 'patch'
-#c.colors.webpage.preferred_color_scheme = 'dark'
 c.completion.cmd_history_max_items = 0
 c.completion.shrink = True
 c.completion.timestamp_format = '%H:%M %d.%m.%Y'
@@ -79,6 +78,8 @@ base0C = "#2aa198"
 base0D = "#268bd2"
 base0E = "#6c71c4"
 base0F = "#d33682"
+
+# set qutebrowser colors
 
 # Text color of the completion widget. May be a single color to use for
 # all columns or a list of three colors, one for each column.
@@ -161,6 +162,7 @@ c.colors.downloads.stop.bg = base0C
 
 # Foreground color for downloads with errors.
 c.colors.downloads.error.fg = base08
+
 # Font color for hints.
 c.colors.hints.fg = base00
 
@@ -208,7 +210,7 @@ c.colors.messages.info.bg = base00
 c.colors.messages.info.border = base00
 
 # Foreground color for prompts.
-#c.colors.prompts.fg = base05
+c.colors.prompts.fg = base05
 
 # Border used around UI elements in prompts.
 c.colors.prompts.border = base00
@@ -355,4 +357,4 @@ c.colors.tabs.selected.even.bg = base02
 
 # Background color for webpages if unset (or empty to use the theme's
 # color).
-# c.colors.webpage.bg = base00
+c.colors.webpage.bg = base00
