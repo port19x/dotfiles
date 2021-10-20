@@ -86,6 +86,7 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 screens = [
+    Screen(),
     Screen(
         wallpaper="~/Pictures/base00.png",
         top=bar.Bar(
@@ -116,6 +117,7 @@ screens = [
             24,
         ),
     ),
+    Screen(),
 ]
 
 # Drag floating layouts.
