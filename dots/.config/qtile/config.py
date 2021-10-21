@@ -63,7 +63,15 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 screens = [
-    Screen(),
+    Screen(
+        top=bar.Bar(
+            [
+                widget.GroupBox(active=base5, inactive=base5, padding=0),
+                widget.Spacer(),
+            ],
+            24,
+        ),
+    ),
     Screen(
         wallpaper="~/Pictures/base00.png",
         top=bar.Bar(
@@ -94,7 +102,15 @@ screens = [
             24,
         ),
     ),
-    Screen(),
+    Screen(
+        top=bar.Bar(
+            [
+                widget.GroupBox(active=base5, inactive=base5, padding=0),
+                widget.Spacer(),
+            ],
+            24,
+        ),
+    ),
 ]
 
 dgroups_key_binder = None
