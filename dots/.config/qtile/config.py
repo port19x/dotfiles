@@ -74,6 +74,7 @@ for i in groups:
 layouts = [
     layout.Max(),
     layout.MonadTall(border_width=1, border_focus=base0D, border_normal=base00),
+    layout.MonadWide(border_width=1, border_focus=base0D, border_normal=base00),
 ]
 
 widget_defaults = dict(
