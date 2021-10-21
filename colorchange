@@ -44,5 +44,5 @@ echo $scheme
 
 for index in ${!SolarizedD[*]}; do
     #grep -r -l "${SolarizedD[$index]}" | xargs sed -i "s/${SolarizedD[$index]}/${SolarizedL[$index]}/g"
-    true
+    echo $index
 done
