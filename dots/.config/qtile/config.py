@@ -32,6 +32,7 @@ keys = [
     Key([mod], "w", lazy.window.kill()),
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod, "control"], "q", lazy.shutdown()),
+    Key([mod], "Return", lazy.spawn(terminal)),
     Key([mod], "r", lazy.spawncmd()),
 ]
 
