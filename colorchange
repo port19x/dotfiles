@@ -38,11 +38,11 @@ while getopts 'hs:t:' OPTION; do
 done
 
 kittypath=$(find ~ -type f -name "kitty.conf")
-base00=$(grep "color0" $kittypath | sed 's/color0 #//')
+base00=$(grep "color0" "$kittypath" | sed 's/color0 #//')
 scheme=$(grep "('$base00" colorchange | cut -f 1 -d =)
-echo $scheme
+echo "$scheme"
 
 for index in ${!SolarizedD[*]}; do
     #grep -r -l "${SolarizedD[$index]}" | xargs sed -i "s/${SolarizedD[$index]}/${SolarizedL[$index]}/g"
-    echo $index
+    echo "$index"
 done
