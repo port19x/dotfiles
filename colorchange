@@ -1,31 +1,29 @@
 #!/bin/bash
 
+#default old colorscheme
+. colorspec
+#default for -s
+newscheme=('002b36' '073642' '586e75' '657b83' '839496' '93a1a1' 'eee8d5' 'fdf6e3' 'dc322f' 'cb4b16' 'b58900' '859900' '2aa198' '268bd2' '6c71c4' 'd33682')
+#default for -t
+target="."
 
-SolarizedD=('002b36' '073642' '586e75' '657b83' '839496' '93a1a1' 'eee8d5' 'fdf6e3' 'dc322f' 'cb4b16' 'b58900' '859900' '2aa198' '268bd2' '6c71c4' 'd33682')
-#SolarizedL=('fdf6e3' 'eee8d5' '93a1a1' '839496' '657b83' '586e75' '073642' '002b36' 'dc322f' 'cb4b16' 'b58900' '859900' '2aa198' '268bd2' '6c71c4' 'd33682')
-
-#Darcula=('2b2b2b' '323232' '323232' '606366' 'a4a3a3' 'a9b7c6' 'ffc66d' 'ffffff' '4eade5' '689757' 'bbb529' '6a8759' '629755' '9876aa' 'cc7832' '808080')
-
-#Dracula=('282936' '3a3c4e' '4d4f68' '626483' '62d6e8' 'e9e9f4' 'f1f2f8' 'f7f7fb' 'ea51b2' 'b45bcf' '00f769' 'ebff87' 'a1efe4' '62d6e8' 'b45bcf' '00f769')
-
-#GruvboxDH=('1d2021' '3c3836' '504945' '665c54' 'bdae93' 'd5c4a1' 'ebdbb2' 'fbf1c7' 'fb4934' 'fe8019' 'fabd2f' 'b8bb26' '8ec07c' '83a598' 'd3869b' 'd65d0e')
-#GruvboxDM=('282828' '3c3836' '504945' '665c54' 'bdae93' 'd5c4a1' 'ebdbb2' 'fbf1c7' 'fb4934' 'fe8019' 'fabd2f' 'b8bb26' '8ec07c' '83a598' 'd3869b' 'd65d0e')
-#GruvboxDS=('32302f' '3c3836' '504945' '665c54' 'bdae93' 'd5c4a1' 'ebdbb2' 'fbf1c7' 'fb4934' 'fe8019' 'fabd2f' 'b8bb26' '8ec07c' '83a598' 'd3869b' 'd65d0e')
-#GruvboxLH=('f9f5d7' 'ebdbb2' 'd5c4a1' 'bdae93' '665c54' '504945' '3c3836' '282828' '9d0006' 'af3a03' 'b57614' '79740e' '427b58' '076678' '8f3f71' 'd65d0e')
-#GruvboxLM=('fbf1c7' 'ebdbb2' 'd5c4a1' 'bdae93' '665c54' '504945' '3c3836' '282828' '9d0006' 'af3a03' 'b57614' '79740e' '427b58' '076678' '8f3f71' 'd65d0e')
-#GruvboxLS=('f2e5bc' 'ebdbb2' 'd5c4a1' 'bdae93' '665c54' '504945' '3c3836' '282828' '9d0006' 'af3a03' 'b57614' '79740e' '427b58' '076678' '8f3f71' 'd65d0e')
-
-#Nord=('2e3440' '3b4252' '434c5e' '4c566a' 'd8dee9' 'e5e9f0' 'eceff4' '8fbcbb' '88c0d0' '81a1c1' '5e81ac' 'bf616a' 'd08770' 'ebcb8b' 'a3be8c' 'b48ead')
-
-while getopts 'hs:t:' OPTION; do
+while getopts 'hvVs:t:' OPTION; do
     case "$OPTION" in
         h)
-            echo "Usage: $0 [-h] [-t target] [-s base00 base01 ... base0F]"
-            echo "Change the base16 colorscheme in one or more of your dotfiles"
+            echo "Change the colors in your dotfiles"
+            echo "Usage: $0 [-h] [-V] [-v] [-t target] [-s base00 ... base0f]"
+            echo ""
+            echo "Default: $0 -t . -s ${newscheme[*]}"
             echo ""
             echo "-h        display this help and exit"
-            echo "-t        specify a file to apply the changes to"
+            echo "-t        specify where to apply the changes"
             echo "-s        provide your own base16 colorscheme"
+            echo "-v        enable verbose output (unimplemented)"
+            echo "-V        output version information and exit"
+            ;;
+        V)
+            echo "colorchange 0.0.1"
+            exit 0
             ;;
         s)
             iarg="$OPTARG"
@@ -36,9 +34,14 @@ while getopts 'hs:t:' OPTION; do
         t)
             iarg="$OPTARG"
             if [[ -f "$iarg" ]]; then
-                echo "Target provided: $iarg"
+                echo "Target file provided : $iarg"
+                target=$iarg
+            elif [[ -d "$iarg" ]]; then
+                echo "Target directory provided: $iarg"
+                target=$iarg
             else
-                echo "Target does not exist: $iarg"
+                echo "Target does not exist: $iarg" >&2
+                exit 1
             fi
             ;;
         *)
@@ -48,12 +51,9 @@ while getopts 'hs:t:' OPTION; do
     esac
 done
 
-kittypath=$(find ~ -type f -name "kitty.conf")
-base00=$(grep "color0" "$kittypath" | sed 's/color0 #//')
-scheme=$(grep "('$base00" colorchange | cut -f 1 -d =)
-echo "$scheme" > /dev/null
+cd "$target" || exit 1
 
-for index in ${!SolarizedD[*]}; do
-    #grep -r -l "${SolarizedD[$index]}" | xargs sed -i "s/${SolarizedD[$index]}/${SolarizedL[$index]}/g"
+for index in "${!oldscheme[*]}"; do
+    #grep -r -l "${oldscheme[$index]}" | xargs sed -i "s/${oldscheme[$index]}/${newscheme[$index]}/g"
     echo "$index" > /dev/null
 done
