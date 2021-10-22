@@ -20,18 +20,29 @@ SolarizedD=('002b36' '073642' '586e75' '657b83' '839496' '93a1a1' 'eee8d5' 'fdf6
 while getopts 'hs:t:' OPTION; do
     case "$OPTION" in
         h)
-            echo "Option h is given"
+            echo "Usage: $0 [-h] [-t target] [-s base00 base01 ... base0F]"
+            echo "Change the base16 colorscheme in one or more of your dotfiles"
+            echo ""
+            echo "-h        display this help and exit"
+            echo "-t        specify a file to apply the changes to"
+            echo "-s        provide your own base16 colorscheme"
             ;;
         s)
             iarg="$OPTARG"
-            echo "Scheme provided: $iarg"
+            shift "$((OPTIND -1))"
+            newscheme=("$iarg" "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9" "${10}" "${11}" "${12}" "${13}" "${14}" "${15}")
+            echo "${newscheme[*]}"
             ;;
         t)
             iarg="$OPTARG"
-            echo "Target provided: $iarg"
+            if [[ -f "$iarg" ]]; then
+                echo "Target provided: $iarg"
+            else
+                echo "Target does not exist: $iarg"
+            fi
             ;;
         *)
-            echo "Usage: $0 [-h] [-s scheme] [-t target]" >&2
+            echo "Usage: $0 [-h] [-t target] [-s base00 base01 ... base0F]" >&2
             exit 1
             ;;
     esac
@@ -40,9 +51,9 @@ done
 kittypath=$(find ~ -type f -name "kitty.conf")
 base00=$(grep "color0" "$kittypath" | sed 's/color0 #//')
 scheme=$(grep "('$base00" colorchange | cut -f 1 -d =)
-echo "$scheme"
+echo "$scheme" > /dev/null
 
 for index in ${!SolarizedD[*]}; do
     #grep -r -l "${SolarizedD[$index]}" | xargs sed -i "s/${SolarizedD[$index]}/${SolarizedL[$index]}/g"
-    echo "$index"
+    echo "$index" > /dev/null
 done
