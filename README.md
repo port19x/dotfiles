@@ -20,7 +20,7 @@
 **Quick Setup**
 
     sudo apt install git
-    git clone --recurse-submodules https://github.com/ura43/dotfiles
+    git clone https://github.com/ura43/dotfiles
     cd dotfiles
     sudo ./install
 

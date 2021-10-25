@@ -1,3 +1,0 @@
-[submodule "dots/.vim/pack/my-plugins/start/vim-puppet"]
-	path = dots/.vim/pack/my-plugins/start/vim-puppet
-	url = https://github.com/rodjek/vim-puppet
