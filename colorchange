@@ -7,22 +7,21 @@ newscheme=('002b36' '073642' '586e75' '657b83' '839496' '93a1a1' 'eee8d5' 'fdf6e
 #default for -t
 target="."
 
-while getopts 'hvVs:t:' OPTION; do
-    case "$OPTION" in
-        h)
+function helpText {
             echo "Change the colors in your dotfiles"
-            echo "Usage: $0 [-h] [-V] [-v] [-t target] [-s base00 ... base0f]"
+            echo "Usage: $0 [-h] [-t target] [-s base00 ... base0f]"
             echo ""
             echo "Default: $0 -t . -s ${newscheme[*]}"
             echo ""
             echo "-h        display this help and exit"
             echo "-t        specify where to apply the changes"
             echo "-s        provide your own base16 colorscheme"
-            echo "-v        enable verbose output (unimplemented)"
-            echo "-V        output version information and exit"
-            ;;
-        V)
-            echo "colorchange 0.0.1"
+}
+
+while getopts 'hs:t:' OPTION; do
+    case "$OPTION" in
+        h)
+            helpText
             exit 0
             ;;
         s)
@@ -45,15 +44,21 @@ while getopts 'hvVs:t:' OPTION; do
             fi
             ;;
         *)
-            echo "Usage: $0 [-h] [-t target] [-s base00 base01 ... base0F]" >&2
+            helpText
             exit 1
             ;;
     esac
 done
 
-cd "$target" || exit 1
+if [[ -d "$target" ]]; then
+    cd "$target" || exit 1
 
-for index in "${!oldscheme[*]}"; do
-    #grep -r -l "${oldscheme[$index]}" | xargs sed -i "s/${oldscheme[$index]}/${newscheme[$index]}/g"
-    echo "$index" > /dev/null
-done
+    for index in "${!oldscheme[*]}"; do
+        #grep -r -l "${oldscheme[$index]}" | xargs sed -i "s/${oldscheme[$index]}/${newscheme[$index]}/g"
+        echo "$index" > /dev/null
+    done
+elif [[ -f "$target" ]]; then
+    for index in "${!oldscheme[*]}"; do
+        sed -i "s/${oldscheme[$index]}/${newscheme[$index]}/g"
+    done
+fi
