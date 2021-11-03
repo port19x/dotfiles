@@ -1,7 +1,7 @@
 #history
 HISTFILE=~/.histfile
-HISTSIZE=1000
 SAVEHIST=1000000
+HISTSIZE=$SAVEHIST
 setopt INC_APPEND_HISTORY	# Don't wait until the shell exits
 setopt SHARE_HISTORY		# Share history between all sessions
 setopt HIST_IGNORE_SPACE	# Ignore entries starting with Space
