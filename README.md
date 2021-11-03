@@ -11,7 +11,7 @@
 * qtile
 * qutebrowser
 * kitty
-* vim
+* neovim
 
 **Fonts**
 * mononoki
