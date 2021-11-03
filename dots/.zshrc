@@ -1,6 +1,6 @@
 #history
 HISTFILE=~/.histfile
-SAVEHIST=1000000
+SAVEHIST=10000
 HISTSIZE=$SAVEHIST
 setopt INC_APPEND_HISTORY	# Don't wait until the shell exits
 setopt SHARE_HISTORY		# Share history between all sessions
