@@ -14,7 +14,7 @@ jobs:
     - name: Run ShellCheck
       uses: ludeeus/action-shellcheck@master
       env:
-        SHELLCHECK_OPTS: -x -s bash
+        SHELLCHECK_OPTS: -s zsh
 
   pylint:
     name: Pylint
