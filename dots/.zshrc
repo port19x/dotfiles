@@ -1,16 +1,23 @@
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+#history
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000000
+setopt INC_APPEND_HISTORY	# Don't wait until the shell exits
+setopt SHARE_HISTORY		# Share history between all sessions
+setopt HIST_IGNORE_SPACE	# Ignore entries starting with Space
+setopt HIST_IGNORE_DUPS		# dup
+setopt HIST_IGNORE_ALL_DUPS	# li
+setopt HIST_SAVE_NO_DUPS	# cates
 
-#Infinite non-duplicate bashhistory
-HISTSIZE=-1
-HISTFILESIZE=-1
-HISTCONTROL=ignoreboth:erasedups
+PS1="%~$ "
+TERM="xterm"
 
-PS1='\u@\h:\w\$ '
-TERM='xterm'
+#stuff from autoconfig
+unsetopt beep
+bindkey -v
+zstyle :compinstall filename '/home/ks/.zshrc'
+autoload -Uz compinit
+compinit
 
 #aliases
 alias la='ls -A'
@@ -30,8 +37,3 @@ alias cd2="cd ../.."
 alias cd3="cd ../../.."
 alias cd4="cd ../../../.."
 alias cd5="cd ../../../../.."
-
-#set vi mode
-set -o vi
-bind 'set show-all-if-ambiguous on'
-bind 'TAB:menu-complete'
