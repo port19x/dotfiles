@@ -1,5 +1,4 @@
 from typing import List  # noqa: F401
-
 from libqtile import bar, layout, widget
 from libqtile.config import Group, Key, Match, Screen
 from libqtile.lazy import lazy
@@ -49,7 +48,6 @@ for i in groups:
 
 layouts = [
     layout.Max(),
-    layout.MonadTall(border_width=1, border_focus=baseD, border_normal=base0),
     layout.MonadWide(border_width=1, border_focus=baseD, border_normal=base0),
 ]
 
@@ -73,31 +71,20 @@ screens = [
         ),
     ),
     Screen(
-        wallpaper="~/Pictures/base00.png",
         top=bar.Bar(
             [
                 widget.GroupBox(active=base5, inactive=base5, padding=0),
                 widget.Prompt(),
                 widget.WindowName(),
                 widget.Spacer(),
-                widget.CurrentLayout(fmt="{} "),
-                # widget.Wttr(format="?T%t", location="redacted"),
-                widget.Net(fmt="{} ", format="{down}"),
-                widget.Net(fmt="{} ", format="{up}"),
-                # widget.CryptoTicker(fmt="{} ", crypto="XMR"),
-                # widget.PulseVolume(fmt="{} "),
                 widget.CPU(fmt="{}% ", format="{load_percent}"),
                 widget.Memory(fmt="{}% ", format="{MemPercent}"),
                 widget.DF(fmt="{} ", format="{r:.0f}%", visible_on_warn=False),
                 widget.ThermalSensor(fmt="{} ", foreground=base5),
-                # widget.Backlight(fmt="{} ", format="{percent:1%}"),
                 # widget.Battery(fmt="{} ", format="{percent:1%}"),
                 widget.CheckUpdates(distro="Debian", fmt="{} ", display_format="{updates}",\
  no_update_string="0", colour_have_updates=base5, colour_no_updates=base5),
-                # widget.ImapWidget(fmt="{} "),
-                # widget.KhalCalendar(fmt="{} "),
-                widget.Clock(fmt="{} ", format='%a-%d.%m.%y'),
-                widget.Clock(fmt="{} ", format='%H:%M'),
+                widget.Clock(format='%a-%d.%m.%y   %H:%M '),
             ],
             24,
         ),
@@ -113,21 +100,7 @@ screens = [
     ),
 ]
 
-dgroups_key_binder = None
-dgroups_app_rules = []  # type: List
 follow_mouse_focus = True
-bring_front_click = False
-cursor_warp = False
-floating_layout = layout.Floating(float_rules=[
-    # Run the utility of `xprop` to see the wm class and name of an X client.
-    *layout.Floating.default_float_rules,
-    Match(wm_class='confirmreset'),  # gitk
-    Match(wm_class='makebranch'),  # gitk
-    Match(wm_class='maketag'),  # gitk
-    Match(wm_class='ssh-askpass'),  # ssh-askpass
-    Match(title='branchdialog'),  # gitk
-    Match(title='pinentry'),  # GPG key password entry
-])
-auto_fullscreen = True
-focus_on_window_activation = "smart"
-reconfigure_screens = True
+wmname = 'Qtile'
+float_rules=layout.Floating.default_float_rules
+floating_layout = layout.Floating(float_rules=float_rules)
