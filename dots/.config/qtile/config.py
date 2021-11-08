@@ -1,6 +1,5 @@
-from typing import List  # noqa: F401
 from libqtile import bar, layout, widget
-from libqtile.config import Group, Key, Match, Screen
+from libqtile.config import Group, Key, Screen
 from libqtile.lazy import lazy
 
 mod = "mod4"
