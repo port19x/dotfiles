@@ -11,6 +11,7 @@ setopt HIST_SAVE_NO_DUPS	# cates
 
 PS1="%~$ "
 TERM="xterm"
+export MANPAGER="nvim -c 'set ft=man' -"
 
 #stuff from autoconfig
 unsetopt beep
@@ -32,6 +33,7 @@ alias gtl='git log'
 alias yta='youtube-dl -f bestaudio/m4a'
 alias ytd="youtube-dl -f 'bestvideo[height<=?1080]+bestaudio/best'"
 alias icat="kitty +kitten icat"
+alias bye="xscreensaver-command -lock"
 alias cd1="cd .."
 alias cd2="cd ../.."
 alias cd3="cd ../../.."
