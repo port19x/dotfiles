@@ -34,6 +34,7 @@ alias yta='youtube-dl -f bestaudio/m4a'
 alias ytd="youtube-dl -f 'bestvideo[height<=?1080]+bestaudio/best'"
 alias icat="kitty +kitten icat"
 alias bye="xscreensaver-command -lock"
+alias penguin="wget -qO- https://api.animality.xyz/img/penguin | jq .link | xargs wget -qO- | icat"
 alias cd1="cd .."
 alias cd2="cd ../.."
 alias cd3="cd ../../.."
