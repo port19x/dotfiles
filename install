@@ -3,8 +3,8 @@ mkdir -p ~/.config/fontconfig ~/.config/kitty ~/.config/qutebrowser ~/.config/qt
 
 QtileDeps="python3-cffi xserver-xorg python3-xcffib python3-cairocffi libpangocairo-1.0-0 xinit python3-pip python3-psutil lm-sensors"
 PipPkgs="qtile adblock"
-Desktop="qutebrowser kitty fonts-mononoki fonts-font-awesome chromium pavucontrol tipp10 keepassxc"
-Utils="brightnessctl shellcheck flake8 imagemagick clamav neofetch ncdu feh mpv youtube-dl stow cifs-utils zsh nvim"
+Desktop="qutebrowser kitty fonts-mononoki fonts-font-awesome keepassxc"
+Utils="brightnessctl shellcheck flake8 neofetch ncdu mpv youtube-dl stow cifs-utils zsh nvim"
 
 sudo apt install "$QtileDeps"
 sudo apt install "$Desktop"
