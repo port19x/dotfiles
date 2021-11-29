@@ -3,11 +3,11 @@ mkdir -p ~/.config/fontconfig ~/.config/kitty ~/.config/qutebrowser ~/.config/qt
 
 QtileDeps="python3-cffi xserver-xorg python3-xcffib python3-cairocffi libpangocairo-1.0-0 xinit python3-pip python3-psutil lm-sensors"
 PipPkgs="qtile adblock"
-Desktop="qutebrowser kitty fonts-mononoki fonts-font-awesome keepassxc"
-Utils="brightnessctl shellcheck flake8 neofetch ncdu mpv youtube-dl stow cifs-utils zsh nvim"
+Suite="qtile qutebrowser kitty zsh mpv cmus kitty ranger mupdf groff neovim khal taskwarrior keepassxc htop neofetch ncdu stow"
+Misc="fonts-mononoki fonts-font-awesome shellcheck flake8 ncdu cifs-utils brightnessctl"
 
 sudo apt install "$QtileDeps"
-sudo apt install "$Desktop"
-sudo apt install "$Utils"
-sudo pip install "$PipPkgs"
+sudo pip3 install "$PipPkgs"
+sudo apt install "$Suite"
+sudo apt install "$Misc"
 stow dots
