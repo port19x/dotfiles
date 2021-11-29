@@ -1,4 +1,4 @@
-# My Dotfiles
+# My Desktop Environment
 
 [![forthebadge made-with-python](http://forthebadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
