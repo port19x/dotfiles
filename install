@@ -1,13 +1,19 @@
 #!/bin/sh
-mkdir -p ~/.config/fontconfig ~/.config/kitty ~/.config/qutebrowser ~/.config/qtile
-
+echo "Defining Package Scopes"
 QtileDeps="python3-cffi xserver-xorg python3-xcffib python3-cairocffi libpangocairo-1.0-0 xinit python3-pip python3-psutil lm-sensors"
 PipPkgs="qtile adblock"
 Suite="qutebrowser kitty zsh mpv cmus kitty ranger mupdf groff neovim khal taskwarrior keepassxc htop neofetch ncdu stow"
 Misc="fonts-mononoki fonts-font-awesome shellcheck flake8 cifs-utils brightnessctl"
-
-sudo apt install "$QtileDeps"
+echo "Creating config directories"
+mkdir -p ~/.config/fontconfig ~/.config/kitty ~/.config/qutebrowser ~/.config/qtile
+echo "Installing dependencies for qtile"
+sudo apt-get install "$QtileDeps"
+echo "Installing qtile and adblock"
 sudo pip3 install "$PipPkgs"
-sudo apt install "$Suite"
-sudo apt install "$Misc"
+echo "Installing application suite"
+sudo apt-get install "$Suite"
+echo "Installing miscellaneous utilities"
+sudo apt-get install "$Misc"
+echo "symlinking dotfiles"
 stow dots
+echo "done"
