@@ -14,6 +14,7 @@ echo "Installing application suite"
 sudo apt-get install "$Suite"
 echo "Installing miscellaneous utilities"
 sudo apt-get install "$Misc"
+#TODO add xdg compliance for zsh
 echo "symlinking dotfiles"
 stow dots
 echo "done"
