@@ -1,5 +1,4 @@
 #history
-HISTFILE=~/.histfile
 SAVEHIST=1000000
 HISTSIZE=$SAVEHIST
 setopt INC_APPEND_HISTORY	# Don't wait until the shell exits
@@ -12,6 +11,7 @@ setopt HIST_SAVE_NO_DUPS	# cates
 PS1="%~$ "
 TERM="xterm"
 export MANPAGER="nvim -c 'set ft=man' -"
+export HISTFILE="$HOME/.local/state/zsh/history"
 
 #stuff from autoconfig
 unsetopt beep
