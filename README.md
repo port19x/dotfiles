@@ -24,7 +24,7 @@
 * Disk Usage Analyzer: [ncdu](https://dev.yorhel.nl/ncdu) [✓]
 * Symlink Manager: [stow](https://www.gnu.org/software/stow)
 
-###### [✓] = dots available (or alias if program is not configured via a dotifile)
+###### [✓] = dots available (or alias if program is not configurable via dotfiles)
 
 **Quick Setup**
 
