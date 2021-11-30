@@ -21,10 +21,10 @@
 * Password Manager: [keepassxc](https://github.com/keepassxreboot/keepassxc)
 * System Monitor: [htop](https://github.com/htop-dev/htop) [✓]
 * System Info: [neofetch](https://github.com/dylanaraps/neofetch) [✓]
-* Disk Usage Analyzer: [ncdu](https://dev.yorhel.nl/ncdu)
+* Disk Usage Analyzer: [ncdu](https://dev.yorhel.nl/ncdu) [✓]
 * Symlink Manager: [stow](https://www.gnu.org/software/stow)
 
-###### [✓] = dots available
+###### [✓] = dots available (or alias if program is not configured via a dotifile)
 
 **Quick Setup**
 
