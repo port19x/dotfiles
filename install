@@ -3,9 +3,9 @@ echo "Defining Package Scopes"
 QtileDeps="python3-cffi xserver-xorg python3-xcffib python3-cairocffi libpangocairo-1.0-0 xinit python3-pip python3-psutil lm-sensors"
 PipPkgs="qtile adblock"
 Suite="qutebrowser kitty zsh mpv cmus kitty ranger mupdf groff neovim khal taskwarrior keepassxc htop neofetch ncdu stow pulsemixer"
-Misc="fonts-mononoki fonts-font-awesome shellcheck flake8 cifs-utils brightnessctl"
+Misc="fonts-mononoki fonts-font-awesome shellcheck flake8 cifs-utils brightnessctl tree"
 echo "Creating config directories"
-mkdir -p ~/.config/fontconfig ~/.config/kitty ~/.config/qutebrowser ~/.config/qtile
+mkdir -p ~/.config/fontconfig ~/.config/kitty ~/.config/qutebrowser ~/.config/qtile ~/.config/nvim
 echo "Installing dependencies for qtile"
 sudo apt-get install "$QtileDeps"
 echo "Installing qtile and adblock"
