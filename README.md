@@ -8,6 +8,7 @@
 * Webbrowser: [qutebrowser](https://github.com/qutebrowser/qutebrowser) [✓]
 * Terminal Emulator: [kitty](https://github.com/kovidgoyal/kitty) [✓]
 * Shell: [zsh](https://github.com/zsh-users/zsh) [✓]
+* Volume Control: [pulsemixer](https://github.com/GeorgeFilipkin/pulsemixer)
 * Video Player: [mpv](https://github.com/mpv-player/mpv)
 * Music Player: [cmus](https://github.com/cmus/cmus)
 * Image Viewer: [icat](https://sw.kovidgoyal.net/kitty/kittens/icat/)
