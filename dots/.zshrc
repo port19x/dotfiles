@@ -18,7 +18,7 @@ unsetopt beep
 bindkey -v
 zstyle :compinstall filename '/home/ks/.zshrc'
 autoload -Uz compinit
-compinit
+compinit -d ~/.cache/zsh/zcompdump-5.8
 
 #aliases
 alias la='ls -A'
