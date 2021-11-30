@@ -3,7 +3,7 @@ from libqtile.config import Group, Key, Screen
 from libqtile.lazy import lazy
 
 mod = "mod4"
-terminal = "kitty"
+terminal = "kitty -e zsh"
 
 base0 = "#002b36"
 base1 = "#073642"
