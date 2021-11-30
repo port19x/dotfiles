@@ -5,7 +5,7 @@ PipPkgs="qtile adblock"
 Suite="qutebrowser kitty zsh mpv cmus kitty ranger mupdf groff neovim khal taskwarrior keepassxc htop neofetch ncdu stow pulsemixer"
 Misc="fonts-mononoki fonts-font-awesome shellcheck flake8 cifs-utils brightnessctl tree"
 echo "Creating config directories"
-mkdir -p ~/.config/fontconfig ~/.config/kitty ~/.config/qutebrowser ~/.config/qtile ~/.config/nvim
+mkdir -p ~/.config/fontconfig ~/.config/kitty ~/.config/qutebrowser ~/.config/qtile ~/.config/nvim ~/.config/htop ~/.config/neofetch
 echo "Installing dependencies for qtile"
 sudo apt-get install "$QtileDeps"
 echo "Installing qtile and adblock"
