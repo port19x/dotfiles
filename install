@@ -3,8 +3,8 @@ mkdir -p ~/.config/fontconfig ~/.config/kitty ~/.config/qutebrowser ~/.config/qt
 
 QtileDeps="python3-cffi xserver-xorg python3-xcffib python3-cairocffi libpangocairo-1.0-0 xinit python3-pip python3-psutil lm-sensors"
 PipPkgs="qtile adblock"
-Suite="qtile qutebrowser kitty zsh mpv cmus kitty ranger mupdf groff neovim khal taskwarrior keepassxc htop neofetch ncdu stow"
-Misc="fonts-mononoki fonts-font-awesome shellcheck flake8 ncdu cifs-utils brightnessctl"
+Suite="qutebrowser kitty zsh mpv cmus kitty ranger mupdf groff neovim khal taskwarrior keepassxc htop neofetch ncdu stow"
+Misc="fonts-mononoki fonts-font-awesome shellcheck flake8 cifs-utils brightnessctl"
 
 sudo apt install "$QtileDeps"
 sudo pip3 install "$PipPkgs"
