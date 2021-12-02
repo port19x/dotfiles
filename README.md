@@ -14,7 +14,7 @@
 * Document Viewer: [mupdf](https://github.com/ArtifexSoftware/mupdf)
 * Typesetting: [groff](https://www.gnu.org/software/groff)
 * Text Editor: [neovim](https://github.com/neovim/neovim) [✓]
-* Calendar & Todo: [calcurse](https://github.com/lfos/calcurse)
+* Calendar & Todo: [calcurse](https://github.com/lfos/calcurse) [✓]
 * Password Manager: [keepassxc](https://github.com/keepassxreboot/keepassxc)
 * System Monitor: [htop](https://github.com/htop-dev/htop) [✓]
 * System Info: [neofetch](https://github.com/dylanaraps/neofetch) [✓]
