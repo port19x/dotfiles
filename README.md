@@ -15,10 +15,10 @@
     * Volume Control: [pulsemixer](https://github.com/GeorgeFilipkin/pulsemixer)
     * Video Player: [mpv](https://github.com/mpv-player/mpv)
     * Music Player: [cmus](https://github.com/cmus/cmus)
-    * Image Viewer: [kitty](https://sw.kovidgoyal.net/kitty/kittens/icat/)[✓]
+    * Image Viewer: [kitty](https://sw.kovidgoyal.net/kitty/kittens/icat/)
 * Documents
-    * Typesetting: [groff](https://www.gnu.org/software/groff)
     * Document Viewer: [mupdf](https://github.com/ArtifexSoftware/mupdf)
+    * Typesetting: [groff](https://www.gnu.org/software/groff)
     * Bulk Rename: [ranger](https://github.com/ranger/ranger)
 * Other utilities
     * System Info: [neofetch](https://github.com/dylanaraps/neofetch) [✓]
