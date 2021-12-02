@@ -36,13 +36,9 @@ jobs:
 #       Qtile E0401 C0209
 #       Qutebrowser C0103 E0602
 
-#  stylelint:
-#    name: Stylelint
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v1
-#      - name: Analysing the css with stylelint
-#        uses: actions-hub/stylelint@master
-#        env:
-#          PATTERN: "./dots/.config/*/*.css"
-
+  markdown-link-check:
+    name: Markdown Link Check
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: gaurav-nelson/github-action-markdown-link-check@v1
