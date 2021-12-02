@@ -19,8 +19,8 @@
 * Other utilities
     * System Info: [neofetch](https://github.com/dylanaraps/neofetch) [✓]
     * System Monitor: [htop](https://github.com/htop-dev/htop) [✓]
+    * Password Manager: [keepassxc](https://github.com/keepassxreboot/keepassxc) [✓]
     * Disk Usage Analyzer: [ncdu](https://dev.yorhel.nl/ncdu)
-    * Password Manager: [keepassxc](https://github.com/keepassxreboot/keepassxc)
 
 ###### [✓] = dots available
 
