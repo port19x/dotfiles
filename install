@@ -2,8 +2,8 @@
 echo "Defining Package Scopes"
 QtileDeps="python3-cffi xserver-xorg python3-xcffib python3-cairocffi libpangocairo-1.0-0 xinit python3-pip python3-psutil lm-sensors"
 PipPkgs="qtile adblock"
-Suite="qutebrowser kitty zsh mpv cmus kitty ranger mupdf groff neovim calcurse keepassxc htop neofetch ncdu stow pulsemixer"
-Misc="fonts-mononoki fonts-font-awesome shellcheck flake8 cifs-utils brightnessctl tree wget sl apt-show-versions"
+Suite="qutebrowser kitty zsh mpv cmus kitty ranger mupdf groff neovim calcurse keepassxc htop neofetch ncdu pulsemixer"
+Misc="fonts-mononoki fonts-font-awesome shellcheck flake8 cifs-utils brightnessctl tree wget sl apt-show-versions stow"
 echo "Creating config directories"
 mkdir -p ~/.config/fontconfig ~/.config/kitty ~/.config/qutebrowser ~/.config/qtile ~/.config/nvim ~/.config/htop ~/.config/neofetch
 echo "Installing dependencies for qtile"

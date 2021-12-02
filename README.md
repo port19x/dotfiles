@@ -5,26 +5,26 @@
 **Application Suite**
 * **Backbone**
     * **Window Manager: [qtile](https://github.com/qtile/qtile)** [✓]
-    * **Shell: [zsh](https://github.com/zsh-users/zsh) [✓]**
     * **Terminal Emulator: [kitty](https://github.com/kovidgoyal/kitty) [✓]**
+    * **Shell: [zsh](https://github.com/zsh-users/zsh) [✓]**
 * **Core Applications**
     * **Webbrowser: [qutebrowser](https://github.com/qutebrowser/qutebrowser)** [✓]
     * **Text Editor: [neovim](https://github.com/neovim/neovim) [✓]**
     * **Calendar & Todo: [calcurse](https://github.com/lfos/calcurse) [✓]**
 * Multimedia
-    * Image Viewer: [kitty](https://sw.kovidgoyal.net/kitty/kittens/icat/)[✓]
-    * Video Player: [mpv](https://github.com/mpv-player/mpv)
     * Volume Control: [pulsemixer](https://github.com/GeorgeFilipkin/pulsemixer)
+    * Video Player: [mpv](https://github.com/mpv-player/mpv)
+    * Music Player: [cmus](https://github.com/cmus/cmus)
+    * Image Viewer: [kitty](https://sw.kovidgoyal.net/kitty/kittens/icat/)[✓]
 * Documents
-    * File Manager: [ranger](https://github.com/ranger/ranger)
-    * Document Viewer: [mupdf](https://github.com/ArtifexSoftware/mupdf)
     * Typesetting: [groff](https://www.gnu.org/software/groff)
+    * Document Viewer: [mupdf](https://github.com/ArtifexSoftware/mupdf)
+    * Bulk Rename: [ranger](https://github.com/ranger/ranger)
 * Other utilities
-    * Password Manager: [keepassxc](https://github.com/keepassxreboot/keepassxc)
-    * System Monitor: [htop](https://github.com/htop-dev/htop) [✓]
     * System Info: [neofetch](https://github.com/dylanaraps/neofetch) [✓]
+    * System Monitor: [htop](https://github.com/htop-dev/htop) [✓]
     * Disk Usage Analyzer: [ncdu](https://dev.yorhel.nl/ncdu)
-    * Symlink Manager: [stow](https://www.gnu.org/software/stow)
+    * Password Manager: [keepassxc](https://github.com/keepassxreboot/keepassxc)
 
 ###### [✓] = dots available
 
