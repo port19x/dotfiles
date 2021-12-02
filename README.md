@@ -23,7 +23,7 @@
   * Password Manager: [keepassxc](https://github.com/keepassxreboot/keepassxc) [✓]
   * Disk Usage Analyzer: [gdu](https://github.com/dundee/gdu)
 
-### [✓] = dots available
+> [✓] = dots available
 
 ## Quick Setup
 
@@ -34,4 +34,4 @@ cd dotfiles
 ./install
 ```
 
-### Currently deployed on Debian 11 Bullseye
+> Currently deployed on Debian 11 Bullseye
