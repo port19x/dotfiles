@@ -6,12 +6,12 @@
 
 * **Backbone**
   * **Window Manager: [qtile](https://github.com/qtile/qtile)** [✓]
-  * **Terminal Emulator: [kitty](https://github.com/kovidgoyal/kitty) [✓]**
-  * **Shell: [zsh](https://github.com/zsh-users/zsh) [✓]**
+  * **Terminal Emulator: [kitty](https://github.com/kovidgoyal/kitty)** [✓]
+  * **Shell: [zsh](https://github.com/zsh-users/zsh)** [✓]
 * **Core Applications**
   * **Webbrowser: [qutebrowser](https://github.com/qutebrowser/qutebrowser)** [✓]
-  * **Text Editor: [neovim](https://github.com/neovim/neovim) [✓]**
-  * **Calendar & Todo: [calcurse](https://github.com/lfos/calcurse) [✓]**
+  * **Text Editor: [neovim](https://github.com/neovim/neovim)** [✓]
+  * **Calendar & Todo: [calcurse](https://github.com/lfos/calcurse)** [✓]
 * Multimedia
   * Volume Control: [pulsemixer](https://github.com/GeorgeFilipkin/pulsemixer)
   * Video Player: [mpv](https://github.com/mpv-player/mpv)
