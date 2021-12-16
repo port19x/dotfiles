@@ -1,8 +1,10 @@
 syntax on
-set expandtab
 set relativenumber
-set softtabstop=4
 set title
+
+set shiftwidth=4
+set softtabstop=4
+set expandtab
 
 let g:netrw_banner=0
 let g:netrw_liststyle=3
