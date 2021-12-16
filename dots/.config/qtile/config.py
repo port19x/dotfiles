@@ -78,9 +78,6 @@ screens = [
                 widget.Spacer(),
                 widget.CPU(fmt="{}% ", format="{load_percent}"),
                 widget.Memory(fmt="{}% ", format="{MemPercent}"),
-                widget.DF(fmt="{} ", format="{r:.0f}%", visible_on_warn=False),
-                widget.ThermalSensor(fmt="{} ", foreground=base5),
-                # widget.Battery(fmt="{} ", format="{percent:1%}"),
                 widget.CheckUpdates(distro="Debian", fmt="{} ", display_format="{updates}",\
  no_update_string="0", colour_have_updates=base5, colour_no_updates=base5),
                 widget.Clock(format='%a-%d.%m.%y   %H:%M '),
