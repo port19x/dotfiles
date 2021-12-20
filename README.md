@@ -25,7 +25,7 @@
   * Disk Usage Analyzer: [gdu](https://github.com/dundee/gdu) [✗]
 
 > [✓] = dots available
-> [-] = not configurable
+> [✗] = not configurable
 
 ## Quick Setup
 
