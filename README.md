@@ -1,7 +1,7 @@
 # My Desktop
 
 [![forthebadge made-with-python](http://forthebadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
-
+✗
 ## Application Suite
 
 * **Backbone**
@@ -17,12 +17,12 @@
   * Video Player: [mpv](https://github.com/mpv-player/mpv)
   * Music Player: [mpv](https://github.com/mpv-player/mpv)
   * Image Viewer: [kitty](https://sw.kovidgoyal.net/kitty/kittens/icat/)
-  * Document Viewer: [mupdf](https://github.com/ArtifexSoftware/mupdf) [-]
+  * Document Viewer: [mupdf](https://github.com/ArtifexSoftware/mupdf) [✗]
 * Other utilities
   * System Info: [neofetch](https://github.com/dylanaraps/neofetch) [✓]
   * System Monitor: [htop](https://github.com/htop-dev/htop) [✓]
   * Password Manager: [keepassxc](https://github.com/keepassxreboot/keepassxc) [✓]
-  * Disk Usage Analyzer: [gdu](https://github.com/dundee/gdu) [-]
+  * Disk Usage Analyzer: [gdu](https://github.com/dundee/gdu) [✗]
 
 > [✓] = dots available
 > [-] = not configurable
