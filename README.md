@@ -16,7 +16,7 @@
   * Volume Control: [pulsemixer](https://github.com/GeorgeFilipkin/pulsemixer) [✓]
   * Video Player: [mpv](https://github.com/mpv-player/mpv) [✓]
   * Music Player: [mpv](https://github.com/mpv-player/mpv) [✓]
-  * Image Viewer: [kitty](https://sw.kovidgoyal.net/kitty/kittens/icat) [✗]
+  * Image Viewer: [kitty](https://sw.kovidgoyal.net/kitty/kittens/icat) [✓]
   * Document Viewer: [mupdf](https://github.com/ArtifexSoftware/mupdf) [✗]
 * Other utilities
   * System Info: [neofetch](https://github.com/dylanaraps/neofetch) [✓]
