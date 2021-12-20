@@ -14,7 +14,7 @@
   * **Calendar & Todo: [calcurse](https://github.com/lfos/calcurse)** [✓]
 * Multimedia
   * Volume Control: [pulsemixer](https://github.com/GeorgeFilipkin/pulsemixer) [✓]
-  * Video Player: [mpv](https://github.com/mpv-player/mpv)
+  * Video Player: [mpv](https://github.com/mpv-player/mpv) [✓]
   * Music Player: [mpv](https://github.com/mpv-player/mpv) [✓]
   * Image Viewer: [kitty](https://sw.kovidgoyal.net/kitty/kittens/icat) [✗]
   * Document Viewer: [mupdf](https://github.com/ArtifexSoftware/mupdf) [✗]
