@@ -12,13 +12,23 @@ PS1="%~$ "
 TERM="xterm"
 export MANPAGER="nvim -c 'set ft=man' -"
 export HISTFILE="$HOME/.local/state/zsh/history"
-
-#stuff from autoconfig
 unsetopt beep
 bindkey -v
-zstyle :compinstall filename '/home/ks/.zshrc'
+zstyle :compinstall filename '/home/ks/.config/zsh/.zshrc'
 autoload -Uz compinit
 compinit -d ~/.cache/zsh/zcompdump-5.8
+
+#for more enjoyable mpving
+fancy-ctrl-z () {
+if [[ $#BUFFER -eq 0 ]]; then
+bg
+zle redisplay
+else
+zle push-input
+fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
 
 #aliases
 alias la='ls -A'
