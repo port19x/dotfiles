@@ -4,18 +4,7 @@ on:
       - main
 
 name: 'Checks'
-
 jobs:
-  shellcheck:
-    name: Shellcheck
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Run ShellCheck
-      uses: ludeeus/action-shellcheck@master
-      env:
-        SHELLCHECK_OPTS: -s sh
-
   pylint:
     name: Pylint
     runs-on: ubuntu-latest
@@ -31,10 +20,7 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
-        pylint -d C0114 -d E0401 -d C0209 -d E0602 -d C0103 `find . -name "*.py"|xargs`
-#       Both  C0114
-#       Qtile E0401 C0209
-#       Qutebrowser C0103 E0602
+        pylint -d C0103 -d C0114 -d E0602 `find . -name "*.py"|xargs`
 
   markdown-link-check:
     name: Dead Links

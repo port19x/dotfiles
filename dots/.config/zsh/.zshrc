@@ -10,8 +10,7 @@ setopt HIST_SAVE_NO_DUPS	# cates
 
 PS1='%~$ '
 TERM='xterm'
-export MANPAGER='nvim -c 'set ft=man' -'
-export HISTFILE='$HOME/.local/state/zsh/history'
+export HISTFILE="$HOME/.local/state/zsh/history"
 unsetopt beep
 bindkey -v
 zstyle :compinstall filename '/home/ks/.config/zsh/.zshrc'
