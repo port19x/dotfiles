@@ -58,7 +58,7 @@ layouts = [
 
 widget_defaults = dict(
     font='mononoki',
-    fontsize=14,
+    fontsize=28,
     padding=10,
     background=colors[0],
     foreground=colors[7],
@@ -79,7 +79,7 @@ screens = [
  no_update_string="0", colour_have_updates=colors[7], colour_no_updates=colors[7]),
                 widget.Clock(format='%a-%d.%m.%y   %H:%M '),
             ],
-            24,
+            48,
         ),
     )
 ]
