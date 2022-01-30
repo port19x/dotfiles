@@ -1,4 +1,5 @@
-#history
+#put the following line in your /etc/zsh/zshenv and uncomment it
+#export ZDOTDIR=$HOME/.config/zsh
 SAVEHIST=1000000
 HISTSIZE=$SAVEHIST
 setopt INC_APPEND_HISTORY	# Don't wait until the shell exits
@@ -11,11 +12,13 @@ setopt HIST_SAVE_NO_DUPS	# cates
 PS1='%~$ '
 TERM='xterm'
 #export MANPAGER='nvim -c 'set ft=man' -'
+#mkdir -p ~/.local/state/zsh && touch ~/.local/state/zsh/history
 export HISTFILE="$HOME/.local/state/zsh/history"
 unsetopt beep
 bindkey -v
 zstyle :compinstall filename '/home/ks/.config/zsh/.zshrc'
 autoload -Uz compinit
+#mkdir -p ~/.cache/zsh/zcompdump-5.8
 compinit -d ~/.cache/zsh/zcompdump-5.8
 
 #aliases
