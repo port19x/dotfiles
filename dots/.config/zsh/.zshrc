@@ -22,6 +22,11 @@ autoload -Uz compinit
 compinit -d ~/.cache/zsh/zcompdump-5.8
 
 #aliases
+alias v='nvim'
+alias s='sudo'
+alias m='man'
+alias sc='shellcheck'
+alias f8='flake8'
 alias la='ls -A'
 alias ll='ls -lha'
 alias br='brightnessctl set 0 && read && brightnessctl set 100%'
