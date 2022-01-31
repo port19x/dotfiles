@@ -1,5 +1,5 @@
 from libqtile import bar, layout, widget
-from libqtile.config import Group, Key, Screen
+from libqtile.config import Group, Key, Screen, Click, Drag
 from libqtile.lazy import lazy
 
 mod = "mod4"
@@ -82,6 +82,11 @@ screens = [
             48,
         ),
     )
+]
+mouse = [
+    Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
+    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
+    Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
 follow_mouse_focus = True
