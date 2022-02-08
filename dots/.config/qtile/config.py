@@ -40,7 +40,7 @@ keys = [
     Key([mod], "r", lazy.spawncmd()),
 ]
 
-groups = [Group(i) for i in "123"]
+groups = [Group(i) for i in "12345"]
 
 for i in groups:
     keys.extend([
