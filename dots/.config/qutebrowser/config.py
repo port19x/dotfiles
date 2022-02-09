@@ -1,6 +1,7 @@
 config.load_autoconfig(True)
 
 c.changelog_after_upgrade = 'patch'
+c.colors.webpage.preferred_color_scheme = 'dark'
 c.completion.cmd_history_max_items = 0
 c.completion.shrink = True
 c.completion.timestamp_format = '%H:%M %d.%m'
@@ -18,12 +19,11 @@ c.content.webrtc_ip_handling_policy = 'default-public-interface-only'
 c.downloads.location.prompt = False
 c.downloads.remove_finished = 1000
 c.input.forward_unbound_keys = 'none'
-c.input.insert_mode.auto_load = True #experimental
 c.keyhint.delay = 0
 c.new_instance_open_target = 'tab-bg-silent'
 c.qt.low_end_device_mode = 'never'
 c.scrolling.bar = 'never'
-c.statusbar.widgets = ['keypress', 'scroll', 'progress'] #experimental
+c.statusbar.widgets = ['keypress', 'scroll', 'progress']
 c.tabs.close_mouse_button = 'none'
 c.tabs.indicator.width = 0
 c.tabs.last_close = 'default-page'
@@ -43,6 +43,8 @@ config.bind(',r', 'restart')
 config.bind(',xb', 'config-cycle statusbar.show always never')
 config.bind(',xt', 'config-cycle tabs.show always never')
 config.bind(',xx', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
+config.bind('Sd', 'bookmark-del')
+config.bind('SD', 'quickmark-del')
 
 fontname = "mononoki"
 fontsize = "12pt"
