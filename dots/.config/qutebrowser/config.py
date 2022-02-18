@@ -11,7 +11,7 @@ c.content.autoplay = False
 c.content.canvas_reading = False
 #c.content.cookies.accept = 'all' #teams need 3rdparty cookies
 c.content.cookies.accept = 'no-3rdparty' #teams need 3rdparty cookies
-c.content.cookies.store = False
+c.content.cookies.store = False #doesn't support url patterns yet :sob:
 c.content.fullscreen.overlay_timeout = 0
 c.content.geolocation = False
 c.content.mouse_lock = False
@@ -29,6 +29,7 @@ c.tabs.indicator.width = 0
 c.tabs.last_close = 'default-page'
 c.tabs.new_position.related = 'last'
 c.tabs.undo_stack_size = 10
+c.zoom.default = "150%"
 
 c.url.default_page = 'https://start.duckduckgo.com/'
 c.url.start_pages = ['https://start.duckduckgo.com']
