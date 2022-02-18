@@ -40,7 +40,7 @@ keys = [
     Key([mod], "r", lazy.spawncmd()),
 ]
 
-groups = [Group(i) for i in "12345"]
+groups = [Group(i) for i in "123456789"]
 
 for i in groups:
     keys.extend([
@@ -69,10 +69,10 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.GroupBox(active=colors[7], inactive=colors[7], padding=0),
+                widget.AGroupBox(border=colors[0]),
                 widget.Prompt(),
-                widget.WindowName(),
                 widget.Spacer(),
+                widget.Notify(fmt="{} ", default_timeout=3, background=colors[1]),
                 widget.CPU(fmt="{}% ", format="{load_percent}"),
                 widget.Memory(fmt="{}% ", format="{MemPercent}"),
                 widget.CheckUpdates(distro="Arch", fmt="{} ", display_format="{updates}",\
