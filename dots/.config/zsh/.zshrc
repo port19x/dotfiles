@@ -1,7 +1,6 @@
-#Abbreviations
 typeset -a ealiases
 ealiases=()
-function abbrev-alias() {
+function abbr() {
     alias $1
     ealiases+=(${1%%\=*})
 }
@@ -47,33 +46,33 @@ autoload -Uz compinit
 compinit -d ~/.cache/zsh/zcompdump-5.8
 
 #abbreviations
-abbrev-alias v='nvim'
-abbrev-alias s='sudo'
-abbrev-alias m='man'
-abbrev-alias sc='shellcheck'
-abbrev-alias f8='flake8'
-abbrev-alias la='ls -A'
-abbrev-alias ll='ls -lha'
-abbrev-alias br='brightnessctl set 0 && read && brightnessctl set 100%'
-abbrev-alias pm='pulsemixer'
-abbrev-alias vim='nvim'
-abbrev-alias gts='git status'
-abbrev-alias gta='git add'
-abbrev-alias gtc='git commit -m'
-abbrev-alias gtd='git diff'
-abbrev-alias gtp='git push -u origin main'
-abbrev-alias gtl='git log'
-abbrev-alias yta="yt-dlp -f 'bestaudio/best' -f 'm4a'"
-abbrev-alias ytd="yt-dlp -f 'bestvideo[height<=?1080]+bestaudio/best' -f 'mp4'"
-abbrev-alias ytdd="yt-dlp -f 'bestvideo[height<=?720]+bestaudio/best' -f 'mp4'"
-abbrev-alias ytddd="yt-dlp -f 'bestvideo[height<=?480]+bestaudio/best' -f 'mp4'"
-abbrev-alias icat='kitty +kitten icat'
-abbrev-alias smpv='mpv "$(ls | shuf | head -n 1)"'
-abbrev-alias cd1='cd ..'
-abbrev-alias cd2='cd ../..'
-abbrev-alias cd3='cd ../../..'
-abbrev-alias cd4='cd ../../../..'
-abbrev-alias cd5='cd ../../../../..'
-abbrev-alias rm='rm -I --preserve-root' #Every alias has a story ...
+abbr v='nvim'
+abbr s='sudo'
+abbr m='man'
+abbr sc='shellcheck'
+abbr f8='flake8'
+abbr la='ls -A'
+abbr ll='ls -lha'
+abbr br='brightnessctl set 0 && read && brightnessctl set 100%'
+abbr pm='pulsemixer'
+abbr vim='nvim'
+abbr gts='git status'
+abbr gta='git add'
+abbr gtc='git commit -m'
+abbr gtd='git diff'
+abbr gtp='git push -u origin main'
+abbr gtl='git log'
+abbr yta="yt-dlp -f 'bestaudio/best' -f 'm4a'"
+abbr ytd="yt-dlp -f 'bestvideo[height<=?1080]+bestaudio/best' -f 'mp4'"
+abbr ytdd="yt-dlp -f 'bestvideo[height<=?720]+bestaudio/best' -f 'mp4'"
+abbr ytddd="yt-dlp -f 'bestvideo[height<=?480]+bestaudio/best' -f 'mp4'"
+abbr icat='kitty +kitten icat'
+abbr smpv='mpv "$(ls | shuf | head -n 1)"'
+abbr cd1='cd ..'
+abbr cd2='cd ../..'
+abbr cd3='cd ../../..'
+abbr cd4='cd ../../../..'
+abbr cd5='cd ../../../../..'
+abbr rm='rm -I --preserve-root' #Every alias has a story ...
 
 wal -Rq
