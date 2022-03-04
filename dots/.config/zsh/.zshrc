@@ -74,5 +74,3 @@ abbr cd3='cd ../../..'
 abbr cd4='cd ../../../..'
 abbr cd5='cd ../../../../..'
 abbr rm='rm -I --preserve-root' #Every alias has a story ...
-
-wal -Rq

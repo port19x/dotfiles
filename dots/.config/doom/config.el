@@ -5,6 +5,7 @@
 (setq doom-font (font-spec :family "Mononoki" :size 32)
       doom-big-font (font-spec :family "Mononoki" :size 64))
 (setq display-line-numbers-type 'relative)
+(setq doom-theme 'doom-solarized-dark)
 (setq org-directory "~/Documents/")
 ;; - `map!' for binding new keys (press K on it for docs)
 (require 'org-bullets)
