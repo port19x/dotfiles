@@ -126,6 +126,8 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+mykeyboardlayout = awful.widget.keyboardlayout()
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -150,9 +152,9 @@ awful.screen.connect_for_each_screen(function(s)
         },
         s.textbox,
         { -- Right widgets
+            mykeyboardlayout,
             layout = wibox.layout.fixed.horizontal,
             mytextclock,
-            s.mylayoutbox,
         },
     }
 end)
@@ -360,3 +362,11 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- {{{ Autostart
+awful.spawn.with_shell("pgrep -x emacs || emacs")
+awful.spawn.with_shell("pgrep -x qutebrowser")
+awful.spawn.with_shell("pgrep -x Discord || discord")
+awful.spawn.with_shell("pgrep -x keepassxc || keepassxc")
+awful.spawn.with_shell("pgrep -x alfaview || alfaview")
+--- }}}
