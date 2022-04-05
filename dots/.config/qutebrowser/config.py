@@ -21,7 +21,6 @@ c.downloads.remove_finished = 1000
 c.input.forward_unbound_keys = 'none'
 c.keyhint.delay = 0
 c.new_instance_open_target = 'tab-bg-silent'
-c.qt.low_end_device_mode = 'never'
 c.scrolling.bar = 'never'
 c.statusbar.widgets = ['keypress', 'scroll', 'progress']
 c.tabs.close_mouse_button = 'none'
