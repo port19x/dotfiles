@@ -365,8 +365,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- {{{ Autostart
 awful.spawn.with_shell("pgrep -x emacs || emacs")
-awful.spawn.with_shell("pgrep -x qutebrowser")
+awful.spawn.with_shell("pgrep -x qutebrowser || qutebrowser")
 awful.spawn.with_shell("pgrep -x Discord || discord")
 awful.spawn.with_shell("pgrep -x keepassxc || keepassxc")
-awful.spawn.with_shell("pgrep -x alfaview || alfaview")
 --- }}}
