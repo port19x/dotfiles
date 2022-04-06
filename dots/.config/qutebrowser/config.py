@@ -1,11 +1,10 @@
+#config
 config.load_autoconfig(True)
-
-c.changelog_after_upgrade = 'patch'
 c.colors.webpage.preferred_color_scheme = 'dark'
 c.completion.cmd_history_max_items = 0
 c.completion.shrink = True
-c.completion.timestamp_format = '%H:%M %d.%m'
-c.completion.web_history.max_items = 1000
+c.completion.timestamp_format = '%H:%M %d.%m.'
+c.completion.web_history.max_items = 100
 c.confirm_quit = ['downloads']
 c.content.autoplay = False
 c.content.canvas_reading = False
@@ -13,8 +12,6 @@ c.content.canvas_reading = False
 c.content.cookies.accept = 'no-3rdparty' #teams need 3rdparty cookies
 c.content.cookies.store = False #doesn't support url patterns yet :sob:
 c.content.fullscreen.overlay_timeout = 0
-c.content.geolocation = False
-c.content.mouse_lock = False
 c.content.webrtc_ip_handling_policy = 'default-public-interface-only'
 c.downloads.location.prompt = False
 c.downloads.remove_finished = 1000
@@ -23,16 +20,14 @@ c.keyhint.delay = 0
 c.new_instance_open_target = 'tab-bg-silent'
 c.scrolling.bar = 'never'
 c.statusbar.widgets = ['keypress', 'scroll', 'progress']
-c.tabs.close_mouse_button = 'none'
-c.tabs.indicator.width = 0
 c.tabs.last_close = 'default-page'
-c.tabs.new_position.related = 'last'
-c.tabs.undo_stack_size = 10
 c.zoom.default = "150%"
 
-c.url.default_page = 'https://start.duckduckgo.com/'
-c.url.start_pages = ['https://start.duckduckgo.com']
+#startpage
+c.url.default_page = 'https://start.duckduckgo.com'
+c.url.start_pages = 'https://start.duckduckgo.com'
 
+#keybinds
 config.bind(',m', 'hint links spawn kitty -e mpv {hint-url}')
 config.bind(',cm', 'spawn kitty -e mpv {url}')
 config.bind(',y', 'hint links spawn kitty -e yt-dlp {hint-url}')
@@ -46,29 +41,13 @@ config.bind(',xx', 'config-cycle statusbar.show always never;; config-cycle tabs
 config.bind('Sd', 'bookmark-del')
 config.bind('SD', 'quickmark-del')
 
-fontname = "mononoki"
-fontsize = "12pt"
-
-c.fonts.default_family = [fontname]
-c.fonts.default_size = fontsize
-c.fonts.completion.category = 'default_size default_family'
-c.fonts.completion.entry = 'default_size default_family'
+#fonts
+c.fonts.default_family = "mononoki"
+c.fonts.default_size = "12pt"
 c.fonts.contextmenu = 'default_size default_family'
-c.fonts.debug_console = 'default_size default_family'
-c.fonts.downloads = 'default_size default_family'
-c.fonts.hints = 'default_size default_family'
-c.fonts.keyhint = 'default_size default_family'
-c.fonts.messages.error = 'default_size default_family'
-c.fonts.messages.info = 'default_size default_family'
-c.fonts.messages.warning = 'default_size default_family'
 c.fonts.prompts = 'default_size default_family'
-c.fonts.statusbar = 'default_size default_family'
-c.fonts.tabs.unselected = 'default_size default_family'
 
-# base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
-# Base16 qutebrowser template by theova
-# Solarized Dark scheme by Ethan Schoonover (modified by aramisgithub)
-
+#colors
 base00 = "#002b36"
 base01 = "#073642"
 base02 = "#586e75"
@@ -85,7 +64,6 @@ base0C = "#2aa198"
 base0D = "#268bd2"
 base0E = "#6c71c4"
 base0F = "#d33682"
-
 c.colors.completion.fg = base05
 c.colors.completion.odd.bg = base01
 c.colors.completion.even.bg = base00
