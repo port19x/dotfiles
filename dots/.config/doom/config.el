@@ -1,8 +1,8 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 ;; If you just installed doom emacs on a new distro, remember to tweak init.el and packages.el
 ;; Also tweak username and mail if installed on a work machine
-(setq user-full-name "ura43"
-      user-mail-address "ura@ura43.xyz")
+(setq user-full-name "port19"
+      user-mail-address "port19@port19.xyz.xyz")
 (setq doom-font (font-spec :family "Mononoki" :size 32)
       doom-big-font (font-spec :family "Mononoki" :size 64))
 (setq display-line-numbers-type 'relative)
