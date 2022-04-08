@@ -3,8 +3,8 @@
 ;; Also tweak username and mail if installed on a work machine
 (setq user-full-name "port19"
       user-mail-address "port19@port19.xyz.xyz")
-(setq doom-font (font-spec :family "Mononoki" :size 32)
-      doom-big-font (font-spec :family "Mononoki" :size 64))
+(setq doom-font (font-spec :family "Mononoki" :size 16)
+      doom-big-font (font-spec :family "Mononoki" :size 24))
 (setq display-line-numbers-type 'relative)
 (setq doom-theme 'doom-solarized-dark)
 ;; (setq org-directory "~/doc/")
@@ -12,5 +12,3 @@
 ;; - `map!' for binding new keys (press K on it for docs)
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-(require 'elcord)
-(elcord-mode)
