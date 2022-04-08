@@ -21,7 +21,7 @@ c.new_instance_open_target = 'tab-bg-silent'
 c.scrolling.bar = 'never'
 c.statusbar.widgets = ['keypress', 'scroll', 'progress']
 c.tabs.last_close = 'default-page'
-c.zoom.default = "150%"
+c.zoom.default = "110%"
 
 #startpage
 c.url.default_page = 'https://start.duckduckgo.com'
