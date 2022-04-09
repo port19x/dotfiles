@@ -22,7 +22,8 @@ compinit -d ~/.cache/zsh/zcompdump-5.8
 
 alias v='nvim'
 alias s='sudo'
-alias m='man'
+alias m='mpv'
+alias p='mupdf'
 alias sc='shellcheck'
 alias f8='flake8'
 alias la='ls -A'
