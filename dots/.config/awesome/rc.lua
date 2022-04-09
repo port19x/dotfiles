@@ -366,8 +366,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- {{{ Autostart
-awful.spawn.with_shell("pgrep -x emacs || emacs")
-awful.spawn.with_shell("pgrep -x qutebrowser || qutebrowser")
-awful.spawn.with_shell("pgrep -x Discord || discord")
-awful.spawn.with_shell("pgrep -x keepassxc || keepassxc")
+awful.spawn.with_shell("command -v emacs && pgrep -x emacs || emacs")
+awful.spawn.with_shell("command -v qutebrowser && pgrep -x qutebrowser || qutebrowser")
+awful.spawn.with_shell("command -v keepassxc && pgrep -x keepassxc || keepassxc")
 --- }}}
