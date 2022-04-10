@@ -20,17 +20,10 @@ autoload -Uz compinit
 #mkdir -p ~/.cache/zsh/zcompdump-5.8
 compinit -d ~/.cache/zsh/zcompdump-5.8
 
-alias v='nvim'
-alias s='sudo'
-alias m='mpv'
-alias p='mupdf'
-alias sc='shellcheck'
-alias f8='flake8'
 alias la='ls -A'
 alias ll='ls -lha'
 alias br='brightnessctl set 0 && read && brightnessctl set 100%'
 alias pm='pulsemixer'
-alias vim='nvim'
 alias gts='git status'
 alias gta='git add'
 alias gtc='git commit -m'
