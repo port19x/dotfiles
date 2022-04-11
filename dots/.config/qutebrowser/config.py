@@ -6,7 +6,6 @@ c.completion.shrink = True
 c.completion.timestamp_format = '%H:%M %d.%m.'
 c.completion.web_history.max_items = 100
 c.confirm_quit = ['downloads']
-c.content.autoplay = False
 c.content.canvas_reading = False
 #c.content.cookies.accept = 'all' #teams and zoom need 3rdparty cookies
 c.content.cookies.accept = 'no-3rdparty' #teams need 3rdparty cookies
