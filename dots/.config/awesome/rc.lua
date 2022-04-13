@@ -188,9 +188,11 @@ globalkeys = gears.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
-              {description = "open a terminal", group = "launcher"}),
+              {description = "open a terminal", group = "awesome"}),
     awful.key({ modkey,           }, "s",      function () awful.spawn("flameshot gui") end,
-              {description = "take a screenshot", group = "launcher"}),
+              {description = "take a screenshot", group = "awesome"}),
+    awful.key({ modkey,           }, "q",      function () awful.spawn("qutebrowser") end,
+              {description = "launch qutebrowser", group = "awesome"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
@@ -204,7 +206,7 @@ globalkeys = gears.table.join(
               {description = "select next", group = "layout"}),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "awesome"})
 )
 
 clientkeys = gears.table.join(
@@ -356,5 +358,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- {{{ Autostart
 awful.spawn.with_shell("command -v emacs && pgrep -x emacs || emacs")
 awful.spawn.with_shell("command -v qutebrowser && pgrep -x qutebrowser || qutebrowser")
-awful.spawn.with_shell("command -v keepassxc && pgrep -x keepassxc || keepassxc")
 --- }}}
