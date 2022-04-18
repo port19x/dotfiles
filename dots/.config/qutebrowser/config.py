@@ -1,6 +1,5 @@
 #config
 config.load_autoconfig(True)
-c.colors.webpage.preferred_color_scheme = 'dark'
 c.completion.cmd_history_max_items = 0
 c.completion.shrink = True
 c.completion.timestamp_format = '%H:%M %d.%m.'
@@ -109,7 +108,6 @@ c.colors.prompts.fg = base05
 c.colors.prompts.border = base00
 c.colors.prompts.bg = base00
 c.colors.prompts.selected.bg = base02
-c.colors.prompts.selected.fg = base05
 c.colors.statusbar.normal.fg = base0B
 c.colors.statusbar.normal.bg = base00
 c.colors.statusbar.insert.fg = base00
