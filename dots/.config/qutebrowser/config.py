@@ -20,6 +20,7 @@ c.scrolling.bar = 'never'
 c.statusbar.widgets = ['keypress', 'scroll', 'progress']
 c.tabs.last_close = 'default-page'
 c.zoom.default = "110%"
+c.downloads.location.directory = "~/dl"
 
 #startpage
 c.url.default_page = 'https://start.duckduckgo.com'
