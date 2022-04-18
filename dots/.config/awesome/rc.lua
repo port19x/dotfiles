@@ -61,7 +61,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 theme.menu_height = dpi(15)
 theme.menu_width  = dpi(100)
 beautiful.init(theme)
-beautiful.wallpaper = "/home/ura/Pictures/Wallpapers/bluegreen-leviathan.jpg"
+beautiful.wallpaper = "/home/port19/Pictures/Wallpapers/bluegreen-leviathan.jpg"
 -- }}}
 
 -- {{{ Variables
