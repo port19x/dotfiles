@@ -19,7 +19,7 @@ c.new_instance_open_target = 'tab-bg-silent'
 c.scrolling.bar = 'never'
 c.statusbar.widgets = ['keypress', 'scroll', 'progress']
 c.tabs.last_close = 'default-page'
-c.zoom.default = "110%"
+c.zoom.default = "100%"
 c.downloads.location.directory = "~/dl"
 
 #startpage
@@ -27,8 +27,8 @@ c.url.default_page = 'https://start.duckduckgo.com'
 c.url.start_pages = 'https://start.duckduckgo.com'
 
 #keybinds
-config.bind(',m', 'hint links spawn kitty -e mpv {hint-url}')
-config.bind(',cm', 'spawn kitty -e mpv {url}')
+config.bind(',m', 'hint links spawn kitty -e devour mpv {hint-url}')
+config.bind(',cm', 'spawn kitty -e devour mpv {url}')
 config.bind(',y', 'hint links spawn kitty -e yt-dlp {hint-url}')
 config.bind(',cy', 'spawn kitty -e yt-dlp {url}')
 config.bind(',a', 'hint links spawn kitty -e yt-dlp -f bestaudio {hint-url}')
