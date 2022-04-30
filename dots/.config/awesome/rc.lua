@@ -61,7 +61,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 theme.menu_height = dpi(15)
 theme.menu_width  = dpi(100)
 beautiful.init(theme)
-beautiful.wallpaper = "/home/port19/pic/Wallpapers/bluegreen-leviathan.jpg"
+beautiful.wallpaper = "/home/port19/pic/Wallpapers/blue-proposal.jpg"
 -- }}}
 
 -- {{{ Variables
@@ -352,4 +352,5 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- {{{ Autostart
 awful.spawn.with_shell("command -v emacs && pgrep -x emacs || emacs")
 awful.spawn.with_shell("command -v qutebrowser && pgrep -x qutebrowser || qutebrowser")
+awful.spawn.with_shell("setxkbmap de")
 --- }}}
