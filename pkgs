@@ -1,11 +1,12 @@
 awesome
 qutebrowser
 emacs
+fd
+ripgrep
 kitty
 zsh
 keepassxc
 mononoki
-mgba
 mpv
 mupdf
 pulsemixer
@@ -19,7 +20,9 @@ ncdu
 htop
 newsboat
 tree
+unzip
 xclip
 brightnessctl
 fzf
 stow
+calcurse
