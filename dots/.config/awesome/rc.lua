@@ -45,8 +45,8 @@ theme.fg_normal     = "#93a1a1"
 theme.fg_focus      = "#93a1a1"
 theme.fg_urgent     = "#dc322f"
 theme.fg_minimize   = "#93a1a1"
-theme.useless_gap   = dpi(0)
-theme.border_width  = 2
+theme.useless_gap   = dpi(2)
+theme.border_width  = 1
 theme.border_normal = "#002b36"
 theme.border_focus  = "#2aa198"
 theme.border_marked = "#91231c"
@@ -351,6 +351,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- {{{ Autostart
 awful.spawn.with_shell("command -v emacs && pgrep -x emacs || emacs --daemon")
+awful.spawn.with_shell("command -v picom && pgrep -x picom || picom --daemon")
 awful.spawn.with_shell("command -v qutebrowser && pgrep -x qutebrowser || qutebrowser")
 awful.spawn.with_shell("setxkbmap de")
 --- }}}
