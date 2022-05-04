@@ -193,7 +193,7 @@ globalkeys = gears.table.join(
               {description = "take a screenshot", group = "launcher"}),
     awful.key({ modkey,           }, "q",      function () awful.spawn("qutebrowser") end,
               {description = "launch qutebrowser", group = "launcher"}),
-    awful.key({ modkey,           }, "e",      function () awful.spawn("emacs") end,
+    awful.key({ modkey,           }, "e",      function () awful.spawn("emacsclient -ac") end,
               {description = "launch emacs", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
