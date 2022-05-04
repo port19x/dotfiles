@@ -11,6 +11,7 @@ setopt HIST_SAVE_NO_DUPS # cates
 
 PS1='%~$ '
 TERM='xterm'
+EDITOR='vim' #git rebases annoy me
 #mkdir -p ~/.local/state/zsh && touch ~/.local/state/zsh/history
 export HISTFILE="$HOME/.local/state/zsh/history"
 unsetopt beep
@@ -21,7 +22,7 @@ autoload -Uz compinit
 compinit -d ~/.cache/zsh/zcompdump-5.8
 
 alias la='ls -A'
-alias ll='ls -lha'
+alias ll='ls -lhA'
 alias br='brightnessctl set 0 && read && brightnessctl set 100%'
 alias pm='pulsemixer'
 alias gts='git status'
