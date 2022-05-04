@@ -78,18 +78,6 @@ awful.layout.layouts = {
 }
 -- }}}
 
--- {{{ Rightclick Menu
-mymainmenu = awful.menu({
-   { "qutebrowser", "qutebrowser" },
-   { "emacs" , "emacs"},
-   { "kitty" , "kitty"},
-   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end },
-})
--- }}}
-
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
@@ -191,10 +179,6 @@ globalkeys = gears.table.join(
               {description = "launch terminal", group = "launcher"}),
     awful.key({ modkey,           }, "s",      function () awful.spawn("flameshot gui") end,
               {description = "take a screenshot", group = "launcher"}),
-    awful.key({ modkey,           }, "q",      function () awful.spawn("qutebrowser") end,
-              {description = "launch qutebrowser", group = "launcher"}),
-    awful.key({ modkey,           }, "e",      function () awful.spawn("emacsclient -ac") end,
-              {description = "launch emacs", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Control"   }, "q", awesome.quit,
