@@ -29,6 +29,8 @@ c.url.start_pages = 'https://start.duckduckgo.com'
 #keybinds
 config.bind(',m', 'hint links spawn mpv {hint-url}')
 config.bind(',cm', 'spawn mpv {url}')
+config.bind(',nv', 'hint links spawn mpv --no-video {hint-url}')
+config.bind(',cnv', 'spawn mpv --no-video {url}')
 config.bind(',y', 'hint links spawn kitty -e yt-dlp {hint-url}')
 config.bind(',cy', 'spawn kitty -e yt-dlp {url}')
 config.bind(',a', 'hint links spawn kitty -e yt-dlp -f bestaudio {hint-url}')
