@@ -115,8 +115,6 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
-mykeyboardlayout = awful.widget.keyboardlayout()
-
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -141,7 +139,6 @@ awful.screen.connect_for_each_screen(function(s)
         },
         s.textbox,
         { -- Right widgets
-            mykeyboardlayout,
             layout = wibox.layout.fixed.horizontal,
             mytextclock,
         },
@@ -212,9 +209,6 @@ clientkeys = gears.table.join(
         {description = "toggle keep on top", group = "client"})
     )
 
--- Bind all key numbers to tags.
--- Be careful: we use keycodes to make it work on any keyboard layout.
--- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 5 do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
