@@ -65,6 +65,7 @@ beautiful.wallpaper = "/home/port19/pic/Wallpapers/blue-proposal.jpg"
 
 -- {{{ Variables
 terminal = "kitty"
+launcher = "rofi -show run"
 editor = os.getenv("EDITOR") or "emacs"
 editor_cmd = editor
 modkey = "Mod4"
@@ -179,8 +180,8 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "Tab", function () awful.layout.inc( 1)                end,
               {description = "select next layout", group = "layout"}),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+    awful.key({ modkey }, "p", function() awful.spawn(launcher) end,
+              {description = "show the launcher", group = "launcher"})
 )
 
 clientkeys = gears.table.join(
