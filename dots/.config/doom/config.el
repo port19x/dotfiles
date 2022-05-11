@@ -12,3 +12,7 @@
 ;; - `map!' for binding new keys (press K on it for docs)
 (require 'org-superstar)
 (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+(setq org-file-apps
+      '((auto-mode . emacs)
+        ("\\.x?html?\\'" . "qutebrowser %s")
+        ("\\.pdf\\'" . "mupdf %s")))
