@@ -79,7 +79,6 @@ awful.layout.layouts = {
 -- }}}
 
 -- {{{ Wibar
--- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
@@ -120,12 +119,10 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
     -- Each screen has its own tag table.
     awful.tag({ "1", "2", "3", "4", "5" }, s, awful.layout.layouts[1])
-    -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
         screen  = s,
-        filter  = awful.widget.taglist.filter.all,
+        filter  = awful.widget.taglist.filter.noempty,
         buttons = taglist_buttons
     }
     -- Create the wibox
@@ -180,7 +177,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "Tab", function () awful.layout.inc( 1)                end,
               {description = "select next layout", group = "layout"}),
     -- Menubar
-    awful.key({ modkey }, "p", function() awful.spawn(launcher) end,
+    awful.key({ modkey }, "r", function() awful.spawn(launcher) end,
               {description = "show the launcher", group = "launcher"})
 )
 
