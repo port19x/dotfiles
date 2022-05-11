@@ -145,3 +145,4 @@ configuration {
       sorting-method:    "name";
   }
 }
+@theme "solarized"
