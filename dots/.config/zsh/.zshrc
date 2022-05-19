@@ -21,6 +21,7 @@ autoload -Uz compinit
 compinit -d ~/.cache/zsh/zcompdump-5.8
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
+zstyle ':completion:*:*:cdr:*:*' menu selection
 
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
