@@ -30,6 +30,9 @@ precmd () { vcs_info }
 setopt PROMPT_SUBST
 PS1='%F{4}%3~ ${vcs_info_msg_0_}%f$ '
 
+#https://github.com/zsh-users/zsh-autosuggestions
+source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 alias la='ls -A'
 alias ll='ls -lhA'
 alias br='brightnessctl set 0 && read && brightnessctl set 100%'
