@@ -9,7 +9,6 @@ setopt HIST_IGNORE_DUPS # dup
 setopt HIST_IGNORE_ALL_DUPS # li
 setopt HIST_SAVE_NO_DUPS # cates
 
-PS1='%~$ '
 TERM='xterm'
 EDITOR='vim' #git rebases annoy me
 #mkdir -p ~/.local/state/zsh && touch ~/.local/state/zsh/history
@@ -22,6 +21,14 @@ autoload -Uz compinit
 compinit -d ~/.cache/zsh/zcompdump-5.8
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
+
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' formats '%F{4}[%F{2}%b%F{4}]%u%c'
+zstyle ':vcs_info:*' check-for-changes true
+precmd () { vcs_info }
+setopt PROMPT_SUBST
+PS1='%F{4}%3~ ${vcs_info_msg_0_}%f $ '
 
 alias la='ls -A'
 alias ll='ls -lhA'
