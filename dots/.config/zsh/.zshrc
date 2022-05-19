@@ -38,6 +38,7 @@ alias la='ls -A'
 alias ll='ls -lhA'
 alias br='brightnessctl set 0 && read && brightnessctl set 100%'
 alias pm='pulsemixer'
+alias fp='devour mupdf "$(fzf)"' #devour probably isn't installed on debian
 alias gts='git status'
 alias gta='git add'
 alias gtc='git commit -m'
