@@ -20,6 +20,8 @@ zstyle :compinstall filename "$HOME/.config/zsh/.zshrc"
 autoload -Uz compinit
 #mkdir -p ~/.cache/zsh/zcompdump-5.8
 compinit -d ~/.cache/zsh/zcompdump-5.8
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
 
 alias la='ls -A'
 alias ll='ls -lhA'
