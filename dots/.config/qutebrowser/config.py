@@ -22,9 +22,11 @@ c.tabs.last_close = 'default-page'
 c.zoom.default = "100%"
 c.downloads.location.directory = "~/dl"
 
-#startpage
-c.url.default_page = 'https://start.duckduckgo.com'
-c.url.start_pages = 'https://start.duckduckgo.com'
+#searx
+c.url.default_page = 'https://search.bus-hit.me/'
+c.url.start_pages = 'https://search.bus-hit.me/'
+c.url.searchengines = {'DEFAULT':'https://search.bus-hit.me/?q={}'}
+
 
 #keybinds
 config.bind(',m', 'hint links spawn mpv {hint-url}')
