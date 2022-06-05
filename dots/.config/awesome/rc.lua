@@ -60,7 +60,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 theme.menu_height = dpi(15)
 theme.menu_width  = dpi(100)
 beautiful.init(theme)
-beautiful.wallpaper = "/home/port19/pic/Wallpapers/blue-proposal.jpg"
+beautiful.wallpaper = "/home/port19/pic/Wallpapers/white-secretary.jpg"
 -- }}}
 
 -- {{{ Variables
