@@ -15,10 +15,10 @@ EDITOR='vim' #git rebases annoy me
 export HISTFILE="$HOME/.local/state/zsh/history"
 unsetopt beep
 bindkey -v
-zstyle :compinstall filename "$HOME/.config/zsh/.zshrc"
-autoload -Uz compinit
+#zstyle :compinstall filename "$HOME/.config/zsh/.zshrc"
+#autoload -Uz compinit
 #mkdir -p ~/.cache/zsh/zcompdump-5.8
-compinit -d ~/.cache/zsh/zcompdump-5.8
+#compinit -d ~/.cache/zsh/zcompdump-5.8
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':completion:*:*:cdr:*:*' menu selection
