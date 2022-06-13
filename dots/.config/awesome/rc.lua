@@ -64,7 +64,7 @@ beautiful.wallpaper = "/home/port19/pic/Wallpapers/white-secretary.jpg"
 -- }}}
 
 -- {{{ Variables
-terminal = "kitty"
+terminal = "kitty -1"
 launcher = "rofi -show run"
 editor = os.getenv("EDITOR") or "emacs"
 editor_cmd = editor
@@ -252,8 +252,9 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- {{{ Autostart
-awful.spawn.with_shell("command -v emacs && pgrep -x emacs || emacs --daemon")
 awful.spawn.with_shell("command -v qutebrowser && pgrep -x qutebrowser || qutebrowser")
+awful.spawn.with_shell("command -v kitty && pgrep -x kitty || kitty")
+awful.spawn.with_shell("command -v emacs && pgrep -x emacs || emacs --daemon")
 awful.spawn.with_shell("command -v picom && pgrep -x picom || picom --daemon")
 awful.spawn.with_shell("setxkbmap de")
 --- }}}
