@@ -15,13 +15,8 @@ EDITOR='vim' #git rebases annoy me
 export HISTFILE="$HOME/.local/state/zsh/history"
 unsetopt beep
 bindkey -v
-#zstyle :compinstall filename "$HOME/.config/zsh/.zshrc"
-#autoload -Uz compinit
-#mkdir -p ~/.cache/zsh/zcompdump-5.8
-#compinit -d ~/.cache/zsh/zcompdump-5.8
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
-zstyle ':completion:*:*:cdr:*:*' menu selection
 
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
@@ -42,9 +37,15 @@ alias fp='devour mupdf "$(fzf)"' #devour probably isn't installed on debian
 alias gts='git status'
 alias gta='git add'
 alias gtc='git commit -m'
+alias gtch='git checkout'
+alias gtcl='git clone'
 alias gtd='git diff'
-alias gtp='git push -u origin master'
+alias gtp='git push'
+alias gtpl='git pull'
+alias gtrsu='git remote set-url origin'
 alias gtl='git log'
+alias gtr='git resotre'
+alias gtrs='git reset --hard'
 alias yta="yt-dlp -f 'bestaudio/best' -f 'm4a'"
 alias ytd="yt-dlp -f 'bestvideo[height<=?1080]+bestaudio/best' -f 'mp4'"
 alias ytdd="yt-dlp -f 'bestvideo[height<=?720]+bestaudio/best' -f 'mp4'"
@@ -55,9 +56,4 @@ alias fmpv='mpv "$(fzf)"'
 alias yank='xclip -selection c < '
 alias song='ps "$(pgrep mpv)"'
 alias demu='devour mupdf'
-alias cd1='cd ..'
-alias cd2='cd ../..'
-alias cd3='cd ../../..'
-alias cd4='cd ../../../..'
-alias cd5='cd ../../../../..'
 alias rm='rm -I --preserve-root' #Every alias has a story ...
