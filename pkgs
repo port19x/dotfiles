@@ -10,6 +10,7 @@ fzf
 graphviz
 htop
 imagemagick
+jpegoptim
 keepassxc
 kitty
 mononoki
@@ -31,5 +32,6 @@ unzip
 vim
 xclip
 xscreensaver
+xwallpaper
 yt-dlp
 zsh
