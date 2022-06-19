@@ -251,7 +251,8 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- {{{ Autostart
-awful.spawn.with_shell("find ~/pic/Wallpapers/ | shuf -n 1 | xargs xwallpaper --center")
+-- awful.spawn.with_shell("find ~/pic/Wallpapers/ | shuf -n 1 | xargs xwallpaper --center")
+awful.spawn.with_shell("xwallpaper --center ~/pic/Wallpapers/purple-light.jpg")
 awful.spawn.with_shell("command -v qutebrowser && pgrep -x qutebrowser || qutebrowser")
 awful.spawn.with_shell("command -v kitty && pgrep -x kitty || kitty")
 awful.spawn.with_shell("command -v emacs && pgrep -x emacs || emacs --daemon")
