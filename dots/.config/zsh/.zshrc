@@ -54,6 +54,7 @@ alias ytddd="yt-dlp -f 'bestvideo[height<=?480]+bestaudio/best' -f 'mp4'"
 alias icat='kitty +kitten icat'
 alias smpv='mpv "$(ls | shuf -n 1)"'
 alias fmpv='mpv "$(fzf)"'
+alias lofi='mpv --no-vid "https://youtu.be/5qap5aO4i9A"'
 alias yank='xclip -selection c < '
 alias song='ps "$(pgrep mpv)"'
 alias demu='devour mupdf'
