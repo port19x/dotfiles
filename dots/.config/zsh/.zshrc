@@ -4,13 +4,8 @@ SAVEHIST=1000000
 HISTSIZE=$SAVEHIST
 setopt INC_APPEND_HISTORY # Don't wait until the shell exits
 setopt SHARE_HISTORY # Share history between all sessions
-setopt HIST_IGNORE_SPACE # Ignore entries starting with Space
-setopt HIST_IGNORE_DUPS # dup
-setopt HIST_IGNORE_ALL_DUPS # li
-setopt HIST_SAVE_NO_DUPS # cates
 
-TERM='xterm'
-EDITOR='vim' #git rebases annoy me
+EDITOR='nvim' #git rebases annoy me
 #mkdir -p ~/.local/state/zsh && touch ~/.local/state/zsh/history
 export HISTFILE="$HOME/.local/state/zsh/history"
 unsetopt beep
