@@ -46,6 +46,7 @@ alias yta="yt-dlp -f 'bestaudio/best' -f 'm4a'"
 alias ytd="yt-dlp -f 'bestvideo[height<=?1080]+bestaudio/best' -f 'mp4'"
 alias ytdd="yt-dlp -f 'bestvideo[height<=?720]+bestaudio/best' -f 'mp4'"
 alias ytddd="yt-dlp -f 'bestvideo[height<=?480]+bestaudio/best' -f 'mp4'"
+alias stamp='date +%d.%m.%y'
 alias icat='kitty +kitten icat'
 alias smpv='mpv "$(ls | shuf -n 1)"'
 alias fmpv='mpv "$(fzf)"'
