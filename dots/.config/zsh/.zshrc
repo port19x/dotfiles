@@ -30,8 +30,9 @@ PS1='%F{4}%3~ ${vcs_info_msg_0_}%f$ '
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 alias v='nvim'
-alias la='ls -A'
-alias ll='ls -lhA'
+alias ls='exa'
+alias la='exa -a'
+alias ll='exa -la'
 alias br='brightnessctl set 0 && read && brightnessctl set 100%'
 alias pm='pulsemixer'
 alias fp='devour mupdf "$(fzf)"' #devour probably isn't installed on debian
