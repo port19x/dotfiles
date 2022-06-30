@@ -256,5 +256,6 @@ awful.spawn.with_shell("xwallpaper --center ~/pic/Wallpapers/purple-light.jpg")
 awful.spawn.with_shell("command -v qutebrowser && pgrep -x qutebrowser || qutebrowser")
 awful.spawn.with_shell("command -v kitty && pgrep -x kitty || kitty -1")
 awful.spawn.with_shell("command -v picom && pgrep -x picom || picom --daemon")
+awful.spawn.with_shell("command -v xscreensaver && pgrep -x xscreensaver || xscreensaver &")
 awful.spawn.with_shell("setxkbmap de")
 --- }}}
