@@ -184,6 +184,7 @@ for i = 1, 5 do
     )
 end
 
+-- applies to floating windows
 clientbuttons = gears.table.join(
     awful.button({ }, 1, function (c)
         c:emit_signal("request::activate", "mouse_click", {raise = true})
