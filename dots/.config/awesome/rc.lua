@@ -123,7 +123,7 @@ globalkeys = gears.table.join(
               {description = "take a screenshot", group = "launcher"}),
     awful.key({ modkey,           }, "p",      function () awful.spawn.with_shell("killall picom || picom -b") end,
               {description = "toggle transparency", group = "launcher"}),
-    awful.key({ modkey,           }, "p",      function () awful.spawn.with_shell("notify-send $(acpi -b | cut -d , -f 2)") end,
+    awful.key({ modkey,           }, "b",      function () awful.spawn.with_shell("notify-send $(acpi -b | cut -d , -f 2)") end,
               {description = "show battery percentage", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
