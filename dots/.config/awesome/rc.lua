@@ -264,6 +264,6 @@ awful.spawn.with_shell("command -v qutebrowser && pgrep -x qutebrowser || qutebr
 awful.spawn.with_shell("command -v kitty && pgrep -x kitty || kitty -1")
 awful.spawn.with_shell("command -v picom && pgrep -x picom || picom --daemon")
 awful.spawn.with_shell("command -v xscreensaver && pgrep -x xscreensaver || xscreensaver &")
+awful.spawn.with_shell("pgrep -x watch || watch -n 300 notify-send shake hands")
 awful.spawn.with_shell("setxkbmap de")
-awful.spawn.with_shell("watch -n 300 notify-send shake hands")
 --- }}}
