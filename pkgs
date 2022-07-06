@@ -1,6 +1,6 @@
 asciiquarium
-awesome
-brightnessctl
+- awesome
+- brightnessctl
 calcurse
 emacs
 exa
@@ -16,16 +16,16 @@ imagemagick
 jpegoptim
 keepassxc
 kitty
-mononoki
+- mononoki
 mpv
 mupdf
 ncdu
 neofetch
 newsboat
-noto-fonts
-picom
+- noto-fonts
+- picom
 plantuml
-pulsemixer
+- pulsemixer
 qutebrowser
 ripgrep
 rofi
@@ -35,6 +35,6 @@ unzip
 vim
 xclip
 xscreensaver
-xwallpaper
+- xwallpaper
 yt-dlp
 zsh
