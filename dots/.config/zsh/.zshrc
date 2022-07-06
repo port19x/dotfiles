@@ -43,7 +43,7 @@ alias gtc='git commit -m'
 alias gtd='git diff'
 alias gtp='git push -u origin master'
 alias gtl='git log'
-alias yta="yt-dlp -f 'bestaudio/best' -f 'm4a'"
+alias yta="yt-dlp --embed-thumbnail -f 'bestaudio/best' -f 'm4a'"
 alias ytd="yt-dlp -f 'bestvideo[height<=?1080]+bestaudio/best' -f 'mp4'"
 alias ytdd="yt-dlp -f 'bestvideo[height<=?720]+bestaudio/best' -f 'mp4'"
 alias ytddd="yt-dlp -f 'bestvideo[height<=?480]+bestaudio/best' -f 'mp4'"
