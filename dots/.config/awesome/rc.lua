@@ -125,6 +125,8 @@ globalkeys = gears.table.join(
               {description = "toggle transparency", group = "launcher"}),
     awful.key({ modkey,           }, "b",      function () awful.spawn.with_shell("notify-send $(acpi -b | cut -d , -f 2)") end,
               {description = "show battery percentage", group = "launcher"}),
+    awful.key({ modkey, "Control"   }, "l",      function () awful.spawn.with_shell("slock") end,
+              {description = "lock screen", group = "awesome"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Control"   }, "q", awesome.quit,
