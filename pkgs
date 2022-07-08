@@ -1,33 +1,26 @@
 asciiquarium
-- awesome
-- brightnessctl
+awesome
+brightnessctl
 calcurse
-emacs
 exa
-fd
 ffmpeg
 flameshot
 fzf
-gource
-graphviz
 htop
 hyperfine
 imagemagick
-jpegoptim
 keepassxc
 kitty
-- mononoki
+mononoki
 mpv
 mupdf
 ncdu
 neofetch
 newsboat
-- noto-fonts
-- picom
-plantuml
-- pulsemixer
+noto-fonts
+picom
+pulsemixer
 qutebrowser
-ripgrep
 rofi
 stow
 tree
@@ -35,6 +28,6 @@ unzip
 vim
 xclip
 xscreensaver
-- xwallpaper
+xwallpaper
 yt-dlp
 zsh
