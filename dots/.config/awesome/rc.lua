@@ -129,8 +129,6 @@ globalkeys = gears.table.join(
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Control"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
-    awful.key({ modkey, "Control"   }, "l",      function () awful.spawn.with_shell("xscreensaver-command -lock") end,
-              {description = "lock screen", group = "awesome"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master size", group = "layout"}),
@@ -263,7 +261,6 @@ awful.spawn.with_shell("xwallpaper --center ~/pic/Wallpapers/purple-light.jpg")
 awful.spawn.with_shell("command -v qutebrowser && pgrep -x qutebrowser || qutebrowser")
 awful.spawn.with_shell("command -v kitty && pgrep -x kitty || kitty -1")
 awful.spawn.with_shell("command -v picom && pgrep -x picom || picom --daemon")
-awful.spawn.with_shell("command -v xscreensaver && pgrep -x xscreensaver || xscreensaver &")
 awful.spawn.with_shell("pgrep -x watch || watch -n 300 notify-send shake hands")
 awful.spawn.with_shell("setxkbmap de")
 --- }}}
