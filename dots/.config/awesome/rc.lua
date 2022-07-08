@@ -125,6 +125,8 @@ globalkeys = gears.table.join(
               {description = "toggle transparency", group = "launcher"}),
     awful.key({ modkey,           }, "b",      function () awful.spawn.with_shell("notify-send $(acpi -b | cut -d , -f 2)") end,
               {description = "show battery percentage", group = "launcher"}),
+    awful.key({ modkey,           }, "t",      function () awful.spawn.with_shell("notify-send $(date +%H:%M)") end,
+        {description = "show time", group = "launcher"}),
     awful.key({ modkey, "Control"   }, "l",      function () awful.spawn.with_shell("slock") end,
               {description = "lock screen", group = "awesome"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
@@ -155,9 +157,7 @@ clientkeys = gears.table.join(
     awful.key({ modkey, "Shift", "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
     awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
-              {description = "move to next screen", group = "client"}),
-    awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
-        {description = "toggle keep on top", group = "client"})
+              {description = "move to next screen", group = "client"})
     )
 
 for i = 1, 5 do
