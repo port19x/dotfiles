@@ -8,6 +8,7 @@ setopt SHARE_HISTORY # Share history between all sessions
 EDITOR='nvim' #git rebases annoy me
 #mkdir -p ~/.local/state/zsh && touch ~/.local/state/zsh/history
 export HISTFILE="$HOME/.local/state/zsh/history"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 unsetopt beep
 bindkey -v
 zstyle :compinstall filename "$HOME/.config/zsh/.zshrc"
