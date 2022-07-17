@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r118.1a2d130
+pkgver=r120.c1f3339
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -32,6 +32,7 @@ depends=(
 'qutebrowser'
 'rofi'
 'slock'
+'stow'
 'tree'
 'ttf-mononoki'
 'unzip'
@@ -54,5 +55,6 @@ pkgver() {
 package() {
     cd "$srcdir/${_pkgname}/dots"
     find . -type d -exec mkdir -p -- $HOME/{} \;
-    cp -a --remove-destination "$srcdir/${_pkgname}/dots/.config" "$srcdir/${_pkgname}/dots/.xinitrc" $HOME/
+    printf "To finalize the install:	 stow -v dots"
+    printf "To remove build residue: 	 rm -rf dotfiles *.zst src pkg"
 }
