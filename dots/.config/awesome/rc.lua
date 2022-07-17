@@ -1,4 +1,3 @@
--- {{{ Imports
 pcall(require, "luarocks.loader")
 local gears = require("gears")
 local awful = require("awful")
@@ -8,9 +7,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
--- }}}
 
--- {{{ Error handling
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
                      title = "Oops, there were errors during startup!",
@@ -27,9 +24,7 @@ do
         in_error = false
     end)
 end
--- }}}
 
--- {{{ Theming
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
@@ -56,48 +51,20 @@ theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
 )
-
 theme.menu_height = dpi(15)
 theme.menu_width  = dpi(100)
 beautiful.init(theme)
--- }}}
 
--- {{{ Variables
 terminal = "kitty -1"
 launcher = "rofi -show run"
 editor = os.getenv("EDITOR") or "emacs"
 editor_cmd = editor
 modkey = "Mod4"
--- }}}
 
--- {{{ Layouts
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.tile.top,
 }
--- }}}
-
--- {{{ Wibar
-local function set_wallpaper(s)
-    -- Wallpaper
-    if beautiful.wallpaper then
-        local wallpaper = beautiful.wallpaper
-        -- If wallpaper is a function, call it with the screen
-        if type(wallpaper) == "function" then
-            wallpaper = wallpaper(s)
-        end
-        gears.wallpaper.maximized(wallpaper, s, true)
-    end
-end
-
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
-
-awful.screen.connect_for_each_screen(function(s)
-    set_wallpaper(s)
-    awful.tag({ "1", "2", "3", "4", "5" }, s, awful.layout.layouts[1])
-end)
--- }}}
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
@@ -201,11 +168,8 @@ clientbuttons = gears.table.join(
     end)
 )
 
--- Set keys
 root.keys(globalkeys)
--- }}}
 
--- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
@@ -257,7 +221,6 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
--- {{{ Autostart
 -- awful.spawn.with_shell("find ~/pic/Wallpapers/ | shuf -n 1 | xargs xwallpaper --center")
 awful.spawn.with_shell("xwallpaper --center ~/pic/Wallpapers/yellow-dining.jpg")
 awful.spawn.with_shell("command -v qutebrowser && pgrep -x qutebrowser || qutebrowser")
@@ -266,4 +229,3 @@ awful.spawn.with_shell("command -v picom && pgrep -x picom || picom --daemon")
 awful.spawn.with_shell("pgrep -x watch || watch -n 300 notify-send shake hands")
 awful.spawn.with_shell("command -v newsboat && pgrep -x newsboat || newsboat -x reload")
 awful.spawn.with_shell("setxkbmap de")
---- }}}
