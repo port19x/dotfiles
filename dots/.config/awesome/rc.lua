@@ -44,20 +44,13 @@ theme.border_width  = 2
 theme.border_normal = "#002b36"
 theme.border_focus  = "#2aa198"
 theme.border_marked = "#91231c"
-local taglist_square_size = dpi(4)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    taglist_square_size, theme.fg_normal
-)
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-    taglist_square_size, theme.fg_normal
-)
 theme.menu_height = dpi(15)
 theme.menu_width  = dpi(100)
 beautiful.init(theme)
 
 terminal = "kitty -1"
 launcher = "rofi -show run"
-editor = os.getenv("EDITOR") or "emacs"
+editor = "nvim"
 editor_cmd = editor
 modkey = "Mod4"
 
@@ -66,66 +59,58 @@ awful.layout.layouts = {
     awful.layout.suit.tile.top,
 }
 
+local function set_wallpaper(s)
+    -- Wallpaper
+    if beautiful.wallpaper then
+        local wallpaper = beautiful.wallpaper
+        -- If wallpaper is a function, call it with the screen
+        if type(wallpaper) == "function" then
+            wallpaper = wallpaper(s)
+        end
+        gears.wallpaper.maximized(wallpaper, s, true)
+    end
+end
+
+-- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
+screen.connect_signal("property::geometry", set_wallpaper)
+
+awful.screen.connect_for_each_screen(function(s)
+    set_wallpaper(s)
+    awful.tag({ "1", "2", "3", "4", "5" }, s, awful.layout.layouts[1])
+end)
+
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-    awful.key({ modkey,           }, "k",      hotkeys_popup.show_help,
-              {description="show keybindings", group="awesome"}),
-    awful.key({ modkey,           }, "space",
-        function ()
-            awful.client.focus.byidx( 1)
-        end,
-        {description = "focus next by index", group = "client"}
-    ),
+    -- Group Awesome
+    awful.key({ modkey, "Control" }, "l",     	function () awful.spawn.with_shell("slock") end, {description = "lock screen", group = "awesome"}),
+    awful.key({ modkey, "Control" }, "q", 	awesome.quit, {description = "quit awesome", group = "awesome"}),
+    awful.key({ modkey, "Control" }, "r", 	awesome.restart, {description = "reload awesome", group = "awesome"}),
+    awful.key({ modkey,           }, "k",     	hotkeys_popup.show_help, {description="show keybindings", group="awesome"}),
 
-    -- Layout manipulation
-    awful.key({ modkey, "Shift"   }, "space", function () awful.client.swap.byidx(  1)    end,
-              {description = "swap with next client by index", group = "client"}),
-    awful.key({ modkey, "Control" }, "space", function () awful.screen.focus_relative( 1) end,
-              {description = "focus the next screen", group = "client"}),
+    -- Group Launcher
+    awful.key({ modkey 		  }, "r", 	function () awful.spawn(launcher) end, {description = "show the launcher", group = "launcher"}),
+    awful.key({ modkey,           }, "Return", 	function () awful.spawn(terminal) end, {description = "launch terminal", group = "launcher"}),
+    awful.key({ modkey,           }, "s",      	function () awful.spawn("flameshot gui") end, {description = "take a screenshot", group = "launcher"}),
+    awful.key({ modkey,           }, "p",      	function () awful.spawn.with_shell("killall picom || picom -b") end, {description = "toggle transparency", group = "launcher"}),
+    awful.key({ modkey,           }, "b",      	function () awful.spawn.with_shell("notify-send $(acpi -b | cut -d , -f 2)") end, {description = "show battery percentage", group = "launcher"}),
+    awful.key({ modkey,           }, "t",      	function () awful.spawn.with_shell("notify-send $(date +%H:%M)") end, {description = "show time", group = "launcher"}),
 
-    -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
-              {description = "launch terminal", group = "launcher"}),
-    awful.key({ modkey,           }, "s",      function () awful.spawn("flameshot gui") end,
-              {description = "take a screenshot", group = "launcher"}),
-    awful.key({ modkey,           }, "p",      function () awful.spawn.with_shell("killall picom || picom -b") end,
-              {description = "toggle transparency", group = "launcher"}),
-    awful.key({ modkey,           }, "b",      function () awful.spawn.with_shell("notify-send $(acpi -b | cut -d , -f 2)") end,
-              {description = "show battery percentage", group = "launcher"}),
-    awful.key({ modkey,           }, "t",      function () awful.spawn.with_shell("notify-send $(date +%H:%M)") end,
-        {description = "show time", group = "launcher"}),
-    awful.key({ modkey, "Control"   }, "l",      function () awful.spawn.with_shell("slock") end,
-              {description = "lock screen", group = "awesome"}),
-    awful.key({ modkey, "Control" }, "r", awesome.restart,
-              {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey, "Control"   }, "q", awesome.quit,
-              {description = "quit awesome", group = "awesome"}),
-
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
-              {description = "increase master size", group = "layout"}),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
-              {description = "decrease master size", group = "layout"}),
-    awful.key({ modkey,           }, "Tab", function () awful.layout.inc( 1)                end,
-              {description = "select next layout", group = "layout"}),
-    -- Menubar
-    awful.key({ modkey }, "r", function() awful.spawn(launcher) end,
-              {description = "show the launcher", group = "launcher"})
+    -- Group Layout
+    awful.key({ modkey,           }, "l",     	function () awful.tag.incmwfact( 0.05)          end, {description = "increase master size", group = "layout"}),
+    awful.key({ modkey,           }, "h",     	function () awful.tag.incmwfact(-0.05)          end, {description = "decrease master size", group = "layout"}),
+    awful.key({ modkey,           }, "Tab", 	function () awful.layout.inc( 1)                end, {description = "select next layout", group = "layout"})
 )
 
+-- Group Client
 clientkeys = gears.table.join(
-    awful.key({ modkey,           }, "f",
-        function (c)
-            c.fullscreen = not c.fullscreen
-            c:raise()
-        end,
-        {description = "toggle fullscreen", group = "client"}),
-    awful.key({ modkey }, "w",      function (c) c:kill()                         end,
-              {description = "close", group = "client"}),
-    awful.key({ modkey, "Shift", "Control" }, "space",  awful.client.floating.toggle                     ,
-              {description = "toggle floating", group = "client"}),
-    awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
-              {description = "move to next screen", group = "client"})
-    )
+    awful.key({ modkey,           }, "f", 	function (c) c.fullscreen = not c.fullscreen c:raise() end, {description = "toggle fullscreen", group = "client"}),
+    awful.key({ modkey, 	  }, "w",     	function (c) c:kill()                         end, {description = "close", group = "client"}),
+    awful.key({ modkey, "Shift"   }, "f",  	awful.client.floating.toggle                     , {description = "toggle floating", group = "client"}),
+    awful.key({ modkey,           }, "o",      	function (c) c:move_to_screen()               end, {description = "move to next screen", group = "client"}),
+    awful.key({ modkey,           }, "space", 	function () awful.client.focus.byidx( 1) end, {description = "focus next by index", group = "client"}),
+    awful.key({ modkey, "Shift"   }, "space", 	function () awful.client.swap.byidx(  1)    end, {description = "swap with next client by index", group = "client"}),
+    awful.key({ modkey, "Shift"	  }, "o", 	function () awful.screen.focus_relative( 1) end, {description = "focus the next screen", group = "client"})
+)
 
 for i = 1, 5 do
     globalkeys = gears.table.join(globalkeys,
