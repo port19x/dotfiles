@@ -32,7 +32,6 @@ depends=(
 'qutebrowser'
 'rofi'
 'slock'
-'stow'
 'tree'
 'ttf-mononoki'
 'unzip'
@@ -55,7 +54,5 @@ pkgver() {
 package() {
     cd "$srcdir/${_pkgname}/dots"
     find . -type d -exec mkdir -p -- $HOME/{} \;
-    echo $srcdir
-    echo $(pwd)
-    cp -as --remove-destination "$srcdir/${_pkgname}/dots/.config" "$srcdir/${_pkgname}/dots/.xinitrc" $HOME/
+    cp -a --remove-destination "$srcdir/${_pkgname}/dots/.config" "$srcdir/${_pkgname}/dots/.xinitrc" $HOME/
 }
