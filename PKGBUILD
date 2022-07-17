@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r120.c1f3339
+pkgver=r121.4f24ff8
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -55,6 +55,6 @@ pkgver() {
 package() {
     cd "$srcdir/${_pkgname}/dots"
     find . -type d -exec mkdir -p -- $HOME/{} \;
-    printf "To finalize the install:	 stow -v dots"
-    printf "To remove build residue: 	 rm -rf dotfiles *.zst src pkg"
+    printf "To finalize the install:	 stow -v dots \n"
+    printf "To remove build residue: 	 rm -rf dotfiles *.zst src pkg \n"
 }
