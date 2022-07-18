@@ -10,6 +10,7 @@ license=('Unlicense')
 depends=(
 'acpi'
 'arch-wiki-lite'
+'asciiquarium'
 'awesome'
 'bat'
 'brightnessctl'
@@ -38,6 +39,7 @@ depends=(
 'neovim'
 'newsboat'
 'noto-fonts'
+'openssh'
 'picom'
 'pulsemixer'
 'qutebrowser'
@@ -58,7 +60,11 @@ makedepends=(
 'git'
 )
 optdepends=(
+'aria2: download accelerator'
+'axel: download accelerator'
 'devour: window swallowing'
+'ffmpeg4.4: undeclared mgba-qt dependency on arm'
+'jdk11-openjdk: I hate java'
 'ttf-mononoki: primary font'
 'yay: aur helper'
 )
