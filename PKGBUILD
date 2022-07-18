@@ -8,17 +8,28 @@ arch=('any')
 url='https://git.sr.ht/~port19/dotfiles'
 license=('Unlicense')
 depends=(
+'acpi'
+'arch-wiki-lite'
 'awesome'
 'bat'
 'brightnessctl'
 'calcurse'
+'dash'
+'dhcpcd'
 'exa'
+'expac'
 'ffmpeg'
 'flameshot'
 'fzf'
+'ghostscript'
+'gutenprint'
+'htop'
 'imagemagick'
+'iwd'
 'keepassxc'
 'kitty'
+'man-db'
+'man-pages'
 'mgba-qt'
 'mpv'
 'mupdf'
@@ -33,14 +44,23 @@ depends=(
 'rofi'
 'slock'
 'stow'
-'ttf-mononoki'
+'tree'
 'unzip'
 'xclip'
+'xorg-server'
+'xorg-xinit'
+'xorg-xkill'
 'yt-dlp'
 'zsh'
+'zsh-completions'
 )
 makedepends=(
 'git'
+)
+optdepends=(
+'devour: window swallowing'
+'ttf-mononoki: primary font'
+'yay: aur helper'
 )
 source=('dotfiles::git+https://git.sr.ht/~port19/dotfiles')
 md5sums=('SKIP')
