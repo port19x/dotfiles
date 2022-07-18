@@ -30,6 +30,14 @@ PS1='%F{4}%3~ ${vcs_info_msg_0_}%f$ '
 #https://github.com/zsh-users/zsh-autosuggestions
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+pastebin() {
+    curl --silent https://oshi.at -F f=@$* -F expire=120 \
+    | grep DL \
+    | cut -d " " -f 2 \
+    | xclip -selection c \
+    && echo "link copied to clipboard"
+}
+
 alias v='nvim'
 alias ls='exa'
 alias la='exa -a'
