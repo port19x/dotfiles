@@ -38,6 +38,14 @@ pastebin() {
     && echo "link copied to clipboard"
 }
 
+pastebinlong() {
+    curl --silent https://oshi.at -F f=@$* \
+    | grep DL \
+    | cut -d " " -f 2 \
+    | xclip -selection c \
+    && echo "link copied to clipboard"
+}
+
 alias v='nvim'
 alias ls='exa'
 alias la='exa -a'
