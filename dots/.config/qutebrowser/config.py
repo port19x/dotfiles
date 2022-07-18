@@ -3,7 +3,7 @@ config.load_autoconfig(True)
 c.completion.cmd_history_max_items = 0
 c.completion.shrink = True
 c.completion.timestamp_format = '%H:%M %d.%m.'
-c.completion.web_history.max_items = 1000
+c.completion.web_history.max_items = 500
 c.confirm_quit = ['downloads']
 c.content.canvas_reading = False
 #c.content.cookies.accept = 'all' #teams and zoom need 3rdparty cookies
