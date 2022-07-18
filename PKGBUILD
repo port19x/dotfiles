@@ -37,7 +37,6 @@ depends=(
 'ttf-mononoki'
 'unzip'
 'xclip'
-'xwallpaper'
 'yt-dlp'
 'zsh'
 )
