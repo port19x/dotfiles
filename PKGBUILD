@@ -33,7 +33,6 @@ depends=(
 'rofi'
 'slock'
 'stow'
-'tree'
 'ttf-mononoki'
 'unzip'
 'xclip'
