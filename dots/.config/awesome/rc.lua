@@ -22,6 +22,7 @@ theme.border_width  = 2
 theme.border_normal = "#002b36"
 theme.border_focus  = "#2aa198"
 theme.border_marked = "#91231c"
+theme.wallpaper = "~/pic/Wallpapers/lightblue-blossom.jpg"
 beautiful.init(theme)
 
 awful.layout.layouts = {
@@ -31,6 +32,7 @@ awful.layout.layouts = {
 
 awful.screen.connect_for_each_screen(function(s)
     awful.tag({ "1", "2", "3", "4", "5" }, s, awful.layout.layouts[1])
+    gears.wallpaper.maximized(beautiful.wallpaper, s, true)
 end)
 
 -- {{{ Key bindings
@@ -139,8 +141,6 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
--- awful.spawn.with_shell("find ~/pic/Wallpapers/ | shuf -n 1 | xargs xwallpaper --center")
-awful.spawn.with_shell("xwallpaper --center ~/pic/Wallpapers/yellow-dining.jpg")
 awful.spawn.with_shell("command -v qutebrowser && pgrep -x qutebrowser || qutebrowser")
 awful.spawn.with_shell("command -v kitty && pgrep -x kitty || kitty -1")
 awful.spawn.with_shell("command -v picom && pgrep -x picom || picom --daemon")
