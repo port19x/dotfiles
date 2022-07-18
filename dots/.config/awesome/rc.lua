@@ -41,7 +41,7 @@ globalkeys = gears.table.join(
     awful.key({ "Mod4",           }, "k",     	hotkeys_popup.show_help, {description = "show keybindings", group = "awesome"}),
     awful.key({ "Mod4", "Control" }, "q", 	awesome.quit, 		 {description = "quit awesome", group = "awesome"}),
     awful.key({ "Mod4", "Control" }, "r", 	awesome.restart, 	 {description = "reload awesome", group = "awesome"}),
-    awful.key({ "Mod4", "Control" }, "l",     	function () awful.spawn("slock") end, {description = "lock screen", group = "awesome"}),
+    awful.key({ "Mod4", "Control" }, "l",     	function () awful.spawn.with_shell("brightnessctl set 0% && slock && brightnessctl set 100%") end, {description = "lock screen", group = "awesome"}),
 
     -- Group Launcher
     awful.key({ "Mod4" 		  }, "r", 	function () awful.spawn("rofi -show run") end, {description = "show the launcher", group = "launcher"}),
