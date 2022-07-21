@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r139.36bfb5e
+pkgver=r142.858eb79
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -23,6 +23,7 @@ depends=(
 'flameshot'
 'fzf'
 'ghostscript'
+'gnupg'
 'gutenprint'
 'htop'
 'imagemagick'
@@ -42,7 +43,6 @@ depends=(
 'openssh'
 'picom'
 'pulsemixer'
-'qutebrowser'
 'rofi'
 'slock'
 'stow'
@@ -67,6 +67,7 @@ optdepends=(
 'jdk11-openjdk: I hate java'
 'ttf-mononoki: primary font'
 'yay: aur helper'
+'librewolf-bin: webbrowser'
 )
 source=('dotfiles::git+https://git.sr.ht/~port19/dotfiles')
 md5sums=('SKIP')
