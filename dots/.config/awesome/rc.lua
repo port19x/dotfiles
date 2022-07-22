@@ -44,7 +44,10 @@ globalkeys = gears.table.join(
     awful.key({ "Mod4", "Control" }, "l",     	function () awful.spawn.with_shell("brightnessctl set 0% && slock && brightnessctl set 100%") end, {description = "lock screen", group = "awesome"}),
 
     -- Group Launcher
-    awful.key({ "Mod4" 		  }, "r", 	function () awful.spawn("rofi -show run") end, {description = "show the launcher", group = "launcher"}),
+    awful.key({ "Mod4" 		  }, "h", 	function () awful.spawn("signal-desktop") end, {description = "signal-desktop", group = "launcher"}),
+    awful.key({ "Mod4" 		  }, "g", 	function () awful.spawn("keepassxc") end, {description = "keepassxc", group = "launcher"}),
+    awful.key({ "Mod4" 		  }, "m", 	function () awful.spawn("mgba-qt") end, {description = "mgba-qt", group = "launcher"}),
+    awful.key({ "Mod4" 		  }, "q", 	function () awful.spawn("qutebrowser") end, {description = "qutebrowser", group = "launcher"}),
     awful.key({ "Mod4",           }, "Return", 	function () awful.spawn("kitty -1") end, {description = "launch terminal", group = "launcher"}),
     awful.key({ "Mod4",           }, "s",      	function () awful.spawn("flameshot gui") end, {description = "take a screenshot", group = "launcher"}),
     awful.key({ "Mod4",           }, "p",      	function () awful.spawn.with_shell("killall picom || picom -b") end, {description = "toggle transparency", group = "launcher"}),
