@@ -42,7 +42,7 @@ depends=(
 'noto-fonts'
 'openssh'
 'picom'
-'pulsemixer'
+'pamixer'
 'slock'
 'stow'
 'tree'
