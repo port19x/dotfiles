@@ -27,19 +27,16 @@ c.url.default_page = 'https://search.bus-hit.me/'
 c.url.start_pages = 'https://search.bus-hit.me/'
 c.url.searchengines = {'DEFAULT':'https://search.bus-hit.me/?q={}'}
 
-
 #keybinds
 config.bind(',m', 'hint links spawn mpv {hint-url}')
-config.bind(',cm', 'spawn mpv {url}')
 config.bind(',nv', 'hint links spawn mpv --no-video {hint-url}')
-config.bind(',cnv', 'spawn mpv --no-video {url}')
 config.bind(',y', 'hint links spawn kitty -e yt-dlp {hint-url}')
-config.bind(',cy', 'spawn kitty -e yt-dlp {url}')
 config.bind(',a', 'hint links spawn kitty -e yt-dlp -f bestaudio {hint-url}')
+config.bind(',cm', 'spawn mpv {url}')
+config.bind(',cnv', 'spawn mpv --no-video {url}')
+config.bind(',cy', 'spawn kitty -e yt-dlp {url}')
 config.bind(',ca', 'spawn kitty -e yt-dlp -f bestaudio {url}')
 config.bind(',r', 'restart')
-config.bind(',xb', 'config-cycle statusbar.show always never')
-config.bind(',xt', 'config-cycle tabs.show always never')
 config.bind(',xx', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
 config.bind('Sd', 'bookmark-del')
 config.bind('SD', 'quickmark-del')
