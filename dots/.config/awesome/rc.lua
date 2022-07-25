@@ -43,6 +43,13 @@ globalkeys = gears.table.join(
     awful.key({ "Mod4", "Control" }, "r", 	awesome.restart, 	 {description = "reload awesome", group = "awesome"}),
     awful.key({ "Mod4", "Control" }, "l",     	function () awful.spawn.with_shell("brightnessctl set 0% && slock && brightnessctl set 100%") end, {description = "lock screen", group = "awesome"}),
 
+    -- Group Mediakeys
+    awful.key({}, "XF86AudioMute", 		function () awful.spawn("pamixer -t") end, {description = "mute audio", group = "mediakey"}),
+    awful.key({}, "XF86AudioLowerVolume ", 	function () awful.spawn("pamixer -i 10%") end, {description = "raise volume", group = "mediakey"}),
+    awful.key({}, "XF86AudioRaiseVolume ", 	function () awful.spawn("pamixer -d 10%") end, {description = "lower volume", group = "mediakey"}),
+    awful.key({}, "XF86MonBrightnessUp", 	function () awful.spawn("brightnessctl set 10%+") end, {description = "raise brightness", group = "mediakey"}),
+    awful.key({}, "XF86MonBrightnessDown", 	function () awful.spawn("brightnessctl set 10%-") end, {description = "lower brightness", group = "mediakey"}),
+
     -- Group Launcher
     awful.key({ "Mod4" 		  }, "y", 	function () awful.spawn("signal-desktop") end, {description = "signal-desktop", group = "launcher"}),
     awful.key({ "Mod4" 		  }, "g", 	function () awful.spawn("keepassxc") end, {description = "keepassxc", group = "launcher"}),
