@@ -2,9 +2,6 @@
 #export ZDOTDIR=$HOME/.config/zsh
 SAVEHIST=1000000
 HISTSIZE=$SAVEHIST
-setopt INC_APPEND_HISTORY # Don't wait until the shell exits
-setopt SHARE_HISTORY # Share history between all sessions
-
 EDITOR='nvim' #git rebases annoy me
 #mkdir -p ~/.local/state/zsh && touch ~/.local/state/zsh/history
 export HISTFILE="$HOME/.local/state/zsh/history"
@@ -70,7 +67,4 @@ alias yank='xclip -selection c < '
 alias song='ps "$(pgrep mpv)"'
 alias news='newsboat -x reload && newsboat -x print-unread'
 alias rr='gio trash'
-alias rrl='gio trash --list'
-alias rre='gio trash --empty'
-alias rrr='gio trash --restore'
 alias rm='rm -I --preserve-root' #Every alias has a story ...
