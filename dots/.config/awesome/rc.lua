@@ -22,7 +22,7 @@ theme.border_width  = 2
 theme.border_normal = "#002b36"
 theme.border_focus  = "#2aa198"
 theme.border_marked = "#91231c"
-theme.wallpaper = "~/pic/Wallpapers/lightblue-blossom.jpg"
+theme.wallpaper = "~/pic/Wallpapers/blackred-maiden.jpg"
 beautiful.init(theme)
 
 awful.layout.layouts = {
