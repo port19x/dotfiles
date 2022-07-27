@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r152.f457966
+pkgver=r155.2066399
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -43,6 +43,7 @@ depends=(
 'openssh'
 'picom'
 'pamixer'
+'ranger'
 'slock'
 'stow'
 'tree'
@@ -67,6 +68,8 @@ optdepends=(
 'mullvad-vpn-cli: the best vpn'
 'qutebrowser-qt6-git: webbrowser'
 'signal-desktop: superior messenger'
+'syncplay: watch video together'
+'syncthing: share files'
 'ttf-mononoki: primary font'
 'yay: aur helper'
 )
