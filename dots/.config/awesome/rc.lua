@@ -22,7 +22,7 @@ theme.border_width  = 2
 theme.border_normal = "#002b36"
 theme.border_focus  = "#2aa198"
 theme.border_marked = "#91231c"
-theme.wallpaper = "~/pic/Wallpapers/blackred-maiden.jpg"
+theme.wallpaper = "~/pic/Wallpapers/yellow-liquorstore.jpg"
 beautiful.init(theme)
 
 awful.layout.layouts = {
@@ -44,9 +44,6 @@ globalkeys = gears.table.join(
     awful.key({ "Mod4", "Control" }, "l",     	function () awful.spawn.with_shell("brightnessctl set 0% && slock && brightnessctl set 100%") end, {description = "lock screen", group = "awesome"}),
 
     -- Group Mediakeys
-    awful.key({}, "XF86AudioMute", 		function () awful.spawn("pamixer -t") end, {description = "mute audio", group = "mediakey"}),
-    awful.key({}, "XF86AudioLowerVolume ", 	function () awful.spawn("pamixer -i 10%") end, {description = "raise volume", group = "mediakey"}),
-    awful.key({}, "XF86AudioRaiseVolume ", 	function () awful.spawn("pamixer -d 10%") end, {description = "lower volume", group = "mediakey"}),
     awful.key({}, "XF86MonBrightnessUp", 	function () awful.spawn("brightnessctl set 10%+") end, {description = "raise brightness", group = "mediakey"}),
     awful.key({}, "XF86MonBrightnessDown", 	function () awful.spawn("brightnessctl set 10%-") end, {description = "lower brightness", group = "mediakey"}),
 
