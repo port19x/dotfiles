@@ -9,8 +9,6 @@ url='https://git.sr.ht/~port19/dotfiles'
 license=('Unlicense')
 depends=(
 'acpi'
-'arch-wiki-lite'
-'asciiquarium'
 'awesome'
 'bat'
 'brightnessctl'
@@ -18,7 +16,6 @@ depends=(
 'dash'
 'dhcpcd'
 'exa'
-'expac'
 'ffmpeg'
 'flameshot'
 'fzf'
@@ -39,10 +36,9 @@ depends=(
 'neofetch'
 'neovim'
 'newsboat'
-'noto-fonts'
 'openssh'
 'picom'
-'pamixer'
+'pulsemixer'
 'qutebrowser'
 'ranger'
 'slock'
@@ -62,7 +58,6 @@ makedepends=(
 )
 optdepends=(
 'aria2: download accelerator'
-'axel: download accelerator'
 'devour: window swallowing'
 'ffmpeg4.4: undeclared mgba-qt dependency'
 'jdk11-openjdk: I hate java'
