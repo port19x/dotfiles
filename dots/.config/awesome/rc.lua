@@ -54,7 +54,6 @@ globalkeys = gears.table.join(
     awful.key({ "Mod4" 		  }, "q", 	function () awful.spawn("qutebrowser") end, {description = "qutebrowser", group = "launcher"}),
     awful.key({ "Mod4",           }, "Return", 	function () awful.spawn("kitty -1") end, {description = "launch terminal", group = "launcher"}),
     awful.key({ "Mod4",           }, "s",      	function () awful.spawn("flameshot gui") end, {description = "take a screenshot", group = "launcher"}),
-    awful.key({ "Mod4",           }, "p",      	function () awful.spawn.with_shell("killall picom || picom -b") end, {description = "toggle transparency", group = "launcher"}),
     awful.key({ "Mod4",           }, "b",      	function () awful.spawn.with_shell("notify-send $(acpi -b | cut -d , -f 2)") end, {description = "show battery percentage", group = "launcher"}),
     awful.key({ "Mod4",           }, "t",      	function () awful.spawn.with_shell("notify-send $(date +%H:%M)") end, {description = "show time", group = "launcher"}),
 
@@ -150,7 +149,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 awful.spawn.with_shell("command -v qutebrowser && pgrep -x qutebrowser || qutebrowser")
 awful.spawn.with_shell("command -v kitty && pgrep -x kitty || kitty -1")
-awful.spawn.with_shell("command -v picom && pgrep -x picom || picom --daemon")
-awful.spawn.with_shell("pgrep -x watch || watch -n 300 notify-send shake hands")
 awful.spawn.with_shell("command -v newsboat && pgrep -x newsboat || newsboat -x reload")
 awful.spawn.with_shell("setxkbmap de")
+awful.spawn.with_shell('notify-send "$(checkupdates)"')
