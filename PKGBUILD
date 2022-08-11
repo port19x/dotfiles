@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r155.2066399
+pkgver=r160.e0fe299
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -14,22 +14,17 @@ depends=(
 'brightnessctl'
 'calcurse'
 'dash'
-'dhcpcd'
 'exa'
-'ffmpeg'
 'flameshot'
 'fzf'
 'ghostscript'
 'gnupg'
 'gutenprint'
 'htop'
-'imagemagick'
-'iwd'
 'keepassxc'
 'kitty'
 'man-db'
 'man-pages'
-'mgba-qt'
 'mpv'
 'mupdf'
 'ncdu'
@@ -59,7 +54,6 @@ makedepends=(
 optdepends=(
 'aria2: download accelerator'
 'devour: window swallowing'
-'ffmpeg4.4: undeclared mgba-qt dependency'
 'jdk11-openjdk: I hate java'
 'mullvad-vpn-cli: the best vpn'
 'signal-desktop: superior messenger'
