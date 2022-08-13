@@ -1,17 +1,13 @@
-#put the following line in your /etc/zsh/zshenv and uncomment it
-#export ZDOTDIR=$HOME/.config/zsh
 SAVEHIST=1000000
 HISTSIZE=$SAVEHIST
 EDITOR='nvim' #git rebases annoy me
-#mkdir -p ~/.local/state/zsh && touch ~/.local/state/zsh/history
 export HISTFILE="$HOME/.local/state/zsh/history"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 unsetopt beep
 bindkey -v
 zstyle :compinstall filename "$HOME/.config/zsh/.zshrc"
 autoload -Uz compinit
-#mkdir -p ~/.cache/zsh/zcompdump-5.8
-compinit -d ~/.cache/zsh/zcompdump-5.8
+compinit -d ~/.cache/zsh/zcompdump-5.9
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':completion:*:*:cdr:*:*' menu selection
@@ -24,7 +20,6 @@ precmd () { vcs_info }
 setopt PROMPT_SUBST
 PS1='%F{4}%3~ ${vcs_info_msg_0_}%f$ '
 
-#https://github.com/zsh-users/zsh-autosuggestions
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 pastebin() {
