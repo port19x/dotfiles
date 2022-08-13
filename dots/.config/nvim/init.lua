@@ -6,7 +6,8 @@ vim.o.relativenumber = true
 if (vim.g.neovide)
 then
   vim.g.background = dark
-  vim.cmd 'colorscheme solarized8_flat'
+  vim.g.gruvbox_contrast_dark = 'hard'
+  vim.cmd 'colorscheme gruvbox'
   vim.o.guifont = 'iosevka'
 end
 
@@ -21,7 +22,7 @@ end
 -- plugin installation and configuration
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
-    use 'lifepillar/vim-solarized8'
+    use 'morhetz/gruvbox'
 
     use {
 	'vimwiki/vimwiki',
