@@ -7,7 +7,7 @@ if (vim.g.neovide)
 then
   vim.g.background = dark
   vim.cmd 'colorscheme solarized8_flat'
-  vim.o.guifont = 'mononoki'
+  vim.o.guifont = 'iosevka'
 end
 
 -- packer bootstrap

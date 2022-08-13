@@ -42,7 +42,7 @@ config.bind('Sd', 'bookmark-del')
 config.bind('SD', 'quickmark-del')
 
 #fonts
-c.fonts.default_family = "mononoki"
+c.fonts.default_family = "iosevka"
 c.fonts.default_size = "12pt"
 c.fonts.contextmenu = 'default_size default_family'
 c.fonts.prompts = 'default_size default_family'

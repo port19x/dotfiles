@@ -6,7 +6,7 @@ local naughty = require("naughty")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
 local theme = {}
-theme.font          = "mononoki 10"
+theme.font          = "iosevka 10"
 theme.bg_normal     = "#fdf6e3"
 theme.bg_focus      = "#eee8d5"
 theme.bg_urgent     = "#dc322f"

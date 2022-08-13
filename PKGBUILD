@@ -39,6 +39,7 @@ depends=(
 'ranger'
 'slock'
 'stow'
+'ttc-iosevka'
 'tree'
 'unzip'
 'xclip'
@@ -60,7 +61,6 @@ optdepends=(
 'signal-desktop: superior messenger'
 'syncplay: watch video together'
 'syncthing: share files'
-'ttf-mononoki: primary font'
 'yay: aur helper'
 )
 source=('dotfiles::git+https://git.sr.ht/~port19/dotfiles')
