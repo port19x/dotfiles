@@ -3,8 +3,12 @@ vim.g.mapleader = " "
 vim.o.shiftwidth = 2
 vim.o.number = true
 vim.o.relativenumber = true
-vim.g.background = dark
-vim.cmd 'colorscheme solarized8_flat'
+if (vim.g.neovide)
+then
+  vim.g.background = dark
+  vim.cmd 'colorscheme solarized8_flat'
+  vim.o.guifont = 'mononoki'
+end
 
 -- packer bootstrap
 local fn = vim.fn
