@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r165.20c28bc
+pkgver=r167.bc5d9ed
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -81,7 +81,6 @@ package() {
     cd ../../..
     stow -v dots
     nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-    printf "optionally remove build residue: 	 rm -rf dotfiles *.zst src pkg \n"
-    printf "add the following line to your /etc/zsh/zshenv:\n"
-    printf "export ZDOTDIR=$HOME/.config/zsh\n"
+    echo 'echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee /etc/zsh/zshenv' | xclip -selection c
+    printf "Finishing command pasted to your clipboard/n"
 }
