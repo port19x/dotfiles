@@ -1,8 +1,10 @@
 -- regular nvim settings
 vim.g.mapleader = " "
-vim.o.shiftwidth = 4
+vim.o.shiftwidth = 2
 vim.o.number = true
 vim.o.relativenumber = true
+vim.g.background = dark
+vim.cmd 'colorscheme solarized8_flat'
 
 -- packer bootstrap
 local fn = vim.fn
@@ -15,6 +17,7 @@ end
 -- plugin installation and configuration
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
+    use 'lifepillar/vim-solarized8'
 
     use {
 	'vimwiki/vimwiki',
