@@ -5,8 +5,6 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
-local xresources = require("beautiful.xresources")
-local dpi = xresources.apply_dpi
 local theme = {}
 theme.font          = "mononoki 10"
 theme.bg_normal     = "#fdf6e3"
@@ -17,8 +15,8 @@ theme.fg_normal     = "#586e75"
 theme.fg_focus      = "#586e75"
 theme.fg_urgent     = "#dc322f"
 theme.fg_minimize   = "#586e75"
-theme.useless_gap   = dpi(4)
-theme.border_width  = 2
+theme.useless_gap   = 0
+theme.border_width  = 1
 theme.border_normal = "#002b36"
 theme.border_focus  = "#2aa198"
 theme.border_marked = "#91231c"
@@ -150,5 +148,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.spawn.with_shell("command -v qutebrowser && pgrep -x qutebrowser || qutebrowser")
 awful.spawn.with_shell("command -v kitty && pgrep -x kitty || kitty -1")
 awful.spawn.with_shell("command -v newsboat && pgrep -x newsboat || newsboat -x reload")
-awful.spawn.with_shell("setxkbmap de")
 awful.spawn.with_shell('notify-send "$(checkupdates)"')
