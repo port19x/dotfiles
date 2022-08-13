@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r160.e0fe299
+pkgver=r165.20c28bc
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -74,6 +74,14 @@ pkgver() {
 package() {
     cd "$srcdir/${_pkgname}/dots"
     find . -type d -exec mkdir -p -- $HOME/{} \;
-    printf "To finalize the install:	 stow -v dots \n"
-    printf "To remove build residue: 	 rm -rf dotfiles *.zst src pkg \n"
+    mkdir -p ~/.local/state/zsh
+    touch ~/.local/state/zsh/history
+    mkdir -p ~/.cache/zsh/zcompdump-5.9
+    git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/zsh/zsh-autosuggestions || printf "zsh-autosuggestions already downloaded \n"
+    cd ../../..
+    stow -v dots
+    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+    printf "optionally remove build residue: 	 rm -rf dotfiles *.zst src pkg \n"
+    printf "add the following line to your /etc/zsh/zshenv:\n"
+    printf "export ZDOTDIR=$HOME/.config/zsh\n"
 }
