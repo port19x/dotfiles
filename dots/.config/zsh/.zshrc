@@ -50,6 +50,7 @@ alias gtc='git commit -m'
 alias gtd='git diff'
 alias gtp='git push'
 alias gtl='git log'
+alias cat='bat'
 alias yta="yt-dlp --embed-thumbnail -f 'bestaudio/best' -f 'm4a'"
 alias ytd="yt-dlp -f 'bestvideo[height<=?1080]+bestaudio/best' -f 'mp4'"
 alias ytdd="yt-dlp -f 'bestvideo[height<=?720]+bestaudio/best' -f 'mp4'"
