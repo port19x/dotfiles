@@ -40,7 +40,6 @@ depends=(
 'slock'
 'stow'
 'ttc-iosevka'
-'tree'
 'unzip'
 'xclip'
 'xorg-server'
