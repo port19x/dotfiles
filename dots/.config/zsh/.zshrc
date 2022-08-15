@@ -61,5 +61,6 @@ alias fmpv='mpv "$(fzf)"'
 alias yank='xclip -selection c < '
 alias song='ps "$(pgrep mpv)"'
 alias news='newsboat -x reload && newsboat -x print-unread'
+alias tree='exa -a -I .git --tree'
 alias rr='gio trash'
 alias rm='rm -I --preserve-root' #Every alias has a story ...
