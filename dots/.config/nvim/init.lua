@@ -1,8 +1,12 @@
 -- regular nvim settings
 vim.g.mapleader = " "
+vim.g.maplocalleader = ','
 vim.o.shiftwidth = 2
 vim.o.number = true
 vim.o.relativenumber = true
+vim.o.syntax = enable
+vim.o.foldmethod = 'indent'
+vim.o.foldlevel = 99
 if (vim.g.neovide)
 then
   vim.g.background = dark
@@ -23,6 +27,7 @@ end
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use 'morhetz/gruvbox'
+    use 'lervag/vimtex'
 
     use {
 	'vimwiki/vimwiki',
