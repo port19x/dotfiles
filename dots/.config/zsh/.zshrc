@@ -1,6 +1,7 @@
 SAVEHIST=1000000
 HISTSIZE=$SAVEHIST
 EDITOR='nvim' #git rebases annoy me
+QT_QPA_PLATFORM=wayland-egl
 export HISTFILE="$HOME/.local/state/zsh/history"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 unsetopt beep
