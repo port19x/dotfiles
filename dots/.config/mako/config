@@ -1,0 +1,5 @@
+font=iosevka term semibold 14
+background-color=#fdf1c7
+text-color=#504945
+border-color=#1d2021
+default-timeout=3000
