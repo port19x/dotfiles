@@ -4,7 +4,28 @@
 #+Description: 301 moved to emacs permanently
 #+OPTIONS: num:nil
 
-* Package set and bootstrapping
+* Table of Contents :TOC:
+- [[#package-set-and-bootstrapping][Package Set and Bootstrapping]]
+  - [[#preamble][Preamble]]
+  - [[#dependencies][Dependencies]]
+  - [[#aur--unimportant-packages][AUR / unimportant packages]]
+  - [[#postamble]["Postamble"]]
+  - [[#bootstrapping][Bootstrapping]]
+- [[#actual-configuraiton][Actual configuraiton]]
+  - [[#doom-emacs][Doom Emacs]]
+  - [[#hyprland][Hyprland]]
+  - [[#kitty][Kitty]]
+  - [[#mako][Mako]]
+  - [[#qutebrowser][Qutebrowser]]
+  - [[#zsh][Zsh]]
+- [[#colors--fonts][Colors / Fonts]]
+  - [[#doom-emacs-1][Doom Emacs]]
+  - [[#kitty-1][Kitty]]
+  - [[#mako-1][Mako]]
+  - [[#qutebrowser-1][Qutebrowser]]
+  - [[#wofi][Wofi]]
+
+* Package Set and Bootstrapping
 
 ** Preamble
 
