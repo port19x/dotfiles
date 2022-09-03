@@ -1,12 +1,10 @@
-#config
 config.load_autoconfig(True)
 c.completion.cmd_history_max_items = 0
 c.completion.shrink = True
-c.completion.timestamp_format = '%H:%M %d.%m.'
+c.completion.timestamp_format = '%H:%M %d.%m'
 c.completion.web_history.max_items = 500
 c.confirm_quit = ['downloads']
-#c.content.canvas_reading = False #whatsapp web needs canvas for file upload
-#c.content.cookies.accept = 'all' #teams and zoom need 3rdparty cookies
+c.content.canvas_reading = False #whatsapp web needs canvas for file upload
 c.content.cookies.accept = 'no-3rdparty' #teams need 3rdparty cookies
 c.content.cookies.store = False #doesn't support url patterns yet :sob:
 c.content.fullscreen.overlay_timeout = 0
@@ -22,12 +20,10 @@ c.tabs.last_close = 'default-page'
 c.zoom.default = "100%"
 c.downloads.location.directory = "~/dl"
 
-#searx
 c.url.default_page = 'https://search.bus-hit.me/'
 c.url.start_pages = 'https://search.bus-hit.me/'
 c.url.searchengines = {'DEFAULT':'https://search.bus-hit.me/?q={}'}
 
-#keybinds
 config.bind(',m', 'hint links spawn mpv {hint-url}')
 config.bind(',nv', 'hint links spawn mpv --no-video {hint-url}')
 config.bind(',y', 'hint links spawn kitty -e yt-dlp {hint-url}')
@@ -41,29 +37,28 @@ config.bind(',xx', 'config-cycle statusbar.show always never;; config-cycle tabs
 config.bind('Sd', 'bookmark-del')
 config.bind('SD', 'quickmark-del')
 
-#fonts
 c.fonts.default_family = "iosevka"
 c.fonts.default_size = "12pt"
 c.fonts.contextmenu = 'default_size default_family'
 c.fonts.prompts = 'default_size default_family'
 
-#colors
-base00 = "#1d2021" # ----
-base01 = "#3c3836" # ---
-base02 = "#504945" # --
-base03 = "#665c54" # -
-base04 = "#bdae93" # +
-base05 = "#d5c4a1" # ++
-base06 = "#ebdbb2" # +++
-base07 = "#fbf1c7" # ++++
-base08 = "#fb4934" # red
-base09 = "#fe8019" # orange
-base0A = "#fabd2f" # yellow
-base0B = "#b8bb26" # green
-base0C = "#8ec07c" # aqua/cyan
-base0D = "#83a598" # blue
-base0E = "#d3869b" # purple
-base0F = "#d65d0e" # brown
+base00 = "#1d2021"
+base01 = "#3c3836"
+base02 = "#504945"
+base03 = "#665c54"
+base04 = "#bdae93"
+base05 = "#d5c4a1"
+base06 = "#ebdbb2"
+base07 = "#fbf1c7"
+base08 = "#fb4934"
+base09 = "#fe8019"
+base0A = "#fabd2f"
+base0B = "#b8bb26"
+base0C = "#8ec07c"
+base0D = "#83a598"
+base0E = "#d3869b"
+base0F = "#d65d0e"
+
 c.colors.completion.fg = base05
 c.colors.completion.odd.bg = base01
 c.colors.completion.even.bg = base00
