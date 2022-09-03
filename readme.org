@@ -1,0 +1,873 @@
+#+Title: My dotfiles
+#+Author: port19
+#+Email: port19@port19.xyz
+#+Description: 301 moved to emacs permanently
+#+OPTIONS: num:nil
+
+* Package set and bootstrapping
+
+** Preamble
+
+#+begin_src conf :tangle PKGBUILD
+# Maintainer: port19 <port19 at port19 dot xyz>
+pkgname='port19-dotfiles-git'
+_pkgname='dotfiles'
+pkgver=r178.5f2d8fa
+pkgrel=1
+pkgdesc='My dotfiles package. Superior to an install script.'
+arch=('any')
+url='https://git.sr.ht/~port19/dotfiles'
+license=('Unlicense')
+#+end_src
+
+** Dependencies
+
+#+begin_src conf :tangle PKGBUILD
+depends=(
+'acpi'
+'awesome'
+'bat'
+'brightnessctl'
+'dash'
+'exa'
+'flameshot'
+'gnupg'
+'grim'
+'htop'
+'keepassxc'
+'kitty'
+'libnotify'
+'mako'
+'man-db'
+'man-pages'
+'mgba-qt'
+'mpv'
+'mupdf'
+'neofetch'
+'neovim'
+'newsboat'
+'openssh'
+'pacman-contrib'
+'pulsemixer'
+'qutebrowser'
+'ranger'
+'slock'
+'slurp'
+'songrec'
+'stow'
+'swappy'
+'swaybg'
+'swaylock'
+'ttc-iosevka'
+'unzip'
+'wl-clipboard'
+'wofi'
+'xclip'
+'xdg-desktop-portal-wlr'
+'xorg-server'
+'xorg-xinit'
+'xorg-xkill'
+'yt-dlp'
+'zsh'
+'zsh-completions'
+)
+makedepends=(
+'git'
+)
+#+end_src
+
+** AUR / unimportant packages
+
+#+begin_src conf :tangle PKGBUILD
+optdepends=(
+'aria2: download accelerator'
+'devour: window swallowing'
+'hyprland-bin: wayland compositor'
+'jdk11-openjdk: I hate java'
+'mullvad-vpn-cli: the best vpn'
+'signal-desktop: superior messenger'
+'syncplay: watch video together'
+'syncthing: share files'
+'yay: aur helper'
+)
+#+end_src
+
+** "Postamble"
+
+#+begin_src conf :tangle PKGBUILD
+source=('dotfiles::git+https://git.sr.ht/~port19/dotfiles')
+md5sums=('SKIP')
+
+pkgver() {
+    cd "$srcdir/${_pkgname}"
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+#+end_src
+
+** TODO Bootstrapping
+
+#+begin_src conf :tangle PKGBUILD
+package() {
+    cd "$srcdir/${_pkgname}/dots"
+    find . -type d -exec mkdir -p -- $HOME/{} \;
+    mkdir -p ~/.local/state/zsh
+    touch ~/.local/state/zsh/history
+    mkdir -p ~/.cache/zsh/zcompdump-5.9
+    git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/zsh/zsh-autosuggestions || printf "zsh-autosuggestions already downloaded \n"
+    cd ../../..
+    stow -v dots
+    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+    echo 'echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee /etc/zsh/zshenv' | xclip -selection c
+    printf "Finishing command pasted to your clipboard/n"
+}
+#+end_src
+
+* Actual configuraiton
+
+** Doom Emacs
+
+*** init
+
+#+begin_src elisp :tangle dots/.config/doom/config.el
+(doom! :input
+       ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
+       ;;chinese
+       ;;japanese
+       ;;layout            ; auie,ctsrnm is the superior home row
+
+       :completion
+       company           ; the ultimate code completion backend
+       ;;helm              ; the *other* search engine for love and life
+       ;;ido               ; the other *other* search engine...
+       ;;ivy               ; a search engine for love and life
+       vertico           ; the search engine of the future
+
+       :ui
+       ;;deft              ; notational velocity for Emacs
+       doom              ; what makes DOOM look the way it does
+       doom-dashboard    ; a nifty splash screen for Emacs
+       doom-quit         ; DOOM quit-message prompts when you quit Emacs
+       ;;(emoji +unicode)  ; 🙂
+       hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
+       ;;hydra
+       ;;indent-guides     ; highlighted indent columns
+       ;;ligatures         ; ligatures and symbols to make your code pretty again
+       ;;minimap           ; show a map of the code on the side
+       modeline          ; snazzy, Atom-inspired modeline, plus API
+       ;;nav-flash         ; blink cursor line after big motions
+       ;;neotree           ; a project drawer, like NERDTree for vim
+       ophints           ; highlight the region an operation acts on
+       (popup +defaults)   ; tame sudden yet inevitable temporary windows
+       ;;tabs              ; a tab bar for Emacs
+       ;;treemacs          ; a project drawer, like neotree but cooler
+       ;;unicode           ; extended unicode support for various languages
+       (vc-gutter +pretty) ; vcs diff in the fringe
+       vi-tilde-fringe   ; fringe tildes to mark beyond EOB
+       ;;window-select     ; visually switch windows
+       workspaces        ; tab emulation, persistence & separate workspaces
+       ;;zen               ; distraction-free coding or writing
+
+       :editor
+       (evil +everywhere); come to the dark side, we have cookies
+       file-templates    ; auto-snippets for empty files
+       fold              ; (nigh) universal code folding
+       ;;(format +onsave)  ; automated prettiness
+       ;;god               ; run Emacs commands without modifier keys
+       ;;lispy             ; vim for lisp, for people who don't like vim
+       ;;multiple-cursors  ; editing in many places at once
+       ;;objed             ; text object editing for the innocent
+       ;;parinfer          ; turn lisp into python, sort of
+       ;;rotate-text       ; cycle region at point between text candidates
+       snippets          ; my elves. They type so I don't have to
+       ;;word-wrap         ; soft wrapping with language-aware indent
+
+       :emacs
+       dired             ; making dired pretty [functional]
+       electric          ; smarter, keyword-based electric-indent
+       ;;ibuffer         ; interactive buffer management
+       undo              ; persistent, smarter undo for your inevitable mistakes
+       vc                ; version-control and Emacs, sitting in a tree
+
+       :term
+       ;;eshell            ; the elisp shell that works everywhere
+       ;;shell             ; simple shell REPL for Emacs
+       ;;term              ; basic terminal emulator for Emacs
+       ;;vterm             ; the best terminal emulation in Emacs
+
+       :checkers
+       syntax              ; tasing you for every semicolon you forget
+       ;;(spell +flyspell) ; tasing you for misspelling mispelling
+       ;;grammar           ; tasing grammar mistake every you make
+
+       :tools
+       ;;ansible
+       biblio            ; Writes a PhD for you (citation needed)
+       ;;debugger          ; FIXME stepping through code, to help you add bugs
+       ;;direnv
+       ;;docker
+       ;;editorconfig      ; let someone else argue about tabs vs spaces
+       ;;ein               ; tame Jupyter notebooks with emacs
+       (eval +overlay)     ; run code, run (also, repls)
+       ;;gist              ; interacting with github gists
+       lookup              ; navigate your code and its documentation
+       lsp               ; M-x vscode
+       magit             ; a git porcelain for Emacs
+       ;;make              ; run make tasks from Emacs
+       ;;pass              ; password manager for nerds
+       pdf               ; pdf enhancements
+       ;;prodigy           ; FIXME managing external services & code builders
+       ;;rgb               ; creating color strings
+       ;;taskrunner        ; taskrunner for all your projects
+       ;;terraform         ; infrastructure as code
+       ;;tmux              ; an API for interacting with tmux
+       ;;tree-sitter       ; syntax and parsing, sitting in a tree...
+       ;;upload            ; map local to remote projects via ssh/ftp
+
+       :os
+       (:if IS-MAC macos)  ; improve compatibility with macOS
+       ;;tty               ; improve the terminal Emacs experience
+
+       :lang
+       ;;agda              ; types of types of types of types...
+       ;;beancount         ; mind the GAAP
+       ;;(cc +lsp)         ; C > C++ == 1
+       clojure           ; java with a lisp
+       ;;common-lisp       ; if you've seen one lisp, you've seen them all
+       ;;coq               ; proofs-as-programs
+       ;;crystal           ; ruby at the speed of c
+       ;;csharp            ; unity, .NET, and mono shenanigans
+       ;;data              ; config/data formats
+       ;;(dart +flutter)   ; paint ui and not much else
+       ;;dhall
+       ;;elixir            ; erlang done right
+       ;;elm               ; care for a cup of TEA?
+       emacs-lisp        ; drown in parentheses
+       ;;erlang            ; an elegant language for a more civilized age
+       ;;ess               ; emacs speaks statistics
+       ;;factor
+       ;;faust             ; dsp, but you get to keep your soul
+       ;;fortran           ; in FORTRAN, GOD is REAL (unless declared INTEGER)
+       ;;fsharp            ; ML stands for Microsoft's Language
+       ;;fstar             ; (dependent) types and (monadic) effects and Z3
+       ;;gdscript          ; the language you waited for
+       ;;(go +lsp)         ; the hipster dialect
+       ;;(graphql +lsp)    ; Give queries a REST
+       ;;(haskell +lsp)    ; a language that's lazier than I am
+       ;;hy                ; readability of scheme w/ speed of python
+       ;;idris             ; a language you can depend on
+       ;;json              ; At least it ain't XML
+       (java +lsp)       ; the poster child for carpal tunnel syndrome
+       ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
+       ;;julia             ; a better, faster MATLAB
+       ;;kotlin            ; a better, slicker Java(Script)
+       latex             ; writing papers in Emacs has never been so fun
+       ;;lean              ; for folks with too much to prove
+       ;;ledger            ; be audit you can be
+       ;;lua               ; one-based indices? one-based indices
+       markdown          ; writing docs for people to ignore
+       ;;nim               ; python + lisp at the speed of c
+       ;;nix               ; I hereby declare "nix geht mehr!"
+       ;;ocaml             ; an objective camel
+       org               ; organize your plain life in plain text
+       ;;php               ; perl's insecure younger brother
+       ;;plantuml          ; diagrams for confusing people more
+       ;;purescript        ; javascript, but functional
+       ;;python            ; beautiful is better than ugly
+       ;;qt                ; the 'cutest' gui framework ever
+       ;;racket            ; a DSL for DSLs
+       ;;raku              ; the artist formerly known as perl6
+       ;;rest              ; Emacs as a REST client
+       ;;rst               ; ReST in peace
+       ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+       ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       ;;scala             ; java, but good
+       ;;(scheme +guile)   ; a fully conniving family of lisps
+       sh                ; she sells {ba,z,fi}sh shells on the C xor
+       ;;sml
+       ;;solidity          ; do you need a blockchain? No.
+       ;;swift             ; who asked for emoji variables?
+       ;;terra             ; Earth and Moon in alignment for performance.
+       ;;web               ; the tubes
+       ;;yaml              ; JSON, but readable
+       ;;zig               ; C, but simpler
+
+       :email
+       ;;(mu4e +org +gmail)
+       ;;notmuch
+       ;;(wanderlust +gmail)
+
+       :app
+       ;;calendar
+       ;;emms
+       ;;everywhere        ; *leave* Emacs!? You must be joking
+       ;;irc               ; how neckbeards socialize
+       ;;(rss +org)        ; emacs as an RSS reader
+       ;;twitter           ; twitter client https://twitter.com/vnought
+
+       :config
+       ;;literate
+       (default +bindings +smartparens))
+#+end_src
+
+*** config
+
+**** Org tweaks
+
+#+begin_src elisp :tangle dots/.config/doom/config.el
+(setq org-directory "~/doc/")
+(setq user-full-name "port19"
+      user-mail-address "port19@port19.xyz")
+ (add-hook 'org-mode-hook
+      (lambda ()
+         (delete '("\\.pdf\\'" . default) org-file-apps)
+         (add-to-list 'org-file-apps '("\\.pdf\\'" . "mupdf %s"))
+         ))
+#+end_src
+
+**** Sciency stuff
+
+#+begin_src elisp :tangle dots/.config/doom/config.el
+(require 'org-ref)
+(setq org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+         "bibtex %b"
+         "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+         "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        ))
+(setq org-latex-logfiles-extensions (quote ("lof" "lot" "tex" "aux" "idx" "log" "out" "toc" "nav" "snm" "vrb" "dvi" "fdb_latexmk" "blg" "brf" "fls" "entoc" "ps" "spl" "bbl" "pygtex" "pygstyle")))
+(setq bibtex-completion-bibliography '("~/doc/praxisarbeit/t1000.bib")
+      bibtex-completion-display-formats
+      '((book        . "${year:4} ${author:36} ${title:*}")
+      (online      . "${year:4} ${institution:36} ${title:*} ${url:*}"))
+      bibtex-completion-library-path '("~/doc/praxisarbeit/")
+      bibtex-completion-pdf-open-function
+      (lambda (fpath)
+      (call-process "mupdf" nil 0 nil fpath))
+      )
+#+end_src
+
+**** Clojure
+
+#+begin_src elisp :tangle dots/.config/doom/config.el
+(map! :after cider-mode :map clojure-mode-map :n "," #'cider-eval-last-sexp)
+#+end_src
+
+*** packages
+
+#+begin_src elisp :tangle dots/.config/doom/packages.el
+(package! org-bullets)
+(package! org-superstar)
+(package! org-ref)
+#+end_src
+
+** Hyprland
+
+*** I/O
+
+#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
+monitor=,preferred,auto,1
+input {
+  kb_layout=de
+  follow_mouse=1
+}
+#+end_src
+
+*** general
+
+#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
+general {
+  sensitivity=1.0
+  main_mod=SUPER
+  gaps_in=5
+  gaps_out=10
+  border_size=2
+  col.active_border=0x661d2021
+  col.inactive_border=0x66333333
+}
+#+end_src
+
+*** Decoration
+
+#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
+decoration {
+  rounding=10
+  blur=0
+}
+#+end_src
+
+*** Animations
+
+#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
+animations {
+  enabled=1
+  animation=windows,1,7,default
+  animation=border,1,10,default
+  animation=fade,1,10,default
+  animation=workspaces,1,6,default
+}
+#+end_src
+
+*** Keybindings
+
+**** Hyprland
+
+#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
+bind=SUPERSHIFT,Q,exit,
+bind=SUPERSHIFT,L,exec,swaylock -i ~/pic/Wallpapers/yellowpurple-galaxygirl.jpg
+#+end_src
+
+**** Client
+
+#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
+bind=SUPERSHIFT,F,togglefloating,
+bind=SUPER,F,fullscreen,0
+bind=SUPER,SPACE,cyclenext,
+bind=SUPERSHIFT,SPACE,swapnext,
+bind=SUPER,W,killactive,
+#+end_src
+
+**** Launcher
+
+#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
+bind=SUPER,R,exec,wofi --show drun -o DP-3
+bind=SUPER,RETURN,exec,kitty -1
+bind=SUPER,Q,exec,qutebrowser
+bind=SUPER,S,exec,grim -g "$(slurp)" - | swappy -f -
+bind=SUPER,B,exec,notify-send "$(acpi -b)"
+bind=SUPER,T,exec,notify-send "$(date +%H:%M)"
+#+end_src
+
+**** Mediakeys
+
+#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
+bind=,XF86MonBrightnessDown,exec,brightnessctl set 10%-
+bind=,XF86MonBrightnessUp,exec,brightnessctl set +10%
+#+end_src
+
+**** Tags
+
+#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
+bind=SUPER,1,workspace,1
+bind=SUPER,2,workspace,2
+bind=SUPER,3,workspace,3
+bind=SUPER,4,workspace,4
+bind=SUPER,5,workspace,5
+bind=ALT,1,movetoworkspace,1
+bind=ALT,2,movetoworkspace,2
+bind=ALT,3,movetoworkspace,3
+bind=ALT,4,movetoworkspace,4
+bind=ALT,5,movetoworkspace,5
+#+end_src
+
+*** Autostart
+
+#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
+exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec-once=swaybg -i ~/pic/Wallpapers/yellow-liquorstore.jpg
+exec-once=mako
+#+end_src
+
+** Kitty
+
+#+begin_src conf :tangle dots/.config/kitty/kitty.conf :mkdirp yes
+map ctrl+plus change_font_size current +2.0
+map ctrl+minus change_font_size current -2.0
+confirm_os_window_close 0
+#+end_src
+
+** Mako
+
+#+begin_src conf :tangle dots/.config/mako/config :mkdirp yes
+default-timeout=3000
+#+end_src
+
+** Qutebrowser
+
+*** General config
+
+#+begin_src python :tangle dots/.config/qutebrowser/config.py
+config.load_autoconfig(True)
+c.completion.cmd_history_max_items = 0
+c.completion.shrink = True
+c.completion.timestamp_format = '%H:%M %d.%m'
+c.completion.web_history.max_items = 500
+c.confirm_quit = ['downloads']
+c.content.canvas_reading = False #whatsapp web needs canvas for file upload
+c.content.cookies.accept = 'no-3rdparty' #teams need 3rdparty cookies
+c.content.cookies.store = False #doesn't support url patterns yet :sob:
+c.content.fullscreen.overlay_timeout = 0
+c.content.webrtc_ip_handling_policy = 'default-public-interface-only'
+c.downloads.location.prompt = False
+c.downloads.remove_finished = 1000
+c.input.forward_unbound_keys = 'none'
+c.keyhint.delay = 0
+c.new_instance_open_target = 'tab-bg-silent'
+c.scrolling.bar = 'never'
+c.statusbar.widgets = ['keypress', 'scroll', 'progress']
+c.tabs.last_close = 'default-page'
+c.zoom.default = "100%"
+c.downloads.location.directory = "~/dl"
+#+end_src
+
+*** Searx
+
+#+begin_src python :tangle dots/.config/qutebrowser/config.py
+c.url.default_page = 'https://search.bus-hit.me/'
+c.url.start_pages = 'https://search.bus-hit.me/'
+c.url.searchengines = {'DEFAULT':'https://search.bus-hit.me/?q={}'}
+#+end_src
+
+*** Custom Keybindings
+
+#+begin_src python :tangle dots/.config/qutebrowser/config.py
+config.bind(',m', 'hint links spawn mpv {hint-url}')
+config.bind(',nv', 'hint links spawn mpv --no-video {hint-url}')
+config.bind(',y', 'hint links spawn kitty -e yt-dlp {hint-url}')
+config.bind(',a', 'hint links spawn kitty -e yt-dlp -f bestaudio {hint-url}')
+config.bind(',cm', 'spawn mpv {url}')
+config.bind(',cnv', 'spawn mpv --no-video {url}')
+config.bind(',cy', 'spawn kitty -e yt-dlp {url}')
+config.bind(',ca', 'spawn kitty -e yt-dlp -f bestaudio {url}')
+config.bind(',r', 'restart')
+config.bind(',xx', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
+config.bind('Sd', 'bookmark-del')
+config.bind('SD', 'quickmark-del')
+#+end_src
+
+** Zsh
+
+*** Envvars
+
+#+begin_src sh :tangle dots/.config/zsh/.zprofile :mkdirp yes
+export SDL_VIDEODRIVER=wayland
+export _JAVA_AWT_WM_NONREPARENTING=1
+export GDK_BACKEND="wayland,x11"
+export MOZ_ENABLE_WAYLAND=1
+export EDITOR='nvim'
+export QT_QPA_PLATFORM=wayland-egl
+export HISTFILE="$HOME/.local/state/zsh/history"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+exec Hyprland
+#+end_src
+
+*** Shell options
+
+#+begin_src sh :tangle dots/.config/zsh/.zshrc :mkdirp yes
+SAVEHIST=1000000
+HISTSIZE=$SAVEHIST
+unsetopt beep
+bindkey -v
+#+end_src
+
+*** Completion
+
+#+begin_src sh :tangle dots/.config/zsh/.zshrc :mkdirp yes
+zstyle :compinstall filename "$HOME/.config/zsh/.zshrc"
+autoload -Uz compinit
+compinit -d ~/.cache/zsh/zcompdump-5.9
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+zstyle ':completion:*:*:cdr:*:*' menu selection
+source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+#+end_src
+
+*** Prompt with vcs info
+
+#+begin_src sh :tangle dots/.config/zsh/.zshrc :mkdirp yes
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' formats '%F{4}[%F{2}%b%F{4}]%u%c '
+zstyle ':vcs_info:*' check-for-changes true
+precmd () { vcs_info }
+setopt PROMPT_SUBST
+PS1='%F{4}%3~ ${vcs_info_msg_0_}%f$ '
+#+end_src
+
+*** Pastebin functions
+
+#+begin_src sh :tangle dots/.config/zsh/.zshrc :mkdirp yes
+pastebin() {
+    curl --silent https://oshi.at -F f=@$* -F expire=120 \
+    | grep DL \
+    | cut -d " " -f 2 \
+    | wl-copy \
+    && echo "link copied to clipboard"
+}
+
+pastebinlong() {
+    curl --silent https://oshi.at -F f=@$* \
+    | grep DL \
+    | cut -d " " -f 2 \
+    | wl-copy \
+    && echo "link copied to clipboard"
+}
+#+end_src
+
+*** Aliases
+
+#+begin_src sh :tangle dots/.config/zsh/.zshrc :mkdirp yes
+alias v='nvim'
+alias ls='exa'
+alias la='exa -a'
+alias ll='exa -la'
+alias br='brightnessctl set 0 && read && brightnessctl set 100%'
+alias vim='nvim'
+alias gts='git status'
+alias gta='git add'
+alias gtc='git commit -m'
+alias gtd='git diff'
+alias gtp='git push'
+alias gtl='git log'
+alias cat='bat'
+alias yta="yt-dlp --embed-thumbnail -f 'bestaudio/best' -f 'm4a'"
+alias ytd="yt-dlp -f 'bestvideo[height<=?1080]+bestaudio/best' -f 'mp4'"
+alias ytdd="yt-dlp -f 'bestvideo[height<=?720]+bestaudio/best' -f 'mp4'"
+alias ytddd="yt-dlp -f 'bestvideo[height<=?480]+bestaudio/best' -f 'mp4'"
+alias stamp='date +%d.%m.%y'
+alias icat='kitty +kitten icat'
+alias smpv='mpv "$(ls | shuf -n 1)"'
+alias fmpv='mpv "$(fzf)"'
+alias yank='xclip -selection c < '
+alias song='ps "$(pgrep mpv)"'
+alias news='newsboat -x reload && newsboat -x print-unread'
+alias tree='exa -a -I .git --tree'
+alias rm='rm -I --preserve-root'
+#+end_src
+
+* Colors / Fonts
+
+** Doom Emacs
+
+#+begin_src elisp :tangle dots/.config/doom/config.el
+(setq doom-font (font-spec :family "iosevka" :size 14)
+      doom-variable-pitch-font (font-spec :family "iosevka aile" :size 14)
+      doom-big-font (font-spec :family "iosevka" :size 28))
+(setq doom-theme 'doom-gruvbox)
+
+(setq display-line-numbers-type `relative)
+(require 'org-superstar)
+(add-hook 'org-mode-hook
+      (lambda () (org-superstar-mode 1)))
+#+end_src
+
+** Kitty
+
+#+begin_src conf :tangle dots/.config/kitty/kitty.conf :mkdirp yes
+font_size           14.0
+font_family         iosevka term
+bold_font           iosevka term bold
+italic_font         iosevka term italic
+
+cursor                  #928374
+cursor_text_color       background
+url_color               #83a598
+visual_bell_color       #8ec07c
+bell_border_color       #8ec07c
+active_border_color     #d3869b
+inactive_border_color   #665c54
+background              #1d2021
+foreground              #fbf1c7
+selection_foreground    #928374
+selection_background    #ebdbb2
+active_tab_foreground   #fbf1c7
+active_tab_background   #665c54
+inactive_tab_foreground #a89984
+inactive_tab_background #3c3836
+color0                  #1d2021
+color8                  #7c6f64
+color1                  #cc241d
+color9                  #fb4934
+color2                  #98971a
+color10                 #b8bb26
+color3                  #d79921
+color11                 #fabd2f
+color4                  #458588
+color12                 #83a598
+color5                  #b16286
+color13                 #d3869b
+color6                  #689d6a
+color14                 #8ec07c
+color7                  #a89984
+color15                 #fbf1c7
+#+end_src
+
+** Mako
+
+#+begin_src conf :tangle dots/.config/mako/config :mkdirp yes
+font=iosevka term semibold 14
+background-color=#000000
+text-color=#ffffff
+border-color=#000000
+#+end_src
+
+** Qutebrowser
+
+#+begin_src python :tangle dots/.config/qutebrowser/config.py
+c.fonts.default_family = "iosevka"
+c.fonts.default_size = "12pt"
+c.fonts.contextmenu = 'default_size default_family'
+c.fonts.prompts = 'default_size default_family'
+
+base00 = "#1d2021"
+base01 = "#3c3836"
+base02 = "#504945"
+base03 = "#665c54"
+base04 = "#bdae93"
+base05 = "#d5c4a1"
+base06 = "#ebdbb2"
+base07 = "#fbf1c7"
+base08 = "#fb4934"
+base09 = "#fe8019"
+base0A = "#fabd2f"
+base0B = "#b8bb26"
+base0C = "#8ec07c"
+base0D = "#83a598"
+base0E = "#d3869b"
+base0F = "#d65d0e"
+
+c.colors.completion.fg = base05
+c.colors.completion.odd.bg = base01
+c.colors.completion.even.bg = base00
+c.colors.completion.category.fg = base0A
+c.colors.completion.category.bg = base00
+c.colors.completion.category.border.top = base00
+c.colors.completion.category.border.bottom = base00
+c.colors.completion.item.selected.fg = base05
+c.colors.completion.item.selected.bg = base02
+c.colors.completion.item.selected.border.top = base02
+c.colors.completion.item.selected.border.bottom = base02
+c.colors.completion.item.selected.match.fg = base0B
+c.colors.completion.match.fg = base0B
+c.colors.completion.scrollbar.fg = base05
+c.colors.completion.scrollbar.bg = base00
+c.colors.contextmenu.disabled.bg = base01
+c.colors.contextmenu.disabled.fg = base04
+c.colors.contextmenu.menu.bg = base00
+c.colors.contextmenu.menu.fg =  base05
+c.colors.contextmenu.selected.bg = base02
+c.colors.contextmenu.selected.fg = base05
+c.colors.downloads.bar.bg = base00
+c.colors.downloads.start.fg = base00
+c.colors.downloads.start.bg = base0D
+c.colors.downloads.stop.fg = base00
+c.colors.downloads.stop.bg = base0C
+c.colors.downloads.error.fg = base08
+c.colors.hints.fg = base00
+c.colors.hints.bg = base0A
+c.colors.hints.match.fg = base05
+c.colors.keyhint.fg = base05
+c.colors.keyhint.suffix.fg = base05
+c.colors.keyhint.bg = base00
+c.colors.messages.error.fg = base00
+c.colors.messages.error.bg = base08
+c.colors.messages.error.border = base08
+c.colors.messages.warning.fg = base00
+c.colors.messages.warning.bg = base0E
+c.colors.messages.warning.border = base0E
+c.colors.messages.info.fg = base05
+c.colors.messages.info.bg = base00
+c.colors.messages.info.border = base00
+c.colors.prompts.fg = base05
+c.colors.prompts.border = base00
+c.colors.prompts.bg = base00
+c.colors.prompts.selected.bg = base02
+c.colors.statusbar.normal.fg = base0B
+c.colors.statusbar.normal.bg = base00
+c.colors.statusbar.insert.fg = base00
+c.colors.statusbar.insert.bg = base0D
+c.colors.statusbar.passthrough.fg = base00
+c.colors.statusbar.passthrough.bg = base0C
+c.colors.statusbar.private.fg = base00
+c.colors.statusbar.private.bg = base01
+c.colors.statusbar.command.fg = base05
+c.colors.statusbar.command.bg = base00
+c.colors.statusbar.command.private.fg = base05
+c.colors.statusbar.command.private.bg = base00
+c.colors.statusbar.caret.fg = base00
+c.colors.statusbar.caret.bg = base0E
+c.colors.statusbar.caret.selection.fg = base00
+c.colors.statusbar.caret.selection.bg = base0D
+c.colors.statusbar.progress.bg = base0D
+c.colors.statusbar.url.fg = base05
+c.colors.statusbar.url.error.fg = base08
+c.colors.statusbar.url.hover.fg = base05
+c.colors.statusbar.url.success.http.fg = base0C
+c.colors.statusbar.url.success.https.fg = base0B
+c.colors.statusbar.url.warn.fg = base0E
+c.colors.tabs.bar.bg = base00
+c.colors.tabs.indicator.start = base0D
+c.colors.tabs.indicator.stop = base0C
+c.colors.tabs.indicator.error = base08
+c.colors.tabs.odd.fg = base05
+c.colors.tabs.odd.bg = base01
+c.colors.tabs.even.fg = base05
+c.colors.tabs.even.bg = base00
+c.colors.tabs.pinned.even.bg = base0C
+c.colors.tabs.pinned.even.fg = base07
+c.colors.tabs.pinned.odd.bg = base0B
+c.colors.tabs.pinned.odd.fg = base07
+c.colors.tabs.pinned.selected.even.bg = base02
+c.colors.tabs.pinned.selected.even.fg = base05
+c.colors.tabs.pinned.selected.odd.bg = base02
+c.colors.tabs.pinned.selected.odd.fg = base05
+c.colors.tabs.selected.odd.fg = base05
+c.colors.tabs.selected.odd.bg = base02
+c.colors.tabs.selected.even.fg = base05
+c.colors.tabs.selected.even.bg = base02
+#+end_src
+
+** Wofi
+
+#+begin_src css :tangle dots/.config/wofi/style.css :mkdirp yes
+window {
+  font-family: "iosevka";
+  margin: 0px;
+  border: 1px solid #000000;
+  background-color: #000000;
+  border-radius: 10px;
+}
+
+#input {
+  margin: 5px;
+  border: none;
+  color: #ffffff;
+  background-color: #000000;
+}
+
+#inner-box {
+  margin: 5px;
+  border: none;
+  background-color: transparent;
+}
+
+#outer-box {
+  margin: 5px;
+  border: none;
+  background-color: transparent;
+}
+
+#scroll {
+  margin: 0px;
+  border: none;
+}
+
+#text {
+  margin: 5px;
+  border: none;
+  color: #ffffff;
+}
+
+#entry {
+  border: none;
+}
+
+#entry:focus {
+  border: none;
+}
+
+#entry:selected {
+  background-color: #111111;
+  border-radius: 5px;
+  border: none;
+}
+#+end_src

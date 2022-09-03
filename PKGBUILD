@@ -7,6 +7,7 @@ pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
 url='https://git.sr.ht/~port19/dotfiles'
 license=('Unlicense')
+
 depends=(
 'acpi'
 'awesome'
@@ -58,6 +59,7 @@ depends=(
 makedepends=(
 'git'
 )
+
 optdepends=(
 'aria2: download accelerator'
 'devour: window swallowing'
@@ -69,6 +71,7 @@ optdepends=(
 'syncthing: share files'
 'yay: aur helper'
 )
+
 source=('dotfiles::git+https://git.sr.ht/~port19/dotfiles')
 md5sums=('SKIP')
 

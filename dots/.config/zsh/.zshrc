@@ -1,17 +1,15 @@
 SAVEHIST=1000000
 HISTSIZE=$SAVEHIST
-EDITOR='nvim' #git rebases annoy me
-QT_QPA_PLATFORM=wayland-egl
-export HISTFILE="$HOME/.local/state/zsh/history"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 unsetopt beep
 bindkey -v
+
 zstyle :compinstall filename "$HOME/.config/zsh/.zshrc"
 autoload -Uz compinit
 compinit -d ~/.cache/zsh/zcompdump-5.9
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':completion:*:*:cdr:*:*' menu selection
+source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
@@ -21,13 +19,11 @@ precmd () { vcs_info }
 setopt PROMPT_SUBST
 PS1='%F{4}%3~ ${vcs_info_msg_0_}%f$ '
 
-source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 pastebin() {
     curl --silent https://oshi.at -F f=@$* -F expire=120 \
     | grep DL \
     | cut -d " " -f 2 \
-    | xclip -selection c \
+    | wl-copy \
     && echo "link copied to clipboard"
 }
 
@@ -35,7 +31,7 @@ pastebinlong() {
     curl --silent https://oshi.at -F f=@$* \
     | grep DL \
     | cut -d " " -f 2 \
-    | xclip -selection c \
+    | wl-copy \
     && echo "link copied to clipboard"
 }
 
@@ -64,5 +60,4 @@ alias yank='xclip -selection c < '
 alias song='ps "$(pgrep mpv)"'
 alias news='newsboat -x reload && newsboat -x print-unread'
 alias tree='exa -a -I .git --tree'
-alias rr='gio trash'
-alias rm='rm -I --preserve-root' #Every alias has a story ...
+alias rm='rm -I --preserve-root'
