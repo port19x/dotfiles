@@ -2,6 +2,7 @@
 #+Author: port19
 #+Email: port19@port19.xyz
 #+Description: 301 moved to emacs permanently
+#+auto_tangle: t
 #+OPTIONS: num:nil
 
 * Table of Contents :TOC:
@@ -610,6 +611,8 @@ window {
          (delete '("\\.pdf\\'" . default) org-file-apps)
          (add-to-list 'org-file-apps '("\\.pdf\\'" . "mupdf %s"))
          ))
+(require 'org-auto-tangle)
+(add-hook 'org-mode-hook 'org-auto-tangle-mode)
 #+end_src
 
 **** Sciency stuff
@@ -646,6 +649,7 @@ window {
 (package! org-bullets)
 (package! org-superstar)
 (package! org-ref)
+(package! org-auto-tangle)
 #+end_src
 
 ** Hyprland
