@@ -15,7 +15,6 @@
 - [[#colors--fonts][Colors / Fonts]]
   - [[#doom-emacs][Doom Emacs]]
   - [[#awesome][Awesome]]
-  - [[#kitty][Kitty]]
   - [[#mako][Mako]]
   - [[#qutebrowser][Qutebrowser]]
   - [[#wofi][Wofi]]
@@ -23,7 +22,6 @@
   - [[#doom-emacs-1][Doom Emacs]]
   - [[#hyprland][Hyprland]]
   - [[#awesome-1][Awesome]]
-  - [[#kitty-1][Kitty]]
   - [[#mako-1][Mako]]
   - [[#qutebrowser-1][Qutebrowser]]
   - [[#zsh][Zsh]]
@@ -59,8 +57,8 @@ depends=(
 'grim'
 'htop'
 'keepassxc'
-'kitty'
 'libnotify'
+'libvterm'
 'mako'
 'man-db'
 'man-pages'
@@ -188,47 +186,6 @@ theme.border_normal = "#1d2021"
 theme.border_focus  = "#8ec07c"
 theme.wallpaper = "~/pic/Wallpapers/yellow-liquorstore.jpg"
 beautiful.init(theme)
-#+end_src
-
-** Kitty
-
-#+begin_src conf :tangle dots/.config/kitty/kitty.conf :mkdirp yes
-font_size           14.0
-font_family         iosevka term
-bold_font           iosevka term bold
-italic_font         iosevka term italic
-
-cursor                  #928374
-cursor_text_color       background
-url_color               #83a598
-visual_bell_color       #8ec07c
-bell_border_color       #8ec07c
-active_border_color     #d3869b
-inactive_border_color   #665c54
-background              #1d2021
-foreground              #fbf1c7
-selection_foreground    #928374
-selection_background    #ebdbb2
-active_tab_foreground   #fbf1c7
-active_tab_background   #665c54
-inactive_tab_foreground #a89984
-inactive_tab_background #3c3836
-color0                  #1d2021
-color8                  #7c6f64
-color1                  #cc241d
-color9                  #fb4934
-color2                  #98971a
-color10                 #b8bb26
-color3                  #d79921
-color11                 #fabd2f
-color4                  #458588
-color12                 #83a598
-color5                  #b16286
-color13                 #d3869b
-color6                  #689d6a
-color14                 #8ec07c
-color7                  #a89984
-color15                 #fbf1c7
 #+end_src
 
 ** Mako
@@ -481,7 +438,7 @@ window {
        ;;eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
-       ;;vterm             ; the best terminal emulation in Emacs
+       vterm             ; the best terminal emulation in Emacs
 
        :checkers
        syntax              ; tasing you for every semicolon you forget
@@ -886,14 +843,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 awful.spawn.with_shell("command -v emacs && pgrep -x emacs || emacs")
 awful.spawn.with_shell('notify-send "$(checkupdates)"')
-#+end_src
-
-** Kitty
-
-#+begin_src conf :tangle dots/.config/kitty/kitty.conf :mkdirp yes
-map ctrl+plus change_font_size current +2.0
-map ctrl+minus change_font_size current -2.0
-confirm_os_window_close 0
 #+end_src
 
 ** Mako
