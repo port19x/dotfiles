@@ -144,7 +144,5 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
-awful.spawn.with_shell("command -v qutebrowser && pgrep -x qutebrowser || qutebrowser")
-awful.spawn.with_shell("command -v kitty && pgrep -x kitty || kitty -1")
-awful.spawn.with_shell("command -v newsboat && pgrep -x newsboat || newsboat -x reload")
+awful.spawn.with_shell("command -v emacs && pgrep -x emacs || emacs")
 awful.spawn.with_shell('notify-send "$(checkupdates)"')
