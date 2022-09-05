@@ -16,6 +16,8 @@
          (delete '("\\.pdf\\'" . default) org-file-apps)
          (add-to-list 'org-file-apps '("\\.pdf\\'" . "mupdf %s"))
          ))
+(require 'org-auto-tangle)
+(add-hook 'org-mode-hook 'org-auto-tangle-mode)
 
 (require 'org-ref)
 (setq org-latex-pdf-process
