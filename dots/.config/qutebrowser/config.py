@@ -1,42 +1,3 @@
-config.load_autoconfig(True)
-c.completion.cmd_history_max_items = 0
-c.completion.shrink = True
-c.completion.timestamp_format = '%H:%M %d.%m'
-c.completion.web_history.max_items = 500
-c.confirm_quit = ['downloads']
-c.content.canvas_reading = False #whatsapp web needs canvas for file upload
-c.content.cookies.accept = 'no-3rdparty' #teams need 3rdparty cookies
-c.content.cookies.store = False #doesn't support url patterns yet :sob:
-c.content.fullscreen.overlay_timeout = 0
-c.content.webrtc_ip_handling_policy = 'default-public-interface-only'
-c.downloads.location.prompt = False
-c.downloads.remove_finished = 1000
-c.input.forward_unbound_keys = 'none'
-c.keyhint.delay = 0
-c.new_instance_open_target = 'tab-bg-silent'
-c.scrolling.bar = 'never'
-c.statusbar.widgets = ['keypress', 'scroll', 'progress']
-c.tabs.last_close = 'default-page'
-c.zoom.default = "100%"
-c.downloads.location.directory = "~/dl"
-
-c.url.default_page = 'https://search.bus-hit.me/'
-c.url.start_pages = 'https://search.bus-hit.me/'
-c.url.searchengines = {'DEFAULT':'https://search.bus-hit.me/?q={}'}
-
-config.bind(',m', 'hint links spawn mpv {hint-url}')
-config.bind(',nv', 'hint links spawn mpv --no-video {hint-url}')
-config.bind(',y', 'hint links spawn kitty -e yt-dlp {hint-url}')
-config.bind(',a', 'hint links spawn kitty -e yt-dlp -f bestaudio {hint-url}')
-config.bind(',cm', 'spawn mpv {url}')
-config.bind(',cnv', 'spawn mpv --no-video {url}')
-config.bind(',cy', 'spawn kitty -e yt-dlp {url}')
-config.bind(',ca', 'spawn kitty -e yt-dlp -f bestaudio {url}')
-config.bind(',r', 'restart')
-config.bind(',xx', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
-config.bind('Sd', 'bookmark-del')
-config.bind('SD', 'quickmark-del')
-
 c.fonts.default_family = "iosevka"
 c.fonts.default_size = "12pt"
 c.fonts.contextmenu = 'default_size default_family'
@@ -148,3 +109,42 @@ c.colors.tabs.selected.odd.fg = base05
 c.colors.tabs.selected.odd.bg = base02
 c.colors.tabs.selected.even.fg = base05
 c.colors.tabs.selected.even.bg = base02
+
+config.load_autoconfig(True)
+c.completion.cmd_history_max_items = 0
+c.completion.shrink = True
+c.completion.timestamp_format = '%H:%M %d.%m'
+c.completion.web_history.max_items = 500
+c.confirm_quit = ['downloads']
+c.content.canvas_reading = False #whatsapp web needs canvas for file upload
+c.content.cookies.accept = 'no-3rdparty' #teams need 3rdparty cookies
+c.content.cookies.store = False #doesn't support url patterns yet :sob:
+c.content.fullscreen.overlay_timeout = 0
+c.content.webrtc_ip_handling_policy = 'default-public-interface-only'
+c.downloads.location.prompt = False
+c.downloads.remove_finished = 1000
+c.input.forward_unbound_keys = 'none'
+c.keyhint.delay = 0
+c.new_instance_open_target = 'tab-bg-silent'
+c.scrolling.bar = 'never'
+c.statusbar.widgets = ['keypress', 'scroll', 'progress']
+c.tabs.last_close = 'default-page'
+c.zoom.default = "100%"
+c.downloads.location.directory = "~/dl"
+
+c.url.default_page = 'https://search.bus-hit.me/'
+c.url.start_pages = 'https://search.bus-hit.me/'
+c.url.searchengines = {'DEFAULT':'https://search.bus-hit.me/?q={}'}
+
+config.bind(',m', 'hint links spawn mpv {hint-url}')
+config.bind(',nv', 'hint links spawn mpv --no-video {hint-url}')
+config.bind(',y', 'hint links spawn kitty -e yt-dlp {hint-url}')
+config.bind(',a', 'hint links spawn kitty -e yt-dlp -f bestaudio {hint-url}')
+config.bind(',cm', 'spawn mpv {url}')
+config.bind(',cnv', 'spawn mpv --no-video {url}')
+config.bind(',cy', 'spawn kitty -e yt-dlp {url}')
+config.bind(',ca', 'spawn kitty -e yt-dlp -f bestaudio {url}')
+config.bind(',r', 'restart')
+config.bind(',xx', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
+config.bind('Sd', 'bookmark-del')
+config.bind('SD', 'quickmark-del')
