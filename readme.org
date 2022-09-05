@@ -6,29 +6,19 @@
 #+OPTIONS: num:nil
 
 * Table of Contents :TOC:
-- [[#package-set-and-bootstrapping][Package Set and Bootstrapping]]
-  - [[#preamble][Preamble]]
-  - [[#dependencies][Dependencies]]
-  - [[#aur--unimportant-packages][AUR / unimportant packages]]
-  - [[#postamble]["Postamble"]]
+- [[#pkgbuild][PKGBUILD]]
   - [[#bootstrapping][Bootstrapping]]
 - [[#colors--fonts][Colors / Fonts]]
   - [[#doom-emacs][Doom Emacs]]
   - [[#awesome][Awesome]]
-  - [[#mako][Mako]]
   - [[#qutebrowser][Qutebrowser]]
-  - [[#wofi][Wofi]]
 - [[#actual-configuraiton][Actual configuraiton]]
   - [[#doom-emacs-1][Doom Emacs]]
-  - [[#hyprland][Hyprland]]
   - [[#awesome-1][Awesome]]
-  - [[#mako-1][Mako]]
   - [[#qutebrowser-1][Qutebrowser]]
   - [[#zsh][Zsh]]
 
-* Package Set and Bootstrapping
-
-** Preamble
+* PKGBUILD
 
 #+begin_src conf :tangle PKGBUILD
 # Maintainer: port19 <port19 at port19 dot xyz>
@@ -42,8 +32,6 @@ url='https://git.sr.ht/~port19/dotfiles'
 license=('Unlicense')
 #+end_src
 
-** Dependencies
-
 #+begin_src conf :tangle PKGBUILD
 depends=(
 'acpi'
@@ -54,12 +42,10 @@ depends=(
 'exa'
 'flameshot'
 'gnupg'
-'grim'
 'htop'
 'keepassxc'
 'libnotify'
 'libvterm'
-'mako'
 'man-db'
 'man-pages'
 'mgba-qt'
@@ -74,18 +60,11 @@ depends=(
 'qutebrowser'
 'ranger'
 'slock'
-'slurp'
 'songrec'
 'stow'
-'swappy'
-'swaybg'
-'swaylock'
 'ttc-iosevka'
 'unzip'
-'wl-clipboard'
-'wofi'
 'xclip'
-'xdg-desktop-portal-wlr'
 'xorg-server'
 'xorg-xinit'
 'xorg-xkill'
@@ -98,13 +77,10 @@ makedepends=(
 )
 #+end_src
 
-** AUR / unimportant packages
-
 #+begin_src conf :tangle PKGBUILD
 optdepends=(
 'aria2: download accelerator'
 'devour: window swallowing'
-'hyprland-bin: wayland compositor'
 'jdk11-openjdk: I hate java'
 'mullvad-vpn-cli: the best vpn'
 'signal-desktop: superior messenger'
@@ -113,8 +89,6 @@ optdepends=(
 'yay: aur helper'
 )
 #+end_src
-
-** "Postamble"
 
 #+begin_src conf :tangle PKGBUILD
 source=('dotfiles::git+https://git.sr.ht/~port19/dotfiles')
@@ -186,15 +160,6 @@ theme.border_normal = "#1d2021"
 theme.border_focus  = "#8ec07c"
 theme.wallpaper = "~/pic/Wallpapers/yellow-liquorstore.jpg"
 beautiful.init(theme)
-#+end_src
-
-** Mako
-
-#+begin_src conf :tangle dots/.config/mako/config :mkdirp yes
-font=iosevka term semibold 14
-background-color=#000000
-text-color=#ffffff
-border-color=#000000
 #+end_src
 
 ** Qutebrowser
@@ -313,61 +278,6 @@ c.colors.tabs.selected.even.fg = base05
 c.colors.tabs.selected.even.bg = base02
 #+end_src
 
-** Wofi
-
-#+begin_src css :tangle dots/.config/wofi/style.css :mkdirp yes
-window {
-  font-family: "iosevka";
-  margin: 0px;
-  border: 1px solid #000000;
-  background-color: #000000;
-  border-radius: 10px;
-}
-
-#input {
-  margin: 5px;
-  border: none;
-  color: #ffffff;
-  background-color: #000000;
-}
-
-#inner-box {
-  margin: 5px;
-  border: none;
-  background-color: transparent;
-}
-
-#outer-box {
-  margin: 5px;
-  border: none;
-  background-color: transparent;
-}
-
-#scroll {
-  margin: 0px;
-  border: none;
-}
-
-#text {
-  margin: 5px;
-  border: none;
-  color: #ffffff;
-}
-
-#entry {
-  border: none;
-}
-
-#entry:focus {
-  border: none;
-}
-
-#entry:selected {
-  background-color: #111111;
-  border-radius: 5px;
-  border: none;
-}
-#+end_src
 * Actual configuraiton
 
 ** Doom Emacs
@@ -609,113 +519,6 @@ window {
 (package! org-auto-tangle)
 #+end_src
 
-** Hyprland
-
-*** I/O
-
-#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
-monitor=,preferred,auto,1
-input {
-  kb_layout=de
-  follow_mouse=1
-}
-#+end_src
-
-*** general
-
-#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
-general {
-  sensitivity=1.0
-  main_mod=SUPER
-  gaps_in=5
-  gaps_out=10
-  border_size=2
-  col.active_border=0x661d2021
-  col.inactive_border=0x66333333
-}
-#+end_src
-
-*** Decoration
-
-#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
-decoration {
-  rounding=10
-  blur=0
-}
-#+end_src
-
-*** Animations
-
-#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
-animations {
-  enabled=1
-  animation=windows,1,7,default
-  animation=border,1,10,default
-  animation=fade,1,10,default
-  animation=workspaces,1,6,default
-}
-#+end_src
-
-*** Keybindings
-
-**** Hyprland
-
-#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
-bind=SUPERSHIFT,Q,exit,
-bind=SUPERSHIFT,L,exec,swaylock -i ~/pic/Wallpapers/yellowpurple-galaxygirl.jpg
-#+end_src
-
-**** Client
-
-#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
-bind=SUPERSHIFT,F,togglefloating,
-bind=SUPER,F,fullscreen,0
-bind=SUPER,SPACE,cyclenext,
-bind=SUPERSHIFT,SPACE,swapnext,
-bind=SUPER,W,killactive,
-#+end_src
-
-**** Launcher
-
-#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
-bind=SUPER,R,exec,wofi --show drun -o DP-3
-bind=SUPER,RETURN,exec,kitty -1
-bind=SUPER,Q,exec,qutebrowser
-bind=SUPER,S,exec,grim -g "$(slurp)" - | swappy -f -
-bind=SUPER,B,exec,notify-send "$(acpi -b)"
-bind=SUPER,T,exec,notify-send "$(date +%H:%M)"
-#+end_src
-
-**** Mediakeys
-
-#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
-bind=,XF86MonBrightnessDown,exec,brightnessctl set 10%-
-bind=,XF86MonBrightnessUp,exec,brightnessctl set +10%
-#+end_src
-
-**** Tags
-
-#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
-bind=SUPER,1,workspace,1
-bind=SUPER,2,workspace,2
-bind=SUPER,3,workspace,3
-bind=SUPER,4,workspace,4
-bind=SUPER,5,workspace,5
-bind=ALT,1,movetoworkspace,1
-bind=ALT,2,movetoworkspace,2
-bind=ALT,3,movetoworkspace,3
-bind=ALT,4,movetoworkspace,4
-bind=ALT,5,movetoworkspace,5
-#+end_src
-
-*** Autostart
-
-#+begin_src conf :tangle dots/.config/hypr/hyprland.conf :mkdirp yes
-exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-exec-once=swaybg -i ~/pic/Wallpapers/yellow-liquorstore.jpg
-exec-once=mako
-#+end_src
-
 ** Awesome
 
 #+begin_src lua :tangle dots/.config/awesome/rc.lua
@@ -843,12 +646,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 awful.spawn.with_shell("command -v emacs && pgrep -x emacs || emacs")
 awful.spawn.with_shell('notify-send "$(checkupdates)"')
-#+end_src
-
-** Mako
-
-#+begin_src conf :tangle dots/.config/mako/config :mkdirp yes
-default-timeout=3000
 #+end_src
 
 ** Qutebrowser
