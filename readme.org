@@ -5,6 +5,8 @@
 #+auto_tangle: t
 #+OPTIONS: num:nil
 
+_Note this file should reside in the home directory_
+
 * Table of Contents :TOC:
 - [[#pkgbuild][PKGBUILD]]
   - [[#bootstrapping][Bootstrapping]]
@@ -24,7 +26,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r178.5f2d8fa
+pkgver=r202.c417ff
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -38,12 +40,14 @@ depends=(
 'awesome'
 'bat'
 'brightnessctl'
+'curl'
 'dash'
 'exa'
 'flameshot'
 'gnupg'
 'htop'
 'keepassxc'
+'kitty'
 'libnotify'
 'libvterm'
 'man-db'
@@ -63,6 +67,7 @@ depends=(
 'songrec'
 'stow'
 'ttc-iosevka'
+'ttc-iosevka-aile'
 'unzip'
 'xclip'
 'xorg-server'
@@ -79,8 +84,6 @@ makedepends=(
 
 #+begin_src conf :tangle PKGBUILD
 optdepends=(
-'aria2: download accelerator'
-'devour: window swallowing'
 'jdk11-openjdk: I hate java'
 'mullvad-vpn-cli: the best vpn'
 'signal-desktop: superior messenger'
@@ -112,7 +115,6 @@ package() {
     git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/zsh/zsh-autosuggestions || printf "zsh-autosuggestions already downloaded \n"
     cd ../../..
     stow -v dots
-    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
     echo 'echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee /etc/zsh/zshenv' | xclip -selection c
     printf "Finishing command pasted to your clipboard/n"
 }
@@ -135,6 +137,10 @@ package() {
 #+end_src
 
 ** Awesome
+
+#+begin_src sh :tangle dots/.xinitrc
+exec awesome
+#+end_src
 
 #+begin_src lua :tangle dots/.config/awesome/rc.lua
 local gears = require("gears")
@@ -545,14 +551,9 @@ globalkeys = gears.table.join(
     awful.key({}, "XF86MonBrightnessDown", 	function () awful.spawn("brightnessctl set 10%-") end, {description = "lower brightness", group = "mediakey"}),
 
     -- Group Launcher
-    awful.key({ "Mod4" 		  }, "y", 	function () awful.spawn("signal-desktop") end, {description = "signal-desktop", group = "launcher"}),
-    awful.key({ "Mod4" 		  }, "g", 	function () awful.spawn("keepassxc") end, {description = "keepassxc", group = "launcher"}),
-    awful.key({ "Mod4" 		  }, "m", 	function () awful.spawn("mgba-qt") end, {description = "mgba-qt", group = "launcher"}),
     awful.key({ "Mod4" 		  }, "q", 	function () awful.spawn("qutebrowser") end, {description = "qutebrowser", group = "launcher"}),
     awful.key({ "Mod4",           }, "Return", 	function () awful.spawn("kitty -1") end, {description = "launch terminal", group = "launcher"}),
     awful.key({ "Mod4",           }, "s",      	function () awful.spawn("flameshot gui") end, {description = "take a screenshot", group = "launcher"}),
-    awful.key({ "Mod4",           }, "b",      	function () awful.spawn.with_shell("notify-send $(acpi -b | cut -d , -f 2)") end, {description = "show battery percentage", group = "launcher"}),
-    awful.key({ "Mod4",           }, "t",      	function () awful.spawn.with_shell("notify-send $(date +%H:%M)") end, {description = "show time", group = "launcher"}),
 
     -- Group Layout
     awful.key({ "Mod4",           }, "l",     	function () awful.tag.incmwfact( 0.05)          end, {description = "increase master size", group = "layout"}),
@@ -752,7 +753,7 @@ pastebin() {
     curl --silent https://oshi.at -F f=@$* -F expire=120 \
     | grep DL \
     | cut -d " " -f 2 \
-    | wl-copy \
+    | xclip -selection c \
     && echo "link copied to clipboard"
 }
 
@@ -760,7 +761,7 @@ pastebinlong() {
     curl --silent https://oshi.at -F f=@$* \
     | grep DL \
     | cut -d " " -f 2 \
-    | wl-copy \
+    | xclip -selection c \
     && echo "link copied to clipboard"
 }
 #+end_src
@@ -774,12 +775,6 @@ alias la='exa -a'
 alias ll='exa -la'
 alias br='brightnessctl set 0 && read && brightnessctl set 100%'
 alias vim='nvim'
-alias gts='git status'
-alias gta='git add'
-alias gtc='git commit -m'
-alias gtd='git diff'
-alias gtp='git push'
-alias gtl='git log'
 alias cat='bat'
 alias yta="yt-dlp --embed-thumbnail -f 'bestaudio/best' -f 'm4a'"
 alias ytd="yt-dlp -f 'bestvideo[height<=?1080]+bestaudio/best' -f 'mp4'"
@@ -791,7 +786,6 @@ alias smpv='mpv "$(ls | shuf -n 1)"'
 alias fmpv='mpv "$(fzf)"'
 alias yank='xclip -selection c < '
 alias song='ps "$(pgrep mpv)"'
-alias news='newsboat -x reload && newsboat -x print-unread'
 alias tree='exa -a -I .git --tree'
 alias rm='rm -I --preserve-root'
 #+end_src
