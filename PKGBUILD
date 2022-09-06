@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r178.5f2d8fa
+pkgver=r202.c417ff
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -13,12 +13,14 @@ depends=(
 'awesome'
 'bat'
 'brightnessctl'
+'curl'
 'dash'
 'exa'
 'flameshot'
 'gnupg'
 'htop'
 'keepassxc'
+'kitty'
 'libnotify'
 'libvterm'
 'man-db'
@@ -38,6 +40,7 @@ depends=(
 'songrec'
 'stow'
 'ttc-iosevka'
+'ttc-iosevka-aile'
 'unzip'
 'xclip'
 'xorg-server'
@@ -52,8 +55,6 @@ makedepends=(
 )
 
 optdepends=(
-'aria2: download accelerator'
-'devour: window swallowing'
 'jdk11-openjdk: I hate java'
 'mullvad-vpn-cli: the best vpn'
 'signal-desktop: superior messenger'
@@ -79,7 +80,6 @@ package() {
     git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/zsh/zsh-autosuggestions || printf "zsh-autosuggestions already downloaded \n"
     cd ../../..
     stow -v dots
-    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
     echo 'echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee /etc/zsh/zshenv' | xclip -selection c
     printf "Finishing command pasted to your clipboard/n"
 }

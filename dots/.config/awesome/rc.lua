@@ -45,14 +45,9 @@ globalkeys = gears.table.join(
     awful.key({}, "XF86MonBrightnessDown", 	function () awful.spawn("brightnessctl set 10%-") end, {description = "lower brightness", group = "mediakey"}),
 
     -- Group Launcher
-    awful.key({ "Mod4" 		  }, "y", 	function () awful.spawn("signal-desktop") end, {description = "signal-desktop", group = "launcher"}),
-    awful.key({ "Mod4" 		  }, "g", 	function () awful.spawn("keepassxc") end, {description = "keepassxc", group = "launcher"}),
-    awful.key({ "Mod4" 		  }, "m", 	function () awful.spawn("mgba-qt") end, {description = "mgba-qt", group = "launcher"}),
     awful.key({ "Mod4" 		  }, "q", 	function () awful.spawn("qutebrowser") end, {description = "qutebrowser", group = "launcher"}),
     awful.key({ "Mod4",           }, "Return", 	function () awful.spawn("kitty -1") end, {description = "launch terminal", group = "launcher"}),
     awful.key({ "Mod4",           }, "s",      	function () awful.spawn("flameshot gui") end, {description = "take a screenshot", group = "launcher"}),
-    awful.key({ "Mod4",           }, "b",      	function () awful.spawn.with_shell("notify-send $(acpi -b | cut -d , -f 2)") end, {description = "show battery percentage", group = "launcher"}),
-    awful.key({ "Mod4",           }, "t",      	function () awful.spawn.with_shell("notify-send $(date +%H:%M)") end, {description = "show time", group = "launcher"}),
 
     -- Group Layout
     awful.key({ "Mod4",           }, "l",     	function () awful.tag.incmwfact( 0.05)          end, {description = "increase master size", group = "layout"}),

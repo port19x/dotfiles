@@ -23,7 +23,7 @@ pastebin() {
     curl --silent https://oshi.at -F f=@$* -F expire=120 \
     | grep DL \
     | cut -d " " -f 2 \
-    | wl-copy \
+    | xclip -selection c \
     && echo "link copied to clipboard"
 }
 
@@ -31,7 +31,7 @@ pastebinlong() {
     curl --silent https://oshi.at -F f=@$* \
     | grep DL \
     | cut -d " " -f 2 \
-    | wl-copy \
+    | xclip -selection c \
     && echo "link copied to clipboard"
 }
 
@@ -41,12 +41,6 @@ alias la='exa -a'
 alias ll='exa -la'
 alias br='brightnessctl set 0 && read && brightnessctl set 100%'
 alias vim='nvim'
-alias gts='git status'
-alias gta='git add'
-alias gtc='git commit -m'
-alias gtd='git diff'
-alias gtp='git push'
-alias gtl='git log'
 alias cat='bat'
 alias yta="yt-dlp --embed-thumbnail -f 'bestaudio/best' -f 'm4a'"
 alias ytd="yt-dlp -f 'bestvideo[height<=?1080]+bestaudio/best' -f 'mp4'"
@@ -58,6 +52,5 @@ alias smpv='mpv "$(ls | shuf -n 1)"'
 alias fmpv='mpv "$(fzf)"'
 alias yank='xclip -selection c < '
 alias song='ps "$(pgrep mpv)"'
-alias news='newsboat -x reload && newsboat -x print-unread'
 alias tree='exa -a -I .git --tree'
 alias rm='rm -I --preserve-root'
