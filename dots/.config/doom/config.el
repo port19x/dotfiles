@@ -9,6 +9,15 @@
       (lambda () (org-superstar-mode 1)))
 
 (setq org-directory "~/doc/")
+(setq org-capture-templates
+      '(("g" "Grocery" checkitem (file+headline "~/doc/notes.org" "Shopping List")
+         "- [ ] %?\n")
+        ("c" "Clock Comment" item (clock)
+         "- %?\n")))
+(add-hook 'org-clock-in-hook (lambda ()
+      (org-timer-set-timer 25)))
+(add-hook 'org-clock-out-hook (lambda ()
+      (org-timer-stop)))
 (setq user-full-name "port19"
       user-mail-address "port19@port19.xyz")
  (add-hook 'org-mode-hook
