@@ -417,7 +417,7 @@ c.colors.tabs.selected.even.bg = base02
        ;;(haskell +lsp)    ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ; a language you can depend on
-       ;;json              ; At least it ain't XML
+       json              ; At least it ain't XML
        (java +lsp)       ; the poster child for carpal tunnel syndrome
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
@@ -477,6 +477,15 @@ c.colors.tabs.selected.even.bg = base02
 
 #+begin_src elisp :tangle dots/.config/doom/config.el
 (setq org-directory "~/doc/")
+(setq org-capture-templates
+      '(("g" "Grocery" checkitem (file+headline "~/doc/notes.org" "Shopping List")
+         "- [ ] %?\n")
+        ("c" "Clock Comment" item (clock)
+         "- %?\n")))
+(add-hook 'org-clock-in-hook (lambda ()
+      (org-timer-set-timer 25)))
+(add-hook 'org-clock-out-hook (lambda ()
+      (org-timer-stop)))
 (setq user-full-name "port19"
       user-mail-address "port19@port19.xyz")
  (add-hook 'org-mode-hook
