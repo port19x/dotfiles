@@ -32,29 +32,24 @@ awful.screen.connect_for_each_screen(function(s)
     gears.wallpaper.maximized(beautiful.wallpaper, s, true)
 end)
 
--- {{{ Key bindings
 globalkeys = gears.table.join(
-    -- Group Awesome
     awful.key({ "Mod4",           }, "k",     	hotkeys_popup.show_help, {description = "show keybindings", group = "awesome"}),
     awful.key({ "Mod4", "Control" }, "q", 	awesome.quit, 		 {description = "quit awesome", group = "awesome"}),
     awful.key({ "Mod4", "Control" }, "r", 	awesome.restart, 	 {description = "reload awesome", group = "awesome"}),
     awful.key({ "Mod4", "Control" }, "l",     	function () awful.spawn.with_shell("brightnessctl set 0% && slock && brightnessctl set 100%") end, {description = "lock screen", group = "awesome"}),
 
-    -- Group Mediakeys
     awful.key({}, "XF86MonBrightnessUp", 	function () awful.spawn("brightnessctl set 10%+") end, {description = "raise brightness", group = "mediakey"}),
     awful.key({}, "XF86MonBrightnessDown", 	function () awful.spawn("brightnessctl set 10%-") end, {description = "lower brightness", group = "mediakey"}),
 
-    -- Group Launcher
     awful.key({ "Mod4" 		  }, "q", 	function () awful.spawn("qutebrowser") end, {description = "qutebrowser", group = "launcher"}),
+    awful.key({ "Mod4" 		  }, "e", 	function () awful.spawn("emacs") end, {description = "emacs", group = "launcher"}),
     awful.key({ "Mod4",           }, "Return", 	function () awful.spawn("kitty -1") end, {description = "launch terminal", group = "launcher"}),
     awful.key({ "Mod4",           }, "s",      	function () awful.spawn("flameshot gui") end, {description = "take a screenshot", group = "launcher"}),
 
-    -- Group Layout
     awful.key({ "Mod4",           }, "l",     	function () awful.tag.incmwfact( 0.05)          end, {description = "increase master size", group = "layout"}),
     awful.key({ "Mod4",           }, "h",     	function () awful.tag.incmwfact(-0.05)          end, {description = "decrease master size", group = "layout"}),
     awful.key({ "Mod4",           }, "Tab", 	function () awful.layout.inc( 1)                end, {description = "select next layout", group = "layout"}),
 
-    -- Group Tag
     awful.key({ "Mod4" 		  }, "1", 	function () awful.screen.focused().tags[1]:view_only() end, {description = "view tag 1", group = "tag"}),
     awful.key({ "Mod4" 		  }, "2", 	function () awful.screen.focused().tags[2]:view_only() end, {description = "view tag 2", group = "tag"}),
     awful.key({ "Mod4" 		  }, "3", 	function () awful.screen.focused().tags[3]:view_only() end, {description = "view tag 3", group = "tag"}),
@@ -67,7 +62,6 @@ globalkeys = gears.table.join(
     awful.key({ "Mod4", "Shift"   }, "5", 	function () client.focus:move_to_tag(client.focus.screen.tags[5]) end, {description = "move focused client to tag 5", group = "tag"})
 )
 
--- Group Client
 clientkeys = gears.table.join(
     awful.key({ "Mod4", 	  }, "w",     	function (c) c:kill()                         		end, {description = "close", group = "client"}),
     awful.key({ "Mod4",           }, "space", 	function () awful.client.focus.byidx( 1) 		end, {description = "focus next by index", group = "client"}),
@@ -79,7 +73,6 @@ clientkeys = gears.table.join(
 )
 
 
--- applies to floating windows
 clientbuttons = gears.table.join(
     awful.button({ 	  }, 1, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) end),
     awful.button({ "Mod4" }, 1, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) awful.mouse.client.move(c) end),
