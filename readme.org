@@ -5,19 +5,32 @@
 #+auto_tangle: t
 #+OPTIONS: num:nil
 
-_Note this file should reside in the home directory_
-
 * Table of Contents :TOC:
 - [[#pkgbuild][PKGBUILD]]
-- [[#colors--fonts][Colors / Fonts]]
-  - [[#doom-emacs][Doom Emacs]]
-  - [[#awesome][Awesome]]
-  - [[#qutebrowser][Qutebrowser]]
-- [[#actual-configuraiton][Actual configuraiton]]
-  - [[#doom-emacs-1][Doom Emacs]]
-  - [[#awesome-1][Awesome]]
-  - [[#qutebrowser-1][Qutebrowser]]
-  - [[#zsh][Zsh]]
+- [[#doom-emacs][Doom Emacs]]
+  - [[#colorsfont][Colors/Font]]
+  - [[#init][init]]
+  - [[#config][config]]
+  - [[#packages][packages]]
+- [[#awesome][Awesome]]
+  - [[#colorsfont-1][Colors/Font]]
+  - [[#layoutstags][Layouts/Tags]]
+  - [[#global-keybindings][Global Keybindings]]
+  - [[#client-keybindings][Client Keybindings]]
+  - [[#window-rulessignals][Window Rules/Signals]]
+  - [[#autostart][Autostart]]
+- [[#qutebrowser][Qutebrowser]]
+  - [[#colorsfonts][Colors/Fonts]]
+  - [[#general-config][General config]]
+  - [[#searx][Searx]]
+  - [[#custom-keybindings][Custom Keybindings]]
+- [[#zsh][Zsh]]
+  - [[#envvars][Envvars]]
+  - [[#shell-options][Shell options]]
+  - [[#completion][Completion]]
+  - [[#prompt-with-vcs-info][Prompt with vcs info]]
+  - [[#pastebin-functions][Pastebin functions]]
+  - [[#aliases][Aliases]]
 
 * PKGBUILD
 
@@ -121,9 +134,9 @@ package() {
 }
 #+end_src
 
-* Colors / Fonts
+* Doom Emacs
 
-** Doom Emacs
+** Colors/Font
 
 #+begin_src elisp :tangle dots/.config/doom/config.el
 (setq doom-font (font-spec :family "iosevka" :size 14)
@@ -137,159 +150,7 @@ package() {
       (lambda () (org-superstar-mode 1)))
 #+end_src
 
-** Awesome
-
-#+begin_src sh :tangle dots/.xinitrc
-exec awesome
-#+end_src
-
-#+begin_src lua :tangle dots/.config/awesome/rc.lua
-local gears = require("gears")
-local awful = require("awful")
-require("awful.autofocus")
-local beautiful = require("beautiful")
-local naughty = require("naughty")
-local hotkeys_popup = require("awful.hotkeys_popup")
-
-local theme = {}
-theme.font          = "iosevka 10"
-theme.bg_normal     = "#fdf1c7"
-theme.bg_focus      = "#ebdbb2"
-theme.bg_urgent     = "#fb4935"
-theme.bg_minimize   = "#504945"
-theme.fg_normal     = "#504945"
-theme.fg_focus      = "#504945"
-theme.fg_urgent     = "#fb4935"
-theme.fg_minimize   = "#504945"
-theme.useless_gap   = 0
-theme.border_width  = 1
-theme.border_normal = "#1d2021"
-theme.border_focus  = "#8ec07c"
-theme.wallpaper = "~/pic/Wallpapers/yellow-liquorstore.jpg"
-beautiful.init(theme)
-#+end_src
-
-** Qutebrowser
-
-#+begin_src python :tangle dots/.config/qutebrowser/config.py
-c.fonts.default_family = "iosevka"
-c.fonts.default_size = "12pt"
-c.fonts.contextmenu = 'default_size default_family'
-c.fonts.prompts = 'default_size default_family'
-
-base00 = "#1d2021"
-base01 = "#3c3836"
-base02 = "#504945"
-base03 = "#665c54"
-base04 = "#bdae93"
-base05 = "#d5c4a1"
-base06 = "#ebdbb2"
-base07 = "#fbf1c7"
-base08 = "#fb4934"
-base09 = "#fe8019"
-base0A = "#fabd2f"
-base0B = "#b8bb26"
-base0C = "#8ec07c"
-base0D = "#83a598"
-base0E = "#d3869b"
-base0F = "#d65d0e"
-
-c.colors.completion.fg = base05
-c.colors.completion.odd.bg = base01
-c.colors.completion.even.bg = base00
-c.colors.completion.category.fg = base0A
-c.colors.completion.category.bg = base00
-c.colors.completion.category.border.top = base00
-c.colors.completion.category.border.bottom = base00
-c.colors.completion.item.selected.fg = base05
-c.colors.completion.item.selected.bg = base02
-c.colors.completion.item.selected.border.top = base02
-c.colors.completion.item.selected.border.bottom = base02
-c.colors.completion.item.selected.match.fg = base0B
-c.colors.completion.match.fg = base0B
-c.colors.completion.scrollbar.fg = base05
-c.colors.completion.scrollbar.bg = base00
-c.colors.contextmenu.disabled.bg = base01
-c.colors.contextmenu.disabled.fg = base04
-c.colors.contextmenu.menu.bg = base00
-c.colors.contextmenu.menu.fg =  base05
-c.colors.contextmenu.selected.bg = base02
-c.colors.contextmenu.selected.fg = base05
-c.colors.downloads.bar.bg = base00
-c.colors.downloads.start.fg = base00
-c.colors.downloads.start.bg = base0D
-c.colors.downloads.stop.fg = base00
-c.colors.downloads.stop.bg = base0C
-c.colors.downloads.error.fg = base08
-c.colors.hints.fg = base00
-c.colors.hints.bg = base0A
-c.colors.hints.match.fg = base05
-c.colors.keyhint.fg = base05
-c.colors.keyhint.suffix.fg = base05
-c.colors.keyhint.bg = base00
-c.colors.messages.error.fg = base00
-c.colors.messages.error.bg = base08
-c.colors.messages.error.border = base08
-c.colors.messages.warning.fg = base00
-c.colors.messages.warning.bg = base0E
-c.colors.messages.warning.border = base0E
-c.colors.messages.info.fg = base05
-c.colors.messages.info.bg = base00
-c.colors.messages.info.border = base00
-c.colors.prompts.fg = base05
-c.colors.prompts.border = base00
-c.colors.prompts.bg = base00
-c.colors.prompts.selected.bg = base02
-c.colors.statusbar.normal.fg = base0B
-c.colors.statusbar.normal.bg = base00
-c.colors.statusbar.insert.fg = base00
-c.colors.statusbar.insert.bg = base0D
-c.colors.statusbar.passthrough.fg = base00
-c.colors.statusbar.passthrough.bg = base0C
-c.colors.statusbar.private.fg = base00
-c.colors.statusbar.private.bg = base01
-c.colors.statusbar.command.fg = base05
-c.colors.statusbar.command.bg = base00
-c.colors.statusbar.command.private.fg = base05
-c.colors.statusbar.command.private.bg = base00
-c.colors.statusbar.caret.fg = base00
-c.colors.statusbar.caret.bg = base0E
-c.colors.statusbar.caret.selection.fg = base00
-c.colors.statusbar.caret.selection.bg = base0D
-c.colors.statusbar.progress.bg = base0D
-c.colors.statusbar.url.fg = base05
-c.colors.statusbar.url.error.fg = base08
-c.colors.statusbar.url.hover.fg = base05
-c.colors.statusbar.url.success.http.fg = base0C
-c.colors.statusbar.url.success.https.fg = base0B
-c.colors.statusbar.url.warn.fg = base0E
-c.colors.tabs.bar.bg = base00
-c.colors.tabs.indicator.start = base0D
-c.colors.tabs.indicator.stop = base0C
-c.colors.tabs.indicator.error = base08
-c.colors.tabs.odd.fg = base05
-c.colors.tabs.odd.bg = base01
-c.colors.tabs.even.fg = base05
-c.colors.tabs.even.bg = base00
-c.colors.tabs.pinned.even.bg = base0C
-c.colors.tabs.pinned.even.fg = base07
-c.colors.tabs.pinned.odd.bg = base0B
-c.colors.tabs.pinned.odd.fg = base07
-c.colors.tabs.pinned.selected.even.bg = base02
-c.colors.tabs.pinned.selected.even.fg = base05
-c.colors.tabs.pinned.selected.odd.bg = base02
-c.colors.tabs.pinned.selected.odd.fg = base05
-c.colors.tabs.selected.odd.fg = base05
-c.colors.tabs.selected.odd.bg = base02
-c.colors.tabs.selected.even.fg = base05
-c.colors.tabs.selected.even.bg = base02
-#+end_src
-
-* Actual configuraiton
-
-** Doom Emacs
-
-*** init
+** init
 
 #+begin_src elisp :tangle dots/.config/doom/init.el
 (doom! :input
@@ -472,9 +333,9 @@ c.colors.tabs.selected.even.bg = base02
        (default +bindings +smartparens))
 #+end_src
 
-*** config
+** config
 
-**** Org tweaks
+*** Org tweaks
 
 #+begin_src elisp :tangle dots/.config/doom/config.el
 (setq org-directory "~/doc/")
@@ -498,7 +359,7 @@ c.colors.tabs.selected.even.bg = base02
 (add-hook 'org-mode-hook 'org-auto-tangle-mode)
 #+end_src
 
-**** Sciency stuff
+*** Sciency stuff
 
 #+begin_src elisp :tangle dots/.config/doom/config.el
 (require 'org-ref)
@@ -520,13 +381,13 @@ c.colors.tabs.selected.even.bg = base02
       )
 #+end_src
 
-**** Clojure
+*** Clojure
 
 #+begin_src elisp :tangle dots/.config/doom/config.el
 (map! :after cider-mode :map clojure-mode-map :n "," #'cider-eval-last-sexp)
 #+end_src
 
-*** packages
+** packages
 
 #+begin_src elisp :tangle dots/.config/doom/packages.el
 (package! org-bullets)
@@ -535,7 +396,41 @@ c.colors.tabs.selected.even.bg = base02
 (package! org-auto-tangle)
 #+end_src
 
-** Awesome
+* Awesome
+
+#+begin_src sh :tangle dots/.xinitrc
+exec awesome
+#+end_src
+
+** Colors/Font
+
+#+begin_src lua :tangle dots/.config/awesome/rc.lua
+local gears = require("gears")
+local awful = require("awful")
+require("awful.autofocus")
+local beautiful = require("beautiful")
+local naughty = require("naughty")
+local hotkeys_popup = require("awful.hotkeys_popup")
+
+local theme = {}
+theme.font          = "iosevka 10"
+theme.bg_normal     = "#fdf1c7"
+theme.bg_focus      = "#ebdbb2"
+theme.bg_urgent     = "#fb4935"
+theme.bg_minimize   = "#504945"
+theme.fg_normal     = "#504945"
+theme.fg_focus      = "#504945"
+theme.fg_urgent     = "#fb4935"
+theme.fg_minimize   = "#504945"
+theme.useless_gap   = 0
+theme.border_width  = 1
+theme.border_normal = "#1d2021"
+theme.border_focus  = "#8ec07c"
+theme.wallpaper = "~/pic/Wallpapers/yellow-liquorstore.jpg"
+beautiful.init(theme)
+#+end_src
+
+** Layouts/Tags
 
 #+begin_src lua :tangle dots/.config/awesome/rc.lua
 awful.layout.layouts = {
@@ -547,30 +442,47 @@ awful.screen.connect_for_each_screen(function(s)
     awful.tag({ "1", "2", "3", "4", "5" }, s, awful.layout.layouts[1])
     gears.wallpaper.maximized(beautiful.wallpaper, s, true)
 end)
+#+end_src
 
--- {{{ Key bindings
+** Global Keybindings
+
+*** Awesome
+
+#+begin_src lua :tangle dots/.config/awesome/rc.lua
 globalkeys = gears.table.join(
-    -- Group Awesome
     awful.key({ "Mod4",           }, "k",     	hotkeys_popup.show_help, {description = "show keybindings", group = "awesome"}),
     awful.key({ "Mod4", "Control" }, "q", 	awesome.quit, 		 {description = "quit awesome", group = "awesome"}),
     awful.key({ "Mod4", "Control" }, "r", 	awesome.restart, 	 {description = "reload awesome", group = "awesome"}),
     awful.key({ "Mod4", "Control" }, "l",     	function () awful.spawn.with_shell("brightnessctl set 0% && slock && brightnessctl set 100%") end, {description = "lock screen", group = "awesome"}),
+#+end_src
 
-    -- Group Mediakeys
+*** Multimedia
+
+#+begin_src lua :tangle dots/.config/awesome/rc.lua
     awful.key({}, "XF86MonBrightnessUp", 	function () awful.spawn("brightnessctl set 10%+") end, {description = "raise brightness", group = "mediakey"}),
     awful.key({}, "XF86MonBrightnessDown", 	function () awful.spawn("brightnessctl set 10%-") end, {description = "lower brightness", group = "mediakey"}),
+#+end_src
 
-    -- Group Launcher
+*** Launcher
+
+#+begin_src lua :tangle dots/.config/awesome/rc.lua
     awful.key({ "Mod4" 		  }, "q", 	function () awful.spawn("qutebrowser") end, {description = "qutebrowser", group = "launcher"}),
+    awful.key({ "Mod4" 		  }, "e", 	function () awful.spawn("emacs") end, {description = "emacs", group = "launcher"}),
     awful.key({ "Mod4",           }, "Return", 	function () awful.spawn("kitty -1") end, {description = "launch terminal", group = "launcher"}),
     awful.key({ "Mod4",           }, "s",      	function () awful.spawn("flameshot gui") end, {description = "take a screenshot", group = "launcher"}),
+#+end_src
 
-    -- Group Layout
+*** Layout
+
+#+begin_src lua :tangle dots/.config/awesome/rc.lua
     awful.key({ "Mod4",           }, "l",     	function () awful.tag.incmwfact( 0.05)          end, {description = "increase master size", group = "layout"}),
     awful.key({ "Mod4",           }, "h",     	function () awful.tag.incmwfact(-0.05)          end, {description = "decrease master size", group = "layout"}),
     awful.key({ "Mod4",           }, "Tab", 	function () awful.layout.inc( 1)                end, {description = "select next layout", group = "layout"}),
+#+end_src
 
-    -- Group Tag
+*** Tags
+
+#+begin_src lua :tangle dots/.config/awesome/rc.lua
     awful.key({ "Mod4" 		  }, "1", 	function () awful.screen.focused().tags[1]:view_only() end, {description = "view tag 1", group = "tag"}),
     awful.key({ "Mod4" 		  }, "2", 	function () awful.screen.focused().tags[2]:view_only() end, {description = "view tag 2", group = "tag"}),
     awful.key({ "Mod4" 		  }, "3", 	function () awful.screen.focused().tags[3]:view_only() end, {description = "view tag 3", group = "tag"}),
@@ -582,8 +494,11 @@ globalkeys = gears.table.join(
     awful.key({ "Mod4", "Shift"   }, "4", 	function () client.focus:move_to_tag(client.focus.screen.tags[4]) end, {description = "move focused client to tag 4", group = "tag"}),
     awful.key({ "Mod4", "Shift"   }, "5", 	function () client.focus:move_to_tag(client.focus.screen.tags[5]) end, {description = "move focused client to tag 5", group = "tag"})
 )
+#+end_src
 
--- Group Client
+** Client Keybindings
+
+#+begin_src lua :tangle dots/.config/awesome/rc.lua
 clientkeys = gears.table.join(
     awful.key({ "Mod4", 	  }, "w",     	function (c) c:kill()                         		end, {description = "close", group = "client"}),
     awful.key({ "Mod4",           }, "space", 	function () awful.client.focus.byidx( 1) 		end, {description = "focus next by index", group = "client"}),
@@ -595,7 +510,6 @@ clientkeys = gears.table.join(
 )
 
 
--- applies to floating windows
 clientbuttons = gears.table.join(
     awful.button({ 	  }, 1, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) end),
     awful.button({ "Mod4" }, 1, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) awful.mouse.client.move(c) end),
@@ -603,7 +517,11 @@ clientbuttons = gears.table.join(
 )
 
 root.keys(globalkeys)
+#+end_src
 
+** Window Rules/Signals
+
+#+begin_src lua :tangle dots/.config/awesome/rc.lua
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
@@ -655,13 +573,134 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
+#+end_src
+
+** Autostart
+
+#+begin_src lua :tangle dots/.config/awesome/rc.lua
 awful.spawn.with_shell("command -v emacs && pgrep -x emacs || emacs")
 awful.spawn.with_shell('notify-send "$(checkupdates)"')
 #+end_src
 
-** Qutebrowser
+* Qutebrowser
 
-*** General config
+** Colors/Fonts
+
+#+begin_src python :tangle dots/.config/qutebrowser/config.py
+c.fonts.default_family = "iosevka"
+c.fonts.default_size = "12pt"
+c.fonts.contextmenu = 'default_size default_family'
+c.fonts.prompts = 'default_size default_family'
+
+base00 = "#1d2021"
+base01 = "#3c3836"
+base02 = "#504945"
+base03 = "#665c54"
+base04 = "#bdae93"
+base05 = "#d5c4a1"
+base06 = "#ebdbb2"
+base07 = "#fbf1c7"
+base08 = "#fb4934"
+base09 = "#fe8019"
+base0A = "#fabd2f"
+base0B = "#b8bb26"
+base0C = "#8ec07c"
+base0D = "#83a598"
+base0E = "#d3869b"
+base0F = "#d65d0e"
+
+c.colors.completion.fg = base05
+c.colors.completion.odd.bg = base01
+c.colors.completion.even.bg = base00
+c.colors.completion.category.fg = base0A
+c.colors.completion.category.bg = base00
+c.colors.completion.category.border.top = base00
+c.colors.completion.category.border.bottom = base00
+c.colors.completion.item.selected.fg = base05
+c.colors.completion.item.selected.bg = base02
+c.colors.completion.item.selected.border.top = base02
+c.colors.completion.item.selected.border.bottom = base02
+c.colors.completion.item.selected.match.fg = base0B
+c.colors.completion.match.fg = base0B
+c.colors.completion.scrollbar.fg = base05
+c.colors.completion.scrollbar.bg = base00
+c.colors.contextmenu.disabled.bg = base01
+c.colors.contextmenu.disabled.fg = base04
+c.colors.contextmenu.menu.bg = base00
+c.colors.contextmenu.menu.fg =  base05
+c.colors.contextmenu.selected.bg = base02
+c.colors.contextmenu.selected.fg = base05
+c.colors.downloads.bar.bg = base00
+c.colors.downloads.start.fg = base00
+c.colors.downloads.start.bg = base0D
+c.colors.downloads.stop.fg = base00
+c.colors.downloads.stop.bg = base0C
+c.colors.downloads.error.fg = base08
+c.colors.hints.fg = base00
+c.colors.hints.bg = base0A
+c.colors.hints.match.fg = base05
+c.colors.keyhint.fg = base05
+c.colors.keyhint.suffix.fg = base05
+c.colors.keyhint.bg = base00
+c.colors.messages.error.fg = base00
+c.colors.messages.error.bg = base08
+c.colors.messages.error.border = base08
+c.colors.messages.warning.fg = base00
+c.colors.messages.warning.bg = base0E
+c.colors.messages.warning.border = base0E
+c.colors.messages.info.fg = base05
+c.colors.messages.info.bg = base00
+c.colors.messages.info.border = base00
+c.colors.prompts.fg = base05
+c.colors.prompts.border = base00
+c.colors.prompts.bg = base00
+c.colors.prompts.selected.bg = base02
+c.colors.statusbar.normal.fg = base0B
+c.colors.statusbar.normal.bg = base00
+c.colors.statusbar.insert.fg = base00
+c.colors.statusbar.insert.bg = base0D
+c.colors.statusbar.passthrough.fg = base00
+c.colors.statusbar.passthrough.bg = base0C
+c.colors.statusbar.private.fg = base00
+c.colors.statusbar.private.bg = base01
+c.colors.statusbar.command.fg = base05
+c.colors.statusbar.command.bg = base00
+c.colors.statusbar.command.private.fg = base05
+c.colors.statusbar.command.private.bg = base00
+c.colors.statusbar.caret.fg = base00
+c.colors.statusbar.caret.bg = base0E
+c.colors.statusbar.caret.selection.fg = base00
+c.colors.statusbar.caret.selection.bg = base0D
+c.colors.statusbar.progress.bg = base0D
+c.colors.statusbar.url.fg = base05
+c.colors.statusbar.url.error.fg = base08
+c.colors.statusbar.url.hover.fg = base05
+c.colors.statusbar.url.success.http.fg = base0C
+c.colors.statusbar.url.success.https.fg = base0B
+c.colors.statusbar.url.warn.fg = base0E
+c.colors.tabs.bar.bg = base00
+c.colors.tabs.indicator.start = base0D
+c.colors.tabs.indicator.stop = base0C
+c.colors.tabs.indicator.error = base08
+c.colors.tabs.odd.fg = base05
+c.colors.tabs.odd.bg = base01
+c.colors.tabs.even.fg = base05
+c.colors.tabs.even.bg = base00
+c.colors.tabs.pinned.even.bg = base0C
+c.colors.tabs.pinned.even.fg = base07
+c.colors.tabs.pinned.odd.bg = base0B
+c.colors.tabs.pinned.odd.fg = base07
+c.colors.tabs.pinned.selected.even.bg = base02
+c.colors.tabs.pinned.selected.even.fg = base05
+c.colors.tabs.pinned.selected.odd.bg = base02
+c.colors.tabs.pinned.selected.odd.fg = base05
+c.colors.tabs.selected.odd.fg = base05
+c.colors.tabs.selected.odd.bg = base02
+c.colors.tabs.selected.even.fg = base05
+c.colors.tabs.selected.even.bg = base02
+#+end_src
+
+** General config
 
 #+begin_src python :tangle dots/.config/qutebrowser/config.py
 config.load_autoconfig(True)
@@ -687,7 +726,7 @@ c.zoom.default = "100%"
 c.downloads.location.directory = "~/dl"
 #+end_src
 
-*** Searx
+** Searx
 
 #+begin_src python :tangle dots/.config/qutebrowser/config.py
 c.url.default_page = 'https://search.bus-hit.me/'
@@ -695,7 +734,7 @@ c.url.start_pages = 'https://search.bus-hit.me/'
 c.url.searchengines = {'DEFAULT':'https://search.bus-hit.me/?q={}'}
 #+end_src
 
-*** Custom Keybindings
+** Custom Keybindings
 
 #+begin_src python :tangle dots/.config/qutebrowser/config.py
 config.bind(',m', 'hint links spawn mpv {hint-url}')
@@ -712,9 +751,9 @@ config.bind('Sd', 'bookmark-del')
 config.bind('SD', 'quickmark-del')
 #+end_src
 
-** Zsh
+* Zsh
 
-*** Envvars
+** Envvars
 
 #+begin_src sh :tangle dots/.config/zsh/.zprofile :mkdirp yes
 export EDITOR='nvim'
@@ -723,7 +762,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 startx
 #+end_src
 
-*** Shell options
+** Shell options
 
 #+begin_src sh :tangle dots/.config/zsh/.zshrc :mkdirp yes
 SAVEHIST=1000000
@@ -732,7 +771,7 @@ unsetopt beep
 bindkey -v
 #+end_src
 
-*** Completion
+** Completion
 
 #+begin_src sh :tangle dots/.config/zsh/.zshrc :mkdirp yes
 zstyle :compinstall filename "$HOME/.config/zsh/.zshrc"
@@ -744,7 +783,7 @@ zstyle ':completion:*:*:cdr:*:*' menu selection
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 #+end_src
 
-*** Prompt with vcs info
+** Prompt with vcs info
 
 #+begin_src sh :tangle dots/.config/zsh/.zshrc :mkdirp yes
 autoload -Uz vcs_info
@@ -756,7 +795,7 @@ setopt PROMPT_SUBST
 PS1='%F{4}%3~ ${vcs_info_msg_0_}%f$ '
 #+end_src
 
-*** Pastebin functions
+** Pastebin functions
 
 #+begin_src sh :tangle dots/.config/zsh/.zshrc :mkdirp yes
 pastebin() {
@@ -776,7 +815,7 @@ pastebinlong() {
 }
 #+end_src
 
-*** Aliases
+** Aliases
 
 #+begin_src sh :tangle dots/.config/zsh/.zshrc :mkdirp yes
 alias v='nvim'
@@ -799,4 +838,3 @@ alias song='ps "$(pgrep mpv)"'
 alias tree='exa -a -I .git --tree'
 alias rm='rm -I --preserve-root'
 #+end_src
-
