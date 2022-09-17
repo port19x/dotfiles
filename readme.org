@@ -381,6 +381,13 @@ package() {
       )
 #+end_src
 
+*** Maximum Cringe
+
+#+begin_src elisp :tangle dots/.config/doom/config.el
+(require 'elcord)
+(elcord-mode)
+#+end_src
+
 *** Clojure
 
 #+begin_src elisp :tangle dots/.config/doom/config.el
@@ -394,6 +401,7 @@ package() {
 (package! org-superstar)
 (package! org-ref)
 (package! org-auto-tangle)
+(package! elcord)
 #+end_src
 
 * Awesome
@@ -709,7 +717,7 @@ c.completion.shrink = True
 c.completion.timestamp_format = '%H:%M %d.%m'
 c.completion.web_history.max_items = 500
 c.confirm_quit = ['downloads']
-c.content.canvas_reading = False #whatsapp web needs canvas for file upload
+c.content.canvas_reading = True #whatsapp web needs canvas for file upload
 c.content.cookies.accept = 'no-3rdparty' #teams need 3rdparty cookies
 c.content.cookies.store = False #doesn't support url patterns yet :sob:
 c.content.fullscreen.overlay_timeout = 0
