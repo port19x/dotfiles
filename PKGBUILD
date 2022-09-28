@@ -15,6 +15,7 @@ depends=(
 'brightnessctl'
 'curl'
 'dash'
+'emacs-nativecomp'
 'exa'
 'fd'
 'flameshot'

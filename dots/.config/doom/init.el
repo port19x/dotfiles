@@ -176,3 +176,6 @@
        :config
        ;;literate
        (default +bindings +smartparens))
+(setq native-comp-deferred-compilation nil)
+(after! (doom-packages straight)
+  (setq straight--native-comp-available t))
