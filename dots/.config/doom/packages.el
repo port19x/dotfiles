@@ -2,4 +2,3 @@
 (package! org-superstar)
 (package! org-ref)
 (package! org-auto-tangle)
-(package! elcord)

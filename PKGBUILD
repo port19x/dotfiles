@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r204.05a0cb4
+pkgver=r208.4207bd4
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -10,6 +10,7 @@ license=('Unlicense')
 
 depends=(
 'acpi'
+'aria2'
 'awesome'
 'bat'
 'brightnessctl'
@@ -18,8 +19,11 @@ depends=(
 'emacs-nativecomp'
 'exa'
 'fd'
+'fzf'
 'flameshot'
+'ghostscript'
 'gnupg'
+'gutenprint'
 'htop'
 'keepassxc'
 'kitty'
@@ -30,6 +34,7 @@ depends=(
 'mgba-qt'
 'mpv'
 'mupdf'
+'ncdu'
 'neofetch'
 'neovim'
 'newsboat'
@@ -83,8 +88,7 @@ package() {
     git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/zsh/zsh-autosuggestions || printf "zsh-autosuggestions already downloaded \n"
     cd ../../..
     stow -v dots
-    git clone --depth 1 https://github.com/doomemacs/doomemacs $HOME/.config/emacs || printf "doom-emacs already downloaded \n"
-    $HOME/.config/emacs/bin/doom install
+    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
     echo 'echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee /etc/zsh/zshenv' | xclip -selection c
     printf "Finishing command pasted to your clipboard/n"
 }

@@ -46,7 +46,4 @@
       (call-process "mupdf" nil 0 nil fpath))
       )
 
-(require 'elcord)
-(elcord-mode)
-
 (map! :after cider-mode :map clojure-mode-map :n "," #'cider-eval-last-sexp)
