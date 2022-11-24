@@ -44,6 +44,7 @@ depends=(
 'qutebrowser'
 'ranger'
 'ripgrep'
+'rofi'
 'slock'
 'songrec'
 'stow'
