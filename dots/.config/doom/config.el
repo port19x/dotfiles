@@ -47,3 +47,4 @@
       )
 
 (map! :after cider-mode :map clojure-mode-map :n "," #'cider-eval-last-sexp)
+(map! :after lisp-mode :map lisp-mode-map :n "," #'sly-eval-last-expression)
