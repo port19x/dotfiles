@@ -19,7 +19,7 @@ theme.useless_gap   = 0
 theme.border_width  = 1
 theme.border_normal = "#1d2021"
 theme.border_focus  = "#8ec07c"
-theme.wallpaper = "~/pic/Wallpapers/yellow-liquorstore.jpg"
+theme.wallpaper = "~/pic/Wallpapers/blackred-maiden.jpg"
 beautiful.init(theme)
 
 awful.layout.layouts = {
@@ -45,7 +45,9 @@ globalkeys = gears.table.join(
     awful.key({}, "XF86MonBrightnessDown", 	function () awful.spawn("brightnessctl set 10%-") end, {description = "lower brightness", group = "mediakey"}),
 
     -- Group Launcher
+    awful.key({ "Mod4" 		  }, "r", 	function () awful.spawn("rofi -show run") end, {description = "runlauncher", group = "launcher"}),
     awful.key({ "Mod4" 		  }, "y", 	function () awful.spawn("signal-desktop") end, {description = "signal-desktop", group = "launcher"}),
+    awful.key({ "Mod4" 		  }, "e", 	function () awful.spawn("emacs") end, {description = "emacs", group = "launcher"}),
     awful.key({ "Mod4" 		  }, "g", 	function () awful.spawn("keepassxc") end, {description = "keepassxc", group = "launcher"}),
     awful.key({ "Mod4" 		  }, "m", 	function () awful.spawn("mgba-qt") end, {description = "mgba-qt", group = "launcher"}),
     awful.key({ "Mod4" 		  }, "q", 	function () awful.spawn("qutebrowser") end, {description = "qutebrowser", group = "launcher"}),
