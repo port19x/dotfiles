@@ -35,6 +35,18 @@ pastebinlong() {
     && echo "link copied to clipboard"
 }
 
+backup() {
+    a=$(date +%d.%m.%y)
+    du -shc "$HOME/dl" "$HOME/doc" "$HOME/dotfiles" "$HOME/pic" "Passwords.kdbx"
+    printf "Is the backup small enough? (CTRL-C otherwise)"
+    read
+    echo "$a: initiating backup"
+    mkdir "$HOME/$a"
+    cp -r "$HOME/dl" "$HOME/doc" "$HOME/dotfiles" "$HOME/pic" "Passwords.kdbx" "$HOME/$a"
+    tar c -I"zstd -19 -T0" -f "$HOME/$a.tar.zst" "$HOME/$a"
+    gpg -c "$HOME/$a.tar.zst"
+}
+
 alias v='nvim'
 alias ls='exa'
 alias la='exa -a'
