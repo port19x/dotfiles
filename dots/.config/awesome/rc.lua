@@ -19,7 +19,7 @@ theme.useless_gap   = 0
 theme.border_width  = 1
 theme.border_normal = "#1d2021"
 theme.border_focus  = "#8ec07c"
-theme.wallpaper = "~/pic/Wallpapers/blackred-maiden.jpg"
+theme.wallpaper = "~/pic/Wallpapers/wallpaper.jpg"
 beautiful.init(theme)
 
 awful.layout.layouts = {
