@@ -11,6 +11,7 @@ license=('Unlicense')
 depends=(
 'acpi'
 'aria2'
+'aspell-en'
 'awesome'
 'bat'
 'brightnessctl'
@@ -27,6 +28,7 @@ depends=(
 'htop'
 'keepassxc'
 'kitty'
+'leiningen'
 'libnotify'
 'libvterm'
 'man-db'
@@ -38,6 +40,7 @@ depends=(
 'neofetch'
 'neovim'
 'newsboat'
+'noto-fonts'
 'openssh'
 'pacman-contrib'
 'picom'
@@ -65,11 +68,10 @@ makedepends=(
 )
 
 optdepends=(
-'jdk11-openjdk: I hate java'
+'libreoffice-still: some people are too dumb to send pdfs'
 'mullvad-vpn-cli: the best vpn'
 'signal-desktop: superior messenger'
-'syncplay: watch video together'
-'syncthing: share files'
+'tuxedo-keyboard: linux ootb <3'
 'yay: aur helper'
 )
 
