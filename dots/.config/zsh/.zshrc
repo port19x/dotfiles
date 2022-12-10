@@ -17,7 +17,7 @@ zstyle ':vcs_info:*' formats '%F{4}[%F{2}%b%F{4}]%u%c '
 zstyle ':vcs_info:*' check-for-changes true
 precmd () { vcs_info }
 setopt PROMPT_SUBST
-PS1='%F{4}%3~ ${vcs_info_msg_0_}%f$ '
+PS1='%F{4}%3~ ${vcs_info_msg_0_}%fλ '
 
 pastebin() {
     curl --silent https://oshi.at -F f=@$* -F expire=120 \
