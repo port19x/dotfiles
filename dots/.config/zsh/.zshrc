@@ -48,21 +48,36 @@ backup() {
 }
 
 record() {
-    filename="$HOME/vid/$(date +%H:%M_%d-%m-%y).mkv"
+    filename="$HOME/vid/$(date +%H:%M_%d-%m-%y)"
     sleep 20
     notify-send "recording start"
-    echo "CTRL-C to stop recording"
-    ffmpeg -hide_banner -nostats -loglevel quiet -f x11grab -i :0.0 -f alsa -i default -c:v libx264 -r 30 -c:a aac "$filename"
+    echo "Will be saved to $filename.mp4"
+    ffmpeg -hide_banner -nostats -loglevel quiet \
+        -f x11grab -i :0.0 \
+        -f alsa -i default \
+        -c:v libx264 -r 30 \
+        -crf 21 -preset faster \
+        -pix_fmt yuv420p \
+        -maxrate 5000K \
+        -bufsize 5000K \
+        -c:a aac \
+        -b:a 160k "$filename.mkv"
     notify-send "recording end"
+    ffmpeg -i "$filename.mkv" \
+        -hide_banner -nostats -loglevel quiet \
+        -c:v copy \
+        -c:a copy \
+        -movflags +faststart "$filename.mp4"
+    rm "$filename.mkv"
 }
 
 thumbnailgen() {
     #don't forget to prerender your icon correctly
-    #convert -size 500x500 -background "#242938" Bash-Dark.svg Bash-Dark.png
+    #convert -size 256x256 -background "#242938" Bash-Dark.svg Bash-Dark.png
     convert -size 1280x720 xc:#242938 \
         -gravity center -draw "image over 0,0 256,256 $1" \
         -font iosevka-aile -fill white -pointsize 100 -gravity North -draw "text 0,100 \"$2\"" \
-        -font iosevka-aile -fill white -pointsize 100 -gravity South -draw "text 0,100 \"$3\"" \
+        -font iosevka-aile -fill white -pointsize 45 -gravity South -draw "text 0,100 \"$3\"" \
         out.png
     kitty +kitten icat out.png
     echo "(written to out.png)"
