@@ -77,7 +77,7 @@ thumbnailgen() {
     convert -size 1280x720 xc:#242938 \
         -gravity center -draw "image over 0,0 256,256 $1" \
         -font iosevka-aile -fill white -pointsize 100 -gravity North -draw "text 0,100 \"$2\"" \
-        -font iosevka-aile -fill white -pointsize 45 -gravity South -draw "text 0,100 \"$3\"" \
+        -font iosevka-aile -fill white -pointsize 55 -gravity South -draw "text 0,100 \"$3\"" \
         out.png
     kitty +kitten icat out.png
     echo "(written to out.png)"
