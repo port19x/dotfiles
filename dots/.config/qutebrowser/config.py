@@ -111,6 +111,7 @@ c.colors.tabs.selected.even.fg = base05
 c.colors.tabs.selected.even.bg = base02
 
 config.load_autoconfig(True)
+c.colors.webpage.preferred_color_scheme = 'dark'
 c.completion.cmd_history_max_items = 0
 c.completion.shrink = True
 c.completion.timestamp_format = '%H:%M %d.%m'
