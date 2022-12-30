@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r228.8948048
+pkgver=r227.3771452
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -83,13 +83,19 @@ pkgver() {
 }
 
 package() {
-    cd "$srcdir/${_pkgname}"
-    mkdir -p ~/.local/state/zsh
-    touch ~/.local/state/zsh/history
-    mkdir -p ~/.cache/zsh/zcompdump-5.9
-    git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/zsh/zsh-autosuggestions || printf "zsh-autosuggestions already downloaded \n"
-    cd ../..
-    stow -v --no-folding --ignore="PKGBUILD" -t $HOME/.config .
-    echo 'echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee /etc/zsh/zshenv' | xclip -selection c
-    printf "Finishing command pasted to your clipboard/n"
+    mkdir -p ~/.local/state/zsh && touch ~/.local/state/zsh/history && mkdir -p ~/.cache/zsh/zcompdump-5.9 &&
+        printf "\33[2K\r\033[1;31m%s\033[0m\n" "[1/6] prepared zsh history and cache"
+    git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/zsh/zsh-autosuggestions 2> /dev/null &&
+        printf "\33[2K\r\033[1;31m%s\033[0m\n" "[2/6] downloaded zsh-autosuggestions" ||
+        printf "\33[2K\r\033[1;31m%s\033[0m\n" "[2/6] zsh-autosuggestions already downloaded"
+    echo "exec awesome" > $HOME/.xinitrc &&
+        printf "\33[2K\r\033[1;31m%s\033[0m\n" "[3/6] setup awesomewm autostart"
+    cd .. && stow -v --no-folding --ignore="PKGBUILD" --ignore="src" --ignore="dotfiles" --ignore="pkg" -t $HOME/.config . && 
+        printf "\33[2K\r\033[1;31m%s\033[0m\n" "[4/6] symlinked config files"
+    git clone --depth 1 https://github.com/doomemacs/doomemacs $HOME/config/emacs 2> /dev/null && 
+        printf "\33[2K\r\033[1;31m%s\033[0m\n" "[5/6] downloaded doom emacs" ||
+        printf "\33[2K\r\033[1;31m%s\033[0m\n" "[5/6] doom emacs already downloaded"
+    $HOME/.config/emacs/bin/doom install --fonts --env -! > /dev/null && 
+        printf "\33[2K\r\033[1;31m%s\033[0m\n" "[6/6] installed doom emacs"
+    printf "\33[2K\r\033[1;31mFinishing command: %s\033[0m\n" 'echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee /etc/zsh/zshenv'
 }
