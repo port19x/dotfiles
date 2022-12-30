@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r212.270bc76
+pkgver=r228.8948048
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -83,15 +83,13 @@ pkgver() {
 }
 
 package() {
-    cd "$srcdir/${_pkgname}/dots"
-    find . -type d -exec mkdir -p -- $HOME/{} \;
+    cd "$srcdir/${_pkgname}"
     mkdir -p ~/.local/state/zsh
     touch ~/.local/state/zsh/history
     mkdir -p ~/.cache/zsh/zcompdump-5.9
     git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/zsh/zsh-autosuggestions || printf "zsh-autosuggestions already downloaded \n"
-    cd ../../..
-    stow -v dots
-    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+    cd ../..
+    stow -v --no-folding --ignore="PKGBUILD" -t $HOME/.config .
     echo 'echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee /etc/zsh/zshenv' | xclip -selection c
     printf "Finishing command pasted to your clipboard/n"
 }
