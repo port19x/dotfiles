@@ -1,33 +1,28 @@
+;; General Settings
 (setq doom-font (font-spec :family "iosevka" :size 14)
       doom-variable-pitch-font (font-spec :family "iosevka aile" :size 14)
       doom-big-font (font-spec :family "iosevka" :size 28))
 (setq doom-theme 'doom-gruvbox)
-
+(setq user-full-name "port19"
+      user-mail-address "port19@port19.xyz")
 (setq display-line-numbers-type `relative)
+
+;; Org UX
 (require 'org-superstar)
 (add-hook 'org-mode-hook
       (lambda () (org-superstar-mode 1)))
-
 (setq org-directory "~/doc/")
-(setq org-capture-templates
-      '(("g" "Grocery" checkitem (file+headline "~/doc/notes.org" "Shopping List")
-         "- [ ] %?\n")
-        ("c" "Clock Comment" item (clock)
-         "- %?\n")))
 (add-hook 'org-clock-in-hook (lambda ()
       (org-timer-set-timer 25)))
 (add-hook 'org-clock-out-hook (lambda ()
       (org-timer-stop)))
-(setq user-full-name "port19"
-      user-mail-address "port19@port19.xyz")
- (add-hook 'org-mode-hook
+(add-hook 'org-mode-hook
       (lambda ()
          (delete '("\\.pdf\\'" . default) org-file-apps)
          (add-to-list 'org-file-apps '("\\.pdf\\'" . "mupdf %s"))
          ))
-(require 'org-auto-tangle)
-(add-hook 'org-mode-hook 'org-auto-tangle-mode)
 
+;; Science Papers
 (require 'org-ref)
 (setq org-latex-pdf-process
       '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
@@ -43,8 +38,8 @@
       bibtex-completion-library-path '("~/doc/praxisarbeit/")
       bibtex-completion-pdf-open-function
       (lambda (fpath)
-      (call-process "mupdf" nil 0 nil fpath))
-      )
+        (call-process "mupdf" nil 0 nil fpath)
+        ))
 
+;; Clojure UX
 (map! :after cider-mode :map clojure-mode-map :n "," #'cider-eval-last-sexp)
-(map! :after lisp-mode :map lisp-mode-map :n "," #'sly-eval-last-expression)
