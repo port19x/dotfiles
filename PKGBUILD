@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r227.3771452
+pkgver=r228.f69c405
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -92,7 +92,7 @@ package() {
         printf "\33[2K\r\033[1;31m%s\033[0m\n" "[3/6] setup awesomewm autostart"
     cd .. && stow -v --no-folding --ignore="PKGBUILD" --ignore="src" --ignore="dotfiles" --ignore="pkg" -t $HOME/.config . && 
         printf "\33[2K\r\033[1;31m%s\033[0m\n" "[4/6] symlinked config files"
-    git clone --depth 1 https://github.com/doomemacs/doomemacs $HOME/config/emacs 2> /dev/null && 
+    git clone --depth 1 https://github.com/doomemacs/doomemacs $HOME/.config/emacs 2> /dev/null && 
         printf "\33[2K\r\033[1;31m%s\033[0m\n" "[5/6] downloaded doom emacs" ||
         printf "\33[2K\r\033[1;31m%s\033[0m\n" "[5/6] doom emacs already downloaded"
     $HOME/.config/emacs/bin/doom install --fonts --env -! > /dev/null && 
