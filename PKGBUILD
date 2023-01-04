@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r228.f69c405
+pkgver=r229.404677a
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -26,6 +26,7 @@ depends=(
 'gnupg'
 'gutenprint'
 'htop'
+'i3lock'
 'keepassxc'
 'kitty'
 'libnotify'
@@ -46,7 +47,6 @@ depends=(
 'ranger'
 'ripgrep'
 'rofi'
-'slock'
 'songrec'
 'stow'
 'ttc-iosevka'
