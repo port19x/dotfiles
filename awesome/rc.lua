@@ -38,7 +38,7 @@ globalkeys = gears.table.join(
     awful.key({ "Mod4",           }, "k",       hotkeys_popup.show_help, {description = "show keybindings", group = "awesome"}),
     awful.key({ "Mod4", "Control" }, "q",       awesome.quit,            {description = "quit awesome", group = "awesome"}),
     awful.key({ "Mod4", "Control" }, "r",       awesome.restart,         {description = "reload awesome", group = "awesome"}),
-    awful.key({ "Mod4", "Control" }, "l",       function () awful.spawn.with_shell("i3lock -i ~/pic/lock.png -t") end, {description = "lock screen", group = "awesome"}),
+    awful.key({ "Mod4", "Control" }, "l",       function () awful.spawn.with_shell("i3lock -i ~/pic/Wallpapers/lock.png -t") end, {description = "lock screen", group = "awesome"}),
 
     -- Group Mediakeys
     awful.key({}, "XF86MonBrightnessUp",        function () awful.spawn("brightnessctl set 10%+") end, {description = "raise brightness", group = "mediakey"}),
