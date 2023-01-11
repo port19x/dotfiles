@@ -3,6 +3,7 @@
       doom-variable-pitch-font (font-spec :family "iosevka aile" :size 14)
       doom-big-font (font-spec :family "iosevka" :size 28))
 (setq doom-theme 'doom-gruvbox)
+(setq doom-gruvbox-dark-variant "hard")
 (setq user-full-name "port19"
       user-mail-address "port19@port19.xyz")
 (setq display-line-numbers-type `relative)
