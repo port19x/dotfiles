@@ -56,7 +56,6 @@ depends=(
 'xcolor'
 'xorg-server'
 'xorg-xinit'
-'xorg-xkill'
 'yt-dlp'
 'zola'
 'zsh'

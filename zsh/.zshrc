@@ -83,6 +83,10 @@ thumbnailgen() {
     echo "(written to out.png)"
 }
 
+yeet() {
+    kill $(pgrep $1)
+}
+
 alias v='nvim'
 alias ls='exa'
 alias la='exa -a'
