@@ -54,8 +54,8 @@ globalkeys = gears.table.join(
     awful.key({ "Mod4",           }, "s",       function () awful.spawn("flameshot gui") end, {description = "take a screenshot", group = "launcher"}),
     awful.key({ "Mod4"            }, "m",       function () awful.spawn.with_shell('notify-send "$(timeout 10 songrec recognize -d default || echo song not found)"') end, {description = "songrec", group = "launcher"}),
     awful.key({ "Mod4",           }, "b",       function () awful.spawn.with_shell("notify-send $(acpi -b | cut -d , -f 2)") end, {description = "show battery percentage", group = "launcher"}),
-    awful.key({ "Mod4",           }, "p",       function () awful.spawn.with_shell("pgrep -x picom && killall picom || picom -b") end, {description = "toggle transparency", group = "launcher"}),
     awful.key({ "Mod4",           }, "t",       function () awful.spawn.with_shell("notify-send $(date +%H:%M)") end, {description = "show time", group = "launcher"}),
+    awful.key({ "Mod4",           }, "x",       function () awful.spawn.with_shell("xcolor -s clipboard") end, {description = "show time", group = "launcher"}),
     awful.key({ "Mod4",           }, "z",       function () awful.spawn.with_shell("killall ffmpeg") end, {description = "stop recording", group = "launcher"}),
 
     -- Group Layout

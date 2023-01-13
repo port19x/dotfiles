@@ -41,7 +41,6 @@ depends=(
 'noto-fonts'
 'openssh'
 'pacman-contrib'
-'picom'
 'pulsemixer'
 'qutebrowser'
 'ranger'
