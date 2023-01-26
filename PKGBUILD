@@ -1,11 +1,11 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r229.404677a
+pkgver=r238.e3d859f
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
-url='https://git.sr.ht/~port19/dotfiles'
+url='https://github.com/port19x/dotfiles'
 license=('Unlicense')
 
 depends=(
@@ -33,9 +33,11 @@ depends=(
 'mupdf'
 'ncdu'
 'neovim'
+'neovide'
 'newsboat'
 'noto-fonts'
 'openssh'
+'pacman-contrib'
 'pulsemixer'
 'qutebrowser'
 'ranger'
@@ -64,7 +66,7 @@ optdepends=(
 'yay: aur helper'
 )
 
-source=('dotfiles::git+https://git.sr.ht/~port19/dotfiles')
+source=('dotfiles::git+https://github.com/port19x/dotfiles')
 md5sums=('SKIP')
 
 pkgver() {
