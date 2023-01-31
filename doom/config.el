@@ -11,4 +11,5 @@
 (add-hook 'org-mode-hook (lambda () (delete '("\\.pdf\\'" . default) org-file-apps)
                                     (add-to-list 'org-file-apps '("\\.pdf\\'" . "mupdf %s"))))
 
-(map! :after cider-mode :map clojure-mode-map :n "," #'cider-eval-last-sexp) ;Clojure UX
+(map! :after cider-mode :map clojure-mode-map :n "," #'cider-eval-last-sexp)
+(map! :after cider-mode :map clojure-mode-map :n ";" #'cider-format-buffer)
