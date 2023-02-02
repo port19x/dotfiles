@@ -50,7 +50,7 @@ globalkeys = gears.table.join(
     awful.key({ "Mod4"            }, "e",       function () awful.spawn("emacs") end, {description = "emacs", group = "launcher"}),
     awful.key({ "Mod4"            }, "g",       function () awful.spawn("keepassxc") end, {description = "keepassxc", group = "launcher"}),
     awful.key({ "Mod4"            }, "q",       function () awful.spawn("qutebrowser") end, {description = "qutebrowser", group = "launcher"}),
-    awful.key({ "Mod4",           }, "Return",  function () awful.spawn("kitty -1") end, {description = "launch terminal", group = "launcher"}),
+    awful.key({ "Mod4",           }, "Return",  function () awful.spawn("wezterm") end, {description = "launch terminal", group = "launcher"}),
     awful.key({ "Mod4",           }, "s",       function () awful.spawn("flameshot gui") end, {description = "take a screenshot", group = "launcher"}),
     awful.key({ "Mod4"            }, "m",       function () awful.spawn.with_shell('notify-send "$(timeout 10 songrec recognize -d default || echo song not found)"') end, {description = "songrec", group = "launcher"}),
     awful.key({ "Mod4",           }, "b",       function () awful.spawn.with_shell("notify-send $(acpi -b | cut -d , -f 2)") end, {description = "show battery percentage", group = "launcher"}),
@@ -149,6 +149,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 awful.spawn.with_shell("command -v qutebrowser && pgrep -x qutebrowser || qutebrowser")
-awful.spawn.with_shell("command -v kitty && pgrep -x kitty || kitty -1")
+awful.spawn.with_shell("command -v wezterm && pgrep -x wezterm-gui || wezterm")
 awful.spawn.with_shell("command -v newsboat && pgrep -x newsboat || newsboat -x reload")
 awful.spawn.with_shell('notify-send "$(checkupdates)"')

@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r238.e3d859f
+pkgver=r239.c3615f3
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -25,7 +25,6 @@ depends=(
 'htop'
 'i3lock'
 'keepassxc'
-'kitty'
 'libnotify'
 'man-db'
 'man-pages'
@@ -33,19 +32,18 @@ depends=(
 'mupdf'
 'ncdu'
 'neovim'
-'neovide'
 'newsboat'
 'noto-fonts'
 'openssh'
 'pacman-contrib'
 'pulsemixer'
 'qutebrowser'
-'ranger'
 'ripgrep'
 'rofi'
 'songrec'
 'ttc-iosevka'
 'ttc-iosevka-aile'
+'wezterm'
 'xclip'
 'xcolor'
 'xorg-server'
