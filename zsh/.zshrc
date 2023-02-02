@@ -106,8 +106,8 @@ alias ytdd="yt-dlp -f 'bestvideo[height<=?720]+bestaudio/best' -f 'mp4'"
 alias ytddd="yt-dlp -f 'bestvideo[height<=?480]+bestaudio/best' -f 'mp4'"
 alias stamp='date +%d.%m.%y'
 alias icat='wezterm imgcat'
-alias smpv='mpv "$(ls | shuf -n 1)"'
-alias fmpv='mpv "$(fzf)"'
+alias smpv='mpv --no-audio-display "$(ls | shuf -n 1)"'
+alias fmpv='mpv --no-audio-display "$(fzf)"'
 alias yank='xclip -selection c < '
 alias song='ps "$(pgrep mpv)"'
 alias news='newsboat -x reload && newsboat -x print-unread'
