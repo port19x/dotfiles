@@ -37,7 +37,7 @@ pastebinlong() {
 
 backup() {
     a=$(date +%d.%m.%y)
-    du -shc "$HOME/dl" "$HOME/doc" "$HOME/dotfiles" "$HOME/pic" "Passwords.kdbx"
+    du -shc "$HOME/dl" "$HOME/doc" "$HOME/dotfiles" "$HOME/pic" "$HOME/.ssh" "Passwords.kdbx"
     printf "Is the backup small enough? (CTRL-C otherwise)"
     read
     echo "$a: initiating backup"
