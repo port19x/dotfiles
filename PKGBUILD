@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r239.c3615f3
+pkgver=r244.a25f113
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -14,8 +14,10 @@ depends=(
 'aspell-en'
 'awesome'
 'bat'
+'base-devel'
 'brightnessctl'
 'clojure'
+'cmake'
 'emacs-nativecomp'
 'exa'
 'fd'
@@ -39,6 +41,7 @@ depends=(
 'pulsemixer'
 'qutebrowser'
 'ripgrep'
+'rlwrap'
 'rofi'
 'songrec'
 'ttc-iosevka'
@@ -87,5 +90,7 @@ package() {
         printf "\33[2K\r\033[1;31m%s\033[0m\n" "[5/6] doom emacs already downloaded"
     $HOME/.config/emacs/bin/doom install --fonts --env -! > /dev/null && 
         printf "\33[2K\r\033[1;31m%s\033[0m\n" "[6/6] installed doom emacs"
-    printf "\33[2K\r\033[1;31mFinishing command: %s\033[0m\n" 'echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee /etc/zsh/zshenv'
+    printf "\33[2K\r\033[1;31mManual setup: %s\033[0m\n" 'echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee /etc/zsh/zshenv'
+    printf "\33[2K\r\033[1;31mManual setup: %s\033[0m\n" 'chsh -s /bin/zsh'
+    printf "\33[2K\r\033[1;31mManual setup: %s\033[0m\n" 'git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si'
 }
