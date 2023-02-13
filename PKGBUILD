@@ -39,7 +39,6 @@ depends=(
 'openssh'
 'pacman-contrib'
 'pulsemixer'
-'qutebrowser'
 'ripgrep'
 'rlwrap'
 'rofi'
@@ -61,6 +60,7 @@ makedepends=(
 )
 
 optdepends=(
+'librewolf-bin: webbrowser'
 'mullvad-vpn-cli: the best vpn'
 'signal-desktop: superior messenger'
 'tuxedo-keyboard: linux ootb <3'
