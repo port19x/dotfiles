@@ -87,6 +87,13 @@ yeet() {
     kill $(pgrep $1)
 }
 
+scwrap() {
+    shellcheck -s sh -o all -e 2250 -f gcc "$1" \
+    | grep -o "SC[0-9]*" \
+    | sort \
+    | uniq -c
+}
+
 alias v='nvim'
 alias ls='exa'
 alias la='exa -a'
