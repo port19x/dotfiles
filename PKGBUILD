@@ -10,6 +10,7 @@ license=('Unlicense')
 
 depends=(
 'acpi'
+'ansible'
 'aria2'
 'aspell-en'
 'awesome'
@@ -62,6 +63,7 @@ makedepends=(
 )
 
 optdepends=(
+'clojure-lsp-bin: lsp for the superior lisp'
 'librewolf-bin: webbrowser'
 'mullvad-vpn-cli: the best vpn'
 'signal-desktop: superior messenger'
