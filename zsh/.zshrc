@@ -19,6 +19,8 @@ precmd () { vcs_info }
 setopt PROMPT_SUBST
 PS1='%F{4}%3~ ${vcs_info_msg_0_}%fλ '
 
+xmodmap -e "keycode 66 = parenleft 0x0028"
+
 pastebin() {
     curl --silent https://oshi.at -F f=@$* -F expire=120 \
     | grep DL \
@@ -41,10 +43,11 @@ backup() {
     printf "Is the backup small enough? (CTRL-C otherwise)"
     read
     echo "$a: initiating backup"
-    mkdir "$HOME/$a"
-    cp -r "$HOME/dl" "$HOME/doc" "$HOME/dotfiles" "$HOME/pic" "Passwords.kdbx" "$HOME/$a"
-    tar c -I"zstd -19 -T0" -f "$HOME/$a.tar.zst" "$HOME/$a"
-    gpg -c "$HOME/$a.tar.zst"
+    cd
+    mkdir "$a"
+    cp -r "dl" "doc" "dotfiles" "pic" ".ssh" "Passwords.kdbx" "$a"
+    tar c -I"zstd -19 -T0" -f "$a.tar.zst" "$a"
+    gpg -c "$a.tar.zst"
 }
 
 yeet() {
