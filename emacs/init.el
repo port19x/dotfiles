@@ -20,7 +20,8 @@
       org-directory "~/doc/org"
       dired-kill-when-opening-new-dired-buffer t
       native-comp-deferred-compilation nil
-      dashboard-center-content t)
+      dashboard-center-content t
+      initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
 
 (float-time (time-subtract after-init-time before-init-time))
 
