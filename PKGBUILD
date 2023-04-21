@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r262.5c847eb
+pkgver=r263.4f5276b
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -81,20 +81,15 @@ pkgver() {
 
 package() {
     mkdir -p ~/.local/state/zsh && touch ~/.local/state/zsh/history && mkdir -p ~/.cache/zsh/zcompdump-5.9 &&
-        printf "\33[2K\r\033[1;31m%s\033[0m\n" "[1/6] prepared zsh history and cache"
+        printf "\33[2K\r\033[1;32m%s\033[0m\n" "[1/4] prepared zsh history and cache"
     git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/zsh/zsh-autosuggestions 2> /dev/null &&
-        printf "\33[2K\r\033[1;31m%s\033[0m\n" "[2/6] downloaded zsh-autosuggestions" ||
-        printf "\33[2K\r\033[1;31m%s\033[0m\n" "[2/6] zsh-autosuggestions already downloaded"
+        printf "\33[2K\r\033[1;32m%s\033[0m\n" "[2/4] downloaded zsh-autosuggestions" ||
+        printf "\33[2K\r\033[1;32m%s\033[0m\n" "[2/4] zsh-autosuggestions already downloaded"
     echo "exec awesome" > $HOME/.xinitrc &&
-        printf "\33[2K\r\033[1;31m%s\033[0m\n" "[3/6] setup awesomewm autostart"
+        printf "\33[2K\r\033[1;32m%s\033[0m\n" "[3/4] setup awesomewm autostart"
     cd .. && stow -v --no-folding --ignore="PKGBUILD" --ignore="src" --ignore="dotfiles" --ignore="pkg" -t $HOME/.config . && 
-        printf "\33[2K\r\033[1;31m%s\033[0m\n" "[4/6] symlinked config files"
-    git clone --depth 1 https://github.com/doomemacs/doomemacs $HOME/.config/emacs 2> /dev/null && 
-        printf "\33[2K\r\033[1;31m%s\033[0m\n" "[5/6] downloaded doom emacs" ||
-        printf "\33[2K\r\033[1;31m%s\033[0m\n" "[5/6] doom emacs already downloaded"
-    $HOME/.config/emacs/bin/doom install --fonts --env -! > /dev/null && 
-        printf "\33[2K\r\033[1;31m%s\033[0m\n" "[6/6] installed doom emacs"
-    printf "\33[2K\r\033[1;31mManual setup: %s\033[0m\n" 'echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee /etc/zsh/zshenv'
-    printf "\33[2K\r\033[1;31mManual setup: %s\033[0m\n" 'chsh -s /bin/zsh'
-    printf "\33[2K\r\033[1;31mManual setup: %s\033[0m\n" 'git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si'
+        printf "\33[2K\r\033[1;32m%s\033[0m\n" "[4/4] symlinked config files"
+    printf "\33[2K\r\033[1;33mManual setup: %s\033[0m\n" 'echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee /etc/zsh/zshenv'
+    printf "\33[2K\r\033[1;33mManual setup: %s\033[0m\n" 'chsh -s /bin/zsh'
+    printf "\33[2K\r\033[1;33mManual setup: %s\033[0m\n" 'git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si'
 }
