@@ -10,7 +10,6 @@
       inhibit-startup-message t
       custom-file (concat user-emacs-directory "/custom.el")
       vertico-resize t
-      doom-gruvbox-dark-variant "hard"
       evil-undo-system 'undo-redo
       lsp-ui-doc-show-with-cursor t
       lsp-ui-doc-delay 2.0
@@ -27,7 +26,7 @@
 
 (set-face-attribute 'default nil :font "Iosevka" :height 140)
 (use-package better-defaults)
-(use-package doom-themes   :init (load-theme 'doom-gruvbox t))
+(use-package doom-themes   :init (load-theme 'doom-nord-aurora t))
 (use-package vertico       :init (vertico-mode))
 (use-package marginalia    :init (marginalia-mode))
 (use-package which-key     :init (which-key-mode))
@@ -60,7 +59,7 @@
           (format "Emacs ready in %s seconds with %d garbage collections."
                   (emacs-init-time) gcs-done)))
   :config
-  (setq dashboard-startup-banner "~/dotfiles/emacs/mage.png")
+  (setq dashboard-startup-banner "~/dotfiles/emacs/avatar.gif")
   (setq dashboard-items '((recents  . 5)
                           (bookmarks . 5)
                           (projects . 5)))
