@@ -10,4 +10,4 @@ configuration {
       sorting-method:    "name";
   }
 }
-@theme "gruvbox"
+@theme "nord"
