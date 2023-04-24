@@ -25,7 +25,7 @@ pastebin() {
     curl --silent https://oshi.at -F f=@$* -F expire=120 \
     | grep DL \
     | cut -d " " -f 2 \
-    | xclip -selection c \
+    | wl-copy \
     && echo "link copied to clipboard"
 }
 
@@ -33,7 +33,7 @@ pastebinlong() {
     curl --silent https://oshi.at -F f=@$* \
     | grep DL \
     | cut -d " " -f 2 \
-    | xclip -selection c \
+    | wl-copy \
     && echo "link copied to clipboard"
 }
 
@@ -85,7 +85,7 @@ alias fmpv='mpv --no-audio-display "$(fzf)"'
 alias lofi='mpv --no-video https://www.youtube.com/live/jfKfPfyJRdk'
 alias dnb='mpv --no-video https://youtube.com/@themanfromdelmonte'
 alias catfact='curl -s https://meowfacts.herokuapp.com/ | cut -d \" -f 4 | cowsay | lolcat'
-alias yank='xclip -selection c < '
+alias yank='wl-copy < '
 alias song='ps "$(pgrep mpv)"'
 alias news='newsboat -x reload && newsboat -x print-unread'
 alias tree='exa -a -I .git --tree'
