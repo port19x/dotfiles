@@ -10,13 +10,18 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- {{{ Themeing
 local theme = {}
 theme.font          = "iosevka 10"
-theme.bg_normal     = "#2e3440" --base00
-theme.bg_minimize   = "#434c5e" --base02
-theme.fg_normal     = "#8fbcbb" --base07
+theme.bg_normal     = "#fdf1c7"
+theme.bg_focus      = "#ebdbb2"
+theme.bg_urgent     = "#fb4935"
+theme.bg_minimize   = "#504945"
+theme.fg_normal     = "#504945"
+theme.fg_focus      = "#504945"
+theme.fg_urgent     = "#fb4935"
+theme.fg_minimize   = "#504945"
 theme.useless_gap   = 0
 theme.border_width  = 1
-theme.border_normal = "#2e3440" --base00
-theme.border_focus  = "#a3be8c" --base0D
+theme.border_normal = "#1d2021"
+theme.border_focus  = "#8ec07c"
 theme.wallpaper = "~/pic/Wallpapers/wallpaper.jpg"
 beautiful.init(theme)
 -- }}}
@@ -94,7 +99,6 @@ awful.rules.rules = {{ rule = { },
                                       border_color = beautiful.border_normal,
                                       focus = awful.client.focus.filter,
                                       raise = true,
-                                      size_hints_honor = false,
                                       keys = clientkeys,
                                       buttons = clientbuttons,
                                       screen = awful.screen.preferred,
