@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r271.5f1efd9
+pkgver=r272.c460a74
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -26,10 +26,13 @@ depends=(
 'fzf'
 'flameshot'
 'gnupg'
+'grim'
 'htop'
+'hyprland'
 'keepassxc'
 'libnotify'
 'lolcat'
+'mako'
 'man-db'
 'man-pages'
 'mpv'
@@ -45,10 +48,17 @@ depends=(
 'rlwrap'
 'rofi'
 'slock'
+'slurp'
+'swappy'
+'swaybg'
+'swaylock'
 'songrec'
 'ttc-iosevka'
 'ttc-iosevka-aile'
+'unzip'
 'wezterm'
+'wl-clipboard'
+'wofi'
 'xclip'
 'xcolor'
 'xorg-server'
@@ -65,6 +75,7 @@ makedepends=(
 optdepends=(
 'clojure-lsp-bin: lsp for the superior lisp'
 'librewolf-bin: webbrowser'
+'ly: display manager'
 'mullvad-vpn-cli: the best vpn'
 'signal-desktop: superior messenger'
 'tuxedo-keyboard: linux ootb <3'
@@ -96,5 +107,6 @@ package() {
         printf "\33[2K\r\033[1;31m%s\033[0m\n" "[6/6] installed doom emacs"
     printf "\33[2K\r\033[1;31mManual setup: %s\033[0m\n" 'echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee /etc/zsh/zshenv'
     printf "\33[2K\r\033[1;31mManual setup: %s\033[0m\n" 'chsh -s /bin/zsh'
+    printf "\33[2K\r\033[1;31mManual setup: %s\033[0m\n" 'sudo systemctl enable ly.service'
     printf "\33[2K\r\033[1;31mManual setup: %s\033[0m\n" 'git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si'
 }
