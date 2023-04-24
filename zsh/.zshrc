@@ -19,7 +19,7 @@ precmd () { vcs_info }
 setopt PROMPT_SUBST
 PS1='%F{4}%3~ ${vcs_info_msg_0_}%fλ '
 
-setxkbmap -option ctrl:nocaps
+xmodmap -e "keycode 66 = parenleft 0x0028"
 
 pastebin() {
     curl --silent https://oshi.at -F f=@$* -F expire=120 \
