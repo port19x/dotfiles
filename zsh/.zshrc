@@ -62,6 +62,8 @@ scwrap() {
 }
 
 alias v='nvim'
+alias t='test=$(mktemp)'
+alias vt='test=$(mktemp) && nvim $test'
 alias ls='exa'
 alias la='exa -a'
 alias ll='exa -la'
