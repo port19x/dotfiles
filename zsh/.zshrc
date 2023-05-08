@@ -1,5 +1,6 @@
 SAVEHIST=1000000
 HISTSIZE=$SAVEHIST
+setopt HIST_IGNORE_SPACE
 unsetopt beep
 bindkey -v
 
