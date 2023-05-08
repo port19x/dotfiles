@@ -9,34 +9,24 @@
 (require 'bind-key) ;; too here
 (setq use-package-always-ensure t)
 
-;;; better defaults ;;; TODO (use-package emacs)
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(horizontal-scroll-bar-mode -1)
-(savehist-mode 1)
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-(setq inhibit-startup-message t
-      custom-file (concat user-emacs-directory "/custom.el")
-      display-line-numbers-type `relative
-      native-comp-deferred-compilation nil
-      dired-kill-when-opening-new-dired-buffer t
-      indent-tabs-mode nil
-      ubiquify-buffer-name-style 'forward
-      visible-bell t)
+(use-package emacs               :config  (menu-bar-mode -1)
+                                          (tool-bar-mode -1)
+                                          (scroll-bar-mode -1)
+                                          (horizontal-scroll-bar-mode -1)
+                                          (savehist-mode 1)
+                                 :hook    (prog-mode display-line-numbers-mode)
+                                 :custom  (inhibit-startup-message t)
+                                          (custom-file (concat user-emacs-directory "/custom.el"))
+                                          (display-line-numbers-type `relative)
+                                          (native-comp-deferred-compilation nil)
+                                          (dired-kill-when-opening-new-dired-buffer t)
+                                          (indent-tabs-mode nil)
+                                          (ubiquify-buffer-name-style 'forward)
+                                          (visible-bell t)
+                                          (user-full-name "port19")
+                                          (user-mail-address "port19@port19.xyz")
+                                          (org-directory "~/doc/org"))
 
-;;; personal settings ;;;
-(setq user-full-name "port19"
-      user-mail-address "port19@port19.xyz"
-      org-directory "~/doc/org")
-
-;;; dashboard ;;; FIXME make dashboard display sooner (?)
-;;TODO consider use-package convention
-;;(use-package evil
-  ;;:init
-  ;;(setq ...)
-  ;;:config
-  ;;(evil-mode 1)) 
 (use-package dashboard           :preface (defun my/dashboard-banner ()
                                             (setq dashbard-banner-logo-title
                                                   (format "Emacs ready in %s seconds with %d garbage collections."
@@ -115,5 +105,3 @@
 ;SPC-b-b ibuffer
 ;; TODO :init -> :config
 ;; TODO (info "(elisp) Key Binding Conventions") 
-
-    
