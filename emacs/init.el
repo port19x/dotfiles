@@ -1,4 +1,4 @@
-;;; use-package bootstrapping ;;;
+;;; >BOOTSTRAPPING< ;;;
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
@@ -9,6 +9,7 @@
 (require 'bind-key) ;; too here
 (setq use-package-always-ensure t)
 
+;;; >GLOBAL< ;;;
 (use-package emacs               :config  (menu-bar-mode -1)
                                           (tool-bar-mode -1)
                                           (scroll-bar-mode -1)
@@ -27,6 +28,8 @@
                                           (user-mail-address "port19@port19.xyz")
                                           (org-directory "~/doc/org"))
 
+;;; >PACKAGES< ;;;
+;;; dashboard ;;;
 (use-package dashboard           :preface (defun my/dashboard-banner ()
                                             (setq dashbard-banner-logo-title
                                                   (format "Emacs ready in %s seconds with %d garbage collections."
@@ -90,7 +93,7 @@
 (use-package pdf-tools           :magic   ("%PDF" . pdf-view-mode)
                                  :config  (pdf-tools-install :no-query))
 
-;;; keybindings ;;;
+;;; >KEYBINDINGS< ;;;
 (use-package general
   :config
   (general-evil-setup)
@@ -182,5 +185,5 @@ Add this to `basic-emacs-leader-keys'.")
     "v" '(magit :which-key "Run Magit")
     "c" '(org-capture :which-key "Org Capture")
     "p" `(,project-prefix-map :which-key "Projects")
-    "Q" '(save-buffers-kill-emacs :which-key "Quit Emacs")
+    "q" '(save-buffers-kill-emacs :which-key "Quit Emacs")
     "w" `(,basic-emacs-window-map :which-key "Windows")))
