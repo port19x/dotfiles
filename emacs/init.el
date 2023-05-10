@@ -15,7 +15,6 @@
                                           (scroll-bar-mode -1)
                                           (horizontal-scroll-bar-mode -1)
                                           (savehist-mode 1)
-                                 :hook    (prog-mode display-line-numbers-mode)
                                  :custom  (inhibit-startup-message t)
                                           (custom-file (concat user-emacs-directory "/custom.el"))
                                           (display-line-numbers-type `relative)
@@ -66,8 +65,7 @@
 (use-package evil-vimish-fold    :config  (global-evil-vimish-fold-mode))
 (use-package evil-collection     :config  (evil-collection-init))
 
-;;; clojure ;;;
-;;; TODO bind several cider keys to the cider keymap
+;;; clojure ;;; TODO bind several cider keys to the cider keymap
 (use-package clojure-mode        :mode    "\\.edn\\'" "\\.clj?[scx]\\'")
 (use-package cider               :after   (clojure-mode))
 (use-package rainbow-delimiters  :hook    (prog-mode . rainbow-delimiters-mode))
@@ -106,25 +104,12 @@
     :prefix "SPC"
     :global-prefix "C-M-SPC")
 
-  (defvar basic-emacs-file-map
-    (let ((map (make-sparse-keymap)))
-      (define-key map (kbd "f") #'find-file)
-      (define-key map (kbd "F") #'find-file-other-window)
-      (define-key map (kbd "r") #'recentf-open)
-      (define-key map (kbd "s") #'save-buffer)
-      (define-key map (kbd "w") #'write-file)
-      (define-key map (kbd "d") #'dired)
-      (define-key map (kbd "D") #'dired-other-window)
-      map)
-    "Custom keymap with file-related commands.
-Add this to `basic-emacs-leader-keys'.")
-
   (defvar basic-emacs-help-map
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "v") #'helpful-variable)
       (define-key map (kbd "f") #'helpful-callable)
       (define-key map (kbd "k") #'helpful-key)
-      (define-key map (kbd "m") #'helpful-mode)
+      (define-key map (kbd "m") #'describe-mode)
       (define-key map (kbd "s") #'helpful-symbol)
       (define-key map (kbd "K") #'describe-keymap)
       (define-key map (kbd "p") #'helpful-at-point)
@@ -136,18 +121,11 @@ Add this to `basic-emacs-leader-keys'.")
 
   (defvar basic-emacs-buffer-map
     (let ((map (make-sparse-keymap)))
-      (define-key map (kbd "b") #'switch-to-buffer)
-      (define-key map (kbd "B") #'switch-to-buffer-other-window)
-      (define-key map (kbd "c") #'clone-indirect-buffer)
-      (define-key map (kbd "C") #'clone-indirect-buffer-other-window)
-      (define-key map (kbd "k") #'kill-current-buffer)
+      (define-key map (kbd "m") #'switch-to-buffer)
+      (define-key map (kbd "i") #'ibuffer)
+      (define-key map (kbd "c") #'kill-current-buffer)
+      (define-key map (kbd "b") #'next-buffer)
       (define-key map (kbd "r") #'revert-buffer)
-      (define-key map (kbd "R") #'rename-buffer)
-      (define-key map (kbd "s") #'save-buffer)
-      (define-key map (kbd "n") #'next-buffer)
-      (define-key map (kbd "p") #'previous-buffer)
-      (define-key map (kbd "m") #'buffer-menu)
-      (define-key map (kbd "q") #'bury-buffer)
       map)
     "Custom keymap with buffer-related commands.
 Add this to `basic-emacs-leader-keys'.")
@@ -174,16 +152,35 @@ Add this to `basic-emacs-leader-keys'.")
                   evil-window-up evil-window-right))
     (put cmd 'repeat-map 'basic-emacs-window-map))
 
+(defvar basic-emacs-clojure-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map (kbd "j") #'cider-jack-in-clj)
+      (define-key map (kbd "b") #'cider-eval-buffer)
+      (define-key map (kbd "d") #'cider-eval-defun-at-point)
+      (define-key map (kbd "SPC") #'cider-eval-last-sexp)
+      (define-key map (kbd "i") #'cider-inspect)
+      (define-key map (kbd "p") #'cider-profile-ns-toggle)
+      (define-key map (kbd "P") #'cider-profile-summary)
+      map)
+    "Custom keymap with buffer-related commands.
+Add this to `basic-emacs-leader-keys'.")
+
   (basic-emacs-leader-keys
-    "<return>" '(bookmark-jump :which-key "Jump to bookmark")
-    "S-<return>" '(bookmark-set :which-key "Set a bookmark")
     "b" `(,basic-emacs-buffer-map :which-key "Buffer")
-    "s" '(isearch-forward-regexp :which-key "Seek")
-    "f" `(,basic-emacs-file-map :which-key "File")
+    "c" '(magit-clone :which-key "Magit clone")
+    "d" '(dired-jump :which-key "Dired Jump")
+    ;; TODO e for eglot submap
+    "f" '(find-file :which-key "File")
+    "g" '(magit :which-key "Magit")
     "h" `(,basic-emacs-help-map :which-key "Help")
     "i" '(insert-char :which-key "Insert Unicode")
-    "v" '(magit :which-key "Run Magit")
-    "c" '(org-capture :which-key "Org Capture")
     "p" `(,project-prefix-map :which-key "Projects")
     "q" '(save-buffers-kill-emacs :which-key "Quit Emacs")
-    "w" `(,basic-emacs-window-map :which-key "Windows")))
+    ;;"r" '(recentf-open :which-key "Open Recent") ;;FIXME
+    "s" '(isearch-forward-regexp :which-key "Seek")
+    ;; TODO t for toggle submap
+    "w" `(,basic-emacs-window-map :which-key "Windows")
+    "x" '(org-capture :which-key "Org Capture")
+    "SPC" `(,basic-emacs-clojure-map :which-key "Clojure")
+    "<return>" '(bookmark-jump :which-key "Jump to bookmark")
+    "S-<return>" '(bookmark-set :which-key "Set a bookmark")))
