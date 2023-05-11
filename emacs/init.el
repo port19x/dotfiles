@@ -67,7 +67,7 @@
 (use-package evil-vimish-fold    :config  (global-evil-vimish-fold-mode))
 (use-package evil-collection     :config  (evil-collection-init))
 
-;;; clojure ;;; TODO lsp -> eglot
+;;; clojure ;;;
 (use-package clojure-mode        :mode    "\\.edn\\'" "\\.clj?[scx]\\'")
 (use-package cider               :after   (clojure-mode)
                                  :custom  (cider-repl-pop-to-buffer-on-connect . nil))
@@ -199,7 +199,7 @@ Add this to `basic-emacs-leader-keys'.")
     "b" `(,basic-emacs-buffer-map :which-key "Buffer")
     "c" '(magit-clone :which-key "Magit clone")
     "d" '(dired-jump :which-key "Dired Jump")
-    ;; TODO e for eglot submap
+    "e" '(eshell :which-key "Eshell")
     "f" '(find-file :which-key "File")
     "g" '(magit :which-key "Magit")
     "h" `(,basic-emacs-help-map :which-key "Help")
@@ -209,6 +209,7 @@ Add this to `basic-emacs-leader-keys'.")
     ;;"r" '(recentf-open :which-key "Open Recent") ;;FIXME
     "s" '(isearch-forward-regexp :which-key "Seek")
     ;; TODO t for toggle submap
+    "t" '(hl-todo-next :which-key "Next Todo")
     "w" `(,basic-emacs-window-map :which-key "Windows")
     "x" '(org-capture :which-key "Org Capture")
     "SPC" `(,basic-emacs-clojure-map :which-key "Clojure")
