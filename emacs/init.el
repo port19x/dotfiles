@@ -156,7 +156,7 @@ Add this to `basic-emacs-leader-keys'.")
                   evil-window-up evil-window-right))
     (put cmd 'repeat-map 'basic-emacs-window-map))
 
-(defvar basic-emacs-clojure-map
+  (defvar basic-emacs-clojure-map
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "SPC") #'cider-eval-last-sexp)
       (define-key map (kbd "a") #'clojure-add-arity)
@@ -197,6 +197,16 @@ Add this to `basic-emacs-leader-keys'.")
     "Custom keymap with buffer-related commands.
 Add this to `basic-emacs-leader-keys'.")
 
+  (defvar basic-emacs-org-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map (kbd "w") #'org-insert-structure-template)
+      (define-key map (kbd "e") #'org-babel-execute-src-block)
+      (define-key map (kbd "d") #'org-cut-subtree)
+      (define-key map (kbd "p") #'org-beamer-export-to-pdf)
+      map)
+    "Custom keymap with various window commands.
+Add this to `basic-emacs-leader-keys'.")
+
   (basic-emacs-leader-keys
     "b" `(,basic-emacs-buffer-map :which-key "Buffer")
     "c" '(magit-clone :which-key "Magit clone")
@@ -206,7 +216,7 @@ Add this to `basic-emacs-leader-keys'.")
     "g" '(magit :which-key "Magit")
     "h" `(,basic-emacs-help-map :which-key "Help")
     "i" '(insert-char :which-key "Insert Unicode")
-    "j" '(org-babel-execute-src-block :which-key "Execute Block")
+    "o" `(,basic-emacs-org-map :which-key "Org Mode")
     "p" `(,project-prefix-map :which-key "Projects")
     "q" '(save-buffers-kill-emacs :which-key "Quit Emacs")
     ;;"r" '(recentf-open :which-key "Open Recent") ;;FIXME
