@@ -46,7 +46,7 @@ globalkeys = gears.table.join(
     -- Group Launcher
     awful.key({ "Mod4"            }, "r",       function () awful.spawn("rofi -show run") end, {description = "runlauncher", group = "launcher"}),
     awful.key({ "Mod4"            }, "y",       function () awful.spawn("signal-desktop") end, {description = "signal-desktop", group = "launcher"}),
-    awful.key({ "Mod4"            }, "e",       function () awful.spawn("emacsclient -c") end, {description = "emacs", group = "launcher"}),
+    awful.key({ "Mod4"            }, "e",       function () awful.spawn("emacs") end, {description = "emacs", group = "launcher"}),
     awful.key({ "Mod4"            }, "g",       function () awful.spawn("keepassxc") end, {description = "keepassxc", group = "launcher"}),
     awful.key({ "Mod4"            }, "q",       function () awful.spawn("librewolf") end, {description = "librewolf", group = "launcher"}),
     awful.key({ "Mod4",           }, "Return",  function () awful.spawn("wezterm") end, {description = "launch terminal", group = "launcher"}),
