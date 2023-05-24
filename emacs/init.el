@@ -16,6 +16,7 @@
                                           (horizontal-scroll-bar-mode -1)
                                           (savehist-mode 1)
                                  :custom  (inhibit-startup-message t)
+                                          (make-backup-files nil)
                                           (custom-file (concat user-emacs-directory "/custom.el"))
                                           (display-line-numbers-type `relative)
                                           (native-comp-deferred-compilation nil)
@@ -25,7 +26,8 @@
                                           (visible-bell t)
                                           (user-full-name "port19")
                                           (user-mail-address "port19@port19.xyz")
-                                          (org-directory "~/doc/org"))
+                                          (org-directory "~/doc/org")
+                                          (org-confirm-babel-evaluate nil))
 
 ;;; >PACKAGES< ;;;
 ;;; dashboard ;;;
@@ -186,7 +188,7 @@ Add this to `basic-emacs-leader-keys'.")
       (define-key map (kbd "u") #'clojure-unwind)
       (define-key map (kbd "U") #'clojure-unwind-all)
       (define-key map (kbd "v") #'cider-interrupt)
-      (define-key map (kbd "x") #'cider-clojuredocs-web)
+      (define-key map (kbd "w") #'cider-clojuredocs-web)
       (define-key map (kbd "x") #'cljr-extract-function)
       (define-key map (kbd "X") #'cljr-extract-def)
       (define-key map (kbd "y") #'cljr-add-project-dependency)
@@ -204,6 +206,7 @@ Add this to `basic-emacs-leader-keys'.")
     "g" '(magit :which-key "Magit")
     "h" `(,basic-emacs-help-map :which-key "Help")
     "i" '(insert-char :which-key "Insert Unicode")
+    "j" '(org-babel-execute-src-block :which-key "Execute Block")
     "p" `(,project-prefix-map :which-key "Projects")
     "q" '(save-buffers-kill-emacs :which-key "Quit Emacs")
     ;;"r" '(recentf-open :which-key "Open Recent") ;;FIXME
@@ -215,3 +218,9 @@ Add this to `basic-emacs-leader-keys'.")
     "SPC" `(,basic-emacs-clojure-map :which-key "Clojure")
     "<return>" '(bookmark-jump :which-key "Jump to bookmark")
     "S-<return>" '(bookmark-set :which-key "Set a bookmark")))
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((sqlite . t)
+   (shell . t)
+   (emacs-lisp . nil)))
