@@ -43,6 +43,10 @@ backup() {
     gpg -c "$a.tar.zst"
 }
 
+f() {
+    "$@" "$(fzf)"
+}
+
 alias v='nvim'
 alias ls='exa'
 alias la='exa -a'
@@ -61,6 +65,3 @@ alias lofi='mpv --no-video https://www.youtube.com/live/jfKfPfyJRdk'
 alias yank='xclip -selection c < '
 alias tree='exa -a -I .git --tree'
 alias icat='wezterm imgcat'
-alias fmpv='mpv "$(fzf)"'
-alias fpdf='mupdf "$(fzf)"'
-alias ficat='wezterm imgcat "$(fzf)"'
