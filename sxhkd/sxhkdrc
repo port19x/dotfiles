@@ -1,0 +1,40 @@
+# Bspwm
+super + ctrl + {q,r}
+	bspc {quit,wm -r}
+super + k
+	pkill -USR1 -x sxhkd
+super + ctrl + l
+        brightnessctl set 0% && slock && brightnessctl set 100%
+
+# Launcher
+super + {r, Return, s}
+        {rofi -show run, wezterm, flameshot gui}
+super + {e, q, y, g}
+        {emacs, librewolf, signal-desktop, keepassxc}
+super + {b, t}
+        notify-send $({acpi -b | cut -c 25-27, date +%H:%M})
+
+# Layout
+super + tab
+	bspc desktop -l next
+super + {h,j,k,l} # extend FIXME
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# Tags
+super + {1-9,0}
+	bspc desktop -f '^{1-9,10}'
+super + shift + {1-9,0}
+	bspc node -d '^{1-9,10}'
+
+# Client
+super + {_,shift + }w
+	bspc node -{c,k}
+super + f
+	bspc node -t {tiled,fullscreen}
+super + shift + f
+	bspc node -t {tiled,floating}
+# TODO move to next monitor
+super + space
+	bspc node -f next.local.!hidden.window
+super + shift + space
+	bspc node -s next.local.!hidden.window
