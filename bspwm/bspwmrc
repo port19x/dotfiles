@@ -1,0 +1,16 @@
+#! /bin/sh
+pgrep -x xwallpaper > /dev/null || xwallpaper --maximize $HOME/pic/Wallpapers/wallpaper.jpg
+pgrep -x emacs > /dev/null || emacs &
+pgrep -x librewolf > /dev/null || librewolf &
+pgrep -x wezterm-gui > /dev/null || wezterm &
+pgrep -x sxhkd > /dev/null || sxhkd &
+pgrep -x dunst > /dev/null || dunst &
+bspc monitor -d I II III IV V VI VII VIII IX X
+bspc config automatic_scheme alternate
+bspc config pointer_action1 move
+bspc config pointer_action2 resize_side
+bspc config pointer_action3 resize_corner
+bspc config normal_border_color	"#2e3440"
+bspc config active_border_color	"#2e3440"
+bspc rule -a Emacs state=tiled
+bspc rule -a Steam state=floating
