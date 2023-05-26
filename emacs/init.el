@@ -41,7 +41,6 @@
   (org-directory "~/doc/org")
   (org-confirm-babel-evaluate nil))
 
-
 ;;; >DASHBOARD< ;;;
 (use-package dashboard
   :preface
@@ -65,49 +64,49 @@
 (use-package doom-themes         :config  (load-theme 'doom-nord-aurora t)) ;<- look
 (use-package doom-modeline       :config  (doom-modeline-mode))
 
-(use-package vertico             :custom  (vertico-resize t) ;<- completion
-                                 :config  (vertico-mode))
-(use-package marginalia          :config  (marginalia-mode))
-(use-package which-key           :config  (which-key-mode)
-                                 :custom  (which-key-max-display-columns 4)
-                                          (which-key-sort-order 'which-key-key-order-alpha)
-                                          (which-key-sort-uppercase-first nil))
-(use-package corfu               :custom  (corfu-auto t)
-                                 :config  (global-corfu-mode))
+(use-package vertico            :custom (vertico-resize t) ;<- completion
+                                :config (vertico-mode))
+(use-package marginalia         :config (marginalia-mode))
+(use-package which-key          :config (which-key-mode)
+                                :custom (which-key-max-display-columns 4)
+                                        (which-key-sort-order 'which-key-key-order-alpha)
+                                        (which-key-sort-uppercase-first nil))
+(use-package corfu              :custom (corfu-auto t)
+                                :config (global-corfu-mode))
 
-(use-package projectile          :config  (projectile-mode +1)) ;<- living in emacs
+(use-package projectile         :config (projectile-mode +1)) ;<- living in emacs
 (use-package helpful)
 (use-package eshell-toggle)
-(use-package vterm               :custom  (vterm-always-compile-module t))
-(use-package elfeed              :custom  (elfeed-feeds '("https://port19.xyz/rss.xml"))) ;TODO add more feeds
-(use-package org-superstar       :hook    (org-mode . org-superstar-mode))
-(use-package pdf-tools           :magic   ("%PDF" . pdf-view-mode) ;FIXME
-                                 :config  (pdf-tools-install :no-query))
+(use-package vterm              :custom (vterm-always-compile-module t))
+(use-package elfeed             :custom (elfeed-feeds '("https://port19.xyz/rss.xml"))) ;TODO add more feeds
+(use-package org-superstar      :hook   (org-mode . org-superstar-mode))
+(use-package pdf-tools          :magic  ("%PDF" . pdf-view-mode) ;FIXME
+                                :config (pdf-tools-install :no-query))
 
-(use-package evil                :init    (setq evil-want-keybinding nil) ;<- evil keys
-                                 :config  (evil-mode 1)
-                                 :custom  (evil-undo-system 'undo-redo))
-(use-package evil-goggles        :config  (evil-goggles-mode))
-(use-package evil-vimish-fold    :config  (global-evil-vimish-fold-mode))
-(use-package evil-collection     :config  (evil-collection-init))
+(use-package evil               :init   (setq evil-want-keybinding nil) ;<- evil keys
+                                :config (evil-mode 1)
+                                :custom (evil-undo-system 'undo-redo))
+(use-package evil-goggles       :config (evil-goggles-mode))
+(use-package evil-vimish-fold   :config (global-evil-vimish-fold-mode))
+(use-package evil-collection    :config (evil-collection-init))
 
-(use-package clojure-mode        :mode    "\\.edn\\'" "\\.clj?[scx]\\'") ;<- clojure
-(use-package cider               :after   (clojure-mode)
-                                 :custom  (cider-repl-pop-to-buffer-on-connect . nil))
-(use-package clj-refactor        :after   (clojure-mode)
-                                 :custom  (cljr-project-clean-prompt nil))
-(use-package rainbow-delimiters  :hook    (prog-mode . rainbow-delimiters-mode))
-(use-package smartparens         :hook    (prog-mode . smartparens-mode))
-(use-package format-all          :hook    (clojure-mode . format-all-mode))
-(use-package paredit             :hook    (clojure-mode . paredit-mode))
-(use-package eglot               :hook    (clojure-mode . eglot-ensure))
+(use-package clojure-mode       :mode   "\\.edn\\'" "\\.clj?[scx]\\'") ;<- clojure
+(use-package cider              :after  (clojure-mode)
+                                :custom (cider-repl-pop-to-buffer-on-connect . nil))
+(use-package clj-refactor       :after  (clojure-mode)
+                                :custom (cljr-project-clean-prompt nil))
+(use-package rainbow-delimiters :hook   (prog-mode . rainbow-delimiters-mode))
+(use-package smartparens        :hook   (prog-mode . smartparens-mode))
+(use-package format-all         :hook   (clojure-mode . format-all-mode))
+(use-package paredit            :hook   (clojure-mode . paredit-mode))
+(use-package eglot              :hook   (clojure-mode . eglot-ensure))
 
-(use-package magit) ;<- other programming related modes
-(use-package hl-todo             :config  (global-hl-todo-mode))
-(use-package git-gutter          :config  (global-git-gutter-mode))
-(use-package markdown-mode       :mode    "\\.md\\'")
-(use-package lua-mode            :mode    "\\.lua\\'")
-(use-package ansible             :mode    "\\.ya?ml\\'")
+(use-package magit)                         ;<- other programming related modes
+(use-package hl-todo            :config (global-hl-todo-mode))
+(use-package git-gutter         :config (global-git-gutter-mode))
+(use-package markdown-mode      :mode   "\\.md\\'")
+(use-package lua-mode           :mode   "\\.lua\\'")
+(use-package ansible            :mode   "\\.ya?ml\\'")
 
 ;;; >KEYBINDINGS< ;;;
 (use-package general
