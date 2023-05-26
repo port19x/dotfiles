@@ -15,6 +15,11 @@
                                           (scroll-bar-mode -1)
                                           (horizontal-scroll-bar-mode -1)
                                           (savehist-mode 1)
+                                          (org-babel-do-load-languages
+                                           'org-babel-load-languages
+                                           '((sqlite . t)
+                                             (shell . t)
+                                             (emacs-lisp . nil)))
                                  :custom  (inhibit-startup-message t)
                                           (make-backup-files nil)
                                           (custom-file (concat user-emacs-directory "/custom.el"))
@@ -56,10 +61,15 @@
                                  :custom  (which-key-max-display-columns 4)
                                           (which-key-sort-order 'which-key-key-order-alpha)
                                           (which-key-sort-uppercase-first nil))
-(use-package projectile          :config  (projectile-mode +1))
 (use-package corfu               :custom  (corfu-auto t)
                                  :config  (global-corfu-mode))
+
+;;; living in emacs ;;;
+(use-package projectile          :config  (projectile-mode +1))
 (use-package helpful)
+(use-package eshell-toggle)
+(use-package vterm)
+(use-package elfeed              :custom  (elfeed-feeds '("https://port19.xyz/rss.xml")))
 
 ;;; evil keys ;;;
 (use-package evil                :init    (setq evil-want-keybinding nil)
@@ -98,10 +108,6 @@
 (use-package general
   :config
   (general-evil-setup)
-
-  ;; Here we define the leader key which works in Evil normal and
-  ;; visual states.  We then define our own keymaps to group commands
-  ;; under a common key.
   (general-create-definer basic-emacs-leader-keys
     :keymaps '(normal visual insert emacs)
     :prefix "SPC"
@@ -118,9 +124,7 @@
       (define-key map (kbd "p") #'helpful-at-point)
       (define-key map (kbd "M") #'man)
       ;; TODO info interface similar to man
-      map)
-    "Custom keymap with file-related commands.
-Add this to `basic-emacs-leader-keys'.")
+      map))
 
   (defvar basic-emacs-buffer-map
     (let ((map (make-sparse-keymap)))
@@ -130,9 +134,7 @@ Add this to `basic-emacs-leader-keys'.")
       (define-key map (kbd "m") #'switch-to-buffer)
       (define-key map (kbd "n") #'next-buffer) ;FIXME ignore * buffers
       (define-key map (kbd "r") #'revert-buffer)
-      map)
-    "Custom keymap with buffer-related commands.
-Add this to `basic-emacs-leader-keys'.")
+      map))
 
   (defvar basic-emacs-window-map
     (let ((map (make-sparse-keymap)))
@@ -145,9 +147,7 @@ Add this to `basic-emacs-leader-keys'.")
       (define-key map (kbd "k") #'shrink-window)
       (define-key map (kbd "h") #'shrink-window-horizontally)
       (define-key map (kbd "w") #'evil-window-next)
-      map)
-    "Custom keymap with various window commands.
-Add this to `basic-emacs-leader-keys'.")
+      map))
 
   ;; FIXME Register the window resize commands in the `repeat-mode' map.
   (dolist (cmd '( enlarge-window enlarge-window-horizontally
@@ -193,9 +193,7 @@ Add this to `basic-emacs-leader-keys'.")
       (define-key map (kbd "X") #'cljr-extract-def)
       (define-key map (kbd "y") #'cljr-add-project-dependency)
       (define-key map (kbd "z") #'cljr-update-project-dependencies)
-      map)
-    "Custom keymap with buffer-related commands.
-Add this to `basic-emacs-leader-keys'.")
+      map))
 
   (defvar basic-emacs-org-map
     (let ((map (make-sparse-keymap)))
@@ -203,34 +201,35 @@ Add this to `basic-emacs-leader-keys'.")
       (define-key map (kbd "e") #'org-babel-execute-src-block)
       (define-key map (kbd "d") #'org-cut-subtree)
       (define-key map (kbd "p") #'org-beamer-export-to-pdf)
-      map)
-    "Custom keymap with various window commands.
-Add this to `basic-emacs-leader-keys'.")
+      map))
+
+  (defvar basic-emacs-magic-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map (kbd "b") #'org-cut-subtree) ; do big font toggle
+      (define-key map (kbd "t") #'tetris) ; do big font toggle
+      map))
 
   (basic-emacs-leader-keys
     "b" `(,basic-emacs-buffer-map :which-key "Buffer")
-    "c" '(magit-clone :which-key "Magit clone")
-    "d" '(dired-jump :which-key "Dired Jump")
-    "e" '(eshell :which-key "Eshell")
-    "f" '(find-file :which-key "File")
-    "g" '(magit :which-key "Magit")
+    "c" '(magit-clone :which-key "magit clone")
+    "d" '(dired-jump :which-key "dired jump")
+    "e" '(eshell-toggle :which-key "eshell")
+    "E" '(vterm-other-window :which-key "vterm")
+    "f" '(find-file :which-key "open file")
+    ;;"g" '(magit :which-key "Magit") TODO magic map (like vims g)
+    "g" `(,basic-emacs-magic-map :which-key "Magic")
     "h" `(,basic-emacs-help-map :which-key "Help")
-    "i" '(insert-char :which-key "Insert Unicode")
+    "i" '(insert-char :which-key "insert unicode")
     "o" `(,basic-emacs-org-map :which-key "Org Mode")
     "p" `(,project-prefix-map :which-key "Projects")
-    "q" '(save-buffers-kill-emacs :which-key "Quit Emacs")
-    ;;"r" '(recentf-open :which-key "Open Recent") ;;FIXME
-    "s" '(isearch-forward-regexp :which-key "Seek")
-    ;; TODO t for toggle submap
-    "t" '(hl-todo-next :which-key "Next Todo")
+    "q" '(save-buffers-kill-emacs :which-key "quit emacs")
+    "r" '(recentf-open-files :which-key "open recent")
+    "s" '(isearch-forward-regexp :which-key "seek")
+    "t" '(hl-todo-next :which-key "next Todo")
+    "v" '(magit :which-key "magit")
     "w" `(,basic-emacs-window-map :which-key "Windows")
-    "x" '(org-capture :which-key "Org Capture")
+    "x" '(org-capture :which-key "org capture")
     "SPC" `(,basic-emacs-clojure-map :which-key "Clojure")
-    "<return>" '(bookmark-jump :which-key "Jump to bookmark")
-    "S-<return>" '(bookmark-set :which-key "Set a bookmark")))
+    "<return>" '(bookmark-jump :which-key "jump to bookmark")
+    "S-<return>" '(bookmark-set :which-key "set a bookmark")))
 
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((sqlite . t)
-   (shell . t)
-   (emacs-lisp . nil)))
