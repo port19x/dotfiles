@@ -67,6 +67,7 @@
 
 (use-package vertico            :custom (vertico-resize t) ;<- completion
                                 :config (vertico-mode))
+(use-package orderless          :custom (completion-styles '(orderless basic)))
 (use-package marginalia         :config (marginalia-mode))
 (use-package which-key          :config (which-key-mode)
                                 :custom (which-key-max-display-columns 4)
@@ -77,6 +78,12 @@
 
 (use-package projectile         :config (projectile-mode +1)) ;<- living in emacs
 (use-package helpful            :custom (helpful-max-buffers 3))
+(use-package discover-my-major  :defer t)
+(use-package saveplace          :unless noninteractive
+                                :custom (save-place-limit 1000)
+                                :config (save-place-mode))
+(use-package beacon             :config  (beacon-mode 1))
+(use-package disk-usage         :defer t)
 (use-package eshell-toggle      :custom (eshell-toggle-size-fraction 4))
 (use-package vterm              :custom (vterm-always-compile-module t))
 (use-package elfeed             :custom (elfeed-feeds '("https://port19.xyz/rss.xml"))) ;TODO add more feeds
@@ -123,6 +130,7 @@
       (define-key map (kbd "v") #'helpful-variable)
       (define-key map (kbd "f") #'helpful-callable)
       (define-key map (kbd "k") #'helpful-key)
+      (define-key map (kbd "K") #'discover-my-major)
       (define-key map (kbd "m") #'describe-mode)
       (define-key map (kbd "s") #'helpful-symbol)
       (define-key map (kbd "K") #'describe-keymap)
@@ -218,6 +226,7 @@
     "g" `(,my-magic-map :which-key "Magic")
     "h" `(,my-help-map :which-key "Help")
     "i" '(insert-char :which-key "insert unicode")
+    "j" '(imenu :which-key "jump via imenu")
     "o" `(,my-org-map :which-key "Org Mode")
     "p" `(,project-prefix-map :which-key "Projects")
     "q" '(save-buffers-kill-emacs :which-key "quit emacs")
