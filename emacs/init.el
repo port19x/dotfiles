@@ -1,3 +1,6 @@
+;;; Bucket List
+; https://github.com/KirmTwinty/keyfreq
+; read orgmode docs
 ;;; >BOOTSTRAPPING< ;;;
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -9,53 +12,60 @@
 (require 'bind-key) ;; too here
 (setq use-package-always-ensure t)
 
-;;; >GLOBAL< ;;;
-(use-package emacs               :config  (menu-bar-mode -1)
-                                          (tool-bar-mode -1)
-                                          (scroll-bar-mode -1)
-                                          (horizontal-scroll-bar-mode -1)
-                                          (savehist-mode 1)
-                                          (org-babel-do-load-languages
-                                           'org-babel-load-languages
-                                           '((sqlite . t)
-                                             (shell . t)
-                                             (emacs-lisp . nil)))
-                                 :custom  (inhibit-startup-message t)
-                                          (make-backup-files nil)
-                                          (custom-file (concat user-emacs-directory "/custom.el"))
-                                          (display-line-numbers-type `relative)
-                                          (native-comp-deferred-compilation nil)
-                                          (dired-kill-when-opening-new-dired-buffer t)
-                                          (indent-tabs-mode nil)
-                                          (ubiquify-buffer-name-style 'forward)
-                                          (visible-bell t)
-                                          (user-full-name "port19")
-                                          (user-mail-address "port19@port19.xyz")
-                                          (org-directory "~/doc/org")
-                                          (org-confirm-babel-evaluate nil))
+;;; >GLOBAL< ;;; TODO eshell aliases
+(use-package emacs
+  :config
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (horizontal-scroll-bar-mode -1)
+  (savehist-mode 1)
+  (set-face-attribute 'default nil :font "Iosevka" :height 140)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((sqlite . t)
+     (shell . t)
+     (emacs-lisp . nil)))
+  :custom
+  (inhibit-startup-message t)
+  (make-backup-files nil)
+  (custom-file (concat user-emacs-directory "/custom.el"))
+  (display-line-numbers-type `relative)
+  (native-comp-deferred-compilation nil)
+  (dired-kill-when-opening-new-dired-buffer t)
+  (indent-tabs-mode nil)
+  (ubiquify-buffer-name-style 'forward)
+  (visible-bell t)
+  (user-full-name "port19")
+  (user-mail-address "port19@port19.xyz")
+  (org-directory "~/doc/org")
+  (org-confirm-babel-evaluate nil))
+
+
+;;; >DASHBOARD< ;;;
+(use-package dashboard
+  :preface
+  (defun my/dashboard-banner ()
+    (setq dashbard-banner-logo-title
+          (format "Emacs ready in %s seconds with %d garbage collections."
+                  (emacs-init-time) gcs-done)))
+  :custom
+  (dashboard-startup-banner "~/dotfiles/emacs/avatar.gif")
+  (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+  (dashboard-center-content t)
+  (dashboard-week-agenda nil)
+  (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5) agenda))
+  :config
+  (dashboard-setup-startup-hook)
+  :hook
+  ((after-init     . dashboard-refresh-buffer)
+   (dashboard-mode . my/dashboard-banner)))
 
 ;;; >PACKAGES< ;;;
-;;; dashboard ;;;
-(use-package dashboard           :preface (defun my/dashboard-banner ()
-                                            (setq dashbard-banner-logo-title
-                                                  (format "Emacs ready in %s seconds with %d garbage collections."
-                                                          (emacs-init-time) gcs-done)))
-                                 :custom  (dashboard-startup-banner "~/dotfiles/emacs/avatar.gif")
-                                          (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-                                          (dashboard-center-content t)
-                                          (dashboard-week-agenda nil)
-                                          (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5) agenda))
-                                 :config  (dashboard-setup-startup-hook)
-                                 :hook    ((after-init     . dashboard-refresh-buffer)
-                                           (dashboard-mode . my/dashboard-banner)))
-
-;;; look and feel ;;;
-(set-face-attribute 'default nil :font "Iosevka" :height 140)
-(use-package doom-themes         :config  (load-theme 'doom-nord-aurora t))
+(use-package doom-themes         :config  (load-theme 'doom-nord-aurora t)) ;<- look
 (use-package doom-modeline       :config  (doom-modeline-mode))
 
-;;; completion ;;;
-(use-package vertico             :custom  (vertico-resize t)
+(use-package vertico             :custom  (vertico-resize t) ;<- completion
                                  :config  (vertico-mode))
 (use-package marginalia          :config  (marginalia-mode))
 (use-package which-key           :config  (which-key-mode)
@@ -65,23 +75,23 @@
 (use-package corfu               :custom  (corfu-auto t)
                                  :config  (global-corfu-mode))
 
-;;; living in emacs ;;;
-(use-package projectile          :config  (projectile-mode +1))
+(use-package projectile          :config  (projectile-mode +1)) ;<- living in emacs
 (use-package helpful)
 (use-package eshell-toggle)
 (use-package vterm               :custom  (vterm-always-compile-module t))
-(use-package elfeed              :custom  (elfeed-feeds '("https://port19.xyz/rss.xml")))
+(use-package elfeed              :custom  (elfeed-feeds '("https://port19.xyz/rss.xml"))) ;TODO add more feeds
+(use-package org-superstar       :hook    (org-mode . org-superstar-mode))
+(use-package pdf-tools           :magic   ("%PDF" . pdf-view-mode) ;FIXME
+                                 :config  (pdf-tools-install :no-query))
 
-;;; evil keys ;;;
-(use-package evil                :init    (setq evil-want-keybinding nil)
+(use-package evil                :init    (setq evil-want-keybinding nil) ;<- evil keys
                                  :config  (evil-mode 1)
                                  :custom  (evil-undo-system 'undo-redo))
 (use-package evil-goggles        :config  (evil-goggles-mode))
 (use-package evil-vimish-fold    :config  (global-evil-vimish-fold-mode))
 (use-package evil-collection     :config  (evil-collection-init))
 
-;;; clojure ;;;
-(use-package clojure-mode        :mode    "\\.edn\\'" "\\.clj?[scx]\\'")
+(use-package clojure-mode        :mode    "\\.edn\\'" "\\.clj?[scx]\\'") ;<- clojure
 (use-package cider               :after   (clojure-mode)
                                  :custom  (cider-repl-pop-to-buffer-on-connect . nil))
 (use-package clj-refactor        :after   (clojure-mode)
@@ -92,18 +102,12 @@
 (use-package paredit             :hook    (clojure-mode . paredit-mode))
 (use-package eglot               :hook    (clojure-mode . eglot-ensure))
 
-;;; other programming related modes ;;;
-(use-package magit)
+(use-package magit) ;<- other programming related modes
 (use-package hl-todo             :config  (global-hl-todo-mode))
 (use-package git-gutter          :config  (global-git-gutter-mode))
 (use-package markdown-mode       :mode    "\\.md\\'")
 (use-package lua-mode            :mode    "\\.lua\\'")
 (use-package ansible             :mode    "\\.ya?ml\\'")
-
-;;; media related stuff ;;;
-(use-package org-superstar       :hook    (org-mode . org-superstar-mode))
-(use-package pdf-tools           :magic   ("%PDF" . pdf-view-mode) ;FIXME
-                                 :config  (pdf-tools-install :no-query))
 
 ;;; >KEYBINDINGS< ;;;
 (use-package general
@@ -149,13 +153,6 @@
       (define-key map (kbd "h") #'shrink-window-horizontally)
       (define-key map (kbd "w") #'evil-window-next)
       map))
-
-  ;; FIXME Register the window resize commands in the `repeat-mode' map.
-  (dolist (cmd '( enlarge-window enlarge-window-horizontally
-                  shrink-window shrink-window-horizontally
-                  evil-window-left evil-window-down
-                  evil-window-up evil-window-right))
-    (put cmd 'repeat-map 'my-window-map))
 
   (defvar my-clojure-map
     (let ((map (make-sparse-keymap)))
@@ -233,4 +230,3 @@
     "SPC" `(,my-clojure-map :which-key "Clojure")
     "<return>" '(bookmark-jump :which-key "jump to bookmark")
     "S-<return>" '(bookmark-set :which-key "set a bookmark")))
-
