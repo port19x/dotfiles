@@ -43,7 +43,8 @@
                                  :custom  (dashboard-startup-banner "~/dotfiles/emacs/avatar.gif")
                                           (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
                                           (dashboard-center-content t)
-                                          (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5)))
+                                          (dashboard-week-agenda nil)
+                                          (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5) agenda))
                                  :config  (dashboard-setup-startup-hook)
                                  :hook    ((after-init     . dashboard-refresh-buffer)
                                            (dashboard-mode . my/dashboard-banner)))
@@ -68,7 +69,7 @@
 (use-package projectile          :config  (projectile-mode +1))
 (use-package helpful)
 (use-package eshell-toggle)
-(use-package vterm)
+(use-package vterm               :custom  (vterm-always-compile-module t))
 (use-package elfeed              :custom  (elfeed-feeds '("https://port19.xyz/rss.xml")))
 
 ;;; evil keys ;;;
@@ -101,19 +102,19 @@
 
 ;;; media related stuff ;;;
 (use-package org-superstar       :hook    (org-mode . org-superstar-mode))
-(use-package pdf-tools           :magic   ("%PDF" . pdf-view-mode)
+(use-package pdf-tools           :magic   ("%PDF" . pdf-view-mode) ;FIXME
                                  :config  (pdf-tools-install :no-query))
 
 ;;; >KEYBINDINGS< ;;;
 (use-package general
   :config
   (general-evil-setup)
-  (general-create-definer basic-emacs-leader-keys
+  (general-create-definer my-leader-keys
     :keymaps '(normal visual insert emacs)
     :prefix "SPC"
     :global-prefix "C-M-SPC")
 
-  (defvar basic-emacs-help-map
+  (defvar my-help-map
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "v") #'helpful-variable)
       (define-key map (kbd "f") #'helpful-callable)
@@ -126,7 +127,7 @@
       ;; TODO info interface similar to man
       map))
 
-  (defvar basic-emacs-buffer-map
+  (defvar my-buffer-map
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "b") #'buffer-menu)
       (define-key map (kbd "i") #'ibuffer)
@@ -136,7 +137,7 @@
       (define-key map (kbd "r") #'revert-buffer)
       map))
 
-  (defvar basic-emacs-window-map
+  (defvar my-window-map
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "s") #'split-window-below)
       (define-key map (kbd "v") #'split-window-right)
@@ -154,9 +155,9 @@
                   shrink-window shrink-window-horizontally
                   evil-window-left evil-window-down
                   evil-window-up evil-window-right))
-    (put cmd 'repeat-map 'basic-emacs-window-map))
+    (put cmd 'repeat-map 'my-window-map))
 
-  (defvar basic-emacs-clojure-map
+  (defvar my-clojure-map
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "SPC") #'cider-eval-last-sexp)
       (define-key map (kbd "a") #'clojure-add-arity)
@@ -195,7 +196,7 @@
       (define-key map (kbd "z") #'cljr-update-project-dependencies)
       map))
 
-  (defvar basic-emacs-org-map
+  (defvar my-org-map
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "w") #'org-insert-structure-template)
       (define-key map (kbd "e") #'org-babel-execute-src-block)
@@ -203,33 +204,33 @@
       (define-key map (kbd "p") #'org-beamer-export-to-pdf)
       map))
 
-  (defvar basic-emacs-magic-map
+  (defvar my-magic-map
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "b") #'org-cut-subtree) ; do big font toggle
       (define-key map (kbd "t") #'tetris) ; do big font toggle
       map))
 
-  (basic-emacs-leader-keys
-    "b" `(,basic-emacs-buffer-map :which-key "Buffer")
+  (my-leader-keys
+    "a" '(org-agenda-week-view :which-key "magit clone")
+    "b" `(,my-buffer-map :which-key "Buffer")
     "c" '(magit-clone :which-key "magit clone")
     "d" '(dired-jump :which-key "dired jump")
     "e" '(eshell-toggle :which-key "eshell")
     "E" '(vterm-other-window :which-key "vterm")
     "f" '(find-file :which-key "open file")
-    ;;"g" '(magit :which-key "Magit") TODO magic map (like vims g)
-    "g" `(,basic-emacs-magic-map :which-key "Magic")
-    "h" `(,basic-emacs-help-map :which-key "Help")
+    "g" `(,my-magic-map :which-key "Magic")
+    "h" `(,my-help-map :which-key "Help")
     "i" '(insert-char :which-key "insert unicode")
-    "o" `(,basic-emacs-org-map :which-key "Org Mode")
+    "o" `(,my-org-map :which-key "Org Mode")
     "p" `(,project-prefix-map :which-key "Projects")
     "q" '(save-buffers-kill-emacs :which-key "quit emacs")
     "r" '(recentf-open-files :which-key "open recent")
     "s" '(isearch-forward-regexp :which-key "seek")
     "t" '(hl-todo-next :which-key "next Todo")
     "v" '(magit :which-key "magit")
-    "w" `(,basic-emacs-window-map :which-key "Windows")
+    "w" `(,my-window-map :which-key "Windows")
     "x" '(org-capture :which-key "org capture")
-    "SPC" `(,basic-emacs-clojure-map :which-key "Clojure")
+    "SPC" `(,my-clojure-map :which-key "Clojure")
     "<return>" '(bookmark-jump :which-key "jump to bookmark")
     "S-<return>" '(bookmark-set :which-key "set a bookmark")))
 
