@@ -1,6 +1,7 @@
 ;;; Bucket List
 ; https://github.com/KirmTwinty/keyfreq
 ; read orgmode docs
+; vc map on v
 ;;; >BOOTSTRAPPING< ;;;
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -12,7 +13,7 @@
 (require 'bind-key) ;; too here
 (setq use-package-always-ensure t)
 
-;;; >GLOBAL< ;;; TODO eshell aliases
+;;; >GLOBAL< ;;;
 (use-package emacs
   :config
   (menu-bar-mode -1)
@@ -61,8 +62,8 @@
    (dashboard-mode . my/dashboard-banner)))
 
 ;;; >PACKAGES< ;;;
-(use-package doom-themes         :config  (load-theme 'doom-nord-aurora t)) ;<- look
-(use-package doom-modeline       :config  (doom-modeline-mode))
+(use-package doom-themes        :config (load-theme 'doom-nord-aurora t)) ;<- look
+(use-package doom-modeline      :config (doom-modeline-mode))
 
 (use-package vertico            :custom (vertico-resize t) ;<- completion
                                 :config (vertico-mode))
@@ -75,8 +76,8 @@
                                 :config (global-corfu-mode))
 
 (use-package projectile         :config (projectile-mode +1)) ;<- living in emacs
-(use-package helpful)
-(use-package eshell-toggle)
+(use-package helpful            :custom (helpful-max-buffers 3))
+(use-package eshell-toggle      :custom (eshell-toggle-size-fraction 4))
 (use-package vterm              :custom (vterm-always-compile-module t))
 (use-package elfeed             :custom (elfeed-feeds '("https://port19.xyz/rss.xml"))) ;TODO add more feeds
 (use-package org-superstar      :hook   (org-mode . org-superstar-mode))
@@ -101,7 +102,7 @@
 (use-package paredit            :hook   (clojure-mode . paredit-mode))
 (use-package eglot              :hook   (clojure-mode . eglot-ensure))
 
-(use-package magit)                         ;<- other programming related modes
+(use-package magit              :custom (magit-slow-confirm nil)) ;<- other programming related modes
 (use-package hl-todo            :config (global-hl-todo-mode))
 (use-package git-gutter         :config (global-git-gutter-mode))
 (use-package markdown-mode      :mode   "\\.md\\'")
