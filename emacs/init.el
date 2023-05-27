@@ -82,8 +82,11 @@
 (use-package saveplace          :unless noninteractive
                                 :custom (save-place-limit 1000)
                                 :config (save-place-mode))
-(use-package beacon             :config  (beacon-mode 1))
+(use-package beacon             :config (beacon-mode 1))
 (use-package disk-usage         :defer t)
+(use-package keyfreq            :config (keyfreq-mode 1)
+                                        (keyfreq-autosave-mode 1)
+                                :custom (keyfreq-excluded-regexp '("evil-*" "self-insert-command" "mwheel-scroll")))
 (use-package eshell-toggle      :custom (eshell-toggle-size-fraction 4))
 (use-package vterm              :custom (vterm-always-compile-module t))
 (use-package elfeed             :custom (elfeed-feeds '("https://port19.xyz/rss.xml"))) ;TODO add more feeds
@@ -203,16 +206,20 @@
 
   (defvar my-org-map
     (let ((map (make-sparse-keymap)))
-      (define-key map (kbd "w") #'org-insert-structure-template)
+      (define-key map (kbd "a") #'org-attach)
+      (define-key map (kbd "b") #'org-insert-structure-template)
+      (define-key map (kbd "c") #'org-cite-insert)
+      (define-key map (kbd "d") #'org-deadline)
+      (define-key map (kbd "e") #'org-export-dispatch)
+      (define-key map (kbd "l") #'org-insert-link)
+      (define-key map (kbd "t") #'org-insert-time-stamp)
       (define-key map (kbd "e") #'org-babel-execute-src-block)
-      (define-key map (kbd "d") #'org-cut-subtree)
       (define-key map (kbd "p") #'org-beamer-export-to-pdf)
       map))
 
-  (defvar my-magic-map
+(defvar my-vc-map
     (let ((map (make-sparse-keymap)))
-      (define-key map (kbd "b") #'org-cut-subtree) ; do big font toggle
-      (define-key map (kbd "t") #'tetris) ; do big font toggle
+      (define-key map (kbd "p") #'org-beamer-export-to-pdf)
       map))
 
   (my-leader-keys
@@ -221,21 +228,28 @@
     "c" '(magit-clone :which-key "magit clone")
     "d" '(dired-jump :which-key "dired jump")
     "e" '(eshell-toggle :which-key "eshell")
-    "E" '(vterm-other-window :which-key "vterm")
     "f" '(find-file :which-key "open file")
-    "g" `(,my-magic-map :which-key "Magic")
+    "g" '(magit :which-key "magit")
     "h" `(,my-help-map :which-key "Help")
     "i" '(insert-char :which-key "insert unicode")
     "j" '(imenu :which-key "jump via imenu")
+    "k" '(keyfreq-show :which-key "show key frequencies")
+    "l" '(org-store-link :which-key "org store link")
+    "m" '(hl-todo-next :which-key "next Todo")
+    "n" '(elfeed :which-key "news (elfeed)")
     "o" `(,my-org-map :which-key "Org Mode")
     "p" `(,project-prefix-map :which-key "Projects")
     "q" '(save-buffers-kill-emacs :which-key "quit emacs")
     "r" '(recentf-open-files :which-key "open recent")
     "s" '(isearch-forward-regexp :which-key "seek")
-    "t" '(hl-todo-next :which-key "next Todo")
-    "v" '(magit :which-key "magit")
+    "t" '(vterm-other-window :which-key "vterm")
+    ;u
+    ;"v" TODO vc map
+    "v" `(,my-vc-map :which-key "Version Control")
     "w" `(,my-window-map :which-key "Windows")
     "x" '(org-capture :which-key "org capture")
+    ;y
+    "z" '(zone :which-key "zone")
     "SPC" `(,my-clojure-map :which-key "Clojure")
     "<return>" '(bookmark-jump :which-key "jump to bookmark")
     "S-<return>" '(bookmark-set :which-key "set a bookmark")))
