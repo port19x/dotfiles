@@ -39,6 +39,8 @@
   (visible-bell t)
   (user-full-name "port19")
   (user-mail-address "port19@port19.xyz")
+  (org-edit-src-content-indentation 0)
+  (org-src-preserve-indentation t)
   (org-directory "~/doc/org")
   (org-confirm-babel-evaluate nil))
 
@@ -89,9 +91,17 @@
                                 :custom (keyfreq-excluded-regexp '("evil-*" "self-insert-command" "mwheel-scroll")))
 (use-package eshell-toggle      :custom (eshell-toggle-size-fraction 4))
 (use-package vterm              :custom (vterm-always-compile-module t))
-(use-package elfeed             :custom (elfeed-feeds '("https://port19.xyz/rss.xml"))) ;TODO add more feeds
+(use-package elfeed             :custom (elfeed-feeds '("https://port19.xyz/rss.xml"
+                                                        "https://mitchmarq42.xyz/index.xml"
+                                                        "https://lukesmith.xyz/index.xml"
+                                                        "https://protesilaos.com/commentary.xml"
+                                                        "https://protesilaos.com/codelog.xml"
+                                                        "https://protesilaos.com/news.xml"
+                                                        "https://clojure.org/feed.xml"
+                                                        "https://github.blog/changelog/feed"
+                                                        )))
 (use-package org-superstar      :hook   (org-mode . org-superstar-mode))
-(use-package pdf-tools          :magic  ("%PDF" . pdf-view-mode) ;FIXME
+(use-package pdf-tools          :magic  ("%PDF" . pdf-view-mode)
                                 :config (pdf-tools-install :no-query))
 
 (use-package evil               :init   (setq evil-want-keybinding nil) ;<- evil keys
@@ -212,6 +222,8 @@
       (define-key map (kbd "d") #'org-deadline)
       (define-key map (kbd "e") #'org-export-dispatch)
       (define-key map (kbd "l") #'org-insert-link)
+      (define-key map (kbd "n") #'org-narrow-to-subtree)
+      (define-key map (kbd "N") #'widen)
       (define-key map (kbd "t") #'org-insert-time-stamp)
       (define-key map (kbd "e") #'org-babel-execute-src-block)
       (define-key map (kbd "p") #'org-beamer-export-to-pdf)
@@ -244,7 +256,6 @@
     "s" '(isearch-forward-regexp :which-key "seek")
     "t" '(vterm-other-window :which-key "vterm")
     ;u
-    ;"v" TODO vc map
     "v" `(,my-vc-map :which-key "Version Control")
     "w" `(,my-window-map :which-key "Windows")
     "x" '(org-capture :which-key "org capture")
