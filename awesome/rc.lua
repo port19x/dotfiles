@@ -4,6 +4,10 @@ local awful = require("awful")
 require("awful.autofocus")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
+local menubar = require("menubar")
+menubar.utils.terminal = "wezterm"
+menubar.show_categories = false
+menubar.utils.lookup_icon = function() end
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- }}}
 
@@ -44,7 +48,7 @@ globalkeys = gears.table.join(
     awful.key({}, "XF86MonBrightnessUp",        function () awful.spawn("brightnessctl set 10%+") end, {description = "raise brightness", group = "mediakey"}),
     awful.key({}, "XF86MonBrightnessDown",      function () awful.spawn("brightnessctl set 10%-") end, {description = "lower brightness", group = "mediakey"}),
     -- Group Launcher
-    awful.key({ "Mod4"            }, "r",       function () awful.spawn("rofi -show run") end, {description = "runlauncher", group = "launcher"}),
+    awful.key({ "Mod4"            }, "r",       function () menubar.show() end, {description = "runlauncher", group = "launcher"}),
     awful.key({ "Mod4"            }, "y",       function () awful.spawn("signal-desktop") end, {description = "signal-desktop", group = "launcher"}),
     awful.key({ "Mod4"            }, "e",       function () awful.spawn("emacs") end, {description = "emacs", group = "launcher"}),
     awful.key({ "Mod4"            }, "g",       function () awful.spawn("keepassxc") end, {description = "keepassxc", group = "launcher"}),
