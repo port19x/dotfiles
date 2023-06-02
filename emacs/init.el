@@ -1,8 +1,3 @@
-;;; Bucket List
-; https://github.com/KirmTwinty/keyfreq
-; read orgmode docs
-; vc map on v
-;;; >BOOTSTRAPPING< ;;;
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
@@ -13,7 +8,6 @@
 (require 'bind-key) ;; too here
 (setq use-package-always-ensure t)
 
-;;; >GLOBAL< ;;;
 (use-package emacs
   :config
   (menu-bar-mode -1)
@@ -42,9 +36,11 @@
   (org-edit-src-content-indentation 0)
   (org-src-preserve-indentation t)
   (org-directory "~/doc/org")
+  (org-default-notes-file "~/doc/org/notes.org")
+  (org-agenda-files '("~/doc/org"))
+  (org-capture-templates '(("c" "Coaching / Emacs todo" checkitem (file ""))))
   (org-confirm-babel-evaluate nil))
 
-;;; >DASHBOARD< ;;;
 (use-package dashboard
   :preface
   (defun my/dashboard-banner ()
@@ -56,17 +52,27 @@
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   (dashboard-center-content t)
   (dashboard-week-agenda nil)
-  (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5) agenda))
+  (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5)))
   :config
   (dashboard-setup-startup-hook)
   :hook
   ((after-init     . dashboard-refresh-buffer)
    (dashboard-mode . my/dashboard-banner)))
 
-;;; >PACKAGES< ;;;
+(use-package elfeed
+  :custom
+  (elfeed-feeds '("https://port19.xyz/rss.xml"
+                  "https://mitchmarq42.xyz/index.xml"
+                  "https://lukesmith.xyz/index.xml"
+                  "https://feeds.transistor.fm/thoughts-on-functional-programming-podcast-by-eric-normand"
+                  "https://protesilaos.com/commentary.xml"
+                  "https://protesilaos.com/codelog.xml"
+                  "https://protesilaos.com/news.xml"
+                  "https://clojure.org/feed.xml"
+                  "https://github.blog/changelog/feed")))
+
 (use-package doom-themes        :config (load-theme 'doom-nord-aurora t)) ;<- look
 (use-package doom-modeline      :config (doom-modeline-mode))
-
 (use-package vertico            :custom (vertico-resize t) ;<- completion
                                 :config (vertico-mode))
 (use-package orderless          :custom (completion-styles '(orderless basic)))
@@ -77,13 +83,10 @@
                                         (which-key-sort-uppercase-first nil))
 (use-package corfu              :custom (corfu-auto t)
                                 :config (global-corfu-mode))
-
 (use-package projectile         :config (projectile-mode +1)) ;<- living in emacs
 (use-package helpful            :custom (helpful-max-buffers 3))
 (use-package discover-my-major  :defer t)
-(use-package saveplace          :unless noninteractive
-                                :custom (save-place-limit 1000)
-                                :config (save-place-mode))
+(use-package saveplace          :config (save-place-mode))
 (use-package beacon             :config (beacon-mode 1))
 (use-package disk-usage         :defer t)
 (use-package keyfreq            :config (keyfreq-mode 1)
@@ -91,45 +94,30 @@
                                 :custom (keyfreq-excluded-regexp '("evil-*" "self-insert-command" "mwheel-scroll")))
 (use-package eshell-toggle      :custom (eshell-toggle-size-fraction 4))
 (use-package vterm              :custom (vterm-always-compile-module t))
-(use-package elfeed             :custom (elfeed-feeds '("https://port19.xyz/rss.xml"
-                                                        "https://mitchmarq42.xyz/index.xml"
-                                                        "https://lukesmith.xyz/index.xml"
-                                                        "https://protesilaos.com/commentary.xml"
-                                                        "https://protesilaos.com/codelog.xml"
-                                                        "https://protesilaos.com/news.xml"
-                                                        "https://clojure.org/feed.xml"
-                                                        "https://github.blog/changelog/feed"
-                                                        )))
-(use-package org-superstar      :hook   (org-mode . org-superstar-mode))
 (use-package pdf-tools          :magic  ("%PDF" . pdf-view-mode)
                                 :config (pdf-tools-install :no-query))
-
+(use-package org-superstar      :hook   (org-mode . org-superstar-mode))
 (use-package evil               :init   (setq evil-want-keybinding nil) ;<- evil keys
                                 :config (evil-mode 1)
                                 :custom (evil-undo-system 'undo-redo))
 (use-package evil-goggles       :config (evil-goggles-mode))
 (use-package evil-vimish-fold   :config (global-evil-vimish-fold-mode))
 (use-package evil-collection    :config (evil-collection-init))
-
 (use-package clojure-mode       :mode   "\\.edn\\'" "\\.clj?[scx]\\'") ;<- clojure
-(use-package cider              :after  (clojure-mode)
-                                :custom (cider-repl-pop-to-buffer-on-connect . nil))
-(use-package clj-refactor       :after  (clojure-mode)
-                                :custom (cljr-project-clean-prompt nil))
+(use-package cider              :custom (cider-repl-pop-to-buffer-on-connect . nil))
+(use-package clj-refactor       :custom (cljr-project-clean-prompt nil))
 (use-package rainbow-delimiters :hook   (prog-mode . rainbow-delimiters-mode))
 (use-package smartparens        :hook   (prog-mode . smartparens-mode))
 (use-package format-all         :hook   (clojure-mode . format-all-mode))
 (use-package paredit            :hook   (clojure-mode . paredit-mode))
 (use-package eglot              :hook   (clojure-mode . eglot-ensure))
-
-(use-package magit              :custom (magit-slow-confirm nil)) ;<- other programming related modes
+(use-package magit              :custom (magit-slow-confirm nil)) ;<- more programming
 (use-package hl-todo            :config (global-hl-todo-mode))
 (use-package git-gutter         :config (global-git-gutter-mode))
 (use-package markdown-mode      :mode   "\\.md\\'")
 (use-package lua-mode           :mode   "\\.lua\\'")
 (use-package ansible            :mode   "\\.ya?ml\\'")
 
-;;; >KEYBINDINGS< ;;;
 (use-package general
   :config
   (general-evil-setup)
@@ -229,13 +217,13 @@
       (define-key map (kbd "p") #'org-beamer-export-to-pdf)
       map))
 
-(defvar my-vc-map
+  (defvar my-vc-map
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "p") #'org-beamer-export-to-pdf)
       map))
 
   (my-leader-keys
-    "a" '(org-agenda-week-view :which-key "magit clone")
+    "a" '(org-agenda :which-key "org agenda")
     "b" `(,my-buffer-map :which-key "Buffer")
     "c" '(magit-clone :which-key "magit clone")
     "d" '(dired-jump :which-key "dired jump")
