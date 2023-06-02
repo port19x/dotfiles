@@ -70,6 +70,12 @@
                   "https://protesilaos.com/news.xml"
                   "https://clojure.org/feed.xml"
                   "https://github.blog/changelog/feed")))
+(use-package elfeed-goodies
+  :config (elfeed-goodies/setup)
+  (evil-define-key 'normal elfeed-show-mode-map
+    (kbd "J") 'elfeed-goodies/split-show-next
+    (kbd "K") 'elfeed-goodies/split-show-prev)
+  :custom (elfeed-goodies/entry-pane-size 0.5))
 
 (use-package doom-themes        :config (load-theme 'doom-nord-aurora t)) ;<- look
 (use-package doom-modeline      :config (doom-modeline-mode))
