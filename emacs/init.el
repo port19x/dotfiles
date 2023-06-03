@@ -16,11 +16,6 @@
   (horizontal-scroll-bar-mode -1)
   (savehist-mode 1)
   (set-face-attribute 'default nil :font "Iosevka" :height 140)
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((sqlite . t)
-     (shell . t)
-     (emacs-lisp . nil)))
   :custom
   (inhibit-startup-message t)
   (make-backup-files nil)
@@ -32,7 +27,16 @@
   (ubiquify-buffer-name-style 'forward)
   (visible-bell t)
   (user-full-name "port19")
-  (user-mail-address "port19@port19.xyz")
+  (user-mail-address "port19@port19.xyz"))
+
+(use-package org-contrib
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((sqlite . t)
+     (shell . t)
+     (emacs-lisp . nil)))
+  :custom
   (org-edit-src-content-indentation 0)
   (org-src-preserve-indentation t)
   (org-directory "~/doc/org")
@@ -68,9 +72,12 @@
                   "https://protesilaos.com/commentary.xml"
                   "https://protesilaos.com/codelog.xml"
                   "https://protesilaos.com/news.xml"
+                  "https://planet.archlinux.org/rss20.xml"
+                  "https://distrowatch.com/news/dwd.xml"
                   "https://clojure.org/feed.xml"
                   "https://github.blog/changelog/feed")))
 (use-package elfeed-goodies
+  :after evil
   :config (elfeed-goodies/setup)
   (evil-define-key 'normal elfeed-show-mode-map
     (kbd "J") 'elfeed-goodies/split-show-next
