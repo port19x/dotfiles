@@ -27,7 +27,10 @@
   (ubiquify-buffer-name-style 'forward)
   (visible-bell t)
   (user-full-name "port19")
-  (user-mail-address "port19@port19.xyz"))
+  (user-mail-address "port19@port19.xyz")
+  (sort-fold-case t)
+  (enable-recursive-minibuffers t)
+  (minibuffer-depth-indicate-mode 1))
 
 (use-package org-contrib
   :config
@@ -85,7 +88,7 @@
   :custom (elfeed-goodies/entry-pane-size 0.5))
 
 (use-package doom-themes        :config (load-theme 'doom-nord-aurora t)) ;<- look
-(use-package doom-modeline      :config (doom-modeline-mode))
+(use-package doom-modeline      :config (doom-modeline-mode)) ;nerd-icons-install-fonts
 (use-package vertico            :custom (vertico-resize t) ;<- completion
                                 :config (vertico-mode))
 (use-package orderless          :custom (completion-styles '(orderless basic)))
@@ -95,7 +98,9 @@
                                         (which-key-sort-order 'which-key-key-order-alpha)
                                         (which-key-sort-uppercase-first nil))
 (use-package corfu              :custom (corfu-auto t)
-                                :config (global-corfu-mode))
+                                :config (global-corfu-mode)
+                                :hook   (eshell-mode . (lambda () (setq-local corfu-auto nil) (corfu-mode))))
+(use-package consult) ;TODO look into it consult-imenu consult-outline
 (use-package projectile         :config (projectile-mode +1)) ;<- living in emacs
 (use-package helpful            :custom (helpful-max-buffers 3))
 (use-package discover-my-major  :defer t)
@@ -139,23 +144,30 @@
     :prefix "SPC"
     :global-prefix "C-M-SPC")
 
+  (defun my-info-read-manual ()
+    (interactive)
+    (info
+     (completing-read "Read Info manual: "
+                      (info--manual-names nil)
+                      nil
+                      :require-match))) 
+
   (defvar my-help-map
     (let ((map (make-sparse-keymap)))
-      (define-key map (kbd "v") #'helpful-variable)
       (define-key map (kbd "f") #'helpful-callable)
-      (define-key map (kbd "k") #'helpful-key)
+      (define-key map (kbd "i") #'my-info-read-manual)
       (define-key map (kbd "K") #'discover-my-major)
+      (define-key map (kbd "k") #'helpful-key)
       (define-key map (kbd "m") #'describe-mode)
-      (define-key map (kbd "s") #'helpful-symbol)
-      (define-key map (kbd "K") #'describe-keymap)
-      (define-key map (kbd "p") #'helpful-at-point)
       (define-key map (kbd "M") #'man)
-      ;; TODO info interface similar to man
+      (define-key map (kbd "p") #'helpful-at-point)
+      (define-key map (kbd "s") #'helpful-symbol)
+      (define-key map (kbd "v") #'helpful-variable)
       map))
 
   (defvar my-buffer-map
     (let ((map (make-sparse-keymap)))
-      (define-key map (kbd "b") #'buffer-menu)
+      (define-key map (kbd "b") #'consult-buffer)
       (define-key map (kbd "i") #'ibuffer)
       (define-key map (kbd "k") #'kill-current-buffer)
       (define-key map (kbd "m") #'switch-to-buffer)
@@ -187,7 +199,7 @@
       (define-key map (kbd "f") #'eglot-format)
       (define-key map (kbd "g") #'flymake-show-buffer-diagnostics)
       (define-key map (kbd "h") #'clojure-cycle-privacy)
-      (define-key map (kbd "i") #'cider-inspect)
+      (define-key map (kbd "i") #'cider-inspect-last-result)
       (define-key map (kbd "I") #'cljr-add-require-to-ns)
       (define-key map (kbd "j") #'cider-jack-in-clj)
       (define-key map (kbd "J") #'cider-jack-in-cljs)
@@ -230,10 +242,16 @@
       (define-key map (kbd "p") #'org-beamer-export-to-pdf)
       map))
 
-  (defvar my-vc-map
-    (let ((map (make-sparse-keymap)))
-      (define-key map (kbd "p") #'org-beamer-export-to-pdf)
-      map))
+  (defun recentf-open (file) ;not installed for some reason lol
+    "Prompt for FILE in `recentf-list' and visit it.
+Enable `recentf-mode' if it isn't already."
+    (interactive
+     (list
+      (progn (unless recentf-mode (recentf-mode 1))
+             (completing-read (format-prompt "Open recent file" nil)
+                              recentf-list nil t))))
+    (when file
+      (funcall recentf-menu-action file))) 
 
   (my-leader-keys
     "a" '(org-agenda :which-key "org agenda")
@@ -244,6 +262,7 @@
     "f" '(find-file :which-key "open file")
     "g" '(magit :which-key "magit")
     "h" `(,my-help-map :which-key "Help")
+    "H" '(consult-history :which-key "history minibuffer completion")
     "i" '(insert-char :which-key "insert unicode")
     "j" '(imenu :which-key "jump via imenu")
     "k" '(keyfreq-show :which-key "show key frequencies")
@@ -251,13 +270,14 @@
     "m" '(hl-todo-next :which-key "next Todo")
     "n" '(elfeed :which-key "news (elfeed)")
     "o" `(,my-org-map :which-key "Org Mode")
-    "p" `(,project-prefix-map :which-key "Projects")
+    "p" `(,project-prefix-map :which-key "Projects") ;FIXME automatically populate projects file
     "q" '(save-buffers-kill-emacs :which-key "quit emacs")
-    "r" '(recentf-open-files :which-key "open recent")
-    "s" '(isearch-forward-regexp :which-key "seek")
+    "r" '(recentf-open :which-key "open recent")
+    "R" '(re-builder :which-key "regex builder") ;consider pcre replacement
+    "s" '(consult-line :which-key "seek")
     "t" '(vterm-other-window :which-key "vterm")
     ;u
-    "v" `(,my-vc-map :which-key "Version Control")
+    ;v
     "w" `(,my-window-map :which-key "Windows")
     "x" '(org-capture :which-key "org capture")
     ;y
