@@ -100,8 +100,9 @@
 (use-package corfu              :custom (corfu-auto t)
                                 :config (global-corfu-mode)
                                 :hook   (eshell-mode . (lambda () (setq-local corfu-auto nil) (corfu-mode))))
-(use-package consult) ;TODO look into it consult-imenu consult-outline
-(use-package projectile         :config (projectile-mode +1)) ;<- living in emacs
+(use-package consult)
+(use-package projectile         :config (projectile-mode +1) ;<- living in emacs
+                                :custom (projectile-project-search-path '("~/dotfiles/" "~/git/")))
 (use-package helpful            :custom (helpful-max-buffers 3))
 (use-package discover-my-major  :defer t)
 (use-package saveplace          :config (save-place-mode))
@@ -144,22 +145,14 @@
     :prefix "SPC"
     :global-prefix "C-M-SPC")
 
-  (defun my-info-read-manual ()
-    (interactive)
-    (info
-     (completing-read "Read Info manual: "
-                      (info--manual-names nil)
-                      nil
-                      :require-match))) 
-
   (defvar my-help-map
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "f") #'helpful-callable)
-      (define-key map (kbd "i") #'my-info-read-manual)
+      (define-key map (kbd "i") #'consult-info)
       (define-key map (kbd "K") #'discover-my-major)
       (define-key map (kbd "k") #'helpful-key)
       (define-key map (kbd "m") #'describe-mode)
-      (define-key map (kbd "M") #'man)
+      (define-key map (kbd "M") #'consult-man)
       (define-key map (kbd "p") #'helpful-at-point)
       (define-key map (kbd "s") #'helpful-symbol)
       (define-key map (kbd "v") #'helpful-variable)
@@ -197,7 +190,7 @@
       (define-key map (kbd "d") #'cider-eval-defun-at-point)
       (define-key map (kbd "e") #'cider-enlighten-mode)
       (define-key map (kbd "f") #'eglot-format)
-      (define-key map (kbd "g") #'flymake-show-buffer-diagnostics)
+      (define-key map (kbd "g") #'consult-flymake)
       (define-key map (kbd "h") #'clojure-cycle-privacy)
       (define-key map (kbd "i") #'cider-inspect-last-result)
       (define-key map (kbd "I") #'cljr-add-require-to-ns)
@@ -234,6 +227,7 @@
       (define-key map (kbd "c") #'org-cite-insert)
       (define-key map (kbd "d") #'org-deadline)
       (define-key map (kbd "e") #'org-export-dispatch)
+      (define-key map (kbd "j") #'consult-org-heading)
       (define-key map (kbd "l") #'org-insert-link)
       (define-key map (kbd "n") #'org-narrow-to-subtree)
       (define-key map (kbd "N") #'widen)
@@ -242,17 +236,6 @@
       (define-key map (kbd "p") #'org-beamer-export-to-pdf)
       map))
 
-  (defun recentf-open (file) ;not installed for some reason lol
-    "Prompt for FILE in `recentf-list' and visit it.
-Enable `recentf-mode' if it isn't already."
-    (interactive
-     (list
-      (progn (unless recentf-mode (recentf-mode 1))
-             (completing-read (format-prompt "Open recent file" nil)
-                              recentf-list nil t))))
-    (when file
-      (funcall recentf-menu-action file))) 
-
   (my-leader-keys
     "a" '(org-agenda :which-key "org agenda")
     "b" `(,my-buffer-map :which-key "Buffer")
@@ -260,28 +243,30 @@ Enable `recentf-mode' if it isn't already."
     "d" '(dired-jump :which-key "dired jump")
     "e" '(eshell-toggle :which-key "eshell")
     "f" '(find-file :which-key "open file")
+    "F" '(consult-find :which-key "consult find")
     "g" '(magit :which-key "magit")
+    "G" '(consult-ripgrep :which-key "consult grep")
     "h" `(,my-help-map :which-key "Help")
     "H" '(consult-history :which-key "history minibuffer completion")
     "i" '(insert-char :which-key "insert unicode")
-    "j" '(imenu :which-key "jump via imenu")
+    "j" '(consult-imenu :which-key "jump via imenu")
     "k" '(keyfreq-show :which-key "show key frequencies")
     "l" '(org-store-link :which-key "org store link")
     "m" '(hl-todo-next :which-key "next Todo")
     "n" '(elfeed :which-key "news (elfeed)")
     "o" `(,my-org-map :which-key "Org Mode")
-    "p" `(,project-prefix-map :which-key "Projects") ;FIXME automatically populate projects file
+    "p" `(,project-prefix-map :which-key "Projects")
     "q" '(save-buffers-kill-emacs :which-key "quit emacs")
-    "r" '(recentf-open :which-key "open recent")
+    "r" '(consult-recent-file :which-key "open recent")
     "R" '(re-builder :which-key "regex builder") ;consider pcre replacement
     "s" '(consult-line :which-key "seek")
     "t" '(vterm-other-window :which-key "vterm")
-    ;u
+    "u" '(consult-theme :which-key "change theme")
     ;v
     "w" `(,my-window-map :which-key "Windows")
     "x" '(org-capture :which-key "org capture")
     ;y
     "z" '(zone :which-key "zone")
     "SPC" `(,my-clojure-map :which-key "Clojure")
-    "<return>" '(bookmark-jump :which-key "jump to bookmark")
+    "<return>" '(consult-bookmark :which-key "jump to bookmark")
     "S-<return>" '(bookmark-set :which-key "set a bookmark")))
