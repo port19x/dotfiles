@@ -33,9 +33,10 @@
   (enable-recursive-minibuffers t)
   (minibuffer-depth-indicate-mode 1)
   :hook
-  (emacs-startup . (lambda () (setq gc-cons-threshold (expt 2 23)))))
+  (emacs-startup . (lambda () (setq gc-cons-threshold (* 8 1024 1024)))))
 
 (use-package org-contrib
+  :defer 2
   :config
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -70,6 +71,7 @@
    (dashboard-mode . my/dashboard-banner)))
 
 (use-package elfeed
+  :defer 1
   :custom
   (elfeed-feeds '("https://port19.xyz/rss.xml"
                   "https://mitchmarq42.xyz/index.xml"
@@ -104,17 +106,21 @@
                                 :config (global-corfu-mode)
                                 :hook   (eshell-mode . (lambda () (setq-local corfu-auto nil) (corfu-mode))))
 (use-package consult)
-(use-package projectile         :config (projectile-mode +1)) ;<- living in emacs
-(use-package helpful            :custom (helpful-max-buffers 3))
-(use-package discover-my-major  :defer t)
+(use-package projectile         :defer 1
+                                :config (projectile-mode +1)) ;<- living in emacs
+(use-package helpful            :defer 1
+                                :custom (helpful-max-buffers 3))
+(use-package discover-my-major  :defer 1)
 (use-package saveplace          :config (save-place-mode))
 (use-package beacon             :config (beacon-mode 1))
-(use-package disk-usage         :defer t)
+(use-package disk-usage         :defer 3)
 (use-package keyfreq            :config (keyfreq-mode 1)
                                         (keyfreq-autosave-mode 1)
                                 :custom (keyfreq-excluded-regexp '("evil-*" "self-insert-command" "mwheel-scroll")))
-(use-package eshell-toggle      :custom (eshell-toggle-size-fraction 4))
-(use-package vterm              :custom (vterm-always-compile-module t))
+(use-package eshell-toggle      :defer 1
+                                :custom (eshell-toggle-size-fraction 4))
+(use-package vterm              :defer 1
+                                :custom (vterm-always-compile-module t))
 (use-package pdf-tools          :magic  ("%PDF" . pdf-view-mode)
                                 :config (pdf-tools-install :no-query))
 (use-package org-superstar      :hook   (org-mode . org-superstar-mode))
@@ -125,14 +131,17 @@
 (use-package evil-vimish-fold   :config (global-evil-vimish-fold-mode))
 (use-package evil-collection    :config (evil-collection-init))
 (use-package clojure-mode       :mode   "\\.edn\\'" "\\.clj?[scx]\\'") ;<- clojure
-(use-package cider              :custom (cider-repl-pop-to-buffer-on-connect . nil))
-(use-package clj-refactor       :custom (cljr-project-clean-prompt nil))
+(use-package cider              :defer 2
+                                :custom (cider-repl-pop-to-buffer-on-connect . nil))
+(use-package clj-refactor       :defer 2
+                                :custom (cljr-project-clean-prompt nil))
 (use-package rainbow-delimiters :hook   (prog-mode . rainbow-delimiters-mode))
 (use-package smartparens        :hook   (prog-mode . smartparens-mode))
 (use-package format-all         :hook   (clojure-mode . format-all-mode))
 (use-package paredit            :hook   (clojure-mode . paredit-mode))
 (use-package eglot              :hook   (clojure-mode . eglot-ensure))
-(use-package magit              :custom (magit-slow-confirm nil)) ;<- more programming
+(use-package magit              :defer 2
+                                :custom (magit-slow-confirm nil)) ;<- more programming
 (use-package hl-todo            :config (global-hl-todo-mode))
 (use-package git-gutter         :config (global-git-gutter-mode))
 (use-package markdown-mode      :mode   "\\.md\\'")
