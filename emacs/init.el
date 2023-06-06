@@ -36,7 +36,7 @@
   (emacs-startup . (lambda () (setq gc-cons-threshold (* 8 1024 1024)))))
 
 (use-package org-contrib
-  :defer 2
+  :defer 1
   :config
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -113,7 +113,7 @@
 (use-package discover-my-major  :defer 1)
 (use-package saveplace          :config (save-place-mode))
 (use-package beacon             :config (beacon-mode 1))
-(use-package disk-usage         :defer 3)
+(use-package disk-usage         :defer 1)
 (use-package keyfreq            :config (keyfreq-mode 1)
                                         (keyfreq-autosave-mode 1)
                                 :custom (keyfreq-excluded-regexp '("evil-*" "self-insert-command" "mwheel-scroll")))
@@ -131,16 +131,16 @@
 (use-package evil-vimish-fold   :config (global-evil-vimish-fold-mode))
 (use-package evil-collection    :config (evil-collection-init))
 (use-package clojure-mode       :mode   "\\.edn\\'" "\\.clj?[scx]\\'") ;<- clojure
-(use-package cider              :defer 2
+(use-package cider              :defer 1
                                 :custom (cider-repl-pop-to-buffer-on-connect . nil))
-(use-package clj-refactor       :defer 2
+(use-package clj-refactor       :defer 1
                                 :custom (cljr-project-clean-prompt nil))
 (use-package rainbow-delimiters :hook   (prog-mode . rainbow-delimiters-mode))
 (use-package smartparens        :hook   (prog-mode . smartparens-mode))
 (use-package format-all         :hook   (clojure-mode . format-all-mode))
 (use-package paredit            :hook   (clojure-mode . paredit-mode))
 (use-package eglot              :hook   (clojure-mode . eglot-ensure))
-(use-package magit              :defer 2
+(use-package magit              :defer 1
                                 :custom (magit-slow-confirm nil)) ;<- more programming
 (use-package hl-todo            :config (global-hl-todo-mode))
 (use-package git-gutter         :config (global-git-gutter-mode))
