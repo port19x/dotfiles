@@ -1,3 +1,4 @@
+(setq gc-cons-threshold most-positive-fixnum)
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
@@ -30,7 +31,9 @@
   (user-mail-address "port19@port19.xyz")
   (sort-fold-case t)
   (enable-recursive-minibuffers t)
-  (minibuffer-depth-indicate-mode 1))
+  (minibuffer-depth-indicate-mode 1)
+  :hook
+  (emacs-startup . (lambda () (setq gc-cons-threshold (expt 2 23)))))
 
 (use-package org-contrib
   :config
@@ -101,8 +104,7 @@
                                 :config (global-corfu-mode)
                                 :hook   (eshell-mode . (lambda () (setq-local corfu-auto nil) (corfu-mode))))
 (use-package consult)
-(use-package projectile         :config (projectile-mode +1) ;<- living in emacs
-                                :custom (projectile-project-search-path '("~/dotfiles/" "~/git/")))
+(use-package projectile         :config (projectile-mode +1)) ;<- living in emacs
 (use-package helpful            :custom (helpful-max-buffers 3))
 (use-package discover-my-major  :defer t)
 (use-package saveplace          :config (save-place-mode))
