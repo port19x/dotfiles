@@ -16,7 +16,6 @@
   (scroll-bar-mode -1)
   (horizontal-scroll-bar-mode -1)
   (savehist-mode 1)
-  (set-face-attribute 'default nil :font "Iosevka" :height 140)
   :custom
   (inhibit-startup-message t)
   (make-backup-files nil)
@@ -34,11 +33,11 @@
   (minibuffer-depth-indicate-mode 1)
   :hook
   (prog-mode . electric-pair-mode)
+  (server-after-make-frame . (lambda () (set-face-attribute 'default nil :font "Iosevka" :height 140)))
   (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
   (after-init . elfeed-update))
 
 (use-package org-contrib
-  :defer 1
   :config
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -61,10 +60,9 @@
   (dashboard-center-content t)
   (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5)))
   :hook
-  (after-init     . dashboard-refresh-buffer))
+  (server-after-make-frame     . dashboard-refresh-buffer))
 
 (use-package elfeed
-  :defer 1
   :custom
   (elfeed-feeds '("https://port19.xyz/rss.xml"
                   "https://mitchmarq42.xyz/index.xml"
@@ -80,7 +78,7 @@
 
 (use-package doom-themes        :config (load-theme 'doom-nord-aurora t))
 (use-package doom-modeline      :config (doom-modeline-mode)) ;nerd-icons-install-fonts
-(use-package helpful            :custom (helpful-max-buffers 3) :defer 1)
+(use-package helpful            :custom (helpful-max-buffers 3))
 (use-package beacon             :config (beacon-mode 1))
 
 (use-package vertico            :config (vertico-mode)
@@ -93,10 +91,10 @@
                                 :config (global-corfu-mode))
 (use-package consult)
 (use-package consult-projectile)
-(use-package projectile         :config (projectile-mode +1) :defer 1)
+(use-package projectile         :config (projectile-mode +1))
 
-(use-package eshell-toggle      :custom (eshell-toggle-size-fraction 4) :defer 1)
-(use-package vterm              :custom (vterm-always-compile-module t) :defer 1)
+(use-package eshell-toggle      :custom (eshell-toggle-size-fraction 4))
+(use-package vterm              :custom (vterm-always-compile-module t))
 (use-package pdf-tools          :magic  ("%PDF" . pdf-view-mode)
                                 :config (pdf-tools-install :no-query))
 (use-package org-superstar      :hook   (org-mode . org-superstar-mode))
@@ -109,13 +107,13 @@
 (use-package evil-collection    :config (evil-collection-init))
 
 (use-package clojure-mode       :mode   "\\.edn\\'" "\\.clj?[scx]\\'")
-(use-package cider              :custom (cider-repl-pop-to-buffer-on-connect . nil) :defer 1)
-(use-package clj-refactor       :custom (cljr-project-clean-prompt nil) :defer 1)
+(use-package cider              :custom (cider-repl-pop-to-buffer-on-connect . nil))
+(use-package clj-refactor       :custom (cljr-project-clean-prompt nil))
 (use-package rainbow-delimiters :hook   (prog-mode . rainbow-delimiters-mode))
 (use-package paredit            :hook   (clojure-mode . paredit-mode))
 (use-package eglot              :hook   (clojure-mode . eglot-ensure))
 
-(use-package magit              :custom (magit-slow-confirm nil) :defer 1)
+(use-package magit              :custom (magit-slow-confirm nil))
 (use-package hl-todo            :config (global-hl-todo-mode))
 (use-package git-gutter         :config (global-git-gutter-mode))
 (use-package markdown-mode      :mode   "\\.md\\'")

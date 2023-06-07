@@ -50,7 +50,7 @@ globalkeys = gears.table.join(
     -- Group Launcher
     awful.key({ "Mod4"            }, "r",       function () menubar.show() end, {description = "runlauncher", group = "launcher"}),
     awful.key({ "Mod4"            }, "y",       function () awful.spawn("signal-desktop") end, {description = "signal-desktop", group = "launcher"}),
-    awful.key({ "Mod4"            }, "e",       function () awful.spawn("emacs") end, {description = "emacs", group = "launcher"}),
+    awful.key({ "Mod4"            }, "e",       function () awful.spawn("emacsclient -c") end, {description = "emacs", group = "launcher"}),
     awful.key({ "Mod4"            }, "g",       function () awful.spawn("keepassxc") end, {description = "keepassxc", group = "launcher"}),
     awful.key({ "Mod4"            }, "q",       function () awful.spawn("librewolf") end, {description = "librewolf", group = "launcher"}),
     awful.key({ "Mod4",           }, "Return",  function () awful.spawn("wezterm") end, {description = "launch terminal", group = "launcher"}),
@@ -117,6 +117,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.spawn.with_shell("command -v librewolf && pgrep -x librewolf || librewolf")
 awful.spawn.with_shell("command -v wezterm && pgrep -x wezterm-gui || wezterm")
 awful.spawn.with_shell("command -v newsboat && pgrep -x newsboat || newsboat -x reload")
-awful.spawn.with_shell("command -v emacs && pgrep -x emacs || emacs")
+awful.spawn.with_shell("command -v emacs && pgrep -x emacs || emacs --daemon")
 awful.spawn.with_shell('notify-send "$(checkupdates)"')
 -- }}}
