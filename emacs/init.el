@@ -84,24 +84,19 @@
     (kbd "K") 'elfeed-goodies/split-show-prev)
   :custom (elfeed-goodies/entry-pane-size 0.5))
 
-(use-package doom-themes        :config (load-theme 'doom-nord-aurora t)) ;<- look
+(use-package doom-themes        :config (load-theme 'doom-nord-aurora t))
 (use-package doom-modeline      :config (doom-modeline-mode)) ;nerd-icons-install-fonts
-(use-package vertico            :custom (vertico-resize t) ;<- completion
-                                :config (vertico-mode))
+(use-package vertico            :config (vertico-mode)
+                                :custom (vertico-resize t))
 (use-package orderless          :custom (completion-styles '(orderless basic)))
 (use-package marginalia         :config (marginalia-mode))
 (use-package which-key          :config (which-key-mode)
-                                :custom (which-key-max-display-columns 4)
-                                        (which-key-sort-order 'which-key-key-order-alpha)
-                                        (which-key-sort-uppercase-first nil))
+                                :custom (which-key-sort-order 'which-key-key-order-alpha))
 (use-package corfu              :custom (corfu-auto t)
-                                :config (global-corfu-mode)
-                                :hook   (eshell-mode . (lambda () (setq-local corfu-auto nil) (corfu-mode))))
+                                :config (global-corfu-mode))
 (use-package consult)
-(use-package projectile         :defer 1
-                                :config (projectile-mode +1)) ;<- living in emacs
-(use-package helpful            :defer 1
-                                :custom (helpful-max-buffers 3))
+(use-package projectile         :config (projectile-mode +1) :defer 1)
+(use-package helpful            :custom (helpful-max-buffers 3) :defer 1)
 (use-package discover-my-major  :defer 1)
 (use-package saveplace          :config (save-place-mode))
 (use-package beacon             :config (beacon-mode 1))
@@ -109,31 +104,26 @@
 (use-package keyfreq            :config (keyfreq-mode 1)
                                         (keyfreq-autosave-mode 1)
                                 :custom (keyfreq-excluded-regexp '("evil-*" "self-insert-command" "mwheel-scroll")))
-(use-package eshell-toggle      :defer 1
-                                :custom (eshell-toggle-size-fraction 4))
-(use-package vterm              :defer 1
-                                :custom (vterm-always-compile-module t))
+(use-package eshell-toggle      :custom (eshell-toggle-size-fraction 4) :defer 1)
+(use-package vterm              :custom (vterm-always-compile-module t) :defer 1)
 (use-package pdf-tools          :magic  ("%PDF" . pdf-view-mode)
                                 :config (pdf-tools-install :no-query))
 (use-package org-superstar      :hook   (org-mode . org-superstar-mode))
-(use-package evil               :init   (setq evil-want-keybinding nil) ;<- evil keys
+(use-package evil               :init   (setq evil-want-keybinding nil)
                                 :config (evil-mode 1)
                                 :custom (evil-undo-system 'undo-redo))
 (use-package evil-goggles       :config (evil-goggles-mode))
 (use-package evil-vimish-fold   :config (global-evil-vimish-fold-mode))
 (use-package evil-collection    :config (evil-collection-init))
-(use-package clojure-mode       :mode   "\\.edn\\'" "\\.clj?[scx]\\'") ;<- clojure
-(use-package cider              :defer 1
-                                :custom (cider-repl-pop-to-buffer-on-connect . nil))
-(use-package clj-refactor       :defer 1
-                                :custom (cljr-project-clean-prompt nil))
+(use-package clojure-mode       :mode   "\\.edn\\'" "\\.clj?[scx]\\'")
+(use-package cider              :custom (cider-repl-pop-to-buffer-on-connect . nil) :defer 1)
+(use-package clj-refactor       :custom (cljr-project-clean-prompt nil) :defer 1)
 (use-package rainbow-delimiters :hook   (prog-mode . rainbow-delimiters-mode))
 (use-package smartparens        :hook   (prog-mode . smartparens-mode))
 (use-package format-all         :hook   (clojure-mode . format-all-mode))
 (use-package paredit            :hook   (clojure-mode . paredit-mode))
 (use-package eglot              :hook   (clojure-mode . eglot-ensure))
-(use-package magit              :defer 1
-                                :custom (magit-slow-confirm nil)) ;<- more programming
+(use-package magit              :custom (magit-slow-confirm nil) :defer 1)
 (use-package hl-todo            :config (global-hl-todo-mode))
 (use-package git-gutter         :config (global-git-gutter-mode))
 (use-package markdown-mode      :mode   "\\.md\\'")
@@ -250,7 +240,7 @@
     "g" '(magit :which-key "magit")
     "G" '(consult-ripgrep :which-key "consult grep")
     "h" `(,my-help-map :which-key "Help")
-    "H" '(consult-history :which-key "history minibuffer completion")
+    "H" '(consult-history :which-key "history completion")
     "i" '(insert-char :which-key "insert unicode")
     "j" '(consult-imenu :which-key "jump via imenu")
     "k" '(keyfreq-show :which-key "show key frequencies")
