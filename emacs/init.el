@@ -33,7 +33,8 @@
   (enable-recursive-minibuffers t)
   (minibuffer-depth-indicate-mode 1)
   :hook
-  (emacs-startup . (lambda () (setq gc-cons-threshold (* 8 1024 1024)))))
+  (emacs-startup . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
+  (emacs-startup . elfeed-update))
 
 (use-package org-contrib
   :defer 1
@@ -60,7 +61,7 @@
                   (emacs-init-time) gcs-done)))
   :custom
   (dashboard-startup-banner "~/dotfiles/emacs/avatar.gif")
-  (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+  (initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
   (dashboard-center-content t)
   (dashboard-week-agenda nil)
   (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5)))
