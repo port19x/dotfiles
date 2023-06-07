@@ -54,22 +54,13 @@
   (org-confirm-babel-evaluate nil))
 
 (use-package dashboard
-  :preface
-  (defun my/dashboard-banner ()
-    (setq dashbard-banner-logo-title
-          (format "Emacs ready in %s seconds with %d garbage collections."
-                  (emacs-init-time) gcs-done)))
   :custom
   (dashboard-startup-banner "~/dotfiles/emacs/avatar.gif")
   (initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
   (dashboard-center-content t)
-  (dashboard-week-agenda nil)
   (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5)))
-  :config
-  (dashboard-setup-startup-hook)
   :hook
-  ((after-init     . dashboard-refresh-buffer)
-   (dashboard-mode . my/dashboard-banner)))
+  (after-init     . dashboard-refresh-buffer))
 
 (use-package elfeed
   :defer 1
