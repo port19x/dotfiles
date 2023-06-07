@@ -239,7 +239,8 @@
     "o" `(,my-org-map :which-key "Org Mode")
     "p" '(consult-projectile-find-file :which-key "hop project file")
     "P" '(consult-projectile-switch-project :which-key "hop project")
-    "q" '(save-buffers-kill-emacs :which-key "quit emacs")
+    "q" '(delete-frame :which-key "quit emacs")
+    "Q" '(save-buffers-kill-emacs :which-key "quit emacs")
     "r" '(consult-recent-file :which-key "open recent")
     "R" '(re-builder :which-key "regex builder") ;consider pcre replacement
     "s" '(consult-line :which-key "seek")
