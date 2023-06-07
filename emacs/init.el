@@ -33,8 +33,9 @@
   (enable-recursive-minibuffers t)
   (minibuffer-depth-indicate-mode 1)
   :hook
-  (emacs-startup . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
-  (emacs-startup . elfeed-update))
+  (prog-mode . electric-pair-mode)
+  (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
+  (after-init . elfeed-update))
 
 (use-package org-contrib
   :defer 1
@@ -76,16 +77,12 @@
                   "https://distrowatch.com/news/dwd.xml"
                   "https://clojure.org/feed.xml"
                   "https://github.blog/changelog/feed")))
-(use-package elfeed-goodies
-  :after evil
-  :config (elfeed-goodies/setup)
-  (evil-define-key 'normal elfeed-show-mode-map
-    (kbd "J") 'elfeed-goodies/split-show-next
-    (kbd "K") 'elfeed-goodies/split-show-prev)
-  :custom (elfeed-goodies/entry-pane-size 0.5))
 
 (use-package doom-themes        :config (load-theme 'doom-nord-aurora t))
 (use-package doom-modeline      :config (doom-modeline-mode)) ;nerd-icons-install-fonts
+(use-package helpful            :custom (helpful-max-buffers 3) :defer 1)
+(use-package beacon             :config (beacon-mode 1))
+
 (use-package vertico            :config (vertico-mode)
                                 :custom (vertico-resize t))
 (use-package orderless          :custom (completion-styles '(orderless basic)))
@@ -97,33 +94,27 @@
 (use-package consult)
 (use-package consult-projectile)
 (use-package projectile         :config (projectile-mode +1) :defer 1)
-(use-package helpful            :custom (helpful-max-buffers 3) :defer 1)
-(use-package discover-my-major  :defer 1)
-(use-package saveplace          :config (save-place-mode))
-(use-package beacon             :config (beacon-mode 1))
-(use-package disk-usage         :defer 1)
-(use-package keyfreq            :config (keyfreq-mode 1)
-                                        (keyfreq-autosave-mode 1)
-                                :custom (keyfreq-excluded-regexp '("evil-*" "self-insert-command" "mwheel-scroll")))
+
 (use-package eshell-toggle      :custom (eshell-toggle-size-fraction 4) :defer 1)
 (use-package vterm              :custom (vterm-always-compile-module t) :defer 1)
 (use-package pdf-tools          :magic  ("%PDF" . pdf-view-mode)
                                 :config (pdf-tools-install :no-query))
 (use-package org-superstar      :hook   (org-mode . org-superstar-mode))
+
 (use-package evil               :init   (setq evil-want-keybinding nil)
                                 :config (evil-mode 1)
                                 :custom (evil-undo-system 'undo-redo))
 (use-package evil-goggles       :config (evil-goggles-mode))
 (use-package evil-vimish-fold   :config (global-evil-vimish-fold-mode))
 (use-package evil-collection    :config (evil-collection-init))
+
 (use-package clojure-mode       :mode   "\\.edn\\'" "\\.clj?[scx]\\'")
 (use-package cider              :custom (cider-repl-pop-to-buffer-on-connect . nil) :defer 1)
 (use-package clj-refactor       :custom (cljr-project-clean-prompt nil) :defer 1)
 (use-package rainbow-delimiters :hook   (prog-mode . rainbow-delimiters-mode))
-(use-package smartparens        :hook   (prog-mode . smartparens-mode))
-(use-package format-all         :hook   (clojure-mode . format-all-mode))
 (use-package paredit            :hook   (clojure-mode . paredit-mode))
 (use-package eglot              :hook   (clojure-mode . eglot-ensure))
+
 (use-package magit              :custom (magit-slow-confirm nil) :defer 1)
 (use-package hl-todo            :config (global-hl-todo-mode))
 (use-package git-gutter         :config (global-git-gutter-mode))
@@ -143,7 +134,6 @@
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "f") #'helpful-callable)
       (define-key map (kbd "i") #'consult-info)
-      (define-key map (kbd "K") #'discover-my-major)
       (define-key map (kbd "k") #'helpful-key)
       (define-key map (kbd "m") #'describe-mode)
       (define-key map (kbd "M") #'consult-man)
@@ -244,7 +234,7 @@
     "H" '(consult-history :which-key "history completion")
     "i" '(insert-char :which-key "insert unicode")
     "j" '(consult-imenu :which-key "jump via imenu")
-    "k" '(keyfreq-show :which-key "show key frequencies")
+    "k" '(comment-region :which-key "comment region")
     "l" '(org-store-link :which-key "org store link")
     "m" '(hl-todo-next :which-key "next Todo")
     "n" '(elfeed :which-key "news (elfeed)")
@@ -260,7 +250,7 @@
     "v" '(eval-last-sexp :which-key "(emacs) eval")
     "w" `(,my-window-map :which-key "Windows")
     "x" '(org-capture :which-key "org capture")
-    "y" '(comment-region :which-key "comment region")
+    ;y elpaca try
     "z" '(zone :which-key "zone")
     "SPC" `(,my-clojure-map :which-key "Clojure")
     "<return>" '(consult-bookmark :which-key "jump to bookmark")
