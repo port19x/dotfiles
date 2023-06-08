@@ -90,9 +90,7 @@
                                 :custom (which-key-sort-order 'which-key-key-order-alpha))
 (use-package corfu              :custom (corfu-auto t)
                                 :config (global-corfu-mode))
-(use-package consult)
-(use-package consult-projectile)
-(use-package projectile         :config (projectile-mode +1))
+(use-package consult-projectile :config (projectile-mode +1))
 
 (use-package eshell-toggle      :custom (eshell-history-size 100000))
 (use-package esh-autosuggest    :hook (eshell-mode . esh-autosuggest-mode))
