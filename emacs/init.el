@@ -84,7 +84,8 @@
 
 (use-package vertico            :config (vertico-mode)
                                 :custom (vertico-resize t))
-(use-package orderless          :custom (completion-styles '(orderless basic)))
+(use-package orderless          :custom (completion-styles '(orderless basic))
+                                        (orderless-matching-styles '(orderless-flex)))
 (use-package marginalia         :config (marginalia-mode))
 (use-package which-key          :config (which-key-mode)
                                 :custom (which-key-sort-order 'which-key-key-order-alpha))
