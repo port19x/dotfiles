@@ -26,8 +26,6 @@ precmd () { vcs_info }
 setopt PROMPT_SUBST
 PS1='%F{4}%3~ ${vcs_info_msg_0_}%fλ '
 
-setxkbmap -option ctrl:nocaps
-
 pastebin() {
     curl --silent https://oshi.at -F f=@$* -F expire=120 \
     | grep DL \
