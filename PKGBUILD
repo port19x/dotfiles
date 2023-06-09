@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r303.a233f45
+pkgver=r326.7b0aa7f
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -79,10 +79,10 @@ package() {
     git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/zsh/zsh-autosuggestions &&
         printf "\33[2K\r\033[1;32m%s\033[0m\n" "[2/5] downloaded zsh-autosuggestions" ||
         printf "\33[2K\r\033[1;32m%s\033[0m\n" "[2/5] zsh-autosuggestions already downloaded"
-    echo "exec awesome" > $HOME/.xinitrc &&
-        printf "\33[2K\r\033[1;32m%s\033[0m\n" "[3/5] setup awesomewm autostart"
     cd .. && stow -v --no-folding --ignore="PKGBUILD" --ignore="src" --ignore="dotfiles" --ignore="pkg" -t $HOME/.config . && 
-        printf "\33[2K\r\033[1;32m%s\033[0m\n" "[4/5] symlinked config files"
+        printf "\33[2K\r\033[1;32m%s\033[0m\n" "[3/5] symlinked config files"
+    echo "exec awesome" > $HOME/.xinitrc && echo "startx" > $HOME/.config/zsh/.zprofile
+        printf "\33[2K\r\033[1;32m%s\033[0m\n" "[4/5] setup awesomewm autostart"
     emacs -l ~/.config/emacs/init.el -batch || true
         printf "\33[2K\r\033[1;32m%s\033[0m\n" "[5/5] compiled emacs packages"
     printf "\33[2K\r\033[1;33mManual setup: %s\033[0m\n" 'echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee /etc/zsh/zshenv'
