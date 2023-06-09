@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r330.2044c0e
+pkgver=r331.651e58f
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -87,6 +87,8 @@ _manual () {
 _writefiles () {
     echo "exec awesome" > $HOME/.xinitrc
     echo "startx" > $HOME/.config/zsh/.zprofile
+    mkdir -p $HOME/.local/share/gnupg
+    chmod 700 $HOME/.local/share/gnupg
 }
 
 package() {
@@ -97,5 +99,7 @@ package() {
     _progress "[5/5] compiled emacs packages" emacs -l ~/.config/emacs/init.el -batch
     _manual 'echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee /etc/zsh/zshenv'
     _manual 'chsh -s /bin/zsh'
+    _manual 'localectl set-x11-keymap de "" "" ctrl:nocaps'
+    _manual 'configure autologin: https://wiki.archlinux.org/title/Getty'
     _manual 'git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si'
 }
