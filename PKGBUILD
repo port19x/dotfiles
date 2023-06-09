@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r326.7b0aa7f
+pkgver=r329.d0abe77
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -73,19 +73,26 @@ pkgver() {
     printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
+_progress () {
+    printf "\33[2K\r\033[1;32m%s\033[0m\n" "$@"
+}
+
+_manual () {
+    printf "\33[2K\r\033[1;33mManual setup: %s\033[0m\n" "$@"
+}
+
 package() {
     mkdir -p ~/.local/state/zsh && touch ~/.local/state/zsh/history && mkdir -p ~/.cache/zsh/zcompdump-5.9 &&
-        printf "\33[2K\r\033[1;32m%s\033[0m\n" "[1/5] prepared zsh history and cache"
+        _progress "[1/5] prepared zsh history and cache"
     git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/zsh/zsh-autosuggestions &&
-        printf "\33[2K\r\033[1;32m%s\033[0m\n" "[2/5] downloaded zsh-autosuggestions" ||
-        printf "\33[2K\r\033[1;32m%s\033[0m\n" "[2/5] zsh-autosuggestions already downloaded"
+        _progress "[2/5] downloaded zsh-autosuggestions" ||
     cd .. && stow -v --no-folding --ignore="PKGBUILD" --ignore="src" --ignore="dotfiles" --ignore="pkg" -t $HOME/.config . && 
-        printf "\33[2K\r\033[1;32m%s\033[0m\n" "[3/5] symlinked config files"
+        _progress "[3/5] symlinked config files"
     echo "exec awesome" > $HOME/.xinitrc && echo "startx" > $HOME/.config/zsh/.zprofile
-        printf "\33[2K\r\033[1;32m%s\033[0m\n" "[4/5] setup awesomewm autostart"
+        _progress "[4/5] setup awesomewm autostart"
     emacs -l ~/.config/emacs/init.el -batch || true
-        printf "\33[2K\r\033[1;32m%s\033[0m\n" "[5/5] compiled emacs packages"
-    printf "\33[2K\r\033[1;33mManual setup: %s\033[0m\n" 'echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee /etc/zsh/zshenv'
-    printf "\33[2K\r\033[1;33mManual setup: %s\033[0m\n" 'chsh -s /bin/zsh'
-    printf "\33[2K\r\033[1;33mManual setup: %s\033[0m\n" 'git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si'
+        _progress "[5/5] compiled emacs packages"
+    _manual 'echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee /etc/zsh/zshenv'
+    _manual 'chsh -s /bin/zsh'
+    _manual 'git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si'
 }
