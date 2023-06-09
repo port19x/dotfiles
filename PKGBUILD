@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r329.d0abe77
+pkgver=r330.2044c0e
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -74,24 +74,27 @@ pkgver() {
 }
 
 _progress () {
-    printf "\33[2K\r\033[1;32m%s\033[0m\n" "$@"
+    message="$1"
+    shift
+    $@
+    printf "\33[2K\r\033[1;32m%s\033[0m\n" "$message"
 }
 
 _manual () {
     printf "\33[2K\r\033[1;33mManual setup: %s\033[0m\n" "$@"
 }
 
+_writefiles () {
+    echo "exec awesome" > $HOME/.xinitrc
+    echo "startx" > $HOME/.config/zsh/.zprofile
+}
+
 package() {
-    mkdir -p ~/.local/state/zsh && touch ~/.local/state/zsh/history && mkdir -p ~/.cache/zsh/zcompdump-5.9 &&
-        _progress "[1/5] prepared zsh history and cache"
-    git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/zsh/zsh-autosuggestions &&
-        _progress "[2/5] downloaded zsh-autosuggestions" ||
-    cd .. && stow -v --no-folding --ignore="PKGBUILD" --ignore="src" --ignore="dotfiles" --ignore="pkg" -t $HOME/.config . && 
-        _progress "[3/5] symlinked config files"
-    echo "exec awesome" > $HOME/.xinitrc && echo "startx" > $HOME/.config/zsh/.zprofile
-        _progress "[4/5] setup awesomewm autostart"
-    emacs -l ~/.config/emacs/init.el -batch || true
-        _progress "[5/5] compiled emacs packages"
+    _progress "[1/5] prepared zsh history and cache" mkdir -p ~/.local/state/zsh && touch ~/.local/state/zsh/history && mkdir -p ~/.cache/zsh/zcompdump-5.9
+    _progress "[2/5] downloaded zsh-autosuggestions" git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/zsh/zsh-autosuggestions || true
+    _progress "[3/5] symlinked config files" cd .. && stow -v --no-folding --ignore="PKGBUILD" --ignore="src" --ignore="dotfiles" --ignore="pkg" -t $HOME/.config .
+    _progress "[4/5] setup awesomewm autostart" _writefiles
+    _progress "[5/5] compiled emacs packages" emacs -l ~/.config/emacs/init.el -batch
     _manual 'echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee /etc/zsh/zshenv'
     _manual 'chsh -s /bin/zsh'
     _manual 'git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si'
