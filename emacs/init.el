@@ -9,6 +9,7 @@
 (require 'bind-key) ;; too here
 (setq use-package-always-ensure t
       use-package-always-demand (daemonp))
+(use-package no-littering)
 
 (use-package emacs
   :config
