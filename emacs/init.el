@@ -71,7 +71,7 @@
                           "https://feeds.transistor.fm/thoughts-on-functional-programming-podcast-by-eric-normand"
                           "https://protesilaos.com/commentary.xml" "https://protesilaos.com/codelog.xml" "https://protesilaos.com/news.xml"
                           "https://planet.archlinux.org/rss20.xml" "https://distrowatch.com/news/dwd.xml" "https://lwn.net/headlines/rss"
-                          "https://github.blog/changelog/feed" "https://sachachua.com/blog/category/emacs-news/feed/" "https://clojure.org/feed.xml" 
+                          "https://github.blog/changelog/feed" "https://sachachua.com/blog/category/emacs-news/feed/"
                           "https://openrss.org/github.com/pystardust/ani-cli/issues" "https://openrss.org/github.com/pystardust/ani-cli/pulls")))
 
 ; UI
@@ -95,15 +95,7 @@
                                 :config (global-corfu-mode))
 (use-package esh-autosuggest    :hook (eshell-mode . esh-autosuggest-mode))
 
-; Clojure
-(use-package clojure-mode       :mode   "\\.edn\\'" "\\.clj?[scx]\\'")
-(use-package cider              :custom (cider-repl-pop-to-buffer-on-connect . nil))
-(use-package clj-refactor       :custom (cljr-project-clean-prompt nil))
-(use-package rainbow-delimiters :hook   (prog-mode . rainbow-delimiters-mode))
-(use-package paredit            :hook   (clojure-mode . paredit-mode))
-(use-package eglot              :hook   (clojure-mode . eglot-ensure))
-
-; Further Programming Modes
+; Programming Modes
 (use-package magit              :custom (magit-slow-confirm nil))
 (use-package git-gutter         :config (global-git-gutter-mode))
 (use-package hl-todo            :config (global-hl-todo-mode))
@@ -162,45 +154,6 @@
       (define-key map (kbd "w") #'evil-window-next)
       map))
 
-  (defvar my-clojure-map
-    (let ((map (make-sparse-keymap)))
-      (define-key map (kbd "SPC") #'cider-eval-last-sexp)
-      (define-key map (kbd "a") #'clojure-add-arity)
-      (define-key map (kbd "b") #'cider-eval-buffer)
-      (define-key map (kbd "c") #'cider-repl-clear-output)
-      (define-key map (kbd "d") #'cider-eval-defun-at-point)
-      (define-key map (kbd "e") #'cider-enlighten-mode)
-      (define-key map (kbd "f") #'eglot-format)
-      (define-key map (kbd "g") #'consult-flymake)
-      (define-key map (kbd "h") #'clojure-cycle-privacy)
-      (define-key map (kbd "i") #'cider-inspect-last-result)
-      (define-key map (kbd "I") #'cljr-add-require-to-ns)
-      (define-key map (kbd "j") #'cider-jack-in-clj)
-      (define-key map (kbd "J") #'cider-jack-in-cljs)
-      (define-key map (kbd "k") #'cljr-destructure-keys)
-      (define-key map (kbd "l") #'cljr-move-to-let)
-      (define-key map (kbd "L") #'cljr-remove-let)
-      (define-key map (kbd "m") #'eldoc)
-      (define-key map (kbd "n") #'clojure-sort-ns)
-      (define-key map (kbd "o") #'eglot-code-actions)
-      (define-key map (kbd "p") #'cider-profile-ns-toggle)
-      (define-key map (kbd "P") #'cider-profile-summary)
-      (define-key map (kbd "q") #'cider-quit)
-      (define-key map (kbd "r") #'cljr-rename-symbol)
-      (define-key map (kbd "s") #'paredit-forward-slurp-sexp)
-      (define-key map (kbd "S") #'paredit-forward-barf-sexp)
-      (define-key map (kbd "t") #'clojure-thread)
-      (define-key map (kbd "T") #'clojure-thread-last-all)
-      (define-key map (kbd "u") #'clojure-unwind)
-      (define-key map (kbd "U") #'clojure-unwind-all)
-      (define-key map (kbd "v") #'cider-interrupt)
-      (define-key map (kbd "w") #'cider-clojuredocs-web)
-      (define-key map (kbd "x") #'cljr-extract-function)
-      (define-key map (kbd "X") #'cljr-extract-def)
-      (define-key map (kbd "y") #'cljr-add-project-dependency)
-      (define-key map (kbd "z") #'cljr-update-project-dependencies)
-      map))
-
   (defvar my-org-map
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "a") #'org-attach)
@@ -238,7 +191,6 @@
     "l" '(org-store-link :which-key "org store link")
     "m" '(hl-todo-next :which-key "next Todo")
     "n" '(elfeed :which-key "news (elfeed)")
-    "o" `(,my-org-map :which-key "Org Mode")
     "p" '(consult-projectile-find-file :which-key "hop project file")
     "P" '(consult-projectile-switch-project :which-key "hop project")
     "q" '(delete-frame :which-key "quit emacs")
@@ -252,6 +204,6 @@
     "w" `(,my-window-map :which-key "Windows")
     "x" '(org-capture :which-key "org capture")
     "z" '(zone :which-key "zone")
-    "SPC" `(,my-clojure-map :which-key "Clojure")
+    "SPC" `(,my-org-map :which-key "Org Mode")
     "<return>" '(consult-bookmark :which-key "jump to bookmark")
     "S-<return>" '(bookmark-set :which-key "set a bookmark")))

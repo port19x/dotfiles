@@ -16,7 +16,6 @@ depends=(
 'bat'
 'base-devel'
 'brightnessctl'
-'clojure'
 'cmake'
 'emacs-nativecomp'
 'exa'
@@ -57,7 +56,6 @@ makedepends=(
 )
 
 optdepends=(
-'clojure-lsp-bin: lsp for the superior lisp'
 'librewolf-bin: webbrowser'
 'mullvad-vpn-cli: the best vpn'
 'signal-desktop: superior messenger'
