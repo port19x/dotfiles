@@ -87,7 +87,6 @@ _manual () {
 
 _writefiles () {
     echo "exec awesome" > $HOME/.xinitrc
-    echo "startx" > $HOME/.config/zsh/.zprofile
     mkdir -p $HOME/.local/share/gnupg
     chmod 700 $HOME/.local/share/gnupg
 }

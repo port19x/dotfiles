@@ -4,12 +4,6 @@ setopt HIST_IGNORE_SPACE
 unsetopt beep
 bindkey -v
 
-export EDITOR='nvim'
-export HISTFILE="$HOME/.local/state/zsh/history"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
-export GNUPGHOME="$HOME/.local/share/gnupg"
-
 zstyle :compinstall filename "$HOME/.config/zsh/.zshrc"
 autoload -Uz compinit
 compinit -d ~/.cache/zsh/zcompdump-5.9
