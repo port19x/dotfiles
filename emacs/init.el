@@ -68,7 +68,6 @@
 
 (use-package elfeed
   :custom (elfeed-feeds '("https://port19.xyz/rss.xml" "https://mitchmarq42.xyz/index.xml" "https://lukesmith.xyz/index.xml"
-                          "https://feeds.transistor.fm/thoughts-on-functional-programming-podcast-by-eric-normand"
                           "https://protesilaos.com/commentary.xml" "https://protesilaos.com/codelog.xml" "https://protesilaos.com/news.xml"
                           "https://planet.archlinux.org/rss20.xml" "https://distrowatch.com/news/dwd.xml" "https://lwn.net/headlines/rss"
                           "https://github.blog/changelog/feed" "https://sachachua.com/blog/category/emacs-news/feed/"
@@ -81,7 +80,6 @@
 (use-package helpful            :custom (helpful-max-buffers 3))
 (use-package which-key          :config (which-key-mode)
                                 :custom (which-key-sort-order 'which-key-key-order-alpha))
-(use-package eshell-toggle      :custom (eshell-history-size 100000))
 
 ; Completion Stack
 (use-package vertico            :config (vertico-mode)
@@ -91,12 +89,12 @@
 (use-package marginalia         :config (marginalia-mode))
 (use-package consult-projectile :config (projectile-mode +1)
                                 :custom (projectile-project-search-path '("~/git/")))
-(use-package consult-git-log-grep)
 (use-package corfu              :custom (corfu-auto t)
                                 :config (global-corfu-mode))
-(use-package esh-autosuggest    :hook (eshell-mode . esh-autosuggest-mode))
 
 ; Programming Modes
+;(use-package consult-gh) TODO
+(use-package consult-git-log-grep)
 (use-package magit              :custom (magit-slow-confirm nil))
 (use-package git-gutter         :config (global-git-gutter-mode))
 (use-package hl-todo            :config (global-hl-todo-mode))
@@ -179,7 +177,6 @@
     "b" `(,my-buffer-map :which-key "Buffer")
     "c" '(magit-clone :which-key "magit clone")
     "d" '(dired-jump :which-key "dired jump")
-    "e" '(eshell-toggle :which-key "eshell")
     "f" '(find-file :which-key "open file")
     "F" '(consult-find :which-key "consult find")
     "g" '(magit :which-key "magit")
