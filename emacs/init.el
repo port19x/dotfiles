@@ -47,6 +47,7 @@
      (shell . t)
      (emacs-lisp . nil)))
   :custom
+  (org-startup-indented t)
   (org-edit-src-content-indentation 0)
   (org-src-preserve-indentation t)
   (org-directory "~/.cache/org")
@@ -188,7 +189,7 @@
     "n" '(elfeed :which-key "news (elfeed)")
     "p" '(consult-projectile-find-file :which-key "hop project file")
     "P" '(consult-projectile-switch-project :which-key "hop project")
-    "q" '(delete-frame :which-key "quit emacs")
+    "q" '(delete-frame :which-key "quit emacsclient")
     "Q" '(save-buffers-kill-emacs :which-key "quit emacs")
     "r" '(consult-recent-file :which-key "open recent")
     "R" '(re-builder :which-key "regex builder") ;consider pcre replacement
