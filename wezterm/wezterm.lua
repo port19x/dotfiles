@@ -5,4 +5,5 @@ return {
   font = wezterm.font("Iosevka Term", {weight="Regular", stretch="Normal", style="Normal"}),
   font_size = 14.0,
   color_scheme = "nord",
+  warn_about_missing_glyphs = false,
 }
