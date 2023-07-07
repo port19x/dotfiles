@@ -161,6 +161,8 @@
       (define-key map (kbd "h") #'org-info)
       (define-key map (kbd "i") #'org-indent-mode)
       (define-key map (kbd "j") #'consult-org-heading)
+      (define-key map (kbd "k") #'org-clock-in)
+      (define-key map (kbd "K") #'org-clock-out)
       (define-key map (kbd "l") #'org-insert-link)
       (define-key map (kbd "n") #'org-narrow-to-subtree)
       (define-key map (kbd "N") #'widen)
