@@ -52,6 +52,7 @@
   (org-src-preserve-indentation t)
   (org-directory "~/.cache/org")
   (org-confirm-babel-evaluate nil)
+  (org-todo-keywords '((sequence "TODO" "HOLD" "WAIT" "DONE")))
   :hook
   (org-mode . org-superstar-mode))
 
@@ -95,7 +96,13 @@
 (use-package consult-git-log-grep)
 (use-package magit              :custom (magit-slow-confirm nil))
 (use-package git-gutter         :config (global-git-gutter-mode))
-(use-package hl-todo            :config (global-hl-todo-mode))
+(use-package hl-todo            :config (global-hl-todo-mode)
+  :custom (hl-todo--regexp "\\(\\<\\(TODO\\|HACK\\|CITE\\|LINK\\|FIXME\\)\\>\\)")
+          (hl-todo-keyword-faces '(("HACK" . "#d0bf8f")
+                                   ("FIXME" . "#cc9393")
+                                   ("TODO" . "#cc9393")
+                                   ("CITE" . "#dc8cc3")
+                                   ("LINK" . "#dc8cc3"))))
 (use-package vterm              :custom (vterm-always-compile-module t))
 (use-package markdown-mode      :mode   "\\.md\\'")
 (use-package lua-mode           :mode   "\\.lua\\'")
