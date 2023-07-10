@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r335.8d0011d
+pkgver=r346.753cdc2
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -49,6 +49,7 @@ depends=(
 'xcolor'
 'xorg-server'
 'xorg-xinit'
+'xorg-xrandr'
 'yt-dlp'
 'zola'
 'zsh-completions'
@@ -59,7 +60,7 @@ makedepends=(
 )
 
 optdepends=(
-'librewolf-bin: webbrowser'
+'brave-bin: webbrowser'
 'mullvad-vpn-cli: the best vpn'
 'signal-desktop: superior messenger'
 'tuxedo-keyboard: linux ootb <3'
