@@ -45,7 +45,7 @@ globalkeys = gears.table.join(
     awful.key({ "Mod4"            }, "y",       function () awful.spawn("signal-desktop") end, {description = "signal-desktop", group = "launcher"}),
     awful.key({ "Mod4"            }, "e",       function () awful.spawn("emacsclient -c") end, {description = "emacs", group = "launcher"}),
     awful.key({ "Mod4"            }, "g",       function () awful.spawn("keepassxc") end, {description = "keepassxc", group = "launcher"}),
-    awful.key({ "Mod4"            }, "q",       function () awful.spawn("librewolf") end, {description = "librewolf", group = "launcher"}),
+    awful.key({ "Mod4"            }, "q",       function () awful.spawn("brave") end, {description = "brave", group = "launcher"}),
     awful.key({ "Mod4",           }, "Return",  function () awful.spawn("wezterm") end, {description = "launch terminal", group = "launcher"}),
     awful.key({ "Mod4",           }, "s",       function () awful.spawn("flameshot gui") end, {description = "take a screenshot", group = "launcher"}),
     awful.key({ "Mod4"            }, "m",       function () awful.spawn.with_shell('notify-send "$(timeout 10 songrec recognize -d default || echo song not found)"') end, {description = "songrec", group = "launcher"}),
