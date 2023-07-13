@@ -178,6 +178,7 @@
       (define-key map (kbd "P") #'org-beamer-export-to-pdf)
       (define-key map (kbd "s") #'org-cut-subtree)
       (define-key map (kbd "t") #'org-insert-time-stamp)
+      (define-key map (kbd "v") #'visual-line-mode)
       (define-key map (kbd "x") #'org-export-dispatch)
       map))
 
