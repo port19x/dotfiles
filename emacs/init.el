@@ -46,6 +46,7 @@
    '((sqlite . t)
      (shell . t)
      (emacs-lisp . nil)))
+  (require 'oc-biblatex)
   :custom
   (org-startup-indented t)
   (org-edit-src-content-indentation 0)
@@ -211,3 +212,12 @@
     "SPC" `(,my-org-map :which-key "Org Mode")
     "<return>" '(consult-bookmark :which-key "jump to bookmark")
     "S-<return>" '(bookmark-set :which-key "set a bookmark")))
+
+(defun toggle-org-pdf-export-on-save ()
+  (interactive)
+  (if (memq 'org-latex-export-to-pdf after-save-hook)
+      (progn
+        (remove-hook 'after-save-hook 'org-latex-export-to-pdf t)
+        (message "Disabled org latex export on save for current buffer..."))
+    (add-hook 'after-save-hook 'org-latex-export-to-pdf nil t)
+    (message "Enabled org latex export on save for current buffer...")))
