@@ -39,7 +39,7 @@
   (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
   (after-init . elfeed-update))
 
-(use-package org-superstar
+(use-package org-modern
   :config
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -55,7 +55,9 @@
   (org-confirm-babel-evaluate nil)
   (org-todo-keywords '((sequence "TODO" "HOLD" "WAIT" "DONE")))
   :hook
-  (org-mode . org-superstar-mode))
+  (org-mode . org-modern-mode)
+  (org-mode . hl-todo-mode)
+  (org-mode . visual-line-mode))
 
 (use-package dashboard
   :custom
@@ -174,6 +176,7 @@
       (define-key map (kbd "K") #'org-clock-out)
       (define-key map (kbd "l") #'org-insert-link)
       (define-key map (kbd "n") #'org-narrow-to-subtree)
+      (define-key map (kbd "m") #'org-modern-mode)
       (define-key map (kbd "N") #'widen)
       (define-key map (kbd "p") #'org-latex-export-to-pdf)
       (define-key map (kbd "P") #'org-beamer-export-to-pdf)
