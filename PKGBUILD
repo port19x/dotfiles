@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r346.753cdc2
+pkgver=r353.3f747a1
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -10,10 +10,11 @@ license=('Unlicense')
 
 depends=(
 'acpi'
-'ansible'
+'ansible-core'
 'aspell-en'
 'awesome'
 'bat'
+'bat-extras'
 'base-devel'
 'brightnessctl'
 'cmake'
@@ -39,11 +40,14 @@ depends=(
 'picom'
 'pulsemixer'
 'ripgrep'
-'rlwrap'
 'slock'
 'songrec'
+'texlive-bibtexextra'
+'texlive-binextra'
+'texlive-fontsrecommended'
+'texlive-latexextra'
+'texlive-plaingeneric'
 'ttc-iosevka'
-'ttc-iosevka-aile'
 'wezterm'
 'xclip'
 'xcolor'
@@ -61,6 +65,7 @@ makedepends=(
 
 optdepends=(
 'brave-bin: webbrowser'
+'mmc-utils-git: for pinebook pro'
 'mullvad-vpn-cli: the best vpn'
 'signal-desktop: superior messenger'
 'tuxedo-keyboard: linux ootb <3'
