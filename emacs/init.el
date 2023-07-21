@@ -53,7 +53,6 @@
   (org-src-preserve-indentation t)
   (org-directory "~/.cache/org")
   (org-confirm-babel-evaluate nil)
-  (org-todo-keywords '((sequence "TODO" "HOLD" "WAIT" "DONE")))
   :hook
   (org-mode . org-modern-mode)
   (org-mode . hl-todo-mode)
@@ -95,7 +94,6 @@
                                 :config (global-corfu-mode))
 
 ; Programming Modes
-;(use-package consult-gh) TODO
 (use-package consult-git-log-grep)
 (use-package magit              :custom (magit-slow-confirm nil))
 (use-package git-gutter         :config (global-git-gutter-mode))
