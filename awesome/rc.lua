@@ -30,7 +30,7 @@ awful.layout.layouts = {
 
 -- Tags
 awful.screen.connect_for_each_screen(function(s)
-    awful.tag({ "1", "2", "3", "4", "5" }, s, awful.layout.layouts[1])
+    awful.tag({ "1", "2", "3" }, s, awful.layout.layouts[1])
     gears.wallpaper.maximized(beautiful.wallpaper, s, true) end)
 
 -- Key bindings
