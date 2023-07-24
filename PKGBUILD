@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r353.3f747a1
+pkgver=r358.c2e38e8
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -11,6 +11,7 @@ license=('Unlicense')
 depends=(
 'acpi'
 'ansible-core'
+'asciiquarium'
 'aspell-en'
 'awesome'
 'bat'
@@ -18,7 +19,9 @@ depends=(
 'base-devel'
 'brightnessctl'
 'cmake'
+'dfrs'
 'emacs-nativecomp'
+'entr'
 'exa'
 'fd'
 'fzf'
@@ -54,6 +57,7 @@ depends=(
 'xorg-server'
 'xorg-xinit'
 'xorg-xrandr'
+'xtrlock'
 'yt-dlp'
 'zola'
 'zsh-completions'
