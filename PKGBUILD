@@ -50,12 +50,10 @@ depends=(
 
 'asciiquarium'
 'aspell-en'
-'dfrs'
 'entr'
 'imagemagick'
 'pacman-contrib'
 'xorg-xrandr'
-'xtrlock'
 
 'texlive-bibtexextra'
 'texlive-binextra'
