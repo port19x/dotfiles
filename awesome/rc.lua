@@ -51,8 +51,6 @@ globalkeys = gears.table.join(
     awful.key({ "Mod4"            }, "m",       function () awful.spawn.with_shell('notify-send "$(timeout 10 songrec recognize -d default || echo song not found)"') end, {description = "songrec", group = "launcher"}),
     awful.key({ "Mod4",           }, "b",       function () awful.spawn.with_shell("notify-send $(acpi -b | cut -d , -f 2)") end, {description = "show battery percentage", group = "launcher"}),
     awful.key({ "Mod4",           }, "t",       function () awful.spawn.with_shell("notify-send $(date +%H:%M)") end, {description = "show time", group = "launcher"}),
-    awful.key({ "Mod4",           }, "x",       function () awful.spawn.with_shell("xcolor -s clipboard") end, {description = "color picker", group = "launcher"}),
-    awful.key({ "Mod4",           }, "p",       function () awful.spawn.with_shell("pgrep -x picom && killall picom || picom -b") end, {description = "stop recording", group = "launcher"}),
     awful.key({ "Mod4",           }, "l",       function () awful.tag.incmwfact( 0.05)          end, {description = "increase master size", group = "layout"}),
     awful.key({ "Mod4",           }, "h",       function () awful.tag.incmwfact(-0.05)          end, {description = "decrease master size", group = "layout"}),
     awful.key({ "Mod4",           }, "Tab",     function () awful.layout.inc( 1)                end, {description = "select next layout", group = "layout"}),
