@@ -34,10 +34,8 @@ depends=(
 'brightnessctl'
 'flameshot'
 'libnotify'
-'picom'
 'slock'
 'songrec'
-'xcolor'
 
 'bat'
 'exa'
