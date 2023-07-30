@@ -59,16 +59,13 @@ depends=(
 'zsh-completions'
 )
 makedepends=(
-'git'
 'stow'
 )
 
 optdepends=(
 'brave-bin: webbrowser'
-'mmc-utils-git: for pinebook pro'
 'mullvad-vpn-cli: the best vpn'
 'signal-desktop: superior messenger'
-'tuxedo-keyboard: linux ootb <3'
 'yay: aur helper'
 )
 
