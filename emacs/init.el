@@ -109,6 +109,7 @@
 (use-package markdown-mode      :mode   "\\.md\\'")
 (use-package lua-mode           :mode   "\\.lua\\'")
 (use-package ansible            :mode   "\\.ya?ml\\'")
+(use-package docker-compose-mode)
 
 ; Key Bindigns
 (use-package evil               :init   (setq evil-want-keybinding nil)
@@ -125,13 +126,21 @@
     :prefix "SPC"
     :global-prefix "C-M-SPC")
 
+  (defun my-info-read-manual ()
+    (interactive)
+    (info
+     (completing-read "Read Info manual: "
+                      (info--manual-names nil)
+                      nil
+                      :require-match)))
+
   (defvar my-help-map
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "f") #'helpful-callable)
-      (define-key map (kbd "i") #'consult-info)
+      (define-key map (kbd "i") #'my-info-read-manual)
       (define-key map (kbd "k") #'helpful-key)
       (define-key map (kbd "m") #'describe-mode)
-      (define-key map (kbd "M") #'consult-man)
+      (define-key map (kbd "M") #'man)
       (define-key map (kbd "p") #'helpful-at-point)
       (define-key map (kbd "s") #'helpful-symbol)
       (define-key map (kbd "v") #'helpful-variable)
