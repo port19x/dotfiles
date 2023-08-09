@@ -63,7 +63,7 @@ globalkeys = gears.table.join(
     awful.key({ "Mod4"            }, "3",       function () awful.screen.focused().tags[3]:view_only() end, {description = "view tag 3", group = "tag"}),
     awful.key({ "Mod4", "Shift"   }, "1",       function () client.focus:move_to_tag(client.focus.screen.tags[1]) end, {description = "move focused client to tag 1", group = "tag"}),
     awful.key({ "Mod4", "Shift"   }, "2",       function () client.focus:move_to_tag(client.focus.screen.tags[2]) end, {description = "move focused client to tag 2", group = "tag"}),
-    awful.key({ "Mod4", "Shift"   }, "3",       function () client.focus:move_to_tag(client.focus.screen.tags[3]) end, {description = "move focused client to tag 3", group = "tag"}),
+    awful.key({ "Mod4", "Shift"   }, "3",       function () client.focus:move_to_tag(client.focus.screen.tags[3]) end, {description = "move focused client to tag 3", group = "tag"}))
 clientkeys = gears.table.join(
     awful.key({ "Mod4",           }, "w",       function (c) c:kill()                                   end, {description = "close", group = "client"}),
     awful.key({ "Mod4",           }, "space",   function () awful.client.focus.byidx( 1)                end, {description = "focus next by index", group = "client"}),
