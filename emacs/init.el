@@ -145,6 +145,7 @@
       (define-key map (kbd "m") #'switch-to-buffer)
       (define-key map (kbd "n") #'next-buffer)
       (define-key map (kbd "r") #'revert-buffer)
+      (define-key map (kbd "s") #'scratch-buffer)
       map))
 
   (defvar my-window-map
