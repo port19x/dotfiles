@@ -90,6 +90,7 @@
 (use-package marginalia         :config (marginalia-mode))
 (use-package consult-projectile :config (projectile-mode +1)
                                 :custom (projectile-project-search-path '("~/git/")))
+(use-package consult-ls-git)
 (use-package corfu              :custom (corfu-auto t)
                                 :config (global-corfu-mode))
 
@@ -210,7 +211,7 @@
     "l" '(consult-git-log-grep :which-key "grep git log")
     "m" '(hl-todo-next :which-key "next Todo")
     "n" '(elfeed :which-key "news (elfeed)")
-    "p" '(consult-projectile-find-file :which-key "hop project file")
+    "p" '(consult-ls-git :which-key "hop project file")
     "P" '(consult-projectile-switch-project :which-key "hop project")
     "q" '(delete-frame :which-key "quit emacsclient")
     "Q" '(save-buffers-kill-emacs :which-key "quit emacs")
