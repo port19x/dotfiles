@@ -58,6 +58,14 @@
   (org-mode . hl-todo-mode)
   (org-mode . visual-line-mode))
 
+(use-package tempel
+  :init
+  (defun tempel-setup-capf ()
+    (setq-local completion-at-point-functions
+                (cons #'tempel-expand completion-at-point-functions)))
+  :hook
+  (bibtex-mode . tempel-setup-capf))
+
 (use-package dashboard
   :custom
   (dashboard-startup-banner "~/dotfiles/emacs/avatar.gif")
@@ -173,6 +181,7 @@
 
   (defvar my-org-map
     (let ((map (make-sparse-keymap)))
+      (define-key map (kbd "SPC") #'tempel-insert)
       (define-key map (kbd "b") #'org-insert-structure-template)
       (define-key map (kbd "c") #'org-cite-insert)
       (define-key map (kbd "d") #'org-deadline)

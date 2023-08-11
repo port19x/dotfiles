@@ -1,0 +1,23 @@
+fundamental-mode
+
+(today (format-time-string "%Y-%m-%d"))
+
+bibtex-mode
+
+(online "@online{" p "," n>
+        "author =\"" p "\"," n>
+        "title =\"" p "\"," n>
+        "url =\"" (car kill-ring) "\"," n>
+        "date =\"" p "\"," n
+        "}")
+
+(online-prompt "@online{" p "," n>
+               "author =\"" p "\"," n>
+               "title =\"" p "\"," n>
+               "url =\""
+               (completing-read "Pick one: " kill-ring
+                                (lambda (element)
+                                  (string-match-p "^https?" element)))
+               "\"," n>
+               "date =\"" p "\"," n
+               "}")
