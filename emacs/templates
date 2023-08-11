@@ -4,20 +4,16 @@ fundamental-mode
 
 bibtex-mode
 
-(online "@online{" p "," n>
-        "author =\"" p "\"," n>
-        "title =\"" p "\"," n>
-        "url =\"" (car kill-ring) "\"," n>
-        "date =\"" p "\"," n
+(online "@online{" p "," n
+        "  author =\"" p "\"," n
+        "  title = \"" p "\"," n
+        "  url = \"" p "\"," n
+        "  date = \"" p "\"," n
         "}")
 
-(online-prompt "@online{" p "," n>
-               "author =\"" p "\"," n>
-               "title =\"" p "\"," n>
-               "url =\""
-               (completing-read "Pick one: " kill-ring
-                                (lambda (element)
-                                  (string-match-p "^https?" element)))
-               "\"," n>
-               "date =\"" p "\"," n
-               "}")
+(book "@book{" p "," n
+      "  author = \"" p "\"," n
+      "  title = \"" p "\"," n
+      "  year = \"" p "\"," n
+      "  publisher = \"" p "\"," n
+      "}")
