@@ -1,6 +1,6 @@
 fundamental-mode
 
-(today (format-time-string "%Y-%m-%d"))
+(today (format-time-string "%d-%m-%Y"))
 
 bibtex-mode
 
