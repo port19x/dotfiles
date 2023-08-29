@@ -45,6 +45,11 @@ f() {
     "$@" "$(fzf)"
 }
 
+ct() {
+    a=$(mktemp -d)
+    cd $a
+}
+
 alias v='nvim'
 alias ls='exa'
 alias la='exa -a'
