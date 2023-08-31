@@ -80,7 +80,8 @@
                           "https://protesilaos.com/commentary.xml" "https://protesilaos.com/codelog.xml" "https://protesilaos.com/news.xml"
                           "https://planet.archlinux.org/rss20.xml" "https://distrowatch.com/news/dwd.xml" "https://lwn.net/headlines/rss"
                           "https://github.blog/changelog/feed" "https://sachachua.com/blog/category/emacs-news/feed/"
-                          "https://openrss.org/github.com/pystardust/ani-cli/issues" "https://openrss.org/github.com/pystardust/ani-cli/pulls")))
+                          "https://openrss.org/github.com/pystardust/ani-cli/issues" "https://openrss.org/github.com/pystardust/ani-cli/pulls"
+                          "https://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches" "https://blog.fefe.de/rss.xml?html")))
 
 ; UI
 (use-package doom-themes        :config (load-theme 'doom-nord-aurora t))
