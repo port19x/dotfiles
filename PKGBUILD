@@ -92,7 +92,7 @@ _manual () {
 }
 
 _writefiles () {
-    echo "exec awesome" > $HOME/.xinitrc
+    echo "exec awesome" > $HOME/.config/X11/xinitrc
     mkdir -p $HOME/.local/share/gnupg
     chmod 700 $HOME/.local/share/gnupg
 }
