@@ -20,7 +20,6 @@ depends=(
 'zsh-completions'
 
 'ansible-core'
-'htop'
 'keepassxc'
 'man-db'
 'man-pages'
