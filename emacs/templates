@@ -1,14 +1,21 @@
 fundamental-mode
 
-(today (format-time-string "%d-%m-%Y"))
+(today (format-time-string "%Y-%m-%d"))
 
 bibtex-mode
 
 (online "@online{" p "," n
-        "  author =\"" p "\"," n
+        "  author = \"" p "\"," n
         "  title = \"" p "\"," n
         "  url = \"" p "\"," n
         "  date = \"" p "\"," n
+        "}")
+
+(tonline "@online{" p "," n
+        "  author = \"" p "\"," n
+        "  title = \"" p "\"," n
+        "  url = \"" p "\"," n
+        "  date = \"" (format-time-string "%Y-%m-%d") "\"," n
         "}")
 
 (book "@book{" p "," n
