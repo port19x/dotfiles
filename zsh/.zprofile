@@ -11,5 +11,6 @@ export GNUPGHOME="$HOME/.local/share/gnupg"
 export GOPATH="$HOME/.cache/go"
 export ANSIBLE_HOME="$HOME/.cache/ansible"
 export XINITRC="$HOME/.config/X11/xinitrc"
+export WINEPREFIX="$XDG_DATA_HOME/wine"
 export NO_AT_BRIDGE=1
 startx
