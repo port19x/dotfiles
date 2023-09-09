@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r362.0b841a8
+pkgver=r391.911659f
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -37,7 +37,7 @@ depends=(
 'songrec'
 
 'bat'
-'exa'
+'eza'
 'fzf'
 'neovim'
 'xclip'
@@ -91,9 +91,12 @@ _manual () {
 }
 
 _writefiles () {
-    echo "exec awesome" > $HOME/.config/X11/xinitrc
+    mkdir -p $HOME/.config/X11
+    mkdir -p $HOME/.config/git
     mkdir -p $HOME/.local/share/gnupg
     chmod 700 $HOME/.local/share/gnupg
+    echo "exec awesome" > $HOME/.config/X11/xinitrc
+    touch $HOME/.config/git/config
 }
 
 package() {
