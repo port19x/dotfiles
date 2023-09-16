@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r391.69604fb
+pkgver=r392.0ffd3b7
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -10,13 +10,13 @@ license=('Unlicense')
 
 # sorted by dependency strength: core > program > keybind > alias > emacs-dep > utility > latex
 depends=(
-'awesome'
 'base-devel'
 'emacs-nativecomp'
+'mako'
+'sway'
 'ttc-iosevka'
 'wezterm'
-'xorg-server'
-'xorg-xinit'
+'wofi'
 'zsh-completions'
 
 'ansible-core'
@@ -31,16 +31,18 @@ depends=(
 
 'acpi'
 'brightnessctl'
-'flameshot'
+'grim'
 'libnotify'
-'slock'
+'slurp'
 'songrec'
+'swaybg'
+'swaylock'
 
 'bat'
 'eza'
 'fzf'
 'neovim'
-'xclip'
+'wl-clipboard'
 'yt-dlp'
 
 'cmake'
@@ -52,7 +54,6 @@ depends=(
 'entr'
 'imagemagick'
 'pacman-contrib'
-'xorg-xrandr'
 
 'texlive-bibtexextra'
 'texlive-binextra'

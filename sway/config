@@ -1,0 +1,90 @@
+include /etc/sway/config-vars.d/*
+
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+
+output * bg ~/pic/Wallpapers/wallpaper.jpg fill
+for_window [class="^.*"] border pixel 1
+seat * hide_cursor 1000
+
+input * {
+xkb_layout "de"
+#xkb_variant "neo" ... some day ...
+}
+
+
+bindsym $mod+Control+l exec swaylock -i ~/pic/Wallpapers/wallpaper.jpg
+bindsym $mod+Control+q exec swaymsg exit
+bindsym $mod+Control+r reload
+
+bindsym $mod+Shift+f floating toggle
+# TODO focus next screen
+# TODO swapnext
+bindsym $mod+Shift+space move left
+bindsym $mod+f fullscreen
+bindsym $mod+h splith
+bindsym $mod+v splitv
+bindsym $mod+space focus next
+bindsym $mod+w kill
+
+bindsym $mod+Return exec wezterm
+bindsym $mod+b exec notify-send "$(acpi -b | cut -d , -f 2)"
+bindsym $mod+e exec emacsclient -c
+bindsym $mod+g exec keepassxc
+bindsym $mod+m exec notify-send "$(timeout 10 songrec recognize -d default || echo song not found)"
+bindsym $mod+q exec brave
+bindsym $mod+r exec wofi --show drun
+bindsym $mod+s exec grim -g "$(slurp)"
+bindsym $mod+t exec notify-send "$(date +%H:%M_%d.%m.%y)"
+
+bindsym $mod+tab layout toggle split
+bindsym $mod+Shift+r mode "resize"
+mode "resize" {
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym Print grim
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+
+set $base00 #2e3440
+set $base01 #434c53
+set $base02 #586e75
+set $base03 #657b83
+set $base04 #839496
+set $base05 #93a1a1
+set $base06 #eee8d5
+set $base07 #fdf6e3
+set $base08 #dc322f
+set $base09 #cb4b16
+set $base0A #b58900
+set $base0B #859900
+set $base0C #2aa198
+set $base0D #268bd2
+set $base0E #6c71c4
+set $base0F #d33682
+
+# Property Name         Border  BG      Text    Indicator Child Border
+client.focused          #8fbcbb #000000 #000000 #000000 #8fbcbb
+client.focused_inactive #2e3440 #000000 #000000 #000000 #2e3440
+client.unfocused        #2e3440 #000000 #000000 #000000 #2e3440
+
+include /etc/sway/config.d/*
