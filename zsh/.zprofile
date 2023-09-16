@@ -13,4 +13,9 @@ export ANSIBLE_HOME="$HOME/.cache/ansible"
 export XINITRC="$HOME/.config/X11/xinitrc"
 export WINEPREFIX="$XDG_DATA_HOME/wine"
 export NO_AT_BRIDGE=1
-startx
+export SDL_VIDEODRIVER=wayland
+export _JAVA_AWT_WM_NONREPARENTING=1
+export GDK_BACKEND="wayland,x11"
+export MOZ_ENABLE_WAYLAND=1
+export QT_QPA_PLATFORM=wayland-egl
+exec sway
