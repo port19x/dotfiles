@@ -8,7 +8,7 @@ arch=('any')
 url='https://github.com/port19x/dotfiles'
 license=('Unlicense')
 
-# sorted by dependency strength: core > program > keybind > alias > emacs-dep > utility > latex
+# sorted by dependency strength: core > program > keybind > alias > emacs-dep > utility
 depends=(
 'base-devel'
 'emacs-nativecomp'
@@ -54,12 +54,6 @@ depends=(
 'entr'
 'imagemagick'
 'pacman-contrib'
-
-'texlive-bibtexextra'
-'texlive-binextra'
-'texlive-fontsrecommended'
-'texlive-latexextra'
-'texlive-plaingeneric'
 )
 makedepends=(
 'stow'
@@ -67,8 +61,8 @@ makedepends=(
 
 optdepends=(
 'brave-bin: webbrowser'
+'texlive: for writing papers'
 'mullvad-vpn-cli: the best vpn'
-'signal-desktop: superior messenger'
 'yay: aur helper'
 )
 
