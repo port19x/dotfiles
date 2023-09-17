@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r392.0ffd3b7
+pkgver=r391.69604fb
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -10,13 +10,13 @@ license=('Unlicense')
 
 # sorted by dependency strength: core > program > keybind > alias > emacs-dep > utility
 depends=(
+'awesome'
 'base-devel'
 'emacs-nativecomp'
-'foot'
-'hyprland'
-'mako'
 'ttc-iosevka'
-'wofi'
+'wezterm'
+'xorg-server'
+'xorg-xinit'
 'zsh-completions'
 
 'ansible-core'
@@ -31,18 +31,16 @@ depends=(
 
 'acpi'
 'brightnessctl'
-'grim'
+'flameshot'
 'libnotify'
-'slurp'
+'slock'
 'songrec'
-'swaybg'
-'swaylock'
 
 'bat'
 'eza'
 'fzf'
 'neovim'
-'wl-clipboard'
+'xclip'
 'yt-dlp'
 
 'cmake'
@@ -54,6 +52,7 @@ depends=(
 'entr'
 'imagemagick'
 'pacman-contrib'
+'xorg-xrandr'
 )
 makedepends=(
 'stow'
