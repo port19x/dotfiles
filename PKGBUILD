@@ -12,10 +12,10 @@ license=('Unlicense')
 depends=(
 'base-devel'
 'emacs-nativecomp'
+'foot'
 'hyprland'
 'mako'
 'ttc-iosevka'
-'wezterm'
 'wofi'
 'zsh-completions'
 
