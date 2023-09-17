@@ -24,7 +24,7 @@ pastebin() {
     curl --silent https://oshi.at -F f=@$* -F expire=120 \
     | grep DL \
     | cut -d " " -f 2 \
-    | wl-copy \
+    | xclip -selection c \
     && echo "link copied to clipboard"
 }
 
@@ -83,7 +83,7 @@ alias smpv='mpv --no-audio-display "$(ls | shuf -n 1)"'
 alias fmpv='mpv --no-audio-display "$(fzf)"'
 alias dnb='mpv --no-video https://youtube.com/@themanfromdelmonte'
 alias lofi='mpv --no-video https://www.youtube.com/live/jfKfPfyJRdk'
-alias yank='wl-copy c < '
+alias yank='xclip -selection c < '
 alias tree='exa -a -I .git --tree'
 alias icat='wezterm imgcat'
 alias htop='pstree -nT'
