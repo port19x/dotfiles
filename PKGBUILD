@@ -12,8 +12,8 @@ license=('Unlicense')
 depends=(
 'base-devel'
 'emacs-nativecomp'
+'hyprland'
 'mako'
-'sway'
 'ttc-iosevka'
 'wezterm'
 'wofi'
