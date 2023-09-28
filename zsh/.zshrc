@@ -55,7 +55,7 @@ global() {
     printf "\33[2K\r\033[1;32mIndia:   %s\033[0m\n" $(TZ="Asia/Kolkata" date +%H:%M)
     printf "\33[2K\r\033[1;31mUS West: %s\033[0m\n" $(TZ="America/Phoenix" date +%H:%M)
     printf "\33[2K\r\033[1;34mUS East: %s\033[0m\n" $(TZ="America/Atlanta" date +%H:%M)
-    printf "\33[2K\r\033[1;33mNepal:   %s\033[0m\n" $(TZ="Asia/Kathmandu" date +%H:%M)
+    printf "\33[2K\r\033[1;33mNepal:   %s\033[0m\n" $(TZ="Asia/Makassar" date +%H:%M)
 }
 
 alias v='nvim'
