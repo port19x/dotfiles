@@ -20,6 +20,7 @@ depends=(
 'zsh-completions'
 
 'ansible-core'
+'clojure'
 'keepassxc'
 'man-db'
 'man-pages'
@@ -61,6 +62,7 @@ makedepends=(
 optdepends=(
 'brave-bin: webbrowser'
 'texlive: for writing papers'
+'clojure-lsp-bin: lsp for the superior lisp'
 'mullvad-vpn-cli: the best vpn'
 'yay: aur helper'
 )
