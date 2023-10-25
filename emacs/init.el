@@ -120,6 +120,9 @@
 (use-package ansible            :mode   "\\.ya?ml\\'")
 (use-package docker-compose-mode)
 
+; Others
+(use-package pdf-tools)
+
 ; Key Bindigns
 (use-package evil               :init   (setq evil-want-keybinding nil)
                                 :config (evil-mode 1)
