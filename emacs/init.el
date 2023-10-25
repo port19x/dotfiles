@@ -45,6 +45,7 @@
    'org-babel-load-languages
    '((sqlite . t)
      (shell . t)
+     (python . t)
      (emacs-lisp . nil)))
   (require 'oc-biblatex)
   :custom
@@ -113,7 +114,7 @@
                                    ("CITE" . "#dc8cc3")
                                    ("IMAGE" . "#dc8cc3")
                                    ("LINK" . "#dc8cc3"))))
-(use-package vterm              :custom (vterm-always-compile-module t))
+(use-package eat)
 (use-package markdown-mode      :mode   "\\.md\\'")
 (use-package lua-mode           :mode   "\\.lua\\'")
 (use-package ansible            :mode   "\\.ya?ml\\'")
@@ -186,7 +187,7 @@
       (define-key map (kbd "d") #'org-deadline)
       (define-key map (kbd "e") #'org-babel-execute-src-block)
       (define-key map (kbd "f") #'org-footnote-action)
-      (define-key map (kbd "h") #'org-info)
+      (define-key map (kbd "h") #'org-html-export-to-html)
       (define-key map (kbd "i") #'org-indent-mode)
       (define-key map (kbd "j") #'consult-org-heading)
       (define-key map (kbd "k") #'org-clock-in)
@@ -226,7 +227,7 @@
     "r" '(consult-recent-file :which-key "open recent")
     "R" '(re-builder :which-key "regex builder") ;consider pcre replacement
     "s" '(consult-line :which-key "seek")
-    "t" '(vterm-other-window :which-key "vterm")
+    "t" '(eat-other-window :which-key "vterm")
     "u" '(consult-theme :which-key "change theme")
     "v" '(eval-last-sexp :which-key "(emacs) eval")
     "w" `(,my-window-map :which-key "Windows")
