@@ -18,6 +18,8 @@
   (scroll-bar-mode -1)
   (horizontal-scroll-bar-mode -1)
   (savehist-mode 1)
+  (display-time-mode 1)
+  (display-battery-mode 1)
   :custom
   (inhibit-startup-message t)
   (make-backup-files nil)
