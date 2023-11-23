@@ -89,6 +89,7 @@
 (use-package doom-modeline      :config (doom-modeline-mode)) ;nerd-icons-install-fonts
 (use-package beacon             :config (beacon-mode 1))
 (use-package helpful            :custom (helpful-max-buffers 3))
+(use-package define-it)
 (use-package which-key          :config (which-key-mode)
                                 :custom (which-key-sort-order 'which-key-key-order-alpha))
 
@@ -162,6 +163,8 @@
 
   (defvar my-help-map
     (let ((map (make-sparse-keymap)))
+      (define-key map (kbd "d") #'define-it)
+      (define-key map (kbd "D") #'define-it-at-point)
       (define-key map (kbd "f") #'helpful-callable)
       (define-key map (kbd "i") #'my-info-read-manual)
       (define-key map (kbd "k") #'helpful-key)
