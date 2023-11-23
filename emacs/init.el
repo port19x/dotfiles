@@ -119,13 +119,13 @@
 (use-package eat)
 (use-package eshell-toggle      :custom (eshell-history-size 100000))
 (use-package esh-autosuggest    :hook (eshell-mode . esh-autosuggest-mode))
-(use-package markdown-mode      :mode   "\\.md\\'")
-(use-package lua-mode           :mode   "\\.lua\\'")
-(use-package ansible            :mode   "\\.ya?ml\\'")
+(use-package markdown-mode      :mode "\\.md\\'")
+(use-package lua-mode           :mode "\\.lua\\'")
+(use-package ansible            :mode "\\.ya?ml\\'")
 (use-package docker-compose-mode)
 
 ; Multimedia
-(use-package pdf-tools)
+(use-package pdf-tools          :init (pdf-tools-install))
 (use-package keepass-mode       :mode "\\.kdbx\\'")
 
 ; Key Bindigns
