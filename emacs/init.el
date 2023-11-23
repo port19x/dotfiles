@@ -126,6 +126,7 @@
 
 ; Multimedia
 (use-package pdf-tools)
+(use-package keepass-mode       :mode "\\.kdbx\\'")
 
 ; Key Bindigns
 (use-package evil               :init   (setq evil-want-keybinding nil)
