@@ -124,7 +124,7 @@
 (use-package ansible            :mode   "\\.ya?ml\\'")
 (use-package docker-compose-mode)
 
-; Others
+; Multimedia
 (use-package pdf-tools)
 
 ; Key Bindigns
@@ -149,6 +149,15 @@
                       (info--manual-names nil)
                       nil
                       :require-match)))
+
+  (defun toggle-org-pdf-export-on-save ()
+    (interactive)
+    (if (memq 'org-latex-export-to-pdf after-save-hook)
+        (progn
+          (remove-hook 'after-save-hook 'org-latex-export-to-pdf t)
+          (message "Disabled org latex export on save for current buffer..."))
+      (add-hook 'after-save-hook 'org-latex-export-to-pdf nil t)
+      (message "Enabled org latex export on save for current buffer...")))
 
   (defvar my-help-map
     (let ((map (make-sparse-keymap)))
@@ -209,6 +218,7 @@
       (define-key map (kbd "t") #'org-insert-time-stamp)
       (define-key map (kbd "v") #'visual-line-mode)
       (define-key map (kbd "x") #'org-export-dispatch)
+      (define-key map (kbd "X") #'toggle-org-pdf-export-on-save)
       map))
 
   (my-spc-map
@@ -226,6 +236,7 @@
     "i" '(insert-char :which-key "insert unicode")
     "j" '(consult-imenu :which-key "jump via imenu")
     "k" '(comment-region :which-key "comment region")
+    "K" '(indent-region :which-key "indent region")
     "l" '(consult-git-log-grep :which-key "grep git log")
     "m" '(hl-todo-next :which-key "next Todo")
     "n" '(elfeed :which-key "news (elfeed)")
@@ -243,12 +254,3 @@
     "SPC" `(,my-org-map :which-key "Org Mode")
     "<return>" '(consult-bookmark :which-key "jump to bookmark")
     "S-<return>" '(bookmark-set :which-key "set a bookmark")))
-
-(defun toggle-org-pdf-export-on-save ()
-  (interactive)
-  (if (memq 'org-latex-export-to-pdf after-save-hook)
-      (progn
-        (remove-hook 'after-save-hook 'org-latex-export-to-pdf t)
-        (message "Disabled org latex export on save for current buffer..."))
-    (add-hook 'after-save-hook 'org-latex-export-to-pdf nil t)
-    (message "Enabled org latex export on save for current buffer...")))
