@@ -117,9 +117,6 @@
                                    ("CITE" . "#dc8cc3")
                                    ("IMAGE" . "#dc8cc3")
                                    ("LINK" . "#dc8cc3"))))
-(use-package eat)
-(use-package eshell-toggle      :custom (eshell-history-size 100000))
-(use-package esh-autosuggest    :hook (eshell-mode . esh-autosuggest-mode))
 (use-package markdown-mode      :mode "\\.md\\'")
 (use-package lua-mode           :mode "\\.lua\\'")
 (use-package ansible            :mode "\\.ya?ml\\'")
@@ -128,6 +125,26 @@
 ; Multimedia
 (use-package pdf-tools          :init (pdf-tools-install))
 (use-package keepass-mode       :mode "\\.kdbx\\'")
+
+; Terminals & Aliases
+(use-package eat)
+(use-package esh-autosuggest)
+(use-package eshell-toggle
+  :init
+  (defun eshell-add-aliases () ""
+         (dolist (var '(("v" "find-file $1")
+                        ("ap" "ansible-playbook $1")
+                        ("rm" "rm -I --preserve-root $1")
+                        ("ll" "ls -la")
+                        ("la" "ls -a")
+                        ("yta" "yt-dlp --embed-thumbnail -f 'bestaudio/best' -f 'm4a' $1")
+                        ("ytd" "yt-dlp -f 'bestvideo[height<=?1080]+bestaudio/best' -f 'mp4' $1")))
+      (add-to-list 'eshell-command-aliases-list var)))
+  :custom
+  (eshell-history-size 100000)
+  :hook
+  (eshell-post-command . eshell-add-aliases)
+  (eshell-mode . esh-autosuggest-mode))
 
 ; Key Bindigns
 (use-package evil               :init   (setq evil-want-keybinding nil)
