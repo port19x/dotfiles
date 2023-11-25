@@ -19,7 +19,6 @@
   (horizontal-scroll-bar-mode -1)
   (savehist-mode 1)
   (display-time-mode 1)
-  (display-battery-mode 1)
   :custom
   (inhibit-startup-message t)
   (make-backup-files nil)
@@ -37,7 +36,7 @@
   (minibuffer-depth-indicate-mode 1)
   :hook
   (prog-mode . electric-pair-mode)
-  (server-after-make-frame . (lambda () (set-face-attribute 'default nil :font "Iosevka" :height 140)))
+  (after-init . (lambda () (set-face-attribute 'default nil :font "Iosevka" :height 140)))
   (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
   (after-init . elfeed-update))
 
@@ -71,12 +70,12 @@
 
 (use-package dashboard
   :custom
-  (dashboard-startup-banner "~/dotfiles/emacs/avatar.gif")
+  (dashboard-startup-banner "~/dotfiles/.emacs.d/avatar.gif")
   (initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
   (dashboard-center-content t)
   (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5)))
   :hook
-  (server-after-make-frame     . dashboard-refresh-buffer))
+  (after-init . dashboard-refresh-buffer))
 
 (use-package elfeed
   :custom (elfeed-feeds '("https://planet.archlinux.org/rss20.xml" "https://distrowatch.com/news/dwd.xml"
@@ -85,6 +84,11 @@
                           "https://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches" "https://blog.fefe.de/rss.xml?html")))
 
 ; UI
+(use-package exwm               :init   (require 'exwm)
+                                        (exwm-enable)
+                                :config (add-to-list 'exwm-input-prefix-keys ?\C-\M- )
+                                :custom (exwm-workspace-number 1)
+                                :hook   (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
 (use-package doom-themes        :config (load-theme 'doom-nord-aurora t))
 (use-package doom-modeline      :config (doom-modeline-mode)) ;nerd-icons-install-fonts
 (use-package beacon             :config (beacon-mode 1))
@@ -178,6 +182,10 @@
       (add-hook 'after-save-hook 'org-latex-export-to-pdf nil t)
       (message "Enabled org latex export on save for current buffer...")))
 
+  (defun launch (command)
+      (interactive (list (read-shell-command "$ ")))
+      (start-process-shell-command command nil command))
+
   (defvar my-help-map
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "d") #'define-it)
@@ -266,7 +274,7 @@
     "q" '(delete-frame :which-key "quit emacsclient")
     "Q" '(save-buffers-kill-emacs :which-key "quit emacs")
     "r" '(consult-recent-file :which-key "open recent")
-    "R" '(re-builder :which-key "regex builder") ;consider pcre replacement
+    "R" '(launch :which-key "launcher")
     "s" '(consult-line :which-key "seek")
     "u" '(consult-theme :which-key "change theme")
     "v" '(eval-last-sexp :which-key "(emacs) eval")
