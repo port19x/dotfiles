@@ -70,7 +70,7 @@
 
 (use-package dashboard
   :custom
-  (dashboard-startup-banner "~/dotfiles/.emacs.d/avatar.gif")
+  (dashboard-startup-banner "~/dotfiles/avatar.gif")
   (initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
   (dashboard-center-content t)
   (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5)))
@@ -86,7 +86,7 @@
 ; UI
 (use-package exwm               :init   (require 'exwm)
                                         (exwm-enable)
-                                :config (add-to-list 'exwm-input-prefix-keys ?\C-\M- )
+                                :config (add-to-list 'exwm-input-prefix-keys ?\M- )
                                 :custom (exwm-workspace-number 1)
                                 :hook   (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
 (use-package doom-themes        :config (load-theme 'doom-nord-aurora t))
@@ -163,7 +163,7 @@
   (general-create-definer my-spc-map
     :keymaps '(normal visual insert emacs)
     :prefix "SPC"
-    :global-prefix "C-M-SPC")
+    :global-prefix "M-SPC")
 
   (defun my-info-read-manual ()
     (interactive)
@@ -185,6 +185,8 @@
   (defun launch (command)
       (interactive (list (read-shell-command "$ ")))
       (start-process-shell-command command nil command))
+  (defun slock () (interactive) (launch "slock"))
+  (defun brave () (interactive) (launch "brave"))
 
   (defvar my-help-map
     (let ((map (make-sparse-keymap)))
@@ -266,12 +268,13 @@
     "j" '(consult-imenu :which-key "jump via imenu")
     "k" '(comment-region :which-key "comment region")
     "K" '(indent-region :which-key "indent region")
-    "l" '(consult-git-log-grep :which-key "grep git log")
+    "l" '(slock :which-key "lock screen")
+    "L" '(consult-git-log-grep :which-key "grep git log")
     "m" '(hl-todo-next :which-key "next Todo")
     "n" '(elfeed :which-key "news (elfeed)")
     "p" '(consult-ls-git :which-key "hop project file")
     "P" '(consult-projectile-switch-project :which-key "hop project")
-    "q" '(delete-frame :which-key "quit emacsclient")
+    "q" '(brave :which-key "launch browser")
     "Q" '(save-buffers-kill-emacs :which-key "quit emacs")
     "r" '(consult-recent-file :which-key "open recent")
     "R" '(launch :which-key "launcher")
