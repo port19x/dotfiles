@@ -64,17 +64,14 @@ _manual () {
 }
 
 package() {
-    mkdir -p $HOME/.config/git
-    mkdir -p $HOME/.local/share/gnupg
-    chmod 700 $HOME/.local/share/gnupg
-    printf "\33[2K\r\033[1;32m%s\033[0m\n" "[1/3] prepared XDG directories"
+    echo "startx" > $HOME/.bash_profile
+    echo "exec emacs --fullscreen" > $HOME/.xinitrc
+    cd .. && stow -v --no-folding --ignore="PKGBUILD" --ignore="src" --ignore="dotfiles" --ignore="pkg" --ignore=".git" -t $HOME/.emacs.d/ .
+    printf "\33[2K\r\033[1;32m%s\033[0m\n" "[1/2] symlinked emacs config, made startup files"
 
-    cd .. && stow -v --no-folding --ignore="PKGBUILD" --ignore="src" --ignore="dotfiles" --ignore="pkg" --ignore=".git" -t $HOME .
-    printf "\33[2K\r\033[1;32m%s\033[0m\n" "[2/3] symlinked config files"
-
-    printf "\33[2K\r\033[1;32m%s\033[0m\n" "[UWU] Starting to compile emacs package. This might take a few minutes" 
+    printf "\33[2K\r\033[1;32m%s\033[0m\n" "[UWU] Starting to compile emacs packages. This might take a few minutes" 
     emacs -l ~/.emacs.d/init.el -batch
-    printf "\33[2K\r\033[1;32m%s\033[0m\n" "[3/3] compiled emacs packages" 
+    printf "\33[2K\r\033[1;32m%s\033[0m\n" "[2/2] compiled emacs packages"
 
     _manual 'localectl set-x11-keymap de "" "" ctrl:nocaps'
     _manual 'configure autologin: https://wiki.archlinux.org/title/Getty'
