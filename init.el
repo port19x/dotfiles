@@ -70,7 +70,7 @@
 
 (use-package dashboard
   :custom
-  (dashboard-startup-banner "~/dotfiles/avatar.gif")
+  (dashboard-startup-banner "~/dotfiles/orb.jpg")
   (initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
   (dashboard-center-content t)
   (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5)))
@@ -89,7 +89,8 @@
                                 :config (add-to-list 'exwm-input-prefix-keys ?\M- )
                                 :custom (exwm-workspace-number 1)
                                 :hook   (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
-(use-package doom-themes        :config (load-theme 'doom-nord-aurora t))
+(use-package doom-themes)
+(use-package ef-themes          :config (load-theme 'ef-maris-dark t))
 (use-package doom-modeline      :config (doom-modeline-mode)) ;nerd-icons-install-fonts
 (use-package beacon             :config (beacon-mode 1))
 (use-package helpful            :custom (helpful-max-buffers 3))
@@ -129,6 +130,7 @@
 ; Multimedia
 (use-package pdf-tools          :init (pdf-tools-install))
 (use-package keepass-mode       :mode "\\.kdbx\\'")
+(use-package el-fetch)
 
 ; Terminals & Aliases
 (use-package eat)
