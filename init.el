@@ -1,4 +1,5 @@
 (setq gc-cons-threshold most-positive-fixnum)
+(setq package-native-compile t)
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
@@ -128,7 +129,7 @@
 (use-package docker-compose-mode)
 
 ; Multimedia
-(use-package pdf-tools          :init (pdf-tools-install))
+(use-package pdf-tools          :init (pdf-tools-install 1))
 (use-package keepass-mode       :mode "\\.kdbx\\'")
 (use-package el-fetch)
 
