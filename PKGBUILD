@@ -1,36 +1,33 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r415.51e4947
+pkgver=r419.c535a1d
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
 url='https://github.com/port19x/dotfiles'
 license=('Unlicense')
 
-# sorted by dependency strength: core > program > keybind > alias > emacs-dep > utility
+# sorted by dependency strength: core > program > emacs-dep > utility
 depends=(
 'base-devel'
 'emacs-nativecomp'
+'noto-fonts'
 'ttc-iosevka'
 'xorg-server'
 'xorg-xinit'
 
 'ansible-core'
+'flameshot'
 'keepassxc'
 'man-db'
 'man-pages'
 'mpv'
-'noto-fonts'
+'slock'
 'zola'
 
-'flameshot'
-'libnotify'
-'slock'
-
-'yt-dlp'
-
 'fd'
+'poppler-glib'
 'ripgrep'
 
 'asciiquarium'
@@ -38,16 +35,18 @@ depends=(
 'entr'
 'imagemagick'
 'pacman-contrib'
-'xorg-xrandr'
-)
-makedepends=(
 'stow'
+'unzip'
+'wget'
+'xorg-xrandr'
+'yt-dlp'
 )
 
 optdepends=(
 'brave-bin: webbrowser'
-'texlive: for writing papers'
 'mullvad-vpn-cli: the best vpn'
+'texlive: for writing papers'
+'tuxedo-control-center-bin: fan noise :/'
 'yay: aur helper'
 )
 
