@@ -9,7 +9,7 @@
 (eval-when-compile (require 'use-package)) 
 (require 'bind-key) ;; too here
 (setq use-package-always-ensure t
-      use-package-always-demand (daemonp))
+      use-package-always-demand t)
 (use-package no-littering)
 
 (use-package emacs
