@@ -190,6 +190,7 @@
       (start-process-shell-command command nil command))
   (defun slock () (interactive) (launch "slock"))
   (defun brave () (interactive) (launch "brave"))
+  (defun flameshot () (interactive) (launch "flameshot gui"))
 
   (defvar my-help-map
     (let ((map (make-sparse-keymap)))
@@ -281,7 +282,7 @@
     "Q" '(save-buffers-kill-emacs :which-key "quit emacs")
     "r" '(consult-recent-file :which-key "open recent")
     "R" '(launch :which-key "launcher")
-    "s" '(consult-line :which-key "seek")
+    "s" '(flameshot :which-key "screenshot")
     "u" '(consult-theme :which-key "change theme")
     "v" '(eval-last-sexp :which-key "(emacs) eval")
     "w" `(,my-window-map :which-key "Windows")
