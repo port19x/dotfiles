@@ -79,10 +79,15 @@
   (after-init . dashboard-refresh-buffer))
 
 (use-package elfeed
-  :custom (elfeed-feeds '("https://planet.archlinux.org/rss20.xml" "https://distrowatch.com/news/dwd.xml"
-                          "https://github.blog/changelog/feed" "https://sachachua.com/blog/category/emacs-news/feed/"
-                          "https://openrss.org/github.com/pystardust/ani-cli/issues" "https://openrss.org/github.com/pystardust/ani-cli/pulls"
-                          "https://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches" "https://blog.fefe.de/rss.xml?html")))
+  :custom (elfeed-feeds '("https://planet.archlinux.org/rss20.xml"
+                          "https://distrowatch.com/news/dwd.xml"
+                          "https://github.blog/changelog/feed"
+                          "https://sachachua.com/blog/category/emacs-news/feed/"
+                          "https://openrss.org/github.com/pystardust/ani-cli/issues"
+                          "https://openrss.org/github.com/pystardust/ani-cli/pulls"
+                          "https://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches"
+                          "https://blog.fefe.de/rss.xml?html"
+                          "https://hnrss.org/show?points=100&comments=25")))
 
 ; UI
 (use-package exwm               :init   (require 'exwm)
