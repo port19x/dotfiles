@@ -139,7 +139,7 @@
 (use-package el-fetch)
 
 ; Terminals & Aliases
-(use-package eat)
+(use-package vterm)
 (use-package esh-autosuggest)
 (use-package eshell-toggle
   :init
@@ -266,7 +266,7 @@
     "c" '(magit-clone :which-key "magit clone")
     "d" '(dired-jump :which-key "dired jump")
     "e" '(eshell-toggle :which-key "eshell")
-    "E" '(eat-other-window :which-key "eat")
+    "E" '(vterm :which-key "vterm")
     "f" '(find-file :which-key "open file")
     "F" '(consult-find :which-key "consult find")
     "g" '(magit :which-key "magit")
