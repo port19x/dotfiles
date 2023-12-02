@@ -26,6 +26,7 @@ depends=(
 'slock'
 'zola'
 
+'cmake'
 'fd'
 'poppler-glib'
 'ripgrep'
