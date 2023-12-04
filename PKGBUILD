@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r419.c535a1d
+pkgver=r424.0484857
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -13,6 +13,7 @@ depends=(
 'base-devel'
 'emacs-nativecomp'
 'noto-fonts'
+'noto-fonts-emoji'
 'ttc-iosevka'
 'xorg-server'
 'xorg-xinit'
@@ -29,10 +30,12 @@ depends=(
 'cmake'
 'fd'
 'poppler-glib'
+'python-matplotlib'
 'ripgrep'
 
 'asciiquarium'
 'aspell-en'
+'brightnessctl'
 'entr'
 'imagemagick'
 'pacman-contrib'
