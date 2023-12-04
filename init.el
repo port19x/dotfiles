@@ -1,15 +1,12 @@
-(setq gc-cons-threshold most-positive-fixnum)
-(setq package-native-compile t)
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(setq gc-cons-threshold most-positive-fixnum
+      package-native-compile t
+      use-package-always-ensure t
+      use-package-always-demand t
+      package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+			 ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+			 ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
-(eval-after-load 'gnutls '(add-to-list 'gnutls-trustfiles "/etc/ssl/cert.pem")) ;; axe from here (in v29)
 (unless package-archive-contents (package-refresh-contents))
-(unless (package-installed-p 'use-package) (package-install 'use-package))
-(eval-when-compile (require 'use-package)) 
-(require 'bind-key) ;; too here
-(setq use-package-always-ensure t
-      use-package-always-demand t)
 (use-package no-littering)
 
 (use-package emacs
