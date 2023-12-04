@@ -61,13 +61,33 @@
   (org-mode . hl-todo-mode)
   (org-mode . visual-line-mode))
 
-(use-package tempel
-  :init
-  (defun tempel-setup-capf ()
-    (setq-local completion-at-point-functions
-                (cons #'tempel-expand completion-at-point-functions)))
-  :hook
-  (bibtex-mode . tempel-setup-capf))
+(use-package tempo
+  :config
+  (tempo-define-template "today" '((format-time-string "%Y-%m-%d")) "today")
+  (tempo-define-template "online" '("@online{" p "," n
+                                     "  author = \"" p "\"," n
+                                     "  title = \"" p "\"," n
+                                     "  url = \"" p "\"," n
+                                     "  date = \"" p "\"," n
+                                     "}") "online")
+  (tempo-define-template "tonline" '("@online{" p "," n
+                                     "  author = \"" p "\"," n
+                                     "  title = \"" p "\"," n
+                                     "  url = \"" p "\"," n
+                                     "  date = \"" (format-time-string "%Y-%m-%d") "\"," n
+                                     "}") "tonline")
+  (tempo-define-template "book" '("@book{" p "," n
+                                  "  author = \"" p "\"," n
+                                  "  title = \"" p "\"," n
+                                  "  year = \"" p "\"," n
+                                  "  publisher = \"" p "\"," n
+                                  "}") "book")
+  (tempo-define-template "fig" '("#+CAPTION: " p n
+                                 "[[./assets/" p "]]" n) "fig")
+  (tempo-define-template "sfig" '("#+CAPTION: " p n
+                                  "#+ATTR_LATEX: :height 0.1\\textwidth" n
+                                  "[[./assets/" p "]]" n) "sfig")
+  (tempo-define-template "np" '("#+LATEX:\\newpage" n) "np"))
 
 (use-package dashboard
   :custom
@@ -237,7 +257,7 @@
 
   (defvar my-org-map
     (let ((map (make-sparse-keymap)))
-      (define-key map (kbd "SPC") #'tempel-insert)
+      (define-key map (kbd "SPC") #'tempo-complete-tag)
       (define-key map (kbd "b") #'org-insert-structure-template)
       (define-key map (kbd "c") #'org-cite-insert)
       (define-key map (kbd "d") #'org-deadline)
@@ -250,7 +270,8 @@
       (define-key map (kbd "K") #'org-clock-out)
       (define-key map (kbd "l") #'org-insert-link)
       (define-key map (kbd "n") #'org-narrow-to-subtree)
-      (define-key map (kbd "m") #'org-modern-mode)
+      (define-key map (kbd "m") #'tempo-forward-mark)
+      (define-key map (kbd "M") #'tempo-backward-mark)
       (define-key map (kbd "N") #'widen)
       (define-key map (kbd "p") #'org-latex-export-to-pdf)
       (define-key map (kbd "P") #'org-beamer-export-to-pdf)
