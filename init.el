@@ -19,6 +19,8 @@
   (scroll-bar-mode -1)
   (horizontal-scroll-bar-mode -1)
   (savehist-mode 1)
+  (save-place-mode 1)
+  (global-auto-revert-mode 1)
   (display-time-mode 1)
   :custom
   (inhibit-startup-message t)
