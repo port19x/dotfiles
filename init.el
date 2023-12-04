@@ -108,12 +108,11 @@
                                 :config (add-to-list 'exwm-input-prefix-keys ?\M- )
                                 :custom (exwm-workspace-number 1)
                                 :hook   (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
-(use-package doom-themes)
 (use-package ef-themes          :config (load-theme 'ef-maris-dark t))
 (use-package doom-modeline      :config (doom-modeline-mode)) ;nerd-icons-install-fonts
-(use-package beacon             :config (beacon-mode 1))
-(use-package helpful            :custom (helpful-max-buffers 3))
 (use-package define-it          :defer 1)
+(use-package helpful            :custom (helpful-max-buffers 3))
+(use-package marginalia         :config (marginalia-mode))
 (use-package which-key          :config (which-key-mode)
                                 :custom (which-key-sort-order 'which-key-key-order-alpha))
 
@@ -122,7 +121,6 @@
                                 :custom (vertico-resize t))
 (use-package orderless          :custom (completion-styles '(orderless basic))
                                         (orderless-matching-styles '(orderless-flex)))
-(use-package marginalia         :config (marginalia-mode))
 (use-package consult-projectile :config (projectile-mode +1)
                                 :custom (projectile-project-search-path '("~/git/")))
 (use-package consult-ls-git)
@@ -142,14 +140,10 @@
                                    ("IMAGE" . "#dc8cc3")
                                    ("LINK" . "#dc8cc3"))))
 (use-package markdown-mode      :mode "\\.md\\'")
-(use-package lua-mode           :mode "\\.lua\\'")
-(use-package ansible            :mode "\\.ya?ml\\'")
-(use-package docker-compose-mode)
 
 ; Multimedia
 (use-package pdf-tools          :defer 1)
 (use-package keepass-mode       :mode "\\.kdbx\\'")
-(use-package el-fetch)
 
 ; Terminals & Aliases
 (use-package vterm              :defer 1
@@ -306,7 +300,6 @@
     "u" '(consult-theme :which-key "change theme")
     "v" '(eval-last-sexp :which-key "(emacs) eval")
     "w" `(,my-window-map :which-key "Windows")
-    "y" '(el-fetch :which-key "Fetch")
     "z" '(dashboard-refresh-buffer :which-key "Dashboard")
     "SPC" `(,my-org-map :which-key "Org Mode")
     "<return>" '(consult-bookmark :which-key "jump to bookmark")
