@@ -82,6 +82,17 @@
                                   "[[./assets/" p "]]" n) "sfig")
   (tempo-define-template "np" '("#+LATEX:\\newpage" n) "np"))
 
+(use-package hl-todo
+  :config
+  (global-hl-todo-mode)
+  :custom
+  (hl-todo--regexp "\\(\\<\\(TODO\\|CITE\\|IMAGE\\|LINK\\|FIXME\\)\\>\\)")
+  (hl-todo-keyword-faces '(("FIXME" . "#cc9393")
+			   ("TODO" . "#cc9393")
+			   ("CITE" . "#dc8cc3")
+			   ("IMAGE" . "#dc8cc3")
+			   ("LINK" . "#dc8cc3"))))
+
 (use-package dashboard
   :custom
   (dashboard-startup-banner "~/pic/dashboard.jpg")
@@ -103,7 +114,7 @@
                           "https://blog.fefe.de/rss.xml?html"
                           "https://hnrss.org/show?points=100&comments=25")))
 
-; UI
+; UI & Help
 (use-package exwm               :init   (exwm-enable)
                                 :config (add-to-list 'exwm-input-prefix-keys ?\M- )
                                 :custom (exwm-workspace-number 1)
@@ -117,33 +128,18 @@
                                 :custom (which-key-sort-order 'which-key-key-order-alpha))
 
 ; Completion Stack
-(use-package vertico            :config (vertico-mode)
-                                :custom (vertico-resize t))
-(use-package orderless          :custom (completion-styles '(orderless basic))
-                                        (orderless-matching-styles '(orderless-flex)))
-(use-package consult-projectile :config (projectile-mode +1)
-                                :custom (projectile-project-search-path '("~/git/")))
-(use-package consult-ls-git)
-(use-package corfu              :custom (corfu-auto t)
-                                :config (global-corfu-mode))
+(use-package vertico            :config (vertico-mode)       :custom (vertico-resize t))
+(use-package consult-projectile :config (projectile-mode +1) :custom (projectile-project-search-path '("~/git/")))
+(use-package corfu              :config (global-corfu-mode)  :custom (corfu-auto t))
+(use-package orderless          :custom (completion-styles '(orderless basic)) (orderless-matching-styles '(orderless-flex)))
 
-; Programming Modes
-(use-package consult-git-log-grep)
-(use-package magit              :defer 1)
-(use-package git-gutter         :config (global-git-gutter-mode))
-(use-package hl-todo            :config (global-hl-todo-mode)
-  :custom (hl-todo--regexp "\\(\\<\\(TODO\\|HACK\\|CITE\\|IMAGE\\|LINK\\|FIXME\\)\\>\\)")
-          (hl-todo-keyword-faces '(("HACK" . "#d0bf8f")
-                                   ("FIXME" . "#cc9393")
-                                   ("TODO" . "#cc9393")
-                                   ("CITE" . "#dc8cc3")
-                                   ("IMAGE" . "#dc8cc3")
-                                   ("LINK" . "#dc8cc3"))))
-(use-package markdown-mode      :mode "\\.md\\'")
-
-; Multimedia
-(use-package pdf-tools          :defer 1)
-(use-package keepass-mode       :mode "\\.kdbx\\'")
+; Git & Filetype-specific modes
+(use-package consult-git-log-grep :custom (consult-git-log-grep-open-function 'magit-show-commit))
+(use-package magit                :defer 1)
+(use-package git-gutter           :config (global-git-gutter-mode))
+(use-package markdown-mode        :mode "\\.md\\'")
+(use-package pdf-tools            :defer 1)
+(use-package keepass-mode         :mode "\\.kdbx\\'")
 
 ; Terminals & Aliases
 (use-package vterm              :defer 1
@@ -290,7 +286,7 @@
     "L" '(consult-git-log-grep :which-key "grep git log")
     "m" '(hl-todo-next :which-key "next Todo")
     "n" '(elfeed :which-key "news (elfeed)")
-    "p" '(consult-ls-git :which-key "hop project file")
+    "p" '(consult-projectile-find-file :which-key "hop project file")
     "P" '(consult-projectile-switch-project :which-key "hop project")
     "q" '(brave :which-key "launch browser")
     "Q" '(save-buffers-kill-emacs :which-key "quit emacs")
