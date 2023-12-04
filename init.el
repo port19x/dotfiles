@@ -71,7 +71,7 @@
 
 (use-package dashboard
   :custom
-  (dashboard-startup-banner "~/dotfiles/orb.jpg")
+  (dashboard-startup-banner "~/pic/dashboard.jpg")
   (initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
   (dashboard-center-content t)
   (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5)))
