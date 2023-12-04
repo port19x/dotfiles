@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r424.0484857
+pkgver=r435.3f018df
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -68,7 +68,8 @@ _manual () {
 
 package() {
     echo "startx" > $HOME/.bash_profile
-    echo "exec emacs --fullscreen" > $HOME/.xinitrc
+    echo "flameshot &" > $HOME/.xinitrc
+    echo "exec emacs --fullscreen" >> $HOME/.xinitrc
     cd .. && stow -v --no-folding --ignore="PKGBUILD" --ignore="src" --ignore="dotfiles" --ignore="pkg" --ignore=".git" -t $HOME/.emacs.d/ .
     printf "\33[2K\r\033[1;32m%s\033[0m\n" "[1/2] symlinked emacs config, made startup files"
 
