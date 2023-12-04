@@ -34,16 +34,13 @@
   :hook
   (prog-mode . electric-pair-mode)
   (after-init . (lambda () (set-face-attribute 'default nil :font "Iosevka" :height 140)))
-  (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
-  (after-init . elfeed-update))
+  (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024)))))
 
 (use-package org-modern
   :config
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((sqlite . t)
-     (shell . t)
-     (python . t)
+   '((python . t)
      (emacs-lisp . nil)))
   (require 'oc-biblatex)
   :custom
@@ -95,6 +92,7 @@
   (after-init . dashboard-refresh-buffer))
 
 (use-package elfeed
+  :defer 1
   :custom (elfeed-feeds '("https://planet.archlinux.org/rss20.xml"
                           "https://distrowatch.com/news/dwd.xml"
                           "https://github.blog/changelog/feed"
@@ -106,8 +104,7 @@
                           "https://hnrss.org/show?points=100&comments=25")))
 
 ; UI
-(use-package exwm               :init   (require 'exwm)
-                                        (exwm-enable)
+(use-package exwm               :init   (exwm-enable)
                                 :config (add-to-list 'exwm-input-prefix-keys ?\M- )
                                 :custom (exwm-workspace-number 1)
                                 :hook   (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
@@ -116,7 +113,7 @@
 (use-package doom-modeline      :config (doom-modeline-mode)) ;nerd-icons-install-fonts
 (use-package beacon             :config (beacon-mode 1))
 (use-package helpful            :custom (helpful-max-buffers 3))
-(use-package define-it)
+(use-package define-it          :defer 1)
 (use-package which-key          :config (which-key-mode)
                                 :custom (which-key-sort-order 'which-key-key-order-alpha))
 
@@ -134,7 +131,7 @@
 
 ; Programming Modes
 (use-package consult-git-log-grep)
-(use-package magit              :custom (magit-slow-confirm nil))
+(use-package magit              :defer 1)
 (use-package git-gutter         :config (global-git-gutter-mode))
 (use-package hl-todo            :config (global-hl-todo-mode)
   :custom (hl-todo--regexp "\\(\\<\\(TODO\\|HACK\\|CITE\\|IMAGE\\|LINK\\|FIXME\\)\\>\\)")
@@ -150,12 +147,13 @@
 (use-package docker-compose-mode)
 
 ; Multimedia
-(use-package pdf-tools          :init (pdf-tools-install 1))
+(use-package pdf-tools          :defer 1)
 (use-package keepass-mode       :mode "\\.kdbx\\'")
 (use-package el-fetch)
 
 ; Terminals & Aliases
-(use-package vterm)
+(use-package vterm              :defer 1
+                                :custom (vterm-always-compile-module t))
 (use-package esh-autosuggest)
 (use-package eshell-toggle
   :init
