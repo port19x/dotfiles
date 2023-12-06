@@ -47,7 +47,10 @@
   (org-startup-indented t)
   (org-edit-src-content-indentation 0)
   (org-src-preserve-indentation t)
-  (org-directory "~/.cache/org")
+  (org-capture-templates '(("e" "Emacs/Linux Todo" item (file+headline "~/doc/master.org" "🪓 Emacs Todo"))
+			   ("a" "Appointment" entry (file+headline "~/doc/master.org" "📅 Agenda") "** %t ")
+			   ("t" "Todo" entry (file+headline "~/doc/master.org" "📅 Agenda") "** TODO (org-time-stamp)")
+			   ))
   (org-confirm-babel-evaluate nil)
   :hook
   (org-mode . org-modern-mode)
@@ -260,7 +263,7 @@
       (define-key map (kbd "p") #'org-latex-export-to-pdf)
       (define-key map (kbd "P") #'org-beamer-export-to-pdf)
       (define-key map (kbd "s") #'org-cut-subtree)
-      (define-key map (kbd "t") #'org-insert-time-stamp)
+      (define-key map (kbd "t") #'org-time-stamp)
       (define-key map (kbd "v") #'visual-line-mode)
       (define-key map (kbd "x") #'org-export-dispatch)
       (define-key map (kbd "X") #'toggle-org-pdf-export-on-save)
@@ -268,7 +271,8 @@
 
   (my-spc-map
     "b" `(,my-buffer-map :which-key "Buffer")
-    "c" '(magit-clone :which-key "magit clone")
+    "c" '(org-capture :which-key "capture")
+    "C" '(magit-clone :which-key "magit clone")
     "d" '(dired-jump :which-key "dired jump")
     "e" '(eshell-toggle :which-key "eshell")
     "E" '(vterm :which-key "vterm")
