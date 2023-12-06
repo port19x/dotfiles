@@ -47,6 +47,8 @@
   (org-startup-indented t)
   (org-edit-src-content-indentation 0)
   (org-src-preserve-indentation t)
+  (org-agenda-files '("~/doc/master.org"))
+  (org-agenda-restore-windows-after-quit t)
   (org-capture-templates '(("e" "Emacs/Linux Todo" item (file+headline "~/doc/master.org" "🪓 Emacs Todo"))
 			   ("a" "Appointment" entry (file+headline "~/doc/master.org" "📅 Agenda") "** %t ")
 			   ("t" "Todo" entry (file+headline "~/doc/master.org" "📅 Agenda") "** TODO (org-time-stamp)")
@@ -203,6 +205,7 @@
   (defun slock () (interactive) (launch "slock"))
   (defun brave () (interactive) (launch "brave"))
   (defun flameshot () (interactive) (launch "flameshot gui"))
+  (defun org-preferred-agenda () (interactive) (org-agenda "" "n"))
 
   (defvar my-help-map
     (let ((map (make-sparse-keymap)))
@@ -270,6 +273,7 @@
       map))
 
   (my-spc-map
+    "a" '(org-preferred-agenda :which-key "agenda")
     "b" `(,my-buffer-map :which-key "Buffer")
     "c" '(org-capture :which-key "capture")
     "C" '(magit-clone :which-key "magit clone")
