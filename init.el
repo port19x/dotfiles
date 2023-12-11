@@ -103,7 +103,10 @@
   (dashboard-startup-banner "~/pic/dashboard.jpg")
   (initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
   (dashboard-center-content t)
-  (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5)))
+  (dashboard-week-agenda t)
+  (dashboard-agenda-time-string-format "")
+  (dashboard-agenda-prefix-format "")
+  (dashboard-items '((agenda . 5) (recents  . 5) (projects . 5)))
   :hook
   (after-init . dashboard-refresh-buffer))
 
