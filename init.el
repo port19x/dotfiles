@@ -147,6 +147,8 @@
 (use-package git-gutter           :config (global-git-gutter-mode))
 (use-package markdown-mode        :mode "\\.md\\'")
 (use-package pdf-tools            :defer 1)
+(use-package bongo                :custom (bongo-backends '(mpv))
+                                          (bongo-custom-backend-matchers '((mpv local-file "m4a"))))
 (use-package keepass-mode         :mode "\\.kdbx\\'")
 
 ; Terminals & Aliases
