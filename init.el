@@ -75,7 +75,7 @@
 (use-package keepass-mode         :mode "\\.kdbx\\'")
 
 ; Multimedia
-(use-package pdf-tools            :config (pdf-tools-install t))
+(use-package pdf-tools            :config (pdf-loader-install t))
 (use-package elfeed               :custom (elfeed-feeds '("https://planet.archlinux.org/rss20.xml"
                                                           "https://sachachua.com/blog/category/emacs-news/feed/"
                                                           "https://blog.fefe.de/rss.xml?html")))
