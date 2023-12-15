@@ -152,23 +152,8 @@
 ; Terminals & Aliases
 (use-package vterm              :defer 1
                                 :custom (vterm-always-compile-module t))
-(use-package esh-autosuggest)
-(use-package eshell-toggle
-  :init
-  (defun eshell-add-aliases () ""
-         (dolist (var '(("v" "find-file $1")
-                        ("ap" "ansible-playbook $1")
-                        ("rm" "rm -I --preserve-root $1")
-                        ("ll" "ls -la")
-                        ("la" "ls -a")
-                        ("yta" "yt-dlp --embed-thumbnail -f 'bestaudio/best' -f 'm4a' $1")
-                        ("ytd" "yt-dlp -f 'bestvideo[height<=?1080]+bestaudio/best' -f 'mp4' $1")))
-      (add-to-list 'eshell-command-aliases-list var)))
-  :custom
-  (eshell-history-size 100000)
-  :hook
-  (eshell-post-command . eshell-add-aliases)
-  (eshell-mode . esh-autosuggest-mode))
+(use-package esh-autosuggest    :custom (eshell-history-size 100000))
+(use-package eshell-toggle      :hook (eshell-mode . esh-autosuggest-mode))
 
 ; Key Bindigns
 (use-package evil               :init   (setq evil-want-keybinding nil)
