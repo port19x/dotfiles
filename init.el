@@ -185,16 +185,10 @@
     :prefix "SPC"
     :global-prefix "M-SPC")
 
-  (defun my-info-read-manual ()
-    (interactive)
-    (info
-     (completing-read "Read Info manual: "
-                      (info--manual-names nil)
-                      nil
-                      :require-match)))
+  (defun my-info-read-manual () (interactive)
+	 (info (completing-read "Info entry: " (info--manual-names nil))))
 
-  (defun toggle-org-pdf-export-on-save ()
-    (interactive)
+  (defun toggle-org-pdf-export-on-save () (interactive)
     (if (memq 'org-latex-export-to-pdf after-save-hook)
         (progn
           (remove-hook 'after-save-hook 'org-latex-export-to-pdf t)
