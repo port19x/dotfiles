@@ -59,34 +59,6 @@
   (org-mode . hl-todo-mode)
   (org-mode . visual-line-mode))
 
-(use-package tempo
-  :config
-  (tempo-define-template "today" '((format-time-string "%Y-%m-%d")) "today")
-  (tempo-define-template "online" '("@online{" p "," n
-                                     "  author = \"" p "\"," n
-                                     "  title = \"" p "\"," n
-                                     "  url = \"" p "\"," n
-                                     "  date = \"" p "\"," n
-                                     "}") "online")
-  (tempo-define-template "tonline" '("@online{" p "," n
-                                     "  author = \"" p "\"," n
-                                     "  title = \"" p "\"," n
-                                     "  url = \"" p "\"," n
-                                     "  date = \"" (format-time-string "%Y-%m-%d") "\"," n
-                                     "}") "tonline")
-  (tempo-define-template "book" '("@book{" p "," n
-                                  "  author = \"" p "\"," n
-                                  "  title = \"" p "\"," n
-                                  "  year = \"" p "\"," n
-                                  "  publisher = \"" p "\"," n
-                                  "}") "book")
-  (tempo-define-template "fig" '("#+CAPTION: " p n
-                                 "[[./assets/" p "]]" n) "fig")
-  (tempo-define-template "sfig" '("#+CAPTION: " p n
-                                  "#+ATTR_LATEX: :height 0.1\\textwidth" n
-                                  "[[./assets/" p "]]" n) "sfig")
-  (tempo-define-template "np" '("#+LATEX:\\newpage" n) "np"))
-
 ; UI & Help
 (use-package exwm                 :init   (exwm-enable)
                                   :config (add-to-list 'exwm-input-prefix-keys ?\M- )
@@ -110,6 +82,12 @@
 (use-package consult-projectile   :config (projectile-mode +1) :custom (projectile-project-search-path '("~/git/")))
 (use-package corfu                :config (global-corfu-mode)  :custom (corfu-auto t))
 (use-package orderless            :custom (completion-styles '(orderless basic)) (orderless-matching-styles '(orderless-flex)))
+(use-package tempo                :config (tempo-define-template "today"  '((format-time-string "%Y-%m-%d")) "today")
+  (tempo-define-template "online" '("@online{" p "," n "  author = \"" p "\"," n "  title = \"" p "\"," n "  url = \"" p "\"," n "  date = \"" p "\"," n "}") "online")
+  (tempo-define-template "book"   '("@book{" p "," n "  author = \"" p "\"," n "  title = \"" p "\"," n "  year = \"" p "\"," n "  publisher = \"" p "\"," n "}") "book")
+  (tempo-define-template "fig"    '("#+CAPTION: " p n "[[./assets/" p "]]" n) "fig")
+  (tempo-define-template "sfig"   '("#+CAPTION: " p n "#+ATTR_LATEX: :height 0.1\\textwidth" n "[[./assets/" p "]]" n) "sfig")
+  (tempo-define-template "np"     '("#+LATEX:\\newpage" n) "np"))
 
 ; Git
 (use-package consult-git-log-grep :custom (consult-git-log-grep-open-function 'magit-show-commit))
