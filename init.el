@@ -87,18 +87,6 @@
                                   "[[./assets/" p "]]" n) "sfig")
   (tempo-define-template "np" '("#+LATEX:\\newpage" n) "np"))
 
-(use-package elfeed
-  :defer 1
-  :custom (elfeed-feeds '("https://planet.archlinux.org/rss20.xml"
-                          "https://distrowatch.com/news/dwd.xml"
-                          "https://github.blog/changelog/feed"
-                          "https://sachachua.com/blog/category/emacs-news/feed/"
-                          "https://openrss.org/github.com/pystardust/ani-cli/issues"
-                          "https://openrss.org/github.com/pystardust/ani-cli/pulls"
-                          "https://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches"
-                          "https://blog.fefe.de/rss.xml?html"
-                          "https://hnrss.org/show?points=100&comments=25")))
-
 ; UI & Help
 (use-package exwm               :init   (exwm-enable)
                                 :config (add-to-list 'exwm-input-prefix-keys ?\M- )
@@ -132,6 +120,10 @@
 (use-package ytdl                 :custom (ytdl-command "yt-dlp")
                                           (ytdl-music-folder "~/mu")
                                           (ytdl-video-folder "~/dl"))
+(use-package elfeed               :defer 1
+                                  :custom (elfeed-feeds '("https://planet.archlinux.org/rss20.xml"
+                                			  "https://sachachua.com/blog/category/emacs-news/feed/"
+                                   			  "https://blog.fefe.de/rss.xml?html")))
 (use-package keepass-mode         :mode "\\.kdbx\\'")
 
 ; Terminals & Aliases
