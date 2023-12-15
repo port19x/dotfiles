@@ -88,32 +88,32 @@
   (tempo-define-template "np" '("#+LATEX:\\newpage" n) "np"))
 
 ; UI & Help
-(use-package exwm               :init   (exwm-enable)
-                                :config (add-to-list 'exwm-input-prefix-keys ?\M- )
-                                :custom (exwm-workspace-number 1)
-                                :hook   (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
-(use-package dashboard          :custom (dashboard-startup-banner "~/pic/dashboard.jpg")
-                                        (dashboard-center-content t)
-                                        (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5)))
-                                :hook   (after-init . dashboard-refresh-buffer))
-(use-package ef-themes          :config (load-theme 'ef-maris-dark t))
-(use-package doom-modeline      :config (doom-modeline-mode)) ;nerd-icons-install-fonts
-(use-package hl-todo            :config (global-hl-todo-mode))
-(use-package define-it          :defer 1)
-(use-package helpful            :custom (helpful-max-buffers 3))
-(use-package marginalia         :config (marginalia-mode))
-(use-package which-key          :config (which-key-mode)
-                                :custom (which-key-sort-order 'which-key-key-order-alpha))
+(use-package exwm                 :init   (exwm-enable)
+                                  :config (add-to-list 'exwm-input-prefix-keys ?\M- )
+                                  :custom (exwm-workspace-number 1)
+                                  :hook   (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
+(use-package dashboard            :custom (dashboard-startup-banner "~/pic/dashboard.jpg")
+                                          (dashboard-center-content t)
+                                          (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5)))
+                                  :hook   (after-init . dashboard-refresh-buffer))
+(use-package ef-themes            :config (load-theme 'ef-maris-dark t))
+(use-package doom-modeline        :config (doom-modeline-mode)) ;nerd-icons-install-fonts
+(use-package hl-todo              :config (global-hl-todo-mode))
+(use-package define-it            :defer  1)
+(use-package helpful              :custom (helpful-max-buffers 3))
+(use-package marginalia           :config (marginalia-mode))
+(use-package which-key            :config (which-key-mode)
+                                  :custom (which-key-sort-order 'which-key-key-order-alpha))
 
 ; Completion Stack
-(use-package vertico            :config (vertico-mode)       :custom (vertico-resize t))
-(use-package consult-projectile :config (projectile-mode +1) :custom (projectile-project-search-path '("~/git/")))
-(use-package corfu              :config (global-corfu-mode)  :custom (corfu-auto t))
-(use-package orderless          :custom (completion-styles '(orderless basic)) (orderless-matching-styles '(orderless-flex)))
+(use-package vertico              :config (vertico-mode)       :custom (vertico-resize t))
+(use-package consult-projectile   :config (projectile-mode +1) :custom (projectile-project-search-path '("~/git/")))
+(use-package corfu                :config (global-corfu-mode)  :custom (corfu-auto t))
+(use-package orderless            :custom (completion-styles '(orderless basic)) (orderless-matching-styles '(orderless-flex)))
 
 ; Git
 (use-package consult-git-log-grep :custom (consult-git-log-grep-open-function 'magit-show-commit))
-(use-package magit                :defer 1)
+(use-package magit                :defer  1)
 (use-package git-gutter           :config (global-git-gutter-mode))
 
 ; Filetype-specific modes
@@ -121,28 +121,28 @@
 (use-package keepass-mode         :mode "\\.kdbx\\'")
 
 ; Multimedia
-(use-package pdf-tools :defer 1)
-(use-package elfeed    :defer 1
-                       :custom (elfeed-feeds '("https://planet.archlinux.org/rss20.xml"
-                                               "https://sachachua.com/blog/category/emacs-news/feed/"
-                                                "https://blog.fefe.de/rss.xml?html")))
-(use-package ytdl      :custom (ytdl-command "yt-dlp")
-                               (ytdl-music-folder "~/mu")
-                               (ytdl-video-folder "~/dl"))
+(use-package pdf-tools            :defer 1)
+(use-package elfeed               :defer 1
+                                  :custom (elfeed-feeds '("https://planet.archlinux.org/rss20.xml"
+                                                          "https://sachachua.com/blog/category/emacs-news/feed/"
+                                                          "https://blog.fefe.de/rss.xml?html")))
+(use-package ytdl                 :custom (ytdl-command "yt-dlp")
+                                          (ytdl-music-folder "~/mu")
+                                          (ytdl-video-folder "~/dl"))
 
 ; Terminals & Aliases
-(use-package vterm              :defer 1
-                                :custom (vterm-always-compile-module t))
-(use-package esh-autosuggest    :custom (eshell-history-size 100000))
-(use-package eshell-toggle      :hook (eshell-mode . esh-autosuggest-mode))
+(use-package vterm                :defer 1
+                                  :custom (vterm-always-compile-module t))
+(use-package esh-autosuggest      :custom (eshell-history-size 100000))
+(use-package eshell-toggle        :hook (eshell-mode . esh-autosuggest-mode))
 
 ; Key Bindigns
-(use-package evil               :init   (setq evil-want-keybinding nil)
-                                :config (evil-mode 1)
-                                :custom (evil-undo-system 'undo-redo))
-(use-package evil-goggles       :config (evil-goggles-mode))
-(use-package evil-vimish-fold   :config (global-evil-vimish-fold-mode))
-(use-package evil-collection    :config (evil-collection-init))
+(use-package evil                 :init   (setq evil-want-keybinding nil)
+                                  :config (evil-mode 1)
+                                  :custom (evil-undo-system 'undo-redo))
+(use-package evil-goggles         :config (evil-goggles-mode))
+(use-package evil-vimish-fold     :config (global-evil-vimish-fold-mode))
+(use-package evil-collection      :config (evil-collection-init))
 (use-package general
   :config
   (general-evil-setup)
