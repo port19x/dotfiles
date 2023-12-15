@@ -151,9 +151,6 @@
     :prefix "SPC"
     :global-prefix "M-SPC")
 
-  (defun my-info-read-manual () (interactive)
-	 (info (completing-read "Info entry: " (info--manual-names nil))))
-
   (defun toggle-org-pdf-export-on-save () (interactive)
     (if (memq 'org-latex-export-to-pdf after-save-hook)
         (progn
@@ -161,7 +158,8 @@
           (message "Disabled org latex export on save for current buffer..."))
       (add-hook 'after-save-hook 'org-latex-export-to-pdf nil t)
       (message "Enabled org latex export on save for current buffer...")))
-
+  (defun my-info-read-manual () (interactive)
+	 (info (completing-read "Info entry: " (info--manual-names nil))))
   (defun launch (command)
       (interactive (list (read-shell-command "$ ")))
       (start-process-shell-command command nil command))
