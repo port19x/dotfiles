@@ -111,20 +111,24 @@
 (use-package corfu              :config (global-corfu-mode)  :custom (corfu-auto t))
 (use-package orderless          :custom (completion-styles '(orderless basic)) (orderless-matching-styles '(orderless-flex)))
 
-; Git & Filetype-specific modes
+; Git
 (use-package consult-git-log-grep :custom (consult-git-log-grep-open-function 'magit-show-commit))
 (use-package magit                :defer 1)
 (use-package git-gutter           :config (global-git-gutter-mode))
+
+; Filetype-specific modes
 (use-package markdown-mode        :mode "\\.md\\'")
-(use-package pdf-tools            :defer 1)
-(use-package ytdl                 :custom (ytdl-command "yt-dlp")
-                                          (ytdl-music-folder "~/mu")
-                                          (ytdl-video-folder "~/dl"))
-(use-package elfeed               :defer 1
-                                  :custom (elfeed-feeds '("https://planet.archlinux.org/rss20.xml"
-                                			  "https://sachachua.com/blog/category/emacs-news/feed/"
-                                   			  "https://blog.fefe.de/rss.xml?html")))
 (use-package keepass-mode         :mode "\\.kdbx\\'")
+
+; Multimedia
+(use-package pdf-tools :defer 1)
+(use-package elfeed    :defer 1
+                       :custom (elfeed-feeds '("https://planet.archlinux.org/rss20.xml"
+                                               "https://sachachua.com/blog/category/emacs-news/feed/"
+                                                "https://blog.fefe.de/rss.xml?html")))
+(use-package ytdl      :custom (ytdl-command "yt-dlp")
+                               (ytdl-music-folder "~/mu")
+                               (ytdl-video-folder "~/dl"))
 
 ; Terminals & Aliases
 (use-package vterm              :defer 1
