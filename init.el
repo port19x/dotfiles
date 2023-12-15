@@ -87,17 +87,6 @@
                                   "[[./assets/" p "]]" n) "sfig")
   (tempo-define-template "np" '("#+LATEX:\\newpage" n) "np"))
 
-(use-package hl-todo
-  :config
-  (global-hl-todo-mode)
-  :custom
-  (hl-todo--regexp "\\(\\<\\(TODO\\|CITE\\|IMAGE\\|LINK\\|FIXME\\)\\>\\)")
-  (hl-todo-keyword-faces '(("FIXME" . "#cc9393")
-			   ("TODO" . "#cc9393")
-			   ("CITE" . "#dc8cc3")
-			   ("IMAGE" . "#dc8cc3")
-			   ("LINK" . "#dc8cc3"))))
-
 (use-package dashboard
   :custom
   (dashboard-startup-banner "~/pic/dashboard.jpg")
@@ -129,6 +118,7 @@
                                 :hook   (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
 (use-package ef-themes          :config (load-theme 'ef-maris-dark t))
 (use-package doom-modeline      :config (doom-modeline-mode)) ;nerd-icons-install-fonts
+(use-package hl-todo            :config (global-hl-todo-mode))
 (use-package define-it          :defer 1)
 (use-package helpful            :custom (helpful-max-buffers 3))
 (use-package marginalia         :config (marginalia-mode))
