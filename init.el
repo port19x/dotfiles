@@ -47,7 +47,7 @@
 (use-package ef-themes            :config (load-theme 'ef-maris-dark t))
 (use-package doom-modeline        :config (doom-modeline-mode)) ;nerd-icons-install-fonts
 (use-package hl-todo              :config (global-hl-todo-mode))
-(use-package define-it            :defer  1)
+(use-package define-it            :custom (define-it-show-google-translate nil))
 (use-package helpful              :custom (helpful-max-buffers 3))
 (use-package marginalia           :config (marginalia-mode))
 (use-package which-key            :config (which-key-mode)
@@ -67,7 +67,7 @@
 
 ; Git
 (use-package consult-git-log-grep :custom (consult-git-log-grep-open-function 'magit-show-commit))
-(use-package magit                :defer  1)
+(use-package magit                :custom (magit-slow-confirm nil))
 (use-package git-gutter           :config (global-git-gutter-mode))
 
 ; Filetype-specific modes
@@ -75,9 +75,8 @@
 (use-package keepass-mode         :mode "\\.kdbx\\'")
 
 ; Multimedia
-(use-package pdf-tools            :defer 1)
-(use-package elfeed               :defer 1
-                                  :custom (elfeed-feeds '("https://planet.archlinux.org/rss20.xml"
+(use-package pdf-tools            :config (pdf-tools-install t))
+(use-package elfeed               :custom (elfeed-feeds '("https://planet.archlinux.org/rss20.xml"
                                                           "https://sachachua.com/blog/category/emacs-news/feed/"
                                                           "https://blog.fefe.de/rss.xml?html")))
 (use-package ytdl                 :custom (ytdl-command "yt-dlp")
@@ -85,8 +84,7 @@
                                           (ytdl-video-folder "~/dl"))
 
 ; Terminals & Aliases
-(use-package vterm                :defer 1
-                                  :custom (vterm-always-compile-module t))
+(use-package vterm                :custom (vterm-always-compile-module t))
 (use-package esh-autosuggest      :custom (eshell-history-size 100000))
 (use-package eshell-toggle        :hook (eshell-mode . esh-autosuggest-mode))
 
