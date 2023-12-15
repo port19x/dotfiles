@@ -87,18 +87,6 @@
                                   "[[./assets/" p "]]" n) "sfig")
   (tempo-define-template "np" '("#+LATEX:\\newpage" n) "np"))
 
-(use-package dashboard
-  :custom
-  (dashboard-startup-banner "~/pic/dashboard.jpg")
-  (initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
-  (dashboard-center-content t)
-  (dashboard-week-agenda t)
-  (dashboard-agenda-time-string-format "")
-  (dashboard-agenda-prefix-format "")
-  (dashboard-items '((agenda . 5) (recents  . 5) (projects . 5)))
-  :hook
-  (after-init . dashboard-refresh-buffer))
-
 (use-package elfeed
   :defer 1
   :custom (elfeed-feeds '("https://planet.archlinux.org/rss20.xml"
@@ -116,6 +104,10 @@
                                 :config (add-to-list 'exwm-input-prefix-keys ?\M- )
                                 :custom (exwm-workspace-number 1)
                                 :hook   (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
+(use-package dashboard          :custom (dashboard-startup-banner "~/pic/dashboard.jpg")
+                                        (dashboard-center-content t)
+                                        (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5)))
+                                :hook   (after-init . dashboard-refresh-buffer))
 (use-package ef-themes          :config (load-theme 'ef-maris-dark t))
 (use-package doom-modeline      :config (doom-modeline-mode)) ;nerd-icons-install-fonts
 (use-package hl-todo            :config (global-hl-todo-mode))
