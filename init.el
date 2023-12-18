@@ -36,9 +36,13 @@
                                           (org-mode . visual-line-mode))
 
 ; UI & Help
-(use-package exwm                 :init   (exwm-enable)
+(use-package exwm                 :init   (require 'exwm-randr)
+                                          (exwm-randr-enable)
+					  (start-process-shell-command "xrandr" nil "xrandr --output DisplayPort-0 --mode 3840x2160 --left-of eDP")
+                                          (exwm-enable)
                                   :config (add-to-list 'exwm-input-prefix-keys ?\M- )
-                                  :custom (exwm-workspace-number 1)
+                                  :custom (exwm-workspace-number 3)
+				          (exwm-randr-workspace-monitor-plist '(0 "DisplayPort-0"))
                                   :hook   (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
 (use-package dashboard            :custom (dashboard-startup-banner "~/pic/dashboard.jpg")
                                           (dashboard-center-content t)
