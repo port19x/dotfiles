@@ -19,7 +19,7 @@
                                   :hook   (prog-mode . electric-pair-mode)
                                           (after-init . (lambda () (set-face-attribute 'default nil :font "Iosevka" :height 140)))
                                           (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
-					  (dired-load . dired-hide-details-mode))
+					  (dired-mode . dired-hide-details-mode))
 
 (use-package org-modern           :config (org-babel-do-load-languages 'org-babel-load-languages '((python . t)))
                                           (require 'oc-biblatex)
@@ -51,11 +51,11 @@
                                   :hook   (after-init . dashboard-refresh-buffer))
 (use-package ef-themes            :config (load-theme 'ef-maris-dark t))
 (use-package doom-modeline        :config (doom-modeline-mode)) ;nerd-icons-install-fonts
-(use-package dired-filter         :init (defun toggle-hide-dots () (interactive)
+(use-package dired-filter         :init   (defun toggle-hide-dots () (interactive)
                                                (if (= (length dired-filter-stack) 0) (dired-filter-by-dot-files) (dired-filter-pop-all)))
-                                  :hook   (dired-load . dired-filter-by-dot-files)
+                                  :hook   (dired-mode . dired-filter-by-dot-files)
                                   :bind   (:map dired-mode-map ("#" . toggle-hide-dots)))
-(use-package nerd-icons-dired     :hook   (dired-filter-mode . nerd-icons-dired-mode))
+(use-package nerd-icons-dired     :hook   (dired-mode . nerd-icons-dired-mode))
 (use-package hl-todo              :config (global-hl-todo-mode))
 (use-package define-it            :custom (define-it-show-google-translate nil))
 (use-package helpful              :custom (helpful-max-buffers 3))
@@ -101,8 +101,8 @@
 
 ; Key Bindigns
 (use-package evil                 :init   (setq evil-want-keybinding nil)
-                                          (define-key evil-motion-state-map "," nil)
                                   :config (evil-mode 1)
+				          (define-key evil-motion-state-map "," nil)
                                   :custom (evil-undo-system 'undo-redo))
 (use-package evil-goggles         :config (evil-goggles-mode))
 (use-package evil-vimish-fold     :config (global-evil-vimish-fold-mode))
