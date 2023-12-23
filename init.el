@@ -32,9 +32,7 @@
                                           (org-capture-templates '(("e" "Emacs/Linux Todo" item (file+headline "~/doc/master.org" "🪓 Emacs Todo"))
 			                                           ("a" "Appointment" entry (file+headline "~/doc/master.org" "📅 Agenda") "** %t ")
 			                                           ("t" "Todo" entry (file+headline "~/doc/master.org" "📅 Agenda") "** TODO (org-time-stamp)")))
-                                  :hook   (org-mode . org-modern-mode)
-                                          (org-mode . hl-todo-mode)
-                                          (org-mode . visual-line-mode))
+                                  :hook   org-mode)
 
 ; UI & Help
 (use-package exwm                 :init   (require 'exwm-randr)
@@ -55,7 +53,7 @@
                                                (if (= (length dired-filter-stack) 0) (dired-filter-by-dot-files) (dired-filter-pop-all)))
                                   :hook   (dired-mode . dired-filter-by-dot-files)
                                   :bind   (:map dired-mode-map ("#" . toggle-hide-dots)))
-(use-package nerd-icons-dired     :hook   (dired-mode . nerd-icons-dired-mode))
+(use-package nerd-icons-dired     :hook   dired-mode)
 (use-package hl-todo              :config (global-hl-todo-mode))
 (use-package define-it            :custom (define-it-show-google-translate nil))
 (use-package helpful              :custom (helpful-max-buffers 3))
@@ -96,8 +94,8 @@
 
 ; Terminals & Aliases
 (use-package vterm                :custom (vterm-always-compile-module t))
-(use-package esh-autosuggest      :custom (eshell-history-size 100000))
-(use-package eshell-toggle        :hook (eshell-mode . esh-autosuggest-mode))
+(use-package eshell-toggle        :custom (eshell-history-size 100000))
+(use-package esh-autosuggest      :hook   eshell-mode)
 
 ; Key Bindigns
 (use-package evil                 :init   (setq evil-want-keybinding nil)
