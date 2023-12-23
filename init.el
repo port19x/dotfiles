@@ -29,9 +29,10 @@
                                           (org-confirm-babel-evaluate nil)
                                           (org-agenda-files '("~/doc/master.org"))
                                           (org-agenda-restore-windows-after-quit t)
-                                          (org-capture-templates '(("e" "Emacs/Linux Todo" item (file+headline "~/doc/master.org" "🪓 Emacs Todo"))
-			                                           ("a" "Appointment" entry (file+headline "~/doc/master.org" "📅 Agenda") "** %t ")
-			                                           ("t" "Todo" entry (file+headline "~/doc/master.org" "📅 Agenda") "** TODO (org-time-stamp)")))
+                                          (org-capture-templates '(("a" "Appointment" entry (file+headline "~/doc/master.org" "📅 Agenda") "** %t ")
+								   ("t" "Todo" entry (file+headline "~/doc/master.org" "📅 Agenda") "** TODO ")
+								   ("e" "Emacs/Linux Todo" item (file+headline "~/doc/master.org" "🪓 Emacs Todo"))
+								   ("i" "Article Idea" item (file+headline "~/doc/master.org" "📜 Article Ideas"))))
                                   :hook   org-mode)
 
 ; UI & Help
