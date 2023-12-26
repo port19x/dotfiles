@@ -84,6 +84,8 @@
 (use-package markdown-mode        :mode "\\.md\\'")
 (use-package keepass-mode         :mode "\\.kdbx\\'")
 (use-package paredit)
+(use-package sly                  :custom (inferior-lisp-program "/usr/bin/sbcl")
+                                  :hook   (sly-mode . (lambda () (unless (sly-connected-p) (save-excursion (sly))))))
 
 ; Multimedia
 (use-package pdf-tools            :config (pdf-loader-install t))
@@ -161,6 +163,21 @@
       (define-key map (kbd "w") #'evil-window-next)
       map))
 
+(defvar my-lisp-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map (kbd "SPC") #'sly-eval-last-expression)
+      (define-key map (kbd "b") #'sly-eval-buffer)
+      (define-key map (kbd "c") #'sly-mrepl-clear-repl)
+      (define-key map (kbd "d") #'sly-eval-defun)
+      (define-key map (kbd "f") #'sly-describe-function)
+      (define-key map (kbd "h") #'sly-apropos-all)
+      (define-key map (kbd "i") #'sly-inspect)
+      (define-key map (kbd "j") #'sly-edit-definition)
+      (define-key map (kbd "q") #'sly-quit-lisp)
+      (define-key map (kbd "s") #'sly-describe-symbol)
+      (define-key map (kbd "w") #'sly-hyperspec-lookup)
+      map))
+
   (defvar my-org-map
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "SPC") #'tempo-complete-tag)
@@ -213,13 +230,14 @@
     "r" '(consult-recent-file :which-key "open recent")
     "R" '(launch :which-key "launcher")
     "s" '(flameshot :which-key "screenshot")
+    ; TODO t for toggling the space map between lisp and org
     "u" '(consult-theme :which-key "change theme")
     "v" '(eval-last-sexp :which-key "(emacs) eval")
     "w" `(,my-window-map :which-key "Windows")
     "y" '(ytdl-download :which-key "YT Download")
     "Y" '(ytdl-download-open :which-key "YT Download & open")
     "z" '(dashboard-refresh-buffer :which-key "Dashboard")
-    "SPC" `(,my-org-map :which-key "Org Mode")
+    "SPC" `(,my-lisp-map :which-key "Common Lisp")
     "<" '(paredit-forward-slurp-sexp :which-key "Paren Slurp")
     "<return>" '(consult-bookmark :which-key "jump to bookmark")
     "S-<return>" '(bookmark-set :which-key "set a bookmark")))
