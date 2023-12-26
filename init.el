@@ -83,6 +83,7 @@
 ; Filetype-specific modes
 (use-package markdown-mode        :mode "\\.md\\'")
 (use-package keepass-mode         :mode "\\.kdbx\\'")
+(use-package paredit)
 
 ; Multimedia
 (use-package pdf-tools            :config (pdf-loader-install t))
@@ -219,5 +220,6 @@
     "Y" '(ytdl-download-open :which-key "YT Download & open")
     "z" '(dashboard-refresh-buffer :which-key "Dashboard")
     "SPC" `(,my-org-map :which-key "Org Mode")
+    "<" '(paredit-forward-slurp-sexp :which-key "Paren Slurp")
     "<return>" '(consult-bookmark :which-key "jump to bookmark")
     "S-<return>" '(bookmark-set :which-key "set a bookmark")))
