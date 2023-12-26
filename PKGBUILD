@@ -29,6 +29,7 @@ depends=(
 
 'cmake'
 'fd'
+'libvterm'
 'poppler-glib'
 'python-matplotlib'
 'ripgrep'
@@ -37,6 +38,7 @@ depends=(
 'aspell-en'
 'brightnessctl'
 'entr'
+'ghostscript'
 'imagemagick'
 'pacman-contrib'
 'unzip'
