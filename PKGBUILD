@@ -24,7 +24,9 @@ depends=(
 'man-db'
 'man-pages'
 'mpv'
+'sbcl'
 'slock'
+'quicklisp'
 'zola'
 
 'cmake'
