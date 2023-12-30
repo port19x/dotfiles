@@ -53,7 +53,7 @@
 (use-package dired-filter         :init   (defun toggle-hide-dots () (interactive)
                                                (if (= (length dired-filter-stack) 0) (dired-filter-by-dot-files) (dired-filter-pop-all)))
                                   :hook   (dired-mode . dired-filter-by-dot-files)
-                                  :bind   (:map dired-mode-map ("#" . toggle-hide-dots)))
+                                  :bind   (:map dired-mode-map ("," . toggle-hide-dots)))
 (use-package nerd-icons-dired     :hook   dired-mode)
 (use-package hl-todo              :config (global-hl-todo-mode))
 (use-package define-it            :custom (define-it-show-google-translate nil))
