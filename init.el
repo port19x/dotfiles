@@ -1,3 +1,4 @@
+(eval-when-compile (require 'use-package))
 (setq gc-cons-threshold most-positive-fixnum
       package-native-compile t
       use-package-always-ensure t
