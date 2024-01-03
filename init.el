@@ -21,7 +21,7 @@
                                           (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
 					  (dired-mode . dired-hide-details-mode))
 
-(use-package org-modern           :config (org-babel-do-load-languages 'org-babel-load-languages '((python . t)))
+(use-package org-modern           :config (org-babel-do-load-languages 'org-babel-load-languages '((python . t) (shell . t)))
                                           (require 'oc-biblatex)
                                   :custom (org-startup-indented t)
                                           (org-edit-src-content-indentation 0)
