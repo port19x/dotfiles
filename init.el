@@ -83,8 +83,11 @@
 (use-package git-gutter           :config (global-git-gutter-mode))
 
 ; Filetype-specific modes
-(use-package markdown-mode        :mode "\\.md\\'")
-(use-package keepass-mode         :mode "\\.kdbx\\'")
+(use-package markdown-mode        :mode   "\\.md\\'")
+(use-package keepass-mode         :mode   "\\.kdbx\\'")
+(use-package shfmt                :hook   (sh-mode . shfmt-on-save-mode)
+                                          (sh-mode . flymake-mode)
+                                  :custom (shfmt-arguments '("-i" "4" "-ci")))
 (use-package paredit)
 
 ; Multimedia
