@@ -218,6 +218,7 @@
     "u" '(consult-theme :which-key "change theme")
     "v" '(eval-last-sexp :which-key "(emacs) eval")
     "w" `(,my-window-map :which-key "Windows")
+    "x" '(consult-flymake :which-key "run linters (flymake)")
     "y" '(ytdl-download :which-key "YT Download")
     "Y" '(ytdl-download-open :which-key "YT Download & open")
     "z" '(dashboard-refresh-buffer :which-key "Dashboard")
