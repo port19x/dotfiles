@@ -33,6 +33,7 @@ depends=(
 'prometheus'
 'python-virtualenv'
 'python-matplotlib'
+'ruff'
 'shellcheck'
 'shfmt'
 'qemu-base'

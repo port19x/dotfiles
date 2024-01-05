@@ -83,12 +83,15 @@
 (use-package git-gutter           :config (global-git-gutter-mode))
 
 ; Filetype-specific modes
-(use-package markdown-mode        :mode   "\\.md\\'")
-(use-package keepass-mode         :mode   "\\.kdbx\\'")
-(use-package shfmt                :hook   (sh-mode . shfmt-on-save-mode)
-                                          (sh-mode . flymake-mode)
-                                  :custom (shfmt-arguments '("-i" "4" "-ci")))
-(use-package paredit)
+(use-package paredit       :mode   "\\.el\\'")
+(use-package markdown-mode :mode   "\\.md\\'")
+(use-package keepass-mode  :mode   "\\.kdbx\\'")
+(use-package ruff-format   :hook   (python-mode . ruff-format-on-save-mode))
+(use-package flymake-ruff  :hook   (python-mode . flymake-mode)
+                                   (python-mode . flymake-ruff-mode))
+(use-package shfmt         :hook   (sh-mode . shfmt-on-save-mode)
+                                   (sh-mode . flymake-mode)
+                           :custom (shfmt-arguments '("-i" "4" "-ci")))
 
 ; Multimedia
 (use-package pdf-tools            :config (pdf-loader-install t))
