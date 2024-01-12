@@ -195,6 +195,7 @@
   (my-spc-map
     "a" '(org-preferred-agenda :which-key "agenda")
     "b" `(,my-buffer-map :which-key "Buffer")
+    "B" '(magit-blame-addition :which-key "git blame")
     "c" '(org-capture :which-key "capture")
     "C" '(magit-clone :which-key "magit clone")
     "d" '(dired-jump :which-key "dired jump")
