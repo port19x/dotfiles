@@ -65,10 +65,13 @@
                                   :custom (which-key-sort-order 'which-key-key-order-alpha))
 
 ; Completion Stack
-(use-package vertico              :config (vertico-mode)       :custom (vertico-resize t))
-(use-package consult-projectile   :config (projectile-mode +1) :custom (projectile-project-search-path '("~/git/"))
-                                                                       (consult-buffer-filter '("\\` " "\\`*")))
-(use-package corfu                :config (global-corfu-mode)  :custom (corfu-auto t))
+(use-package vertico              :config (vertico-mode)
+                                  :custom (vertico-resize t))
+(use-package consult-projectile   :config (projectile-mode +1)
+                                  :custom (projectile-project-search-path '("~/git/"))
+                                  :hook   (projectile-after-switch-project . vc-git-pull))
+(use-package corfu                :config (global-corfu-mode)
+                                  :custom (corfu-auto t))
 (use-package orderless            :custom (completion-styles '(orderless basic)) (orderless-matching-styles '(orderless-flex)))
 (use-package tempo                :config (tempo-define-template "today"  '((format-time-string "%Y-%m-%d")) "today")
   (tempo-define-template "online" '("@online{" p "," n "  author = \"" p "\"," n "  title = \"" p "\"," n "  url = \"" p "\"," n "  date = \"" p "\"," n "}") "online")
