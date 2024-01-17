@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r460.e669438
+pkgver=r478.36905b6
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -23,7 +23,9 @@ depends=(
 'man-db'
 'man-pages'
 'mpv'
+'sbcl'
 'slock'
+'quicklisp'
 'zola'
 
 'ansible-core'
