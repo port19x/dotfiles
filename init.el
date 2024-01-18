@@ -95,7 +95,8 @@
                                    (sh-mode . flymake-mode)
                            :custom (shfmt-arguments '("-i" "4" "-ci")))
 (use-package paredit)
-(use-package sly-overlay   :custom (inferior-lisp-program "/usr/bin/sbcl")
+(use-package sly-overlay   :load-path "~/dotfiles/sly-overlay/"
+                           :custom (inferior-lisp-program "/usr/bin/sbcl")
                            :hook   (sly-mode . (lambda () (unless (sly-connected-p) (save-excursion (sly))))))
 
 ; Multimedia
