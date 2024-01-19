@@ -10,6 +10,7 @@
 (unless package-archive-contents (package-refresh-contents))
 (use-package no-littering)
 
+
 (use-package better-defaults)
 (use-package define-word)
 (use-package helpful)
@@ -43,41 +44,41 @@
 (use-package elfeed               :custom (elfeed-feeds '("https://sachachua.com/blog/category/emacs-news/feed/" "https://blog.fefe.de/rss.xml?html")))
 (use-package pdf-tools            :config (pdf-loader-install t))
 
-;;; LARGE BOIS
-(use-package emacs                :config (save-place-mode 1) (global-auto-revert-mode 1) (display-time-mode 1)
-                                  :custom (inhibit-startup-message t)
-                                          (dired-kill-when-opening-new-dired-buffer t)
-                                          (make-backup-files nil)
-                                          (custom-file (concat user-emacs-directory "/custom.el"))
-					  (eshell-history-size 100000)
-					  (inferior-lisp-program "/usr/bin/sbcl")
-                                  :hook   (prog-mode . electric-pair-mode)
-				          (sh-mode . flymake-mode)
-				          (python-mode . flymake-mode)
-                                          (after-init . (lambda () (set-face-attribute 'default nil :font "Iosevka" :height 140)))
-                                          (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
-					  (dired-mode . dired-hide-details-mode))
 
-(use-package org-modern           :config (org-babel-do-load-languages 'org-babel-load-languages '((python . t) (shell . t)))
-                                          (require 'oc-biblatex)
-                                  :custom (org-startup-indented t)
-                                          (org-edit-src-content-indentation 0)
-                                          (org-src-preserve-indentation t)
-                                          (org-confirm-babel-evaluate nil)
-                                          (org-agenda-files '("~/doc/master.org"))
-                                          (org-agenda-restore-windows-after-quit t)
-                                          (org-capture-templates '(("a" "Appointment" entry (file+headline "~/doc/master.org" "📅 Agenda") "** %t ")
-								   ("t" "Todo" entry (file+headline "~/doc/master.org" "📅 Agenda") "** TODO ")
-								   ("e" "Emacs/Linux Todo" item (file+headline "~/doc/master.org" "🪓 Emacs Todo"))
-								   ("i" "Article Idea" item (file+headline "~/doc/master.org" "📜 Article Ideas"))))
-                                  :hook   org-mode)
+(use-package emacs
+  :config
+  (display-time-mode 1)
+  (global-auto-revert-mode 1)
+  (save-place-mode 1)
+  :custom
+  (custom-file (concat user-emacs-directory "/custom.el"))
+  (dired-kill-when-opening-new-dired-buffer t)
+  (eshell-history-size 100000)
+  (inferior-lisp-program "/usr/bin/sbcl")
+  (inhibit-startup-message t)
+  (make-backup-files nil)
+  :hook
+  (after-init . (lambda () (set-face-attribute 'default nil :font "Iosevka" :height 140)))
+  (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
+  (dired-mode . dired-hide-details-mode)
+  (prog-mode . electric-pair-mode)
+  (python-mode . flymake-mode)
+  (sh-mode . flymake-mode))
 
-(use-package tempo                :config (tempo-define-template "today"  '((format-time-string "%Y-%m-%d")) "today")
-  (tempo-define-template "online" '("@online{" p "," n "  author = \"" p "\"," n "  title = \"" p "\"," n "  url = \"" p "\"," n "  date = \"" p "\"," n "}") "online")
-  (tempo-define-template "book"   '("@book{" p "," n "  author = \"" p "\"," n "  title = \"" p "\"," n "  year = \"" p "\"," n "  publisher = \"" p "\"," n "}") "book")
-  (tempo-define-template "fig"    '("#+CAPTION: " p n "[[./assets/" p "]]" n) "fig")
-  (tempo-define-template "sfig"   '("#+CAPTION: " p n "#+ATTR_LATEX: :height 0.1\\textwidth" n "[[./assets/" p "]]" n) "sfig")
-  (tempo-define-template "np"     '("#+LATEX:\\newpage" n) "np"))
+(use-package org-modern
+  :config
+  (org-babel-do-load-languages 'org-babel-load-languages '((python . t) (shell . t)))
+  (require 'oc-biblatex)
+  :custom
+  (org-startup-indented t)
+  (org-edit-src-content-indentation 0)
+  (org-src-preserve-indentation t)
+  (org-confirm-babel-evaluate nil)
+  (org-agenda-files '("~/doc/master.org"))
+  (org-agenda-restore-windows-after-quit t)
+  (org-capture-templates '(("a" "Appointment" entry (file+headline "~/doc/master.org" "📅 Agenda") "** %t ")
+			   ("t" "Todo" entry (file+headline "~/doc/master.org" "📅 Agenda") "** TODO ")))
+  :hook org-mode)
 
 (use-package exwm                 :init   (require 'exwm-randr)
                                           (exwm-randr-enable)
@@ -88,31 +89,41 @@
                                   :custom (exwm-workspace-number 3)
 				          (exwm-randr-workspace-monitor-plist '(0 "eDP" 1 "DP-1-1" 2 "DP-1-2"))
                                   :hook   (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
-
-(use-package dashboard            :custom (dashboard-startup-banner "~/pic/dashboard.jpg")
-                                          (dashboard-center-content t)
-                                          (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5)))
-                                  :hook   (after-init . dashboard-refresh-buffer))
-
+;;;↓💀 AXE 
+(use-package dashboard
+  :custom
+  (dashboard-startup-banner "~/pic/dashboard.jpg")
+  (dashboard-center-content t)
+  (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5)))
+  :hook (after-init . dashboard-refresh-buffer))
 (use-package dired-filter         :init   (defun toggle-hide-dots () (interactive)
                                                (if (= (length dired-filter-stack) 0) (dired-filter-by-dot-files) (dired-filter-pop-all)))
                                   :hook   (dired-mode . dired-filter-by-dot-files)
                                   :bind   (:map dired-mode-map ("," . toggle-hide-dots)))
+(use-package tempo
+  :config
+  (tempo-define-template "today"  '((format-time-string "%Y-%m-%d")) "today")
+  (tempo-define-template "online" '("@online{" p "," n "  author = \"" p "\"," n "  title = \"" p "\"," n "  url = \"" p "\"," n "  date = \"" p "\"," n "}") "online")
+  (tempo-define-template "book"   '("@book{" p "," n "  author = \"" p "\"," n "  title = \"" p "\"," n "  year = \"" p "\"," n "  publisher = \"" p "\"," n "}") "book")
+  (tempo-define-template "fig"    '("#+CAPTION: " p n "[[./assets/" p "]]" n) "fig")
+  (tempo-define-template "sfig"   '("#+CAPTION: " p n "#+ATTR_LATEX: :height 0.1\\textwidth" n "[[./assets/" p "]]" n) "sfig")
+  (tempo-define-template "np"     '("#+LATEX:\\newpage" n) "np"))
+;;;↑💀 AXE
 
-(use-package reformatter   :config (reformatter-define shfmt
-                                     :program shfmt-command
-                                     :args (append (list "--filename" (or (buffer-file-name) input-file)) '("-i" "4" "-ci")))
-                                   (reformatter-define ruff-format
-                                     :program ruff-format-command
-                                     :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file)))
-                           :hook   (python-mode . ruff-format-on-save-mode)
-                                   (sh-mode . shfmt-on-save-mode))
+(use-package reformatter
+  :config
+  (reformatter-define shfmt :program shfmt-cmd :args (append (list "--filename" (or (buffer-file-name) input-file)) '("-i" "4" "-ci")))
+  (reformatter-define ruff :program ruff-cmd :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file)))
+  :hook
+  (python-mode . ruff-on-save-mode)
+  (sh-mode . shfmt-on-save-mode))
 
+(use-package evil
+  :init (setq evil-want-keybinding nil)
+  :config (evil-mode 1)
+          (define-key evil-motion-state-map "," nil)
+  :custom (evil-undo-system 'undo-redo))
 
-(use-package evil                 :init   (setq evil-want-keybinding nil)
-                                  :config (evil-mode 1)
-				          (define-key evil-motion-state-map "," nil)
-                                  :custom (evil-undo-system 'undo-redo))
 (use-package major-mode-hydra
   :bind   (("M-SPC" . hydra-global/body))
   :config
