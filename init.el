@@ -36,6 +36,14 @@
 								   ("i" "Article Idea" item (file+headline "~/doc/master.org" "📜 Article Ideas"))))
                                   :hook   org-mode)
 
+
+(use-package tempo                :config (tempo-define-template "today"  '((format-time-string "%Y-%m-%d")) "today")
+  (tempo-define-template "online" '("@online{" p "," n "  author = \"" p "\"," n "  title = \"" p "\"," n "  url = \"" p "\"," n "  date = \"" p "\"," n "}") "online")
+  (tempo-define-template "book"   '("@book{" p "," n "  author = \"" p "\"," n "  title = \"" p "\"," n "  year = \"" p "\"," n "  publisher = \"" p "\"," n "}") "book")
+  (tempo-define-template "fig"    '("#+CAPTION: " p n "[[./assets/" p "]]" n) "fig")
+  (tempo-define-template "sfig"   '("#+CAPTION: " p n "#+ATTR_LATEX: :height 0.1\\textwidth" n "[[./assets/" p "]]" n) "sfig")
+  (tempo-define-template "np"     '("#+LATEX:\\newpage" n) "np"))
+
 ; UI & Help
 (use-package exwm                 :init   (require 'exwm-randr)
                                           (exwm-randr-enable)
@@ -58,7 +66,7 @@
                                   :bind   (:map dired-mode-map ("," . toggle-hide-dots)))
 (use-package nerd-icons-dired     :hook   dired-mode)
 (use-package hl-todo              :config (global-hl-todo-mode))
-(use-package define-it            :custom (define-it-show-google-translate nil))
+(use-package define-word)
 (use-package helpful              :custom (helpful-max-buffers 3))
 (use-package marginalia           :config (marginalia-mode))
 (use-package which-key            :config (which-key-mode)
@@ -67,34 +75,32 @@
 ; Completion Stack
 (use-package vertico              :config (vertico-mode)
                                   :custom (vertico-resize t))
-(use-package projectile           :config (projectile-mode +1)
-                                  :custom (projectile-project-search-path '("~/git/"))
-                                  :hook   (projectile-after-switch-project . vc-pull))
 (use-package corfu                :config (global-corfu-mode)
                                   :custom (corfu-auto t))
 (use-package orderless            :custom (completion-styles '(orderless basic)) (orderless-matching-styles '(orderless-flex)))
-(use-package tempo                :config (tempo-define-template "today"  '((format-time-string "%Y-%m-%d")) "today")
-  (tempo-define-template "online" '("@online{" p "," n "  author = \"" p "\"," n "  title = \"" p "\"," n "  url = \"" p "\"," n "  date = \"" p "\"," n "}") "online")
-  (tempo-define-template "book"   '("@book{" p "," n "  author = \"" p "\"," n "  title = \"" p "\"," n "  year = \"" p "\"," n "  publisher = \"" p "\"," n "}") "book")
-  (tempo-define-template "fig"    '("#+CAPTION: " p n "[[./assets/" p "]]" n) "fig")
-  (tempo-define-template "sfig"   '("#+CAPTION: " p n "#+ATTR_LATEX: :height 0.1\\textwidth" n "[[./assets/" p "]]" n) "sfig")
-  (tempo-define-template "np"     '("#+LATEX:\\newpage" n) "np"))
+(use-package capf-autosuggest     :hook   eshell-mode)
 
 ; Git
 (use-package consult-git-log-grep :custom (consult-git-log-grep-open-function 'magit-show-commit))
 (use-package magit                :custom (magit-slow-confirm nil))
 (use-package git-gutter           :config (global-git-gutter-mode))
+(use-package projectile           :config (projectile-mode +1)
+                                  :custom (projectile-project-search-path '("~/git/"))
+                                  :hook   (projectile-after-switch-project . vc-pull))
 
 ; Filetype-specific modes
 (use-package markdown-mode :mode   "\\.md\\'")
-(use-package keepass-mode  :mode   "\\.kdbx\\'")
-(use-package ruff-format   :hook   (python-mode . ruff-format-on-save-mode))
-(use-package flymake-ruff  :hook   (python-mode . flymake-mode)
-                                   (python-mode . flymake-ruff-mode))
-(use-package shfmt         :hook   (sh-mode . shfmt-on-save-mode)
-                                   (sh-mode . flymake-mode)
-                           :custom (shfmt-arguments '("-i" "4" "-ci")))
-(use-package paredit)
+(use-package reformatter   :config (reformatter-define shfmt
+                                     :program shfmt-command
+                                     :args (append (list "--filename" (or (buffer-file-name) input-file)) '("-i" "4" "-ci")))
+                                   (reformatter-define ruff-format
+                                     :program ruff-format-command
+                                     :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file)))
+                           :hook   (python-mode . ruff-format-on-save-mode)
+                                   (sh-mode . shfmt-on-save-mode))
+(use-package flymake       :hook   (python-mode sh-mode))
+(use-package flymake-ruff  :hook   (python-mode . flymake-ruff-mode))
+(use-package paredit       :mode   "\\.lisp\\'")
 (use-package sly-overlay   :load-path "~/dotfiles/sly-overlay/"
                            :custom (inferior-lisp-program "/usr/bin/sbcl")
                            :hook   (sly-mode . (lambda () (unless (sly-connected-p) (save-excursion (sly))))))
@@ -104,14 +110,16 @@
 (use-package elfeed               :custom (elfeed-feeds '("https://planet.archlinux.org/rss20.xml"
                                                           "https://sachachua.com/blog/category/emacs-news/feed/"
                                                           "https://blog.fefe.de/rss.xml?html")))
-(use-package ytdl                 :custom (ytdl-command "yt-dlp")
-                                          (ytdl-music-folder "~/mu")
-                                          (ytdl-video-folder "~/dl"))
-
 ; Terminals & Aliases
 (use-package vterm                :custom (vterm-always-compile-module t))
-(use-package eshell-toggle        :custom (eshell-history-size 100000))
-(use-package esh-autosuggest      :hook   eshell-mode)
+(use-package eshell-toggle        :init   (defun eshell-add-aliases () ""
+                                                 (dolist (var '(("ap" "ansible-playbook $1")
+                                                                ("yta" "yt-dlp --embed-thumbnail -f 'bestaudio/best' -f 'm4a' $1")
+                                                                ("ytd" "yt-dlp -f 'bestvideo[height<=?1080]+bestaudio/best' -f 'mp4' $1")))
+                                                   (add-to-list 'eshell-command-aliases-list var)))
+                                  :custom (eshell-history-size 100000)
+                                  :hook   (eshell-post-command . eshell-add-aliases)
+				  :bind ((:map eshell-mode-map ("<right>" . capf-autosuggest-accept))))
 
 ; Key Bindigns
 (use-package evil                 :init   (setq evil-want-keybinding nil)
@@ -119,7 +127,6 @@
 				          (define-key evil-motion-state-map "," nil)
                                   :custom (evil-undo-system 'undo-redo))
 (use-package evil-goggles         :config (evil-goggles-mode))
-(use-package evil-vimish-fold     :config (global-evil-vimish-fold-mode))
 (use-package evil-collection      :config (evil-collection-init))
 (use-package general
   :config
@@ -148,8 +155,8 @@
 
   (defvar my-help-map
     (let ((map (make-sparse-keymap)))
-      (define-key map (kbd "d") #'define-it)
-      (define-key map (kbd "D") #'define-it-at-point)
+      (define-key map (kbd "d") #'define-word)
+      (define-key map (kbd "D") #'define-word-at-point)
       (define-key map (kbd "h") #'helpful-symbol)
       (define-key map (kbd "i") #'my-info-read-manual)
       (define-key map (kbd "k") #'helpful-key)
@@ -248,8 +255,6 @@
     "v" '(eval-last-sexp :which-key "(emacs) eval")
     "w" `(,my-window-map :which-key "Windows")
     "x" '(consult-flymake :which-key "run linters (flymake)")
-    "y" '(ytdl-download :which-key "YT Download")
-    "Y" '(ytdl-download-open :which-key "YT Download & open")
     "z" '(dashboard-refresh-buffer :which-key "Dashboard")
     "SPC" `(,my-lisp-map :which-key "Common Lisp")
     "<" '(paredit-forward-slurp-sexp :which-key "Paren Slurp")
