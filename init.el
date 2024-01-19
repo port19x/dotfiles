@@ -10,14 +10,50 @@
 (unless package-archive-contents (package-refresh-contents))
 (use-package no-littering)
 
-(use-package emacs                :config (menu-bar-mode -1) (tool-bar-mode -1) (scroll-bar-mode -1) (horizontal-scroll-bar-mode -1) (indent-tabs-mode -1)
-                                          (savehist-mode 1) (save-place-mode 1) (global-auto-revert-mode 1) (display-time-mode 1)
+(use-package better-defaults)
+(use-package define-word)
+(use-package helpful)
+;completion
+(use-package orderless            :custom (completion-styles '(orderless basic)) (orderless-matching-styles '(orderless-flex)))
+(use-package marginalia           :config (marginalia-mode))
+(use-package vertico              :config (vertico-mode)      :custom (vertico-resize t))
+(use-package corfu                :config (global-corfu-mode) :custom (corfu-auto t))
+;term
+(use-package vterm                :custom (vterm-always-compile-module t))
+(use-package eshell-toggle        :bind   ((:map eshell-mode-map ("<right>" . capf-autosuggest-accept))))
+(use-package capf-autosuggest     :hook   eshell-mode)
+;git
+(use-package consult-git-log-grep :custom (consult-git-log-grep-open-function 'magit-show-commit))
+(use-package git-gutter           :config (global-git-gutter-mode))
+(use-package projectile           :config (projectile-mode +1)) ;(let ((projectile-project-search-path '("~/git/"))) (projectile-discover-projects-in-search-path))
+(use-package magit                :hook   (projectile-after-switch-project . vc-pull))
+(use-package evil-collection      :config (evil-collection-init))
+;visual
+(use-package hl-todo              :config (global-hl-todo-mode))
+(use-package evil-goggles         :config (evil-goggles-mode))
+(use-package ef-themes            :config (load-theme 'ef-maris-dark t))
+(use-package doom-modeline        :config (doom-modeline-mode)) ;nerd-icons-install-fonts
+(use-package nerd-icons-dired     :hook   dired-mode)
+;specifics
+(use-package markdown-mode        :mode   "\\.md\\'")
+(use-package flymake-ruff         :hook   (python-mode . flymake-ruff-mode))
+(use-package sly-overlay          :hook   (sly-mode . (lambda () (unless (sly-connected-p) (save-excursion (sly))))))
+(use-package paredit)
+;multimedia
+(use-package elfeed               :custom (elfeed-feeds '("https://sachachua.com/blog/category/emacs-news/feed/" "https://blog.fefe.de/rss.xml?html")))
+(use-package pdf-tools            :config (pdf-loader-install t))
+
+;;; LARGE BOIS
+(use-package emacs                :config (save-place-mode 1) (global-auto-revert-mode 1) (display-time-mode 1)
                                   :custom (inhibit-startup-message t)
-                                          (visible-bell t)
                                           (dired-kill-when-opening-new-dired-buffer t)
                                           (make-backup-files nil)
                                           (custom-file (concat user-emacs-directory "/custom.el"))
+					  (eshell-history-size 100000)
+					  (inferior-lisp-program "/usr/bin/sbcl")
                                   :hook   (prog-mode . electric-pair-mode)
+				          (sh-mode . flymake-mode)
+				          (python-mode . flymake-mode)
                                           (after-init . (lambda () (set-face-attribute 'default nil :font "Iosevka" :height 140)))
                                           (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
 					  (dired-mode . dired-hide-details-mode))
@@ -36,7 +72,6 @@
 								   ("i" "Article Idea" item (file+headline "~/doc/master.org" "📜 Article Ideas"))))
                                   :hook   org-mode)
 
-
 (use-package tempo                :config (tempo-define-template "today"  '((format-time-string "%Y-%m-%d")) "today")
   (tempo-define-template "online" '("@online{" p "," n "  author = \"" p "\"," n "  title = \"" p "\"," n "  url = \"" p "\"," n "  date = \"" p "\"," n "}") "online")
   (tempo-define-template "book"   '("@book{" p "," n "  author = \"" p "\"," n "  title = \"" p "\"," n "  year = \"" p "\"," n "  publisher = \"" p "\"," n "}") "book")
@@ -44,7 +79,6 @@
   (tempo-define-template "sfig"   '("#+CAPTION: " p n "#+ATTR_LATEX: :height 0.1\\textwidth" n "[[./assets/" p "]]" n) "sfig")
   (tempo-define-template "np"     '("#+LATEX:\\newpage" n) "np"))
 
-; UI & Help
 (use-package exwm                 :init   (require 'exwm-randr)
                                           (exwm-randr-enable)
 					  (start-process-shell-command "xrandr" nil "xrandr --output DP-1-1 --right-of eDP --output DP-1-2 --right-of DP-1-1")
@@ -54,40 +88,17 @@
                                   :custom (exwm-workspace-number 3)
 				          (exwm-randr-workspace-monitor-plist '(0 "eDP" 1 "DP-1-1" 2 "DP-1-2"))
                                   :hook   (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
+
 (use-package dashboard            :custom (dashboard-startup-banner "~/pic/dashboard.jpg")
                                           (dashboard-center-content t)
                                           (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5)))
                                   :hook   (after-init . dashboard-refresh-buffer))
-(use-package ef-themes            :config (load-theme 'ef-maris-dark t))
-(use-package doom-modeline        :config (doom-modeline-mode)) ;nerd-icons-install-fonts
+
 (use-package dired-filter         :init   (defun toggle-hide-dots () (interactive)
                                                (if (= (length dired-filter-stack) 0) (dired-filter-by-dot-files) (dired-filter-pop-all)))
                                   :hook   (dired-mode . dired-filter-by-dot-files)
                                   :bind   (:map dired-mode-map ("," . toggle-hide-dots)))
-(use-package nerd-icons-dired     :hook   dired-mode)
-(use-package hl-todo              :config (global-hl-todo-mode))
-(use-package define-word)
-(use-package helpful              :custom (helpful-max-buffers 3))
-(use-package marginalia           :config (marginalia-mode))
 
-; Completion Stack
-(use-package vertico              :config (vertico-mode)
-                                  :custom (vertico-resize t))
-(use-package corfu                :config (global-corfu-mode)
-                                  :custom (corfu-auto t))
-(use-package orderless            :custom (completion-styles '(orderless basic)) (orderless-matching-styles '(orderless-flex)))
-(use-package capf-autosuggest     :hook   eshell-mode)
-
-; Git
-(use-package consult-git-log-grep :custom (consult-git-log-grep-open-function 'magit-show-commit))
-(use-package magit                :custom (magit-slow-confirm nil))
-(use-package git-gutter           :config (global-git-gutter-mode))
-(use-package projectile           :config (projectile-mode +1)
-                                  :custom (projectile-project-search-path '("~/git/"))
-                                  :hook   (projectile-after-switch-project . vc-pull))
-
-; Filetype-specific modes
-(use-package markdown-mode :mode   "\\.md\\'")
 (use-package reformatter   :config (reformatter-define shfmt
                                      :program shfmt-command
                                      :args (append (list "--filename" (or (buffer-file-name) input-file)) '("-i" "4" "-ci")))
@@ -96,36 +107,12 @@
                                      :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file)))
                            :hook   (python-mode . ruff-format-on-save-mode)
                                    (sh-mode . shfmt-on-save-mode))
-(use-package flymake       :hook   (python-mode sh-mode))
-(use-package flymake-ruff  :hook   (python-mode . flymake-ruff-mode))
-(use-package paredit       :mode   "\\.lisp\\'")
-(use-package sly-overlay   :load-path "~/dotfiles/sly-overlay/"
-                           :custom (inferior-lisp-program "/usr/bin/sbcl")
-                           :hook   (sly-mode . (lambda () (unless (sly-connected-p) (save-excursion (sly))))))
 
-; Multimedia
-(use-package pdf-tools            :config (pdf-loader-install t))
-(use-package elfeed               :custom (elfeed-feeds '("https://planet.archlinux.org/rss20.xml"
-                                                          "https://sachachua.com/blog/category/emacs-news/feed/"
-                                                          "https://blog.fefe.de/rss.xml?html")))
-; Terminals & Aliases
-(use-package vterm                :custom (vterm-always-compile-module t))
-(use-package eshell-toggle        :init   (defun eshell-add-aliases () ""
-                                                 (dolist (var '(("ap" "ansible-playbook $1")
-                                                                ("yta" "yt-dlp --embed-thumbnail -f 'bestaudio/best' -f 'm4a' $1")
-                                                                ("ytd" "yt-dlp -f 'bestvideo[height<=?1080]+bestaudio/best' -f 'mp4' $1")))
-                                                   (add-to-list 'eshell-command-aliases-list var)))
-                                  :custom (eshell-history-size 100000)
-                                  :hook   (eshell-post-command . eshell-add-aliases)
-				  :bind ((:map eshell-mode-map ("<right>" . capf-autosuggest-accept))))
 
-; Key Bindigns
 (use-package evil                 :init   (setq evil-want-keybinding nil)
                                   :config (evil-mode 1)
 				          (define-key evil-motion-state-map "," nil)
                                   :custom (evil-undo-system 'undo-redo))
-(use-package evil-goggles         :config (evil-goggles-mode))
-(use-package evil-collection      :config (evil-collection-init))
 (use-package major-mode-hydra
   :bind   (("M-SPC" . hydra-global/body))
   :config
