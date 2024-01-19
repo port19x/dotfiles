@@ -35,15 +35,40 @@
 (use-package ef-themes            :config (load-theme 'ef-maris-dark t))
 (use-package doom-modeline        :config (doom-modeline-mode)) ;nerd-icons-install-fonts
 (use-package nerd-icons-dired     :hook   dired-mode)
+;multimedia
+(use-package elfeed               :custom (elfeed-feeds '("https://sachachua.com/blog/category/emacs-news/feed/" "https://blog.fefe.de/rss.xml?html")))
+(use-package pdf-tools            :config (pdf-loader-install t))
 ;specifics
 (use-package markdown-mode        :mode   "\\.md\\'")
 (use-package flymake-ruff         :hook   (python-mode . flymake-ruff-mode))
 (use-package sly-overlay          :hook   (sly-mode . (lambda () (unless (sly-connected-p) (save-excursion (sly))))))
 (use-package paredit)
-;multimedia
-(use-package elfeed               :custom (elfeed-feeds '("https://sachachua.com/blog/category/emacs-news/feed/" "https://blog.fefe.de/rss.xml?html")))
-(use-package pdf-tools            :config (pdf-loader-install t))
 
+
+(use-package reformatter
+  :config
+  (reformatter-define shfmt :program shfmt-cmd :args (append (list "--filename" (or (buffer-file-name) input-file)) '("-i" "4" "-ci")))
+  (reformatter-define ruff :program ruff-cmd :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file)))
+  :hook
+  (python-mode . ruff-on-save-mode)
+  (sh-mode . shfmt-on-save-mode))
+
+(use-package exwm
+  :init
+  (require 'exwm-randr)
+  (exwm-randr-enable)
+  (start-process-shell-command "xrandr" nil "xrandr --output DisplayPort-0 --mode 3840x2160 --left-of eDP")
+  ;(start-process-shell-command "xrandr" nil "xrandr --output DP-1-1 --right-of eDP --output DP-1-2 --right-of DP-1-1")
+  ;(start-process-shell-command "xrandr" nil "xrandr --output DP-1-1 --rotate left --output DP-1-2 --rotate right")
+  (exwm-enable)
+  :config
+  (add-to-list 'exwm-input-prefix-keys ?\M- )
+  :custom
+  (exwm-workspace-number 3)
+  (exwm-randr-workspace-monitor-plist '(0 "DisplayPort-0"))
+  ;(exwm-randr-workspace-monitor-plist '(0 "eDP" 1 "DP-1-1" 2 "DP-1-2"))
+  :hook
+  (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
 
 (use-package emacs
   :config
@@ -80,26 +105,18 @@
 			   ("t" "Todo" entry (file+headline "~/doc/master.org" "📅 Agenda") "** TODO ")))
   :hook org-mode)
 
-(use-package exwm                 :init   (require 'exwm-randr)
-                                          (exwm-randr-enable)
-					  (start-process-shell-command "xrandr" nil "xrandr --output DP-1-1 --right-of eDP --output DP-1-2 --right-of DP-1-1")
-					  (start-process-shell-command "xrandr" nil "xrandr --output DP-1-1 --rotate left --output DP-1-2 --rotate right")
-                                          (exwm-enable)
-                                  :config (add-to-list 'exwm-input-prefix-keys ?\M- )
-                                  :custom (exwm-workspace-number 3)
-				          (exwm-randr-workspace-monitor-plist '(0 "eDP" 1 "DP-1-1" 2 "DP-1-2"))
-                                  :hook   (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
-;;;↓💀 AXE 
 (use-package dashboard
   :custom
   (dashboard-startup-banner "~/pic/dashboard.jpg")
   (dashboard-center-content t)
   (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5)))
   :hook (after-init . dashboard-refresh-buffer))
+
 (use-package dired-filter         :init   (defun toggle-hide-dots () (interactive)
                                                (if (= (length dired-filter-stack) 0) (dired-filter-by-dot-files) (dired-filter-pop-all)))
                                   :hook   (dired-mode . dired-filter-by-dot-files)
                                   :bind   (:map dired-mode-map ("," . toggle-hide-dots)))
+
 (use-package tempo
   :config
   (tempo-define-template "today"  '((format-time-string "%Y-%m-%d")) "today")
@@ -108,15 +125,6 @@
   (tempo-define-template "fig"    '("#+CAPTION: " p n "[[./assets/" p "]]" n) "fig")
   (tempo-define-template "sfig"   '("#+CAPTION: " p n "#+ATTR_LATEX: :height 0.1\\textwidth" n "[[./assets/" p "]]" n) "sfig")
   (tempo-define-template "np"     '("#+LATEX:\\newpage" n) "np"))
-;;;↑💀 AXE
-
-(use-package reformatter
-  :config
-  (reformatter-define shfmt :program shfmt-cmd :args (append (list "--filename" (or (buffer-file-name) input-file)) '("-i" "4" "-ci")))
-  (reformatter-define ruff :program ruff-cmd :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file)))
-  :hook
-  (python-mode . ruff-on-save-mode)
-  (sh-mode . shfmt-on-save-mode))
 
 (use-package evil
   :init (setq evil-want-keybinding nil)
