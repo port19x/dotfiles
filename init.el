@@ -26,9 +26,9 @@
 ;git
 (use-package consult-git-log-grep :custom (consult-git-log-grep-open-function 'magit-show-commit))
 (use-package git-gutter           :config (global-git-gutter-mode))
-(use-package projectile           :config (projectile-mode +1)) ;(let ((projectile-project-search-path '("~/git/"))) (projectile-discover-projects-in-search-path))
+(use-package projectile           :config (projectile-mode +1)
+                                  :custom (projectile-completion-system 'default)) ;(let ((projectile-project-search-path '("~/git/"))) (projectile-discover-projects-in-search-path))
 (use-package magit                :hook   (projectile-after-switch-project . vc-pull))
-(use-package evil-collection      :config (evil-collection-init))
 ;visual
 (use-package hl-todo              :config (global-hl-todo-mode))
 (use-package evil-goggles         :config (evil-goggles-mode))
@@ -126,10 +126,11 @@
   (tempo-define-template "sfig"   '("#+CAPTION: " p n "#+ATTR_LATEX: :height 0.1\\textwidth" n "[[./assets/" p "]]" n) "sfig")
   (tempo-define-template "np"     '("#+LATEX:\\newpage" n) "np"))
 
-(use-package evil
+(use-package evil-collection
   :init (setq evil-want-keybinding nil)
   :config (evil-mode 1)
           (define-key evil-motion-state-map "," nil)
+          (evil-collection-init)
   :custom (evil-undo-system 'undo-redo))
 
 (use-package major-mode-hydra
@@ -166,9 +167,9 @@
  	         ("p" org-latex-export-to-pdf)
 	         ("P" org-beamer-export-to-pdf)
 	         ("x" org-export-dispatch))))
-  (major-mode-hydra-define hydra-lisp-mode (:exit t)
+  (major-mode-hydra-define common-lisp-mode (:exit t)
     ("Eval"     (("e" sly-eval-last-expression)
-	         ("d" sly-eval-defun)
+	         ("d" sly-overlay-eval-defun)
                  ("b" sly-eval-buffer))
      "Describe" (("h" sly-apropos-all)
 		 ("s" sly-describe-symbol)
