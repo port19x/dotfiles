@@ -56,16 +56,16 @@
   :init
   (require 'exwm-randr)
   (exwm-randr-enable)
-  (start-process-shell-command "xrandr" nil "xrandr --output DisplayPort-0 --mode 3840x2160 --left-of eDP")
-  ;(start-process-shell-command "xrandr" nil "xrandr --output DP-1-1 --right-of eDP --output DP-1-2 --right-of DP-1-1")
-  ;(start-process-shell-command "xrandr" nil "xrandr --output DP-1-1 --rotate left --output DP-1-2 --rotate right")
+  ;(start-process-shell-command "xrandr" nil "xrandr --output DisplayPort-0 --mode 3840x2160 --left-of eDP")
+  (start-process-shell-command "xrandr" nil "xrandr --output DP-1-1 --right-of eDP --output DP-1-2 --right-of DP-1-1")
+  (start-process-shell-command "xrandr" nil "xrandr --output DP-1-1 --rotate left --output DP-1-2 --rotate right")
   (exwm-enable)
   :config
   (add-to-list 'exwm-input-prefix-keys ?\M- )
   :custom
   (exwm-workspace-number 3)
-  (exwm-randr-workspace-monitor-plist '(0 "DisplayPort-0"))
-  ;(exwm-randr-workspace-monitor-plist '(0 "eDP" 1 "DP-1-1" 2 "DP-1-2"))
+  ;(exwm-randr-workspace-monitor-plist '(0 "DisplayPort-0"))
+  (exwm-randr-workspace-monitor-plist '(0 "eDP" 1 "DP-1-1" 2 "DP-1-2"))
   :hook
   (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
 
