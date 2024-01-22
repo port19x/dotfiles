@@ -41,8 +41,6 @@
 ;specifics
 (use-package markdown-mode        :mode   "\\.md\\'")
 (use-package flymake-ruff         :hook   (python-mode . flymake-ruff-mode))
-(use-package sly-overlay          :hook   (sly-mode . (lambda () (unless (sly-connected-p) (save-excursion (sly))))))
-(use-package paredit)
 
 
 (use-package reformatter
@@ -167,19 +165,6 @@
  	         ("p" org-latex-export-to-pdf)
 	         ("P" org-beamer-export-to-pdf)
 	         ("x" org-export-dispatch))))
-  (major-mode-hydra-define common-lisp-mode (:exit t)
-    ("Eval"     (("e" sly-eval-last-expression)
-	         ("d" sly-overlay-eval-defun)
-                 ("b" sly-eval-buffer))
-     "Describe" (("h" sly-apropos-all)
-		 ("s" sly-describe-symbol)
-		 ("f" sly-describe-function)
-		 ("w" sly-hyperspec-lookup))
-     "Other"    (("i" sly-inspect)
-		 ("j" sly-edit-definition)
-		 ("c" sly-mrepl-clear-repl)
-		 ("Q" sly-quit-lisp)
-		 ("<" paredit-forward-slurp-sexp))))
 
   (pretty-hydra-define hydra-buffer (:exit t)
     ("Buffers"  (("b" consult-buffer)
