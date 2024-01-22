@@ -40,13 +40,14 @@
 (use-package pdf-tools            :config (pdf-loader-install t))
 ;specifics
 (use-package markdown-mode        :mode   "\\.md\\'")
-(use-package flymake-ruff         :hook   (python-mode . flymake-ruff-mode))
+(use-package flymake-ruff         :hook   (python-mode . flymake-ruff-load)
+                                  :custom (flymake-ruff-program-args '("--output-format" "text" "--exit-zero" "--quiet" "--select" "ALL")))
 
 
 (use-package reformatter
   :config
-  (reformatter-define shfmt :program shfmt-cmd :args (append (list "--filename" (or (buffer-file-name) input-file)) '("-i" "4" "-ci")))
-  (reformatter-define ruff :program ruff-cmd :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file)))
+  (reformatter-define shfmt :program "shfmt" :args (append (list "--filename" (or (buffer-file-name) input-file)) '("-i" "4" "-ci")))
+  (reformatter-define ruff :program "ruff" :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file)))
   :hook
   (python-mode . ruff-on-save-mode)
   (sh-mode . shfmt-on-save-mode))
