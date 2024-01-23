@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r478.36905b6
+pkgver=r504.65416c7
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -23,13 +23,12 @@ depends=(
 'man-db'
 'man-pages'
 'mpv'
-'sbcl'
 'slock'
-'quicklisp'
 'zola'
 
 'ansible-core'
 'docker'
+'docker-compose'
 'grafana'
 'haproxy'
 'prometheus'
@@ -47,14 +46,11 @@ depends=(
 'poppler-glib'
 'ripgrep'
 
-'asciiquarium'
 'aspell-en'
-'brightnessctl'
 'dfrs'
 'entr'
 'ghostscript'
 'imagemagick'
-'pacman-contrib'
 'unzip'
 'wget'
 'xorg-xrandr'
