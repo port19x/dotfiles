@@ -29,9 +29,11 @@
 (use-package projectile           :config (projectile-mode +1)
                                   :custom (projectile-completion-system 'default))
 (use-package magit                :hook   (projectile-after-switch-project . vc-pull))
+(use-package evil-collection      :config (evil-collection-init) :after evil)
 ;visual -- (nerd-icons-install-font)
 (use-package hl-todo              :config (global-hl-todo-mode))
 (use-package ef-themes            :config (load-theme 'ef-maris-dark t))
+(use-package evil-goggles         :config (evil-goggles-mode) :after evil)
 (use-package doom-modeline        :config (doom-modeline-mode))
 (use-package nerd-icons-dired     :hook   dired-mode)
 (use-package dired-filter         :hook   (dired-mode . dired-filter-by-dot-files))
@@ -131,8 +133,6 @@
   :config (evil-mode 1)
           (define-key evil-motion-state-map "," nil)
   :custom (evil-undo-system 'undo-redo))
-(use-package evil-goggles    :config (evil-goggles-mode))
-(use-package evil-collection :config (evil-collection-init))
 
 (use-package major-mode-hydra
   :bind   (("M-SPC" . hydra-global/body))
