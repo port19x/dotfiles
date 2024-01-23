@@ -42,12 +42,8 @@
 ;specifics -- (pdf-loader-install t)
 (use-package pdf-tools            :mode   "\\.pdf\\'")
 (use-package markdown-mode        :mode   "\\.md\\'")
-
-
-(use-package flymake-ruff
-  :custom (flymake-ruff-program-args '("--output-format" "text" "--exit-zero" "--quiet" "--select" "ALL"
-                                       "--ignore" "ANN,T,D,PTH"))
-  :hook (python-mode . flymake-ruff-load))
+(use-package flymake-ruff         :custom (flymake-ruff-program-args '("-e" "-q" "-n" "--select" "ALL" "--ignore" "ANN,T,D,PTH"))
+                                  :hook   (python-mode . flymake-ruff-load))
 
 (use-package reformatter
   :config
