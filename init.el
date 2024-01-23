@@ -161,10 +161,10 @@
 
   (pretty-hydra-define hydra-buffer (:exit t)
     ("Buffers"  (("b" consult-buffer)
-		 ("l" ibuffer)
+		 ("i" ibuffer)
 		 ("k" kill-current-buffer :color red)
 		 ("n" next-buffer :color red)
-		 ("S" scratch-buffer))))
+		 ("s" scratch-buffer))))
   (pretty-hydra-define hydra-window (:exit t)
     ("Windows"  (("s" split-window-below)
 		 ("v" split-window-right)
