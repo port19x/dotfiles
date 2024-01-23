@@ -31,7 +31,6 @@
 (use-package magit                :hook   (projectile-after-switch-project . vc-pull))
 ;visual
 (use-package hl-todo              :config (global-hl-todo-mode))
-(use-package evil-goggles         :config (evil-goggles-mode))
 (use-package ef-themes            :config (load-theme 'ef-maris-dark t))
 (use-package doom-modeline        :config (doom-modeline-mode)) ;nerd-icons-install-fonts
 (use-package nerd-icons-dired     :hook   dired-mode)
@@ -128,12 +127,13 @@
   (tempo-define-template "sfig"   '("#+CAPTION: " p n "#+ATTR_LATEX: :height 0.1\\textwidth" n "[[./assets/" p "]]" n) "sfig")
   (tempo-define-template "np"     '("#+LATEX:\\newpage" n) "np"))
 
-(use-package evil-collection
+(use-package evil
   :init (setq evil-want-keybinding nil)
   :config (evil-mode 1)
           (define-key evil-motion-state-map "," nil)
-          (evil-collection-init)
   :custom (evil-undo-system 'undo-redo))
+(use-package evil-goggles    :config (evil-goggles-mode))
+(use-package evil-collection :config (evil-collection-init))
 
 (use-package major-mode-hydra
   :bind   (("M-SPC" . hydra-global/body))
