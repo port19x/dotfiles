@@ -40,9 +40,12 @@
 (use-package pdf-tools            :config (pdf-loader-install t))
 ;specifics
 (use-package markdown-mode        :mode   "\\.md\\'")
-(use-package flymake-ruff         :hook   (python-mode . flymake-ruff-load)
-                                  :custom (flymake-ruff-program-args '("--output-format" "text" "--exit-zero" "--quiet" "--select" "ALL")))
 
+
+(use-package flymake-ruff
+  :custom (flymake-ruff-program-args '("--output-format" "text" "--exit-zero" "--quiet" "--select" "ALL"
+                                       "--ignore" "ANN,T,D,PTH"))
+  :hook (python-mode . flymake-ruff-load))
 
 (use-package reformatter
   :config
