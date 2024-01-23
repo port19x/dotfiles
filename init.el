@@ -34,6 +34,7 @@
 (use-package ef-themes            :config (load-theme 'ef-maris-dark t))
 (use-package doom-modeline        :config (doom-modeline-mode))
 (use-package nerd-icons-dired     :hook   dired-mode)
+(use-package dired-filter         :hook   (dired-mode . dired-filter-by-dot-files))
 ;specifics -- (pdf-loader-install t)
 (use-package pdf-tools            :mode   "\\.pdf\\'")
 (use-package markdown-mode        :mode   "\\.md\\'")
@@ -115,10 +116,6 @@
   (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5)))
   :hook (after-init . dashboard-refresh-buffer))
 
-(use-package dired-filter         :init   (defun toggle-hide-dots () (interactive)
-                                               (if (= (length dired-filter-stack) 0) (dired-filter-by-dot-files) (dired-filter-pop-all)))
-                                  :hook   (dired-mode . dired-filter-by-dot-files)
-                                  :bind   (:map dired-mode-map ("," . toggle-hide-dots)))
 
 (use-package tempo
   :config
