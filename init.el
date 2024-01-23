@@ -23,21 +23,19 @@
 (use-package vterm                :custom (vterm-always-compile-module t))
 (use-package eshell-toggle        :bind   ((:map eshell-mode-map ("<right>" . capf-autosuggest-accept))))
 (use-package capf-autosuggest     :hook   eshell-mode)
-;git
+;git -- (let ((projectile-project-search-path '("~/git/"))) (projectile-discover-projects-in-search-path))
 (use-package consult-git-log-grep :custom (consult-git-log-grep-open-function 'magit-show-commit))
 (use-package git-gutter           :config (global-git-gutter-mode))
 (use-package projectile           :config (projectile-mode +1)
-                                  :custom (projectile-completion-system 'default)) ;(let ((projectile-project-search-path '("~/git/"))) (projectile-discover-projects-in-search-path))
+                                  :custom (projectile-completion-system 'default))
 (use-package magit                :hook   (projectile-after-switch-project . vc-pull))
-;visual
+;visual -- (nerd-icons-install-font)
 (use-package hl-todo              :config (global-hl-todo-mode))
 (use-package ef-themes            :config (load-theme 'ef-maris-dark t))
-(use-package doom-modeline        :config (doom-modeline-mode)) ;nerd-icons-install-fonts
+(use-package doom-modeline        :config (doom-modeline-mode))
 (use-package nerd-icons-dired     :hook   dired-mode)
-;multimedia
-(use-package elfeed               :custom (elfeed-feeds '("https://sachachua.com/blog/category/emacs-news/feed/" "https://blog.fefe.de/rss.xml?html")))
-(use-package pdf-tools            :config (pdf-loader-install t))
-;specifics
+;specifics -- (pdf-loader-install t)
+(use-package pdf-tools            :mode   "\\.pdf\\'")
 (use-package markdown-mode        :mode   "\\.md\\'")
 
 
@@ -53,6 +51,10 @@
   :hook
   (python-mode . ruff-on-save-mode)
   (sh-mode . shfmt-on-save-mode))
+
+(use-package elfeed
+  :custom (elfeed-feeds '("https://sachachua.com/blog/category/emacs-news/feed/"
+                          "https://blog.fefe.de/rss.xml?html")))
 
 (use-package exwm
   :init
