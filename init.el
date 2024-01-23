@@ -37,6 +37,8 @@
 (use-package doom-modeline        :config (doom-modeline-mode))
 (use-package nerd-icons-dired     :hook   dired-mode)
 (use-package dired-filter         :hook   (dired-mode . dired-filter-by-dot-files))
+(use-package dashboard            :custom (dashboard-center-content t)
+                                  :hook   (after-init . dashboard-refresh-buffer))
 ;specifics -- (pdf-loader-install t)
 (use-package pdf-tools            :mode   "\\.pdf\\'")
 (use-package markdown-mode        :mode   "\\.md\\'")
@@ -110,14 +112,6 @@
   (org-capture-templates '(("a" "Appointment" entry (file+headline "~/doc/master.org" "📅 Agenda") "** %t ")
 			   ("t" "Todo" entry (file+headline "~/doc/master.org" "📅 Agenda") "** TODO ")))
   :hook org-mode)
-
-(use-package dashboard
-  :custom
-  (dashboard-startup-banner "~/pic/dashboard.jpg")
-  (dashboard-center-content t)
-  (dashboard-items '((recents  . 5) (bookmarks . 5) (projects . 5)))
-  :hook (after-init . dashboard-refresh-buffer))
-
 
 (use-package tempo
   :config
