@@ -47,7 +47,7 @@
 
 (use-package reformatter
   :config
-  (reformatter-define shfmt :program "shfmt" :args (append (list "--filename" (or (buffer-file-name) input-file)) '("-i" "4" "-ci")))
+  (reformatter-define shfmt :program "shfmt" :args (list "--filename" (or (buffer-file-name) input-file) "-i" "4" "-ci"))
   (reformatter-define ruff :program "ruff" :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file)))
   :hook
   (python-mode . ruff-on-save-mode)
