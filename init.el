@@ -109,15 +109,6 @@
 			   ("t" "Todo" entry (file+headline "~/doc/master.org" "📅 Agenda") "** TODO ")))
   :hook org-mode)
 
-(use-package tempo
-  :config
-  (tempo-define-template "today"  '((format-time-string "%Y-%m-%d")) "today")
-  (tempo-define-template "online" '("@online{" p "," n "  author = \"" p "\"," n "  title = \"" p "\"," n "  url = \"" p "\"," n "  date = \"" p "\"," n "}") "online")
-  (tempo-define-template "book"   '("@book{" p "," n "  author = \"" p "\"," n "  title = \"" p "\"," n "  year = \"" p "\"," n "  publisher = \"" p "\"," n "}") "book")
-  (tempo-define-template "fig"    '("#+CAPTION: " p n "[[./assets/" p "]]" n) "fig")
-  (tempo-define-template "sfig"   '("#+CAPTION: " p n "#+ATTR_LATEX: :height 0.1\\textwidth" n "[[./assets/" p "]]" n) "sfig")
-  (tempo-define-template "np"     '("#+LATEX:\\newpage" n) "np"))
-
 (use-package evil
   :init (setq evil-want-keybinding nil)
   :config (evil-mode 1)
@@ -139,14 +130,12 @@
     (start-process-shell-command command nil command))
 
   (major-mode-hydra-define org-mode (:exit t)
-    ("Template" (("SPC" tempo-complete-tag)
-		 ("m" tempo-forward-mark)
-		 ("M" tempo-backward-mark))
-     "Editing"  (("b" org-insert-structure-template)
+    ("Editing"  (("b" org-insert-structure-template)
 		 ("c" org-cite-insert)
 		 ("e" org-babel-execute-src-block)
 		 ("s" org-cut-subtree)
-		 ("t" org-time-stamp))
+		 ("t" org-time-stamp)
+                 ("T" (insert (format-time-string "%Y-%m-%d")) "today"))
      "Toggle"   (("n" org-narrow-to-subtree)
 	         ("N" widen)
 	         ("k" org-clock-in)
