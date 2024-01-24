@@ -42,6 +42,9 @@
 ;specifics -- (pdf-loader-install t)
 (use-package pdf-tools            :mode   "\\.pdf\\'")
 (use-package markdown-mode        :mode   "\\.md\\'")
+(use-package dockerfile-mode      :mode   "\\Dockerfile\\'")
+(use-package docker-compose-mode  :mode   "\\docker-compose.yml\\'")
+(use-package ansible              :mode   "\\playbook.yml\\'")
 (use-package flymake-ruff         :custom (flymake-ruff-program-args '("-e" "-q" "-n" "--select" "ALL" "--ignore" "ANN,T,D,PTH"))
                                   :hook   (python-mode . flymake-ruff-load))
 
