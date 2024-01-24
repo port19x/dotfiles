@@ -94,21 +94,6 @@
   (python-mode . flymake-mode)
   (sh-mode . flymake-mode))
 
-(use-package org-modern
-  :config
-  (org-babel-do-load-languages 'org-babel-load-languages '((python . t) (shell . t)))
-  (require 'oc-biblatex)
-  :custom
-  (org-startup-indented t)
-  (org-edit-src-content-indentation 0)
-  (org-src-preserve-indentation t)
-  (org-confirm-babel-evaluate nil)
-  (org-agenda-files '("~/doc/master.org"))
-  (org-agenda-restore-windows-after-quit t)
-  (org-capture-templates '(("a" "Appointment" entry (file+headline "~/doc/master.org" "📅 Agenda") "** %t ")
-			   ("t" "Todo" entry (file+headline "~/doc/master.org" "📅 Agenda") "** TODO ")))
-  :hook org-mode)
-
 (use-package evil
   :init (setq evil-want-keybinding nil)
   :config (evil-mode 1)
@@ -117,37 +102,9 @@
 
 (use-package major-mode-hydra
   :bind   (("M-SPC" . hydra-global/body))
-  :config
-  (defun toggle-org-pdf-export-on-save () (interactive)
-	 (if (memq 'org-latex-export-to-pdf after-save-hook)
-             (progn
-               (remove-hook 'after-save-hook 'org-latex-export-to-pdf t)
-               (message "Disabled org latex export on save for current buffer..."))
-	   (add-hook 'after-save-hook 'org-latex-export-to-pdf nil t)
-	   (message "Enabled org latex export on save for current buffer...")))
-  (defun launch (command)
-    (interactive (list (read-shell-command "$ ")))
-    (start-process-shell-command command nil command))
-
-  (major-mode-hydra-define org-mode (:exit t)
-    ("Editing"  (("b" org-insert-structure-template)
-		 ("c" org-cite-insert)
-		 ("e" org-babel-execute-src-block)
-		 ("s" org-cut-subtree)
-		 ("t" org-time-stamp)
-                 ("T" (insert (format-time-string "%Y-%m-%d")) "today"))
-     "Toggle"   (("n" org-narrow-to-subtree)
-	         ("N" widen)
-	         ("k" org-clock-in)
-	         ("K" org-clock-out)
-	         ("i" org-indent-mode)
-	         ("v" visual-line-mode)
-	         ("X" toggle-org-pdf-export-on-save))
-     "Export"   (("h" org-html-export-to-html)
- 	         ("p" org-latex-export-to-pdf)
-	         ("P" org-beamer-export-to-pdf)
-	         ("x" org-export-dispatch))))
-
+  :config (defun launch (command)
+            (interactive (list (read-shell-command "$ ")))
+            (start-process-shell-command command nil command))
   (pretty-hydra-define hydra-buffer (:exit t)
     ("Buffers"  (("b" consult-buffer)
 		 ("i" ibuffer)
@@ -207,3 +164,45 @@
 	        ("h" hydra-help/body "Help")
 	        ("w" hydra-window/body "Window")
 	        ("Q" save-buffers-kill-emacs "Exit")))))
+
+(use-package org-modern
+  :config
+  (org-babel-do-load-languages 'org-babel-load-languages '((python . t) (shell . t)))
+  (require 'oc-biblatex)
+  (defun toggle-org-pdf-export-on-save () (interactive)
+	 (if (memq 'org-latex-export-to-pdf after-save-hook)
+             (progn
+               (remove-hook 'after-save-hook 'org-latex-export-to-pdf t)
+               (message "Disabled org latex export on save for current buffer..."))
+	   (add-hook 'after-save-hook 'org-latex-export-to-pdf nil t)
+	   (message "Enabled org latex export on save for current buffer...")))
+  :custom
+  (org-startup-indented t)
+  (org-edit-src-content-indentation 0)
+  (org-src-preserve-indentation t)
+  (org-confirm-babel-evaluate nil)
+  (org-agenda-files '("~/doc/master.org"))
+  (org-agenda-restore-windows-after-quit t)
+  (org-capture-templates '(("a" "Appointment" entry (file+headline "~/doc/master.org" "📅 Agenda") "** %t ")
+			   ("t" "Todo" entry (file+headline "~/doc/master.org" "📅 Agenda") "** TODO ")))
+  :hook org-mode
+  :mode-hydra
+  (org-mode
+   (:exit t)
+   ("Editing"  (("b" org-insert-structure-template)
+		("c" org-cite-insert)
+		("e" org-babel-execute-src-block)
+		("s" org-cut-subtree)
+		("t" org-time-stamp)
+                ("T" (insert (format-time-string "%Y-%m-%d")) "today"))
+    "Toggle"   (("n" org-narrow-to-subtree)
+	        ("N" widen)
+	        ("k" org-clock-in)
+	        ("K" org-clock-out)
+	        ("i" org-indent-mode)
+	        ("v" visual-line-mode)
+	        ("X" toggle-org-pdf-export-on-save))
+    "Export"   (("h" org-html-export-to-html)
+ 	        ("p" org-latex-export-to-pdf)
+	        ("P" org-beamer-export-to-pdf)
+	        ("x" org-export-dispatch)))))
