@@ -43,6 +43,8 @@
 (use-package dockerfile-mode      :mode   "\\Dockerfile\\'")
 (use-package docker-compose-mode  :mode   "\\docker-compose.yml\\'")
 (use-package ansible              :mode   "\\playbook.yml\\'")
+(use-package haproxy-mode         :mode   "\\haproxy.cfg\\'"
+  :load-path "~/dl/haproxy-mode")
 (use-package flymake-ruff         :custom (flymake-ruff-program-args '("-e" "-q" "-n" "--select" "ALL" "--ignore" "ANN,T,D,PTH"))
                                   :hook   (python-mode . flymake-ruff-load))
 
@@ -103,6 +105,7 @@
   :custom (evil-undo-system 'undo-redo))
 
 (use-package major-mode-hydra
+  :demand t
   :bind   (("M-SPC" . hydra-global/body))
   :config (defun launch (command)
             (interactive (list (read-shell-command "$ ")))
