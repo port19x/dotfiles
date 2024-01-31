@@ -143,7 +143,7 @@
 	        ("v" eval-last-sexp "eval sexp")
 	        ("x" consult-flymake "lint"))
       "Files"  (("f" find-file "open")
-       	        ("F" consult-find "find")
+       	        ("F" consult-fd "find")
 	        ("G" consult-ripgrep "grep")
 	        ("r" consult-recent-file "recent")
 	        ("m" consult-bookmark "bookmark")
