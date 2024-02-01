@@ -27,8 +27,6 @@
 (use-package projectile           :config (projectile-mode +1)
                                   :custom (projectile-completion-system 'default))
 (use-package magit                :hook   (projectile-after-switch-project . vc-pull))
-(use-package magit-todos          :after magit
-                                  :config (magit-todos-mode 1))
 (use-package evil-collection      :config (evil-collection-init) :after evil)
 ;visual -- (nerd-icons-install-font)
 (use-package hl-todo              :config (global-hl-todo-mode))
