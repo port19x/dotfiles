@@ -46,7 +46,7 @@
 (use-package docker-compose-mode  :mode   "\\docker-compose.yml\\'")
 (use-package ansible              :mode   "\\playbook.yml\\'")
 (use-package haproxy-mode         :mode   "\\haproxy.cfg\\'"
-  :load-path "~/dl/haproxy-mode")
+  :load-path "~/git/haproxy-mode")
 (use-package flymake-ruff         :custom (flymake-ruff-program-args '("-e" "-q" "-n" "--select" "ALL" "--ignore" "ANN,T,D,PTH"))
                                   :hook   (python-mode . flymake-ruff-load))
 
