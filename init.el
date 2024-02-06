@@ -50,13 +50,17 @@
 (use-package flymake-ruff         :custom (flymake-ruff-program-args '("-e" "-q" "-n" "--select" "ALL" "--ignore" "ANN,T,D,PTH"))
                                   :hook   (python-mode . flymake-ruff-load))
 
+;(mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
+(setq treesit-language-source-alist '((bash "https://github.com/tree-sitter/tree-sitter-bash") (python "https://github.com/tree-sitter/tree-sitter-python")))
+(setq major-mode-remap-alist '((sh-mode . bash-ts-mode) (python-mode . python-ts-mode)))
+
 (use-package reformatter
   :config
   (reformatter-define shfmt :program "shfmt" :args (list "--filename" (or (buffer-file-name) input-file) "-i" "4" "-ci"))
   (reformatter-define ruff :program "ruff" :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file)))
   :hook
-  (python-mode . ruff-on-save-mode)
-  (sh-mode . shfmt-on-save-mode))
+  (python-ts-mode . ruff-on-save-mode)
+  (bash-ts-mode . shfmt-on-save-mode))
 
 (use-package elfeed
   :custom (elfeed-feeds '("https://sachachua.com/blog/category/emacs-news/feed/"
