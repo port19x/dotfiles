@@ -51,15 +51,15 @@
                                   :hook   (python-mode . flymake-ruff-load))
 
 ;(mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
-(setq treesit-language-source-alist '((bash "https://github.com/tree-sitter/tree-sitter-bash") (python "https://github.com/tree-sitter/tree-sitter-python")))
-(setq major-mode-remap-alist '((sh-mode . bash-ts-mode) (python-mode . python-ts-mode)))
+(setq treesit-language-source-alist '((bash "https://github.com/tree-sitter/tree-sitter-bash")))
+(setq major-mode-remap-alist '((sh-mode . bash-ts-mode)))
 
 (use-package reformatter
   :config
   (reformatter-define shfmt :program "shfmt" :args (list "--filename" (or (buffer-file-name) input-file) "-i" "4" "-ci"))
   (reformatter-define ruff :program "ruff" :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file)))
   :hook
-  (python-ts-mode . ruff-on-save-mode)
+  (python-mode . ruff-on-save-mode)
   (bash-ts-mode . shfmt-on-save-mode))
 
 (use-package elfeed
