@@ -31,7 +31,6 @@
 (use-package magit                :hook   (projectile-after-switch-project . vc-pull))
 (use-package evil-collection      :config (evil-collection-init) :after evil)
 ;visual -- (nerd-icons-install-font)
-(use-package hl-todo              :config (global-hl-todo-mode))
 (use-package ef-themes            :config (load-theme 'ef-maris-dark t))
 (use-package evil-goggles         :config (evil-goggles-mode) :after evil)
 (use-package doom-modeline        :config (doom-modeline-mode))
@@ -141,15 +140,15 @@
     ("Buffer"  (("i" insert-char "unicode")
 	        ("k" comment-region "comment")
 	        ("K" indent-region "indent")
-	        ("t" hl-todo-next "next todo")
+	        ("m" hl-todo-next "next todo")
 	        ("v" eval-last-sexp "eval sexp")
 	        ("x" consult-flymake "lint"))
       "Files"  (("f" find-file "open")
        	        ("F" consult-fd "find")
 	        ("G" consult-ripgrep "grep")
 	        ("r" consult-recent-file "recent")
-	        ("m" consult-bookmark "bookmark")
-	        ("M" bookmark-set "set bookmark"))
+	        ("<return>" consult-bookmark "bookmark")
+	        ("S-<return>" bookmark-set "set bookmark"))
      "Git"     (("B" magit-blame-addition "blame")
 	        ("C" magit-clone "clone")
 	        ("g" magit)
@@ -172,6 +171,15 @@
 	        ("w" hydra-window/body "Window")
 	        ("Q" save-buffers-kill-emacs "Exit")))))
 
+(use-package hl-todo            :config (global-hl-todo-mode)
+  :custom (hl-todo--regexp "\\(\\<\\(TODO\\|HACK\\|CITE\\|IMAGE\\|LINK\\|FIXME\\)\\>\\)")
+          (hl-todo-keyword-faces '(("HACK" . "#d0bf8f")
+                                   ("FIXME" . "#cc9393")
+                                   ("TODO" . "#cc9393")
+                                   ("CITE" . "#dc8cc3")
+                                   ("IMAGE" . "#dc8cc3")
+                                   ("LINK" . "#dc8cc3"))))
+
 (use-package org-modern
   :config
   (org-babel-do-load-languages 'org-babel-load-languages '((python . t) (shell . t)))
@@ -192,7 +200,9 @@
   (org-agenda-restore-windows-after-quit t)
   (org-capture-templates '(("a" "Appointment" entry (file+headline "~/doc/master.org" "📅 Agenda") "** %t ")
 			   ("t" "Todo" entry (file+headline "~/doc/master.org" "📅 Agenda") "** TODO ")))
-  :hook org-mode
+  :hook (org-mode . org-modern-mode)
+        (org-mode . hl-todo-mode)
+        (org-mode . visual-line-mode)
   :mode-hydra
   (org-mode
    (:exit t)
