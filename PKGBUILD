@@ -14,11 +14,13 @@ depends=(
 'emacs-nativecomp'
 'noto-fonts'
 'noto-fonts-emoji'
+'qutebrowser'
 'ttc-iosevka'
 'xorg-server'
 'xorg-xinit'
 
 'flameshot'
+'git'
 'keepassxc'
 'man-db'
 'man-pages'
@@ -69,11 +71,6 @@ depends=(
 'texlive-xetex'
 )
 
-optdepends=(
-'brave-bin: webbrowser'
-'yay: aur helper'
-)
-
 source=('dotfiles::git+https://github.com/port19x/dotfiles')
 md5sums=('SKIP')
 
@@ -90,8 +87,9 @@ package() {
     echo "startx" > $HOME/.bash_profile
     echo "flameshot &" > $HOME/.xinitrc
     echo "exec emacs --fullscreen" >> $HOME/.xinitrc
-    mkdir -p $HOME/.emacs.d
+    mkdir -p $HOME/.emacs.d $HOME/.config/qutebrowser
     cd .. && ln -sf $HOME/dotfiles/init.el $HOME/.emacs.d/init.el
+    cd .. && ln -sf $HOME/dotfiles/config.py $HOME/.config/qutebrowser/config.py
     printf "\33[2K\r\033[1;32m%s\033[0m\n" "[1/2] symlinked emacs config, made startup files"
 
     printf "\33[2K\r\033[1;32m%s\033[0m\n" "[UWU] Starting to compile emacs packages. This might take a few minutes" 

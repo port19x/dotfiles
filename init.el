@@ -161,7 +161,7 @@
 		("n" elfeed)
 		("z" dashboard-refresh-buffer "dashboard"))
      "xLaunch" (("l" (launch "slock") "lockscreen")
-		("q" (launch "brave") "browser")
+		("q" (launch "qutebrowser") "browser")
 		("R" launch)
 		("s" (launch "flameshot gui") "screenshot"))
      "Hydras"  (("SPC" major-mode-hydra "Major")
