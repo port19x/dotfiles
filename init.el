@@ -9,7 +9,7 @@
 (package-initialize)
 (unless package-archive-contents (package-refresh-contents))
 (use-package no-littering)
-
+(load-theme 'modus-vivendi t)
 
 (use-package better-defaults)
 (use-package define-word)
@@ -31,7 +31,6 @@
 (use-package magit                :hook   (projectile-after-switch-project . vc-pull))
 (use-package evil-collection      :config (evil-collection-init) :after evil)
 ;visual -- (nerd-icons-install-font)
-(use-package ef-themes            :config (load-theme 'ef-maris-dark t))
 (use-package evil-goggles         :config (evil-goggles-mode) :after evil)
 (use-package doom-modeline        :config (doom-modeline-mode))
 (use-package nerd-icons-dired     :hook   dired-mode)
