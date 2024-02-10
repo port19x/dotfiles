@@ -1,14 +1,14 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r513.b61eff3
+pkgver=r522.7f67da8
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
 url='https://github.com/port19x/dotfiles'
 license=('Unlicense')
 
-# sorted by dependency strength: core > program > admin tools > emacs-dep > utility
+# sorted by dependency strength: core > program > admin tools > emacs-dep > utility > latex
 depends=(
 'base-devel'
 'emacs-nativecomp'
@@ -46,15 +46,38 @@ depends=(
 'dfrs'
 'ghostscript'
 'imagemagick'
+'tldr'
 'unzip'
 'wget'
 'xorg-xrandr'
 'yt-dlp'
+
+'texlive-basic'
+'texlive-bibtexextra'
+'texlive-binextra'
+'texlive-context'
+'texlive-fontsextra'
+'texlive-fontsrecommended'
+'texlive-fontutils'
+'texlive-formatsextra'
+'texlive-games'
+'texlive-humanities'
+'texlive-latex'
+'texlive-latexextra'
+'texlive-latexrecommended'
+'texlive-luatex'
+'texlive-mathscience'
+'texlive-metapost'
+'texlive-music'
+'texlive-pictures'
+'texlive-plaingeneric'
+'texlive-pstricks'
+'texlive-publishers'
+'texlive-xetex'
 )
 
 optdepends=(
 'brave-bin: webbrowser'
-'texlive: for writing papers'
 'yay: aur helper'
 )
 
