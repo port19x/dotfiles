@@ -26,9 +26,9 @@ c.tabs.last_close = "default-page"
 c.zoom.default = "100%"
 c.downloads.location.directory = "~/dl"
 
-c.url.default_page = "https://search.bus-hit.me/"
-c.url.start_pages = "https://search.bus-hit.me/"
-c.url.searchengines = {"DEFAULT": "https://search.bus-hit.me/?q={}"}
+c.url.default_page = "https://ddg.gg"
+c.url.start_pages = "https://ddg.gg"
+c.url.searchengines = {"DEFAULT": "https://ddg.gg/?q={}"}
 
 config.bind(",m", "hint links spawn mpv {hint-url}")
 config.bind(",nv", "hint links spawn mpv --no-video {hint-url}")
