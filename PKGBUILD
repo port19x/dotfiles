@@ -1,14 +1,14 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r522.7f67da8
+pkgver=r531.c4b7101
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
 url='https://github.com/port19x/dotfiles'
 license=('Unlicense')
 
-# sorted by dependency strength: core > program > admin tools > emacs-dep > utility > latex
+# sorted by dependency strength: core > program > emacs-dep > utility > latex
 depends=(
 'base-devel'
 'emacs-nativecomp'
@@ -25,18 +25,10 @@ depends=(
 'man-db'
 'man-pages'
 'mpv'
-'slock'
-'zola'
-
-'ansible-core'
-'docker'
-'docker-compose'
-'haproxy'
-'python-virtualenv'
-'python-matplotlib'
-'ruff'
 'shellcheck'
 'shfmt'
+'slock'
+'zola'
 
 'cmake'
 'fd'
