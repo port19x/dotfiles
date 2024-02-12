@@ -39,30 +39,14 @@
                                   :hook   (after-init . dashboard-refresh-buffer))
 ;specifics -- (pdf-loader-install t)
 (use-package pdf-tools            :mode   "\\.pdf\\'")
+(use-package elfeed               :custom (elfeed-feeds '("https://sachachua.com/blog/category/emacs-news/feed/" "https://blog.fefe.de/rss.xml?html")))
 (use-package markdown-mode        :mode   "\\.md\\'")
-(use-package dockerfile-mode      :mode   "\\Dockerfile\\'")
-(use-package docker-compose-mode  :mode   "\\docker-compose.yml\\'")
-(use-package ansible              :mode   "\\playbook.yml\\'")
-(use-package haproxy-mode         :mode   "\\haproxy.cfg\\'"
-  :load-path "~/git/haproxy-mode")
-(use-package flymake-ruff         :custom (flymake-ruff-program-args '("-e" "-q" "-n" "--select" "ALL" "--ignore" "ANN,T,D,PTH"))
-                                  :hook   (python-mode . flymake-ruff-load))
 
 ;(mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
-(setq treesit-language-source-alist '((bash "https://github.com/tree-sitter/tree-sitter-bash")))
-(setq major-mode-remap-alist '((sh-mode . bash-ts-mode)))
-
-(use-package reformatter
-  :config
-  (reformatter-define shfmt :program "shfmt" :args (list "--filename" (or (buffer-file-name) input-file) "-i" "4" "-ci"))
-  (reformatter-define ruff :program "ruff" :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file)))
-  :hook
-  (python-mode . ruff-on-save-mode)
-  (bash-ts-mode . shfmt-on-save-mode))
-
-(use-package elfeed
-  :custom (elfeed-feeds '("https://sachachua.com/blog/category/emacs-news/feed/"
-                          "https://blog.fefe.de/rss.xml?html")))
+(use-package reformatter          :config (reformatter-define shfmt :program "shfmt" :args (list "--filename" (or (buffer-file-name) input-file) "-i" "4" "-ci"))
+                                  :custom (treesit-language-source-alist '((bash "https://github.com/tree-sitter/tree-sitter-bash")))
+                                          (major-mode-remap-alist '((sh-mode . bash-ts-mode)))
+                                  :hook   (bash-ts-mode . shfmt-on-save-mode))
 
 (use-package exwm
   :init
