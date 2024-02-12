@@ -197,13 +197,13 @@
     "uki": true,
     "version": "2.7.1",
     "custom-commands": [
-        "echo startx >$HOME/.bash_profile",
-        "echo flameshot & >$HOME/.xinitrc",
-        "echo exec emacs --fullscreen >>$HOME/.xinitrc",
-        "mkdir -p $HOME/.emacs.d $HOME/.config/qutebrowser",
-        "git clone https://github.com/port19x/dotfiles $HOME/dotfiles",
-        "ln -sf $HOME/dotfiles/init.el $HOME/.emacs.d/init.el",
-        "ln -sf $HOME/dotfiles/config.py $HOME/.config/qutebrowser/config.py",
-        "emacs -l ~/.emacs.d/init.el -batch"
+        "echo startx >/home/*/.bash_profile",
+        "echo flameshot & >/home/*/.xinitrc",
+        "echo exec emacs --fullscreen >>/home/*/.xinitrc",
+        "mkdir -p /home/*/.emacs.d /home/*/.config/qutebrowser",
+        "git clone https://github.com/port19x/dotfiles /home/*/dotfiles",
+        "ln -sf /home/*/dotfiles/init.el /home/*/.emacs.d/init.el",
+        "ln -sf /home/*/dotfiles/config.py /home/*/.config/qutebrowser/config.py",
+        "emacs -l /home/*/.emacs.d/init.el -batch"
     ]
 }
