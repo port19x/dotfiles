@@ -41,6 +41,8 @@
 (use-package pdf-tools            :mode   "\\.pdf\\'")
 (use-package elfeed               :custom (elfeed-feeds '("https://sachachua.com/blog/category/emacs-news/feed/" "https://blog.fefe.de/rss.xml?html")))
 (use-package markdown-mode        :mode   "\\.md\\'")
+(use-package paredit              :hook   prog-mode)
+(use-package rainbow-delimiters   :hook   prog-mode)
 
 ;(mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 (use-package reformatter          :config (reformatter-define shfmt :program "shfmt" :args (list "--filename" (or (buffer-file-name) input-file) "-i" "4" "-ci"))
@@ -116,7 +118,8 @@
 	        ("K" indent-region "indent")
 	        ("m" hl-todo-next "next todo")
 	        ("v" eval-last-sexp "eval sexp")
-	        ("x" consult-flymake "lint"))
+	        ("x" consult-flymake "lint")
+                ("<" paredit-forward-slurp-sexp "slurp"))
       "Files"  (("f" find-file "open")
        	        ("F" consult-fd "find")
 	        ("G" consult-ripgrep "grep")
@@ -198,3 +201,5 @@
  	        ("p" org-latex-export-to-pdf)
 	        ("P" org-beamer-export-to-pdf)
 	        ("x" org-export-dispatch)))))
+
+;;; Warning: Built Using Alien Technology ;;;
