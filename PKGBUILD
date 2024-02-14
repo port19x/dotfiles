@@ -21,6 +21,8 @@ depends=(
 
 'clojure'
 'leiningen'
+'sbcl'
+'quicklisp'
 
 'flameshot'
 'git'
