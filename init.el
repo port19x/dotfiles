@@ -64,7 +64,6 @@
   (custom-file (concat user-emacs-directory "/custom.el"))
   (dired-kill-when-opening-new-dired-buffer t)
   (eshell-history-size 100000)
-  (inferior-lisp-program "/usr/bin/sbcl")
   (inhibit-startup-message t)
   (make-backup-files nil)
   :hook
@@ -243,3 +242,23 @@
                 ("n" clojure-sort-ns)
                 ("o" eglot-code-actions)
                 ("r" cljr-rename-symbol)))))
+
+; Common Lisp
+; TODO sly-quicklisp / sly-asdf "Project" section
+(use-package sly-overlay :custom (inferior-lisp-program "/usr/bin/sbcl")
+  :hook (sly-mode . (lambda () (unless (sly-connected-p) (save-excursion (sly)))))
+  :mode-hydra
+  (lisp-mode
+   (:exit t)
+   ("Eval"     (("SPC" sly-overlay-eval-defun)
+                ("b" sly-eval-buffer)
+                ("c" sly-mrepl-clear-repl)
+                ("d" sly-eval-defun)
+                ("v" sly-interrupt))
+    "Debug"    (("i" sly-inspect))  ;TODO fix upstream sly profiler
+    "Refactor" (("j" sly-edit-definition))
+    "Meta"     (("f" sly-describe-function)
+                ("h" sly-apropos-all)
+                ("q" sly-quit-lisp)
+                ("s" sly-describe-symbol)
+                ("w" sly-hyperspec-lookup)))))
