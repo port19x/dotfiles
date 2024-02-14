@@ -19,6 +19,7 @@ depends=(
 'xorg-server'
 'xorg-xinit'
 
+'chicken'
 'clojure'
 'leiningen'
 'sbcl'

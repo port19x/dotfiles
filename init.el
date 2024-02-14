@@ -262,3 +262,21 @@
                 ("q" sly-quit-lisp)
                 ("s" sly-describe-symbol)
                 ("w" sly-hyperspec-lookup)))))
+
+; Scheme
+(use-package sicp)
+(use-package geiser-chicken :custom (geiser-chicken-binary "/usr/bin/chicken-csi"))
+(use-package geiser-guile)
+(use-package geiser
+  :mode-hydra
+  (scheme-mode
+   (:exit t)
+   ("Eval" (("SPC" geiser-eval-last-sexp)
+            ("b" geiser-eval-buffer)
+            ("c" geiser-log-clear)
+            ("d" geiser-eval-definition)
+            ("v" geiser-eval-interrupt))
+    "Meta" (("j" geiser)
+            ("m" geiser-doc-look-up-manual)
+            ("h" geiser-doc-symbol-at-point)
+            ("q" geiser-exit-repl)))))
