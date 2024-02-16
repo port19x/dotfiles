@@ -172,7 +172,10 @@
   (org-edit-src-content-indentation 0)
   (org-src-preserve-indentation t)
   (org-confirm-babel-evaluate nil)
-  (org-latex-pdf-process '("%latex -interaction nonstopmode -output-directory %o %f" "%latex -interaction nonstopmode -output-directory %o %f"))
+  (org-latex-pdf-process '("%latex -interaction nonstopmode -output-directory %o %f"
+		           "%bib %b"
+		           "%latex -interaction nonstopmode -output-directory %o %f"
+		           "%latex -interaction nonstopmode -output-directory %o %f"))
   (org-agenda-files '("~/doc/master.org"))
   (org-agenda-restore-windows-after-quit t)
   (org-capture-templates '(("a" "Appointment" entry (file+headline "~/doc/master.org" "📅 Agenda") "** %t ")
