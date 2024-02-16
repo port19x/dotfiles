@@ -74,6 +74,7 @@
   (python-mode . flymake-mode)
   (sh-mode . flymake-mode))
 
+; TODO try meow
 (use-package evil
   :init (setq evil-want-keybinding nil)
   :config (evil-mode 1)
