@@ -36,6 +36,7 @@
 (use-package nerd-icons-dired     :hook   dired-mode)
 (use-package dired-filter         :hook   (dired-mode . dired-filter-by-dot-files))
 (use-package dashboard            :custom (dashboard-center-content t)
+                                          (dashboard-startup-banner "~/pic/banner.jpg")
                                   :hook   (after-init . dashboard-refresh-buffer))
 ;specifics -- (pdf-loader-install t)
 (use-package pdf-tools            :mode   "\\.pdf\\'")
