@@ -35,6 +35,7 @@
 (use-package evil-goggles         :config (evil-goggles-mode) :after evil)
 (use-package doom-modeline        :config (doom-modeline-mode))
 (use-package nerd-icons-dired     :hook   dired-mode)
+(use-package org-modern           :hook   org-mode)
 (use-package dired-filter         :hook   (dired-mode . dired-filter-by-dot-files))
 (use-package dashboard            :custom (dashboard-center-content t)
                                           (dashboard-startup-banner "~/pic/emacschan.png")
@@ -62,19 +63,35 @@
   (display-time-mode 1)
   (global-auto-revert-mode 1)
   (save-place-mode 1)
+  (org-babel-do-load-languages 'org-babel-load-languages '((python . t) (shell . t)))
+  (require 'oc-biblatex)
   :custom
   (custom-file (concat user-emacs-directory "/custom.el"))
   (dired-kill-when-opening-new-dired-buffer t)
   (eshell-history-size 100000)
   (inhibit-startup-message t)
   (make-backup-files nil)
+  (org-startup-indented t)
+  (org-edit-src-content-indentation 0)
+  (org-src-preserve-indentation t)
+  (org-confirm-babel-evaluate nil)
+  (org-latex-pdf-process '("%latex -interaction nonstopmode -output-directory %o %f"
+                           "%bib %b"
+                           "%latex -interaction nonstopmode -output-directory %o %f"
+                           "%latex -interaction nonstopmode -output-directory %o %f"))
+  (org-agenda-files '("~/doc/master.org"))
+  (org-agenda-restore-windows-after-quit t)
+  (org-capture-templates '(("a" "Appointment" entry (file+headline "~/doc/master.org" "📅 Agenda") "** %t ")
+                           ("t" "Todo" entry (file+headline "~/doc/master.org" "📅 Agenda") "** TODO ")))
   :hook
   (after-init . (lambda () (set-face-attribute 'default nil :font "Iosevka" :height 140)))
   (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
   (dired-mode . dired-hide-details-mode)
   (prog-mode . electric-pair-mode)
   (python-mode . flymake-mode)
-  (sh-mode . flymake-mode))
+  (sh-mode . flymake-mode)
+  (org-mode . hl-todo-mode)
+  (org-mode . visual-line-mode))
 
 ; TODO try meow
 (use-package evil
@@ -91,27 +108,6 @@
                                    ("CITE" . "#dc8cc3")
                                    ("IMAGE" . "#dc8cc3")
                                    ("LINK" . "#dc8cc3"))))
-
-(use-package org-modern
-  :config
-  (org-babel-do-load-languages 'org-babel-load-languages '((python . t) (shell . t)))
-  (require 'oc-biblatex)
-  :custom
-  (org-startup-indented t)
-  (org-edit-src-content-indentation 0)
-  (org-src-preserve-indentation t)
-  (org-confirm-babel-evaluate nil)
-  (org-latex-pdf-process '("%latex -interaction nonstopmode -output-directory %o %f"
-                           "%bib %b"
-                           "%latex -interaction nonstopmode -output-directory %o %f"
-                           "%latex -interaction nonstopmode -output-directory %o %f"))
-  (org-agenda-files '("~/doc/master.org"))
-  (org-agenda-restore-windows-after-quit t)
-  (org-capture-templates '(("a" "Appointment" entry (file+headline "~/doc/master.org" "📅 Agenda") "** %t ")
-                           ("t" "Todo" entry (file+headline "~/doc/master.org" "📅 Agenda") "** TODO ")))
-  :hook (org-mode . org-modern-mode)
-        (org-mode . hl-todo-mode)
-        (org-mode . visual-line-mode))
 
 (use-package general
   :config
