@@ -12,6 +12,11 @@
 
 (use-package emacs
   :config
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (horizontal-scroll-bar-mode -1)
+  (savehist-mode 1)
   (display-time-mode 1)
   (global-auto-revert-mode 1)
   (save-place-mode 1)
@@ -25,6 +30,9 @@
   (eshell-history-size 100000)
   (inhibit-startup-message t)
   (make-backup-files nil)
+  (indent-tabs-mode nil)
+  (ubiquify-buffer-name-style 'forward)
+  (visible-bell t)
   (treesit-language-source-alist '((bash "https://github.com/tree-sitter/tree-sitter-bash")))
   (major-mode-remap-alist '((sh-mode . bash-ts-mode)))
   (org-startup-indented t)
@@ -48,7 +56,6 @@
   (org-mode . hl-todo-mode)
   (org-mode . visual-line-mode))
 
-(use-package better-defaults)
 (use-package define-word)
 (use-package helpful)
 (use-package embark-consult)
