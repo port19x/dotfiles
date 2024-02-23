@@ -20,8 +20,6 @@
   (display-time-mode 1)
   (global-auto-revert-mode 1)
   (save-place-mode 1)
-  (org-babel-do-load-languages 'org-babel-load-languages '((python . t) (shell . t)))
-  (require 'oc-biblatex)
   (load-theme 'modus-vivendi t)
   (set-face-attribute 'default nil :font "Iosevka" :height 140)
   :custom
