@@ -8,7 +8,7 @@ arch=('any')
 url='https://github.com/port19x/dotfiles'
 license=('Unlicense')
 
-# sorted by dependency strength: core > lisp > program > emacs-dep > utility > latex
+# sorted by dependency strength: core > program > emacs-dep > utility > latex
 depends=(
 'base-devel'
 'emacs-nativecomp'
@@ -18,12 +18,6 @@ depends=(
 'ttc-iosevka'
 'xorg-server'
 'xorg-xinit'
-
-'chicken'
-'clojure'
-'leiningen'
-'sbcl'
-'quicklisp'
 
 'flameshot'
 'git'
