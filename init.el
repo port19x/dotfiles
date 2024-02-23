@@ -51,25 +51,21 @@
 (use-package better-defaults)
 (use-package define-word)
 (use-package helpful)
-;completion
 (use-package embark-consult)
 (use-package orderless            :custom (completion-styles '(orderless basic)) (orderless-matching-styles '(orderless-flex)))
 (use-package marginalia           :config (marginalia-mode))
 (use-package vertico              :config (vertico-mode)      :custom (vertico-resize t))
 (use-package corfu                :config (global-corfu-mode) :custom (corfu-auto t))
 (use-package which-key            :config (which-key-mode)    :custom (which-key-sort-order 'which-key-key-order-alpha))
-;term
 (use-package vterm                :custom (vterm-always-compile-module t))
 (use-package eshell-toggle        :bind   ((:map eshell-mode-map ("<right>" . capf-autosuggest-accept))))
 (use-package capf-autosuggest     :hook   eshell-mode)
-;git -- (let ((projectile-project-search-path '("~/git/"))) (projectile-discover-projects-in-search-path))
 (use-package consult-git-log-grep :custom (consult-git-log-grep-open-function 'magit-show-commit))
 (use-package git-gutter           :config (global-git-gutter-mode))
 (use-package projectile           :config (projectile-mode +1)
                                   :custom (projectile-completion-system 'default))
 (use-package magit                :hook   (projectile-after-switch-project . vc-pull))
 (use-package evil-collection      :config (evil-collection-init) :after evil)
-;visual -- (nerd-icons-install-font)
 (use-package evil-goggles         :config (evil-goggles-mode) :after evil)
 (use-package reformatter          :config (reformatter-define shfmt :program "shfmt" :args (list "--filename" (or (buffer-file-name) input-file) "-i" "4" "-ci"))
                                   :hook   (bash-ts-mode . shfmt-on-save-mode))
@@ -83,26 +79,21 @@
 (use-package dashboard            :custom (dashboard-center-content t)
                                           (dashboard-startup-banner "~/pic/emacschan.png")
                                   :hook   (after-init . dashboard-refresh-buffer))
-;specifics -- (pdf-loader-install t)
 (use-package pdf-tools            :mode   "\\.pdf\\'")
 (use-package elfeed               :custom (elfeed-feeds '("https://sachachua.com/blog/category/emacs-news/feed/" "https://blog.fefe.de/rss.xml?html" "https://clojure.org/feed.xml")))
 (use-package markdown-mode        :mode   "\\.md\\'")
 (use-package paredit              :hook   prog-mode)
 (use-package rainbow-delimiters   :hook   prog-mode)
-
-
 (use-package exwm                 :init   (exwm-enable)
                                   :config (add-to-list 'exwm-input-prefix-keys ?\M- )
                                   :custom (exwm-workspace-number 3)
                                   :hook (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
 
-; TODO try meow
 (use-package evil
   :init (setq evil-want-keybinding nil)
   :config (evil-mode 1)
           (define-key evil-motion-state-map "," nil)
   :custom (evil-undo-system 'undo-redo))
-
 (use-package general
   :config
   (defun toggle-org-pdf-export-on-save () (interactive)
@@ -212,3 +203,9 @@
    "<" '(paredit-forward-slurp-sexp :which-key "Paren Slurp")
    "<return>" '(consult-bookmark :which-key "jump to bookmark")
    "S-<return>" '(bookmark-set :which-key "set a bookmark")))
+
+;; (progn
+;;   (pdf-loader-install t)
+;;   (nerd-icons-install-font)
+;;   (let ((projectile-project-search-path '("~/git/"))) (projectile-discover-projects-in-search-path))
+;;   (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist)))
