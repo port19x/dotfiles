@@ -133,7 +133,6 @@
       (define-key map (kbd "M") #'man)
       (define-key map (kbd "p") #'helpful-at-point)
       map))
-
   (defvar my-buffer-map
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "b") #'consult-buffer)
