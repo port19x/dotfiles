@@ -9,7 +9,42 @@
 (package-initialize)
 (unless package-archive-contents (package-refresh-contents))
 (use-package no-littering)
-(load-theme 'modus-vivendi t)
+
+(use-package emacs
+  :config
+  (display-time-mode 1)
+  (global-auto-revert-mode 1)
+  (save-place-mode 1)
+  (org-babel-do-load-languages 'org-babel-load-languages '((python . t) (shell . t)))
+  (require 'oc-biblatex)
+  (load-theme 'modus-vivendi t)
+  (set-face-attribute 'default nil :font "Iosevka" :height 140)
+  :custom
+  (custom-file (concat user-emacs-directory "/custom.el"))
+  (dired-kill-when-opening-new-dired-buffer t)
+  (eshell-history-size 100000)
+  (inhibit-startup-message t)
+  (make-backup-files nil)
+  (org-startup-indented t)
+  (org-edit-src-content-indentation 0)
+  (org-src-preserve-indentation t)
+  (org-confirm-babel-evaluate nil)
+  (org-latex-pdf-process '("%latex -interaction nonstopmode -output-directory %o %f"
+                           "%bib %b"
+                           "%latex -interaction nonstopmode -output-directory %o %f"
+                           "%latex -interaction nonstopmode -output-directory %o %f"))
+  (org-agenda-files '("~/doc/master.org"))
+  (org-agenda-restore-windows-after-quit t)
+  (org-capture-templates '(("a" "Appointment" entry (file+headline "~/doc/master.org" "📅 Agenda") "** %t ")
+                           ("t" "Todo" entry (file+headline "~/doc/master.org" "📅 Agenda") "** TODO ")))
+  :hook
+  (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
+  (dired-mode . dired-hide-details-mode)
+  (prog-mode . electric-pair-mode)
+  (python-mode . flymake-mode)
+  (sh-mode . flymake-mode)
+  (org-mode . hl-todo-mode)
+  (org-mode . visual-line-mode))
 
 (use-package better-defaults)
 (use-package define-word)
@@ -57,41 +92,6 @@
                                   :config (add-to-list 'exwm-input-prefix-keys ?\M- )
                                   :custom (exwm-workspace-number 3)
                                   :hook (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
-
-(use-package emacs
-  :config
-  (display-time-mode 1)
-  (global-auto-revert-mode 1)
-  (save-place-mode 1)
-  (org-babel-do-load-languages 'org-babel-load-languages '((python . t) (shell . t)))
-  (require 'oc-biblatex)
-  :custom
-  (custom-file (concat user-emacs-directory "/custom.el"))
-  (dired-kill-when-opening-new-dired-buffer t)
-  (eshell-history-size 100000)
-  (inhibit-startup-message t)
-  (make-backup-files nil)
-  (org-startup-indented t)
-  (org-edit-src-content-indentation 0)
-  (org-src-preserve-indentation t)
-  (org-confirm-babel-evaluate nil)
-  (org-latex-pdf-process '("%latex -interaction nonstopmode -output-directory %o %f"
-                           "%bib %b"
-                           "%latex -interaction nonstopmode -output-directory %o %f"
-                           "%latex -interaction nonstopmode -output-directory %o %f"))
-  (org-agenda-files '("~/doc/master.org"))
-  (org-agenda-restore-windows-after-quit t)
-  (org-capture-templates '(("a" "Appointment" entry (file+headline "~/doc/master.org" "📅 Agenda") "** %t ")
-                           ("t" "Todo" entry (file+headline "~/doc/master.org" "📅 Agenda") "** TODO ")))
-  :hook
-  (after-init . (lambda () (set-face-attribute 'default nil :font "Iosevka" :height 140)))
-  (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
-  (dired-mode . dired-hide-details-mode)
-  (prog-mode . electric-pair-mode)
-  (python-mode . flymake-mode)
-  (sh-mode . flymake-mode)
-  (org-mode . hl-todo-mode)
-  (org-mode . visual-line-mode))
 
 ; TODO try meow
 (use-package evil
