@@ -50,6 +50,7 @@
 (use-package define-word)
 (use-package helpful)
 ;completion
+(use-package embark-consult)
 (use-package orderless            :custom (completion-styles '(orderless basic)) (orderless-matching-styles '(orderless-flex)))
 (use-package marginalia           :config (marginalia-mode))
 (use-package vertico              :config (vertico-mode)      :custom (vertico-resize t))
@@ -168,6 +169,7 @@
       (define-key map (kbd "v") #'visual-line-mode)
       (define-key map (kbd "x") #'org-export-dispatch)
       (define-key map (kbd "X") #'toggle-org-pdf-export-on-save)
+      (define-key map (kbd "SPC") #'embark-act)
       map))
 
   (general-define-key
