@@ -72,6 +72,9 @@
 (use-package nerd-icons-dired     :hook   dired-mode)
 (use-package org-modern           :hook   org-mode)
 (use-package dired-filter         :hook   (dired-mode . dired-filter-by-dot-files))
+(use-package hl-todo              :config (global-hl-todo-mode)
+                                  :custom (hl-todo--regexp "\\(\\<\\(TODO\\|CITE\\|IMAGE\\|LINK\\)\\>\\)")
+                                          (hl-todo-keyword-faces '(("TODO" . "#cc9393") ("CITE" . "#dc8cc3") ("IMAGE" . "#dc8cc3") ("LINK" . "#dc8cc3"))))
 (use-package dashboard            :custom (dashboard-center-content t)
                                           (dashboard-startup-banner "~/pic/emacschan.png")
                                   :hook   (after-init . dashboard-refresh-buffer))
@@ -99,15 +102,6 @@
   :config (evil-mode 1)
           (define-key evil-motion-state-map "," nil)
   :custom (evil-undo-system 'undo-redo))
-
-(use-package hl-todo            :config (global-hl-todo-mode)
-  :custom (hl-todo--regexp "\\(\\<\\(TODO\\|HACK\\|CITE\\|IMAGE\\|LINK\\|FIXME\\)\\>\\)")
-          (hl-todo-keyword-faces '(("HACK" . "#d0bf8f")
-                                   ("FIXME" . "#cc9393")
-                                   ("TODO" . "#cc9393")
-                                   ("CITE" . "#dc8cc3")
-                                   ("IMAGE" . "#dc8cc3")
-                                   ("LINK" . "#dc8cc3"))))
 
 (use-package general
   :config
