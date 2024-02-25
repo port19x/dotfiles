@@ -49,10 +49,6 @@
                            "%bib %b"
                            "%latex -interaction nonstopmode -output-directory %o %f"
                            "%latex -interaction nonstopmode -output-directory %o %f"))
-  (org-agenda-files '("~/doc/master.org"))
-  (org-agenda-restore-windows-after-quit t)
-  (org-capture-templates '(("a" "Appointment" entry (file+headline "~/doc/master.org" "📅 Agenda") "** %t ")
-                           ("t" "Todo" entry (file+headline "~/doc/master.org" "📅 Agenda") "** TODO ")))
   :hook
   (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
   (dired-mode . dired-hide-details-mode)
@@ -122,7 +118,6 @@
   (defun slock () (interactive) (launch "slock"))
   (defun qutebrowser () (interactive) (launch "qutebrowser"))
   (defun flameshot () (interactive) (launch "flameshot gui"))
-  (defun org-preferred-agenda () (interactive) (org-agenda "" "n"))
 
  (defvar my-help-map
     (let ((map (make-sparse-keymap)))
@@ -157,10 +152,9 @@
       (define-key map (kbd "c") #'org-cite-insert)
       (define-key map (kbd "e") #'org-babel-execute-src-block)
       (define-key map (kbd "h") #'org-html-export-to-html)
-      (define-key map (kbd "i") #'org-indent-mode)
+      (define-key map (kbd "i") #'insert-char)
       (define-key map (kbd "j") #'consult-org-heading)
-      (define-key map (kbd "k") #'org-clock-in)
-      (define-key map (kbd "K") #'org-clock-out)
+      (define-key map (kbd "m") #'hl-todo-next)
       (define-key map (kbd "n") #'org-narrow-to-subtree)
       (define-key map (kbd "N") #'widen)
       (define-key map (kbd "p") #'org-latex-export-to-pdf)
@@ -177,10 +171,9 @@
    :states '(normal visual insert emacs)
    :prefix "SPC"
    :global-prefix "M-SPC"
-   "a" '(org-preferred-agenda :which-key "agenda")
    "b" `(,my-buffer-map :which-key "Buffer")
    "B" '(magit-blame-addition :which-key "git blame")
-   "c" '(org-capture :which-key "capture")
+   "c" '(compile :which-key "capture")
    "C" '(magit-clone :which-key "magit clone")
    "d" '(dired-jump :which-key "dired jump")
    "e" '(shell-pop :which-key "eshell")
@@ -190,13 +183,11 @@
    "g" '(magit :which-key "magit")
    "G" '(consult-ripgrep :which-key "consult grep")
    "h" `(,my-help-map :which-key "Help")
-   "i" '(insert-char :which-key "insert unicode")
    "j" '(consult-imenu :which-key "jump via imenu")
    "k" '(comment-region :which-key "comment region")
    "K" '(indent-region :which-key "indent region")
    "l" '(slock :which-key "lock screen")
    "L" '(consult-git-log-grep :which-key "grep git log")
-   "m" '(hl-todo-next :which-key "next Todo")
    "n" '(newsticker-plainview :which-key "news (-ticker)")
    "p" '(project-find-file :which-key "hop project file")
    "P" '(project-switch-project :which-key "hop project")
