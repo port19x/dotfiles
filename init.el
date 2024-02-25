@@ -26,6 +26,7 @@
   (custom-file (concat user-emacs-directory "/custom.el"))
   (dired-kill-when-opening-new-dired-buffer t)
   (eshell-history-size 100000)
+  (enable-recursive-minibuffers t)
   (inhibit-startup-message t)
   (make-backup-files nil)
   (indent-tabs-mode nil)
