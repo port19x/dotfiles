@@ -32,6 +32,8 @@
   (indent-tabs-mode nil)
   (ubiquify-buffer-name-style 'forward)
   (visible-bell t)
+  (rcirc-server-alist '(("irc.libera.chat" :nick "port19" :port 6697 :encryption tls
+                         :channels ("#emacs" "#rcirc"))))
   (newsticker-url-list '(("Sacha Chua - Emacs News" "https://sachachua.com/blog/category/emacs-news/feed/")
                          ("Fefes Blog" "https://blog.fefe.de/rss.xml?html")))
   (treesit-language-source-alist '((bash "https://github.com/tree-sitter/tree-sitter-bash")))
