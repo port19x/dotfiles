@@ -55,7 +55,7 @@
 (use-package define-word)
 (use-package helpful)
 (use-package embark-consult)
-(use-package orderless            :custom (completion-styles '(orderless basic)) (orderless-matching-styles '(orderless-flex)))
+(use-package orderless            :custom (completion-styles '(orderless basic)))
 (use-package marginalia           :config (marginalia-mode))
 (use-package vertico              :config (vertico-mode)      :custom (vertico-resize t))
 (use-package corfu                :config (global-corfu-mode) :custom (corfu-auto t))
