@@ -98,7 +98,8 @@
   :init (setq evil-want-keybinding nil)
   :config (evil-mode 1)
           (define-key evil-motion-state-map "," nil)
-  :custom (evil-undo-system 'undo-redo))
+  :custom (evil-undo-system 'undo-redo)
+          (evil-disable-insert-state-bindings t))
 (use-package evil-collection      :config (evil-collection-init))
 (use-package evil-goggles         :config (evil-goggles-mode))
 (use-package general
