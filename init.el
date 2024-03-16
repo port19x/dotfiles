@@ -58,7 +58,6 @@
 (use-package magit                :custom (magit-slow-confirm nil))
 (use-package markdown-mode        :mode   "\\.md\\'")
 (use-package paredit              :hook   prog-mode)
-(use-package rainbow-delimiters   :hook   prog-mode)
 (use-package reformatter          :config (reformatter-define shfmt :program "shfmt" :args (list "--filename" (or (buffer-file-name) input-file) "-i" "4" "-ci")))
 (use-package doom-modeline        :config (doom-modeline-mode))
 (use-package org-modern           :hook   org-mode)
