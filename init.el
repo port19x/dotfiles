@@ -78,10 +78,6 @@
                                   :custom (exwm-workspace-number 3)
                                   :hook (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
 
-
-(use-package sly-overlay :custom (inferior-lisp-program "ros -Q run")
-  :hook (sly-mode . (lambda () (unless (sly-connected-p) (save-excursion (sly))))))
-
 (use-package evil
   :init (setq evil-want-keybinding nil)
   :config (evil-mode 1)
@@ -159,7 +155,6 @@
       (define-key map (kbd "v") #'visual-line-mode)
       (define-key map (kbd "x") #'org-export-dispatch)
       (define-key map (kbd "X") #'toggle-org-pdf-export-on-save)
-      (define-key map (kbd "SPC") #'sly-overlay-eval-defun)
       map))
 
   (general-define-key

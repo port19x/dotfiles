@@ -26,7 +26,6 @@ depends=(
 'man-pages'
 'mpv'
 'openssh'
-'roswell'
 'shellcheck'
 'shfmt'
 'slock'
