@@ -47,6 +47,7 @@
 
 (use-package define-word)
 (use-package helpful)
+(use-package tldr)
 (use-package consult)
 (use-package orderless            :custom (completion-styles '(orderless basic)))
 (use-package marginalia           :config (marginalia-mode))
@@ -116,6 +117,7 @@
       (define-key map (kbd "h") #'helpful-symbol)
       (define-key map (kbd "i") #'my-info-read-manual)
       (define-key map (kbd "m") #'man)
+      (define-key map (kbd "t") #'tldr)
       map))
   (defvar my-buffer-map
     (let ((map (make-sparse-keymap)))
