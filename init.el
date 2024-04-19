@@ -72,7 +72,7 @@
                                   :hook   (after-init . dashboard-refresh-buffer))
 (use-package vterm                :custom (vterm-always-compile-module t))
 (use-package shell-pop            :bind   ((:map shell-mode-map ("<right>" . capf-autosuggest-accept))))
-(use-package pdf-tools            :mode   "\\.pdf\\'")
+(use-package pdf-tools            :config (pdf-tools-install))
 (use-package exwm                 :init   (exwm-enable)
                                   :config (add-to-list 'exwm-input-prefix-keys ?\M- )
                                   :custom (exwm-workspace-number 3)
