@@ -73,19 +73,10 @@
 (use-package vterm                :custom (vterm-always-compile-module t))
 (use-package shell-pop            :bind   ((:map shell-mode-map ("<right>" . capf-autosuggest-accept))))
 (use-package pdf-tools            :config (pdf-tools-install))
-(use-package exwm
-  :init
-  (require 'exwm-randr)
-  (start-process-shell-command "xrandr" nil "xrandr --output DisplayPort-0 --mode 3840x2160 --left-of eDP")
-  (exwm-randr-enable)
-  (exwm-enable)
-  :config
-  (add-to-list 'exwm-input-prefix-keys ?\M- )
-  :custom
-  (exwm-workspace-number 3)
-  (exwm-randr-workspace-monitor-plist '(0 "DisplayPort-0"))
-  :hook
-  (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
+(use-package exwm                 :init   (exwm-enable)
+                                  :config (add-to-list 'exwm-input-prefix-keys ?\M- )
+                                  :custom (exwm-workspace-number 3)
+                                  :hook (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
 
 (use-package evil
   :init (setq evil-want-keybinding nil)
