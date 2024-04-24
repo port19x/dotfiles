@@ -31,8 +31,6 @@
   (indent-tabs-mode nil)
   (uniquify-buffer-name-style 'forward)
   (visible-bell t)
-  (treesit-language-source-alist '((bash "https://github.com/tree-sitter/tree-sitter-bash")))
-  (major-mode-remap-alist '((sh-mode . bash-ts-mode)))
   (org-startup-indented t)
   (org-latex-pdf-process '("%latex -interaction nonstopmode -output-directory %o %f"
                            "%bib %b"
@@ -185,6 +183,5 @@
 ;; (progn
 ;;   (pdf-loader-install t)
 ;;   (nerd-icons-install-font)
-;;   (project-remember-projects-under "~/git" t)
-;;   (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist)))
+;;   (project-remember-projects-under "~/git" t))
 ;;   (setq esup-user-init-file "~/dotfiles/init.el" esup-depth 0)
