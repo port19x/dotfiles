@@ -59,7 +59,7 @@
 (use-package markdown-mode        :mode   "\\.md\\'")
 (use-package reformatter          :config (reformatter-define shfmt :program "shfmt" :args (list "--filename" (or (buffer-file-name) input-file) "-i" "4" "-ci")))
 (use-package doom-modeline        :config (doom-modeline-mode))
-(use-package org-modern           :hook   org-mode)
+(use-package org-modern           :custom (org-modern-star 'replace) :hook   org-mode)
 (use-package nerd-icons-dired     :hook   dired-mode)
 (use-package dired-filter         :hook   (dired-mode . dired-filter-by-dot-files))
 (use-package hl-todo              :config (global-hl-todo-mode)
