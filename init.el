@@ -66,15 +66,24 @@
                                   :custom (hl-todo--regexp "\\(\\<\\(TODO\\|CITE\\|IMAGE\\|LINK\\)\\>\\)")
                                           (hl-todo-keyword-faces '(("TODO" . "#cc9393") ("CITE" . "#dc8cc3") ("IMAGE" . "#dc8cc3") ("LINK" . "#dc8cc3"))))
 (use-package dashboard            :custom (dashboard-center-content t)
-                                          (dashboard-startup-banner "~/pic/emacschan.png")
+                                          (dashboard-startup-banner "~/pic/dashboard.jpg")
                                   :hook   (after-init . dashboard-refresh-buffer))
 (use-package vterm                :custom (vterm-always-compile-module t))
 (use-package shell-pop            :bind   ((:map shell-mode-map ("<right>" . capf-autosuggest-accept))))
 (use-package pdf-tools            :config (pdf-tools-install))
-(use-package exwm                 :init   (exwm-enable)
-                                  :config (add-to-list 'exwm-input-prefix-keys ?\M- )
-                                  :custom (exwm-workspace-number 3)
-                                  :hook (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
+(use-package exwm
+  :init
+  (require 'exwm-randr)
+  (exwm-randr-enable)
+  (start-process-shell-command "xrandr" nil "xrandr --output DP-2 --left-of eDP-1 --rotate right --output DP-1-2-1 --left-of DP-2 --rotate left")
+  (exwm-enable)
+  :config
+  (add-to-list 'exwm-input-prefix-keys ?\M- )
+  :custom
+  (exwm-workspace-number 3)
+  (exwm-randr-workspace-monitor-plist '(0 "eDP" 1 "DP-2" 2 "DP-1-2-1"))
+  :hook
+  (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
 
 (use-package evil
   :init (setq evil-want-keybinding nil)
