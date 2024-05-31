@@ -25,6 +25,7 @@
   :custom
   (custom-file (concat user-emacs-directory "/custom.el"))
   (dired-kill-when-opening-new-dired-buffer t)
+  (dired-vc-rename-file t)
   (enable-recursive-minibuffers t)
   (inhibit-startup-message t)
   (make-backup-files nil)
