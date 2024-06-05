@@ -71,7 +71,7 @@
                                   :hook   (after-init . dashboard-refresh-buffer))
 (use-package vterm                :custom (vterm-always-compile-module t))
 (use-package shell-pop            :bind   ((:map shell-mode-map ("<right>" . capf-autosuggest-accept))))
-(use-package pdf-tools            :config (pdf-tools-install))
+(use-package pdf-tools            :config (pdf-tools-install t))
 (use-package exwm
   :init
   (setq work (= 8 (string-to-number (shell-command-to-string "nproc"))))
