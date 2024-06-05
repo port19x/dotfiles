@@ -62,7 +62,6 @@
 (use-package git-gutter           :config (global-git-gutter-mode))
 (use-package magit                :custom (magit-slow-confirm nil))
 (use-package markdown-mode        :mode   "\\.md\\'")
-(use-package reformatter          :config (reformatter-define shfmt :program "shfmt" :args (list "--filename" (or (buffer-file-name) input-file) "-i" "4" "-ci")))
 (use-package doom-modeline        :config (doom-modeline-mode))
 (use-package org-modern           :custom (org-modern-star 'replace) :hook   org-mode)
 (use-package nerd-icons-dired     :hook   dired-mode)
@@ -76,6 +75,11 @@
 (use-package vterm                :custom (vterm-always-compile-module t))
 (use-package shell-pop            :bind   ((:map shell-mode-map ("<right>" . capf-autosuggest-accept))))
 (use-package pdf-tools            :config (pdf-tools-install t))
+(use-package reformatter
+  :config
+  (reformatter-define shfmt :program "shfmt" :args (list "--filename" (or (buffer-file-name) input-file) "-i" "4" "-ci"))
+  (reformatter-define ruff :program "ruff" :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file))))
+
 (use-package exwm
   :init
   (setq work (= 8 (string-to-number (shell-command-to-string "nproc"))))

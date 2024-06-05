@@ -26,6 +26,8 @@ depends=(
 'man-pages'
 'mpv'
 'openssh'
+'python-virtualenv'
+'ruff'
 'shellcheck'
 'shfmt'
 'slock'
