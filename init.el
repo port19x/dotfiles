@@ -45,6 +45,8 @@
   (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
   (dired-mode . dired-hide-details-mode)
   (prog-mode . electric-pair-mode)
+  (python-ts-mode . flymake-mode)
+  (bash-ts-mode . flymake-mode)
   (org-mode . hl-todo-mode)
   (org-mode . visual-line-mode))
 
@@ -194,6 +196,7 @@
    "s" '(flameshot :which-key "screenshot")
    "v" '(eval-last-sexp :which-key "(emacs) eval")
    "w" `(,my-window-map :which-key "Windows")
+   "x" '(consult-flymake :which-key "run linters (flymake)")
    "z" '(dashboard-refresh-buffer :which-key "Dashboard")
    "SPC" `(,my-org-map :which-key "Org Mode")
    "<" '(paredit-forward-slurp-sexp :which-key "Paren Slurp")
