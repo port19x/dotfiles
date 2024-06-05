@@ -32,6 +32,10 @@
   (indent-tabs-mode nil)
   (uniquify-buffer-name-style 'forward)
   (visible-bell t)
+  (treesit-language-source-alist '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+                                   (python "https://github.com/tree-sitter/tree-sitter-python")))
+  (major-mode-remap-alist '((sh-mode . bash-ts-mode)
+                            (python-mode . python-ts-mode)))
   (org-startup-indented t)
   (org-latex-pdf-process '("%latex -interaction nonstopmode -output-directory %o %f"
                            "%bib %b"
@@ -193,6 +197,7 @@
    "S-<return>" '(bookmark-set :which-key "set a bookmark")))
 
 ;; (progn
+;;   (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 ;;   (pdf-loader-install t)
 ;;   (nerd-icons-install-font)
 ;;   (project-remember-projects-under "~/git" t))
