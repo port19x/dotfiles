@@ -32,6 +32,7 @@
   (indent-tabs-mode nil)
   (uniquify-buffer-name-style 'forward)
   (visible-bell t)
+  (python-flymake-command '("ruff" "--quiet" "--stdin-filename=stdin" "-"))
   (treesit-language-source-alist '((bash "https://github.com/tree-sitter/tree-sitter-bash")
                                    (python "https://github.com/tree-sitter/tree-sitter-python")))
   (major-mode-remap-alist '((sh-mode . bash-ts-mode)
