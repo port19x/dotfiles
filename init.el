@@ -74,15 +74,17 @@
 (use-package pdf-tools            :config (pdf-tools-install))
 (use-package exwm
   :init
-  (require 'exwm-randr)
-  (exwm-randr-enable)
-  (start-process-shell-command "xrandr" nil "xrandr --output DP-2 --left-of eDP-1 --rotate right --output DP-1-2-1 --left-of DP-2 --rotate left")
+  (setq work (= 8 (string-to-number (shell-command-to-string "nproc"))))
+  (if work (progn
+              (require 'exwm-randr)
+              (exwm-randr-enable)
+              (start-process-shell-command "xrandr" nil "xrandr --output DP-2 --left-of eDP-1 --rotate right --output DP-1-2-1 --left-of DP-2 --rotate left")))
   (exwm-enable)
   :config
   (add-to-list 'exwm-input-prefix-keys ?\M- )
   :custom
   (exwm-workspace-number 3)
-  (exwm-randr-workspace-monitor-plist '(0 "eDP" 1 "DP-2" 2 "DP-1-2-1"))
+  (exwm-randr-workspace-monitor-plist (if work '(0 "eDP" 1 "DP-2" 2 "DP-1-2-1") '(0 "DisplayPort-0")))
   :hook
   (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
 
