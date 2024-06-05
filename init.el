@@ -32,6 +32,7 @@
   (indent-tabs-mode nil)
   (uniquify-buffer-name-style 'forward)
   (visible-bell t)
+  (sh-shellcheck-arguments '("-s" "sh" "-o" "all" "-e" "2250"))
   (python-flymake-command '("ruff" "--quiet" "--stdin-filename=stdin" "-"))
   (treesit-language-source-alist '((bash "https://github.com/tree-sitter/tree-sitter-bash")
                                    (python "https://github.com/tree-sitter/tree-sitter-python")))
