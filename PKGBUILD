@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r918.b2d1aae
+pkgver=r936.adbd0aa
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -26,11 +26,13 @@ depends=(
 'man-pages'
 'mpv'
 'openssh'
+'python-matplotlib'
 'python-virtualenv'
 'ruff'
 'shellcheck'
 'shfmt'
 'slock'
+'uv'
 'zola'
 
 'aspell-en'
