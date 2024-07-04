@@ -21,7 +21,8 @@
   (global-auto-revert-mode 1)
   (save-place-mode 1)
   (load-theme 'modus-vivendi t)
-  (set-face-attribute 'default nil :font "Iosevka" :height 140)
+  (set-face-attribute 'default nil :font (if (eq system-type 'gnu/linux) "Iosevka" "Iosevka Comfy")
+                                   :height (if (eq system-type 'gnu/linux) 140 280))
   :custom
   (custom-file (concat user-emacs-directory "/custom.el"))
   (dired-kill-when-opening-new-dired-buffer t)
