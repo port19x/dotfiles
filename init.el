@@ -142,7 +142,7 @@
       (interactive (list (read-shell-command "$ ")))
       (start-process-shell-command command nil command))
   (defun slock () (interactive) (launch "slock"))
-  (defun qutebrowser () (interactive) (launch "qutebrowser"))
+  (defun brave () (interactive) (launch "brave"))
   (defun flameshot () (interactive) (launch "flameshot gui"))
 
  (defvar my-help-map
@@ -204,7 +204,7 @@
    "l" '(slock :which-key "lock screen")
    "p" '(project-find-file :which-key "hop project file")
    "P" '(project-switch-project :which-key "hop project")
-   "q" '(qutebrowser :which-key "launch browser")
+   "q" '(brave :which-key "launch browser")
    "Q" '(save-buffers-kill-emacs :which-key "quit emacs")
    "r" '(consult-recent-file :which-key "open recent")
    "R" '(launch :which-key "launcher")

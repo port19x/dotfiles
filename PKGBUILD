@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r936.adbd0aa
+pkgver=r939.5d67e0d
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -14,7 +14,6 @@ depends=(
 'emacs-nativecomp'
 'noto-fonts'
 'noto-fonts-emoji'
-'qutebrowser'
 'ttc-iosevka'
 'xorg-server'
 'xorg-xinit'
@@ -84,9 +83,8 @@ package() {
     echo "startx" > $HOME/.bash_profile
     echo "flameshot &" > $HOME/.xinitrc
     echo "exec emacs --fullscreen" >> $HOME/.xinitrc
-    mkdir -p $HOME/.emacs.d $HOME/.config/qutebrowser
+    mkdir -p $HOME/.emacs.d
     cd .. && ln -sf $HOME/dotfiles/init.el $HOME/.emacs.d/init.el
-    cd .. && ln -sf $HOME/dotfiles/config.py $HOME/.config/qutebrowser/config.py
     printf "\33[2K\r\033[1;32m%s\033[0m\n" "[1/2] symlinked emacs config, made startup files"
 
     printf "\33[2K\r\033[1;32m%s\033[0m\n" "[UWU] Starting to compile emacs packages. This might take a few minutes" 
