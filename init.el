@@ -85,18 +85,17 @@
   (reformatter-define ruff :program "ruff" :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file) "--line-length" "320")))
 
 (use-package exwm
+  :if (eq system-type 'gnu/linux)
   :init
-  (setq work (not (= 12 (string-to-number (shell-command-to-string "nproc")))))
-  (if work (progn
-              (require 'exwm-randr)
-              (exwm-randr-enable)
-              (start-process-shell-command "xrandr" nil "xrandr --output DP-2 --left-of eDP-1 --rotate right --output DP-1-2-1 --left-of DP-2 --rotate left")))
+  (require 'exwm-randr)
+  (exwm-randr-enable)
+  (start-process-shell-command "xrandr" nil "xrandr --output DP-2 --left-of eDP-1 --rotate right --output DP-1-2-1 --left-of DP-2 --rotate left")
   (exwm-enable)
   :config
   (add-to-list 'exwm-input-prefix-keys ?\M- )
   :custom
   (exwm-workspace-number 3)
-  (exwm-randr-workspace-monitor-plist (if work '(0 "eDP" 1 "DP-2" 2 "DP-1-2-1") '(0 "HDMI-A-0")))
+  (exwm-randr-workspace-monitor-plist '(0 "eDP" 1 "DP-2" 2 "DP-1-2-1"))
   :hook
   (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
 
