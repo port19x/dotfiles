@@ -21,8 +21,7 @@
   (global-auto-revert-mode 1)
   (save-place-mode 1)
   (load-theme 'modus-vivendi t)
-  (set-face-attribute 'default nil :font (if (eq system-type 'gnu/linux) "Iosevka" "Iosevka Comfy")
-                                   :height (if (eq system-type 'gnu/linux) 140 280))
+  (set-face-attribute 'default nil :font "Iosevka" :height 140)
   :custom
   (custom-file (concat user-emacs-directory "/custom.el"))
   (dired-kill-when-opening-new-dired-buffer t)
@@ -90,13 +89,13 @@
   :init
   (require 'exwm-randr)
   (exwm-randr-enable)
-  (start-process-shell-command "xrandr" nil "xrandr --output DP-2 --left-of eDP-1 --rotate right --output DP-1-2-1 --left-of DP-2 --rotate left")
+  (start-process-shell-command "xrandr" nil "xrandr --output DP-1-1 --left-of eDP-1 --rotate right --output DP-1-2 --left-of DP-1-1 --rotate left")
   (exwm-enable)
   :config
   (add-to-list 'exwm-input-prefix-keys ?\M- )
   :custom
   (exwm-workspace-number 3)
-  (exwm-randr-workspace-monitor-plist '(0 "eDP" 1 "DP-2" 2 "DP-1-2-1"))
+  (exwm-randr-workspace-monitor-plist '(0 "eDP" 1 "DP-1-1" 2 "DP-1-2"))
   :hook
   (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
 
@@ -222,6 +221,6 @@
 ;; (progn
 ;;   (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 ;;   (pdf-loader-install t)
-;;   (nerd-icons-install-font)
+;;   (nerd-icons-install-fonts)
 ;;   (project-remember-projects-under "~/git" t))
 ;;   (setq esup-user-init-file "~/dotfiles/init.el" esup-depth 0)
