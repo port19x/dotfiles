@@ -140,6 +140,11 @@
   (defun launch (command)
       (interactive (list (read-shell-command "$ ")))
       (start-process-shell-command command nil command))
+  (defun random-file () (interactive)
+         (kill-current-buffer)
+         (let ((path (substring (shell-command-to-string "fd -t f . $(git rev-parse --show-toplevel) | shuf -n 1") 0 -1)))
+           (message path)
+           (find-file path)))
   (defun slock () (interactive) (launch "slock"))
   (defun brave () (interactive) (launch "brave"))
   (defun flameshot () (interactive) (launch "flameshot gui"))
@@ -186,6 +191,7 @@
    :states '(normal visual insert emacs)
    :prefix "SPC"
    :global-prefix "M-SPC"
+   "a" '(random-file :which-key "read code")
    "b" `(,my-buffer-map :which-key "Buffer")
    "B" '(magit-blame-addition :which-key "git blame")
    "c" '(comp-dwim :which-key "compile")
