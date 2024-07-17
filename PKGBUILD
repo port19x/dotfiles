@@ -1,30 +1,35 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r939.5d67e0d
+pkgver=r944.991b96f
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
 url='https://github.com/port19x/dotfiles'
 license=('Unlicense')
 
-# sorted by dependency strength: core > program > emacs-dep > utility > latex
+# sorted by dependency strength: core > program > awesome-dep > emacs-dep > utility > latex
 depends=(
+'awesome'
 'base-devel'
 'emacs-nativecomp'
 'noto-fonts'
 'noto-fonts-emoji'
 'ttc-iosevka'
+'wezterm'
 'xorg-server'
 'xorg-xinit'
+'zsh-completions'
 
 'flameshot'
 'git'
 'keepassxc'
 'man-db'
 'man-pages'
+'mupdf'
 'mpv'
 'openssh'
+'pulsemixer'
 'python-matplotlib'
 'python-virtualenv'
 'ruff'
@@ -35,17 +40,30 @@ depends=(
 'zola'
 
 'aspell-en'
+'acpi'
+'brightnessctl'
+'flameshot'
+'libnotify'
+'slock'
+'songrec'
+
 'cmake'
 'fd'
 'libvterm'
 'poppler-glib'
 'ripgrep'
 
+'asciiquarium'
+'bat'
 'dfrs'
+'entr'
+'eza'
 'fzf'
 'imagemagick'
+'neovim'
 'unzip'
 'wget'
+'xclip'
 'xorg-xrandr'
 'yt-dlp'
 
@@ -67,6 +85,10 @@ depends=(
 'texlive-xetex'
 )
 
+makedepends=(
+'stow'
+)
+
 source=('dotfiles::git+https://github.com/port19x/dotfiles')
 md5sums=('SKIP')
 
@@ -80,17 +102,32 @@ _manual () {
 }
 
 package() {
-    echo "startx" > $HOME/.bash_profile
-    echo "flameshot &" > $HOME/.xinitrc
-    echo "exec emacs --fullscreen" >> $HOME/.xinitrc
-    mkdir -p $HOME/.emacs.d
-    cd .. && ln -sf $HOME/dotfiles/init.el $HOME/.emacs.d/init.el
-    printf "\33[2K\r\033[1;32m%s\033[0m\n" "[1/2] symlinked emacs config, made startup files"
+    mkdir -p $pkgdir/etc/zsh
+    mkdir -p $HOME/.config/X11
+    mkdir -p $HOME/.config/git
+    mkdir -p $HOME/.local/state/zsh
+    mkdir -p $HOME/.cache/zsh/zcompdump-5.9
+    mkdir -p $HOME/.local/share/gnupg
+    chmod 700 $HOME/.local/share/gnupg
+    printf "\33[2K\r\033[1;32m%s\033[0m\n" "[1/5] prepared XDG directories"
 
-    printf "\33[2K\r\033[1;32m%s\033[0m\n" "[UWU] Starting to compile emacs packages. This might take a few minutes" 
-    emacs -l ~/.emacs.d/init.el -batch
-    printf "\33[2K\r\033[1;32m%s\033[0m\n" "[2/2] compiled emacs packages"
+    touch $HOME/.local/state/zsh/history
+    touch $HOME/.config/git/config
+    echo "exec awesome" > $HOME/.config/X11/xinitrc
+    echo "export ZDOTDIR=$HOME/.config/zsh" > $pkgdir/etc/zsh/zshenv
+    printf "\33[2K\r\033[1;32m%s\033[0m\n" "[2/5] prepared supporting files"
 
+    git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/zsh/zsh-autosuggestions 2>/dev/null || true
+    printf "\33[2K\r\033[1;32m%s\033[0m\n" "[3/5] downloaded zsh-autosuggestions" 
+
+    cd .. && stow -v --no-folding --ignore="PKGBUILD" --ignore="src" --ignore="dotfiles" --ignore="pkg" -t $HOME/.config .
+    printf "\33[2K\r\033[1;32m%s\033[0m\n" "[4/5] symlinked config files"
+
+    printf "\33[2K\r\033[1;32m%s\033[0m\n" "[UWU] Starting to compile emacs package. This might take a few minutes" 
+    emacs -l ~/.config/emacs/init.el -batch 2&>/dev/null
+    printf "\33[2K\r\033[1;32m%s\033[0m\n" "[5/5] compiled emacs packages" 
+
+    _manual 'chsh -s /bin/zsh'
     _manual 'localectl set-x11-keymap de "" "" ctrl:nocaps'
     _manual 'configure autologin: https://wiki.archlinux.org/title/Getty'
     _manual 'git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si'

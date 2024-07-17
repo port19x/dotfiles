@@ -38,10 +38,10 @@
   (major-mode-remap-alist '((sh-mode . bash-ts-mode)
                             (python-mode . python-ts-mode)))
   (org-startup-indented t)
-  (org-latex-pdf-process '("%latex -interaction nonstopmode -output-directory %o %f"
-                           "%bib %b"
-                           "%latex -interaction nonstopmode -output-directory %o %f"
-                           "%latex -interaction nonstopmode -output-directory %o %f"))
+  ;; (org-latex-pdf-process '("%latex -interaction nonstopmode -output-directory %o %f"
+  ;;                          "%bib %b"
+  ;;                          "%latex -interaction nonstopmode -output-directory %o %f"
+  ;;                          "%latex -interaction nonstopmode -output-directory %o %f"))
   :hook
   (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
   (dired-mode . dired-hide-details-mode)
@@ -76,28 +76,10 @@
 (use-package dashboard            :custom (dashboard-center-content t)
                                           (dashboard-startup-banner "~/pic/dashboard.jpg")
                                   :hook   (after-init . dashboard-refresh-buffer))
-(use-package vterm                :custom (vterm-always-compile-module t))
-(use-package shell-pop            :bind   ((:map shell-mode-map ("<right>" . capf-autosuggest-accept))))
-(use-package pdf-tools            :config (pdf-tools-install t))
 (use-package reformatter
   :config
   (reformatter-define shfmt :program "shfmt" :args (list "--filename" (or (buffer-file-name) input-file) "-i" "4" "-ci"))
   (reformatter-define ruff :program "ruff" :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file) "--line-length" "320")))
-
-(use-package exwm
-  :if (eq system-type 'gnu/linux)
-  :init
-  (require 'exwm-randr)
-  (exwm-randr-enable)
-  (start-process-shell-command "xrandr" nil "xrandr --output DP-1-1 --left-of eDP-1 --rotate right --output DP-1-2 --left-of DP-1-1 --rotate left")
-  (exwm-enable)
-  :config
-  (add-to-list 'exwm-input-prefix-keys ?\M- )
-  :custom
-  (exwm-workspace-number 3)
-  (exwm-randr-workspace-monitor-plist '(0 "eDP" 1 "DP-1-1" 2 "DP-1-2"))
-  :hook
-  (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
 
 (use-package evil
   :init (setq evil-want-keybinding nil)
@@ -137,17 +119,11 @@
            (if (project-current)
                (project-compile)
              (compile))))
-  (defun launch (command)
-      (interactive (list (read-shell-command "$ ")))
-      (start-process-shell-command command nil command))
   (defun random-file () (interactive)
          (kill-current-buffer)
          (let ((path (substring (shell-command-to-string "fd -t f . $(git rev-parse --show-toplevel) | shuf -n 1") 0 -1)))
            (message path)
            (find-file path)))
-  (defun slock () (interactive) (launch "slock"))
-  (defun brave () (interactive) (launch "brave"))
-  (defun flameshot () (interactive) (launch "flameshot gui"))
 
  (defvar my-help-map
     (let ((map (make-sparse-keymap)))
@@ -197,8 +173,6 @@
    "c" '(comp-dwim :which-key "compile")
    "C" '(magit-clone :which-key "magit clone")
    "d" '(dired-jump :which-key "dired jump")
-   "e" '(shell-pop :which-key "eshell")
-   "E" '(vterm :which-key "vterm")
    "f" '(find-file :which-key "open file")
    "F" '(consult-fd :which-key "consult find")
    "g" '(magit :which-key "magit")
@@ -206,14 +180,10 @@
    "h" `(,my-help-map :which-key "Help")
    "k" '(comment-region :which-key "comment region")
    "K" '(indent-region :which-key "indent region")
-   "l" '(slock :which-key "lock screen")
    "p" '(project-find-file :which-key "hop project file")
    "P" '(project-switch-project :which-key "hop project")
-   "q" '(brave :which-key "launch browser")
    "Q" '(save-buffers-kill-emacs :which-key "quit emacs")
    "r" '(consult-recent-file :which-key "open recent")
-   "R" '(launch :which-key "launcher")
-   "s" '(flameshot :which-key "screenshot")
    "t" '(toggle-pedantic-linters :which-key "pedantic linters")
    "v" '(eval-last-sexp :which-key "(emacs) eval")
    "w" `(,my-window-map :which-key "Windows")
