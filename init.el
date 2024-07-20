@@ -48,6 +48,7 @@
   (prog-mode . electric-pair-mode)
   (python-ts-mode . flymake-mode)
   (bash-ts-mode . flymake-mode)
+  (web-mode . flymake-mode)
   (org-mode . hl-todo-mode)
   (org-mode . visual-line-mode))
 
