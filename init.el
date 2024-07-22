@@ -58,7 +58,7 @@
 (use-package embark-consult)
 (use-package wgrep)
 (use-package paredit)
-(use-package evil-vimish-fold)
+(use-package evil-vimish-fold     :after  evil)
 (use-package orderless            :custom (completion-styles '(orderless basic)))
 (use-package marginalia           :config (marginalia-mode))
 (use-package vertico              :config (vertico-mode))
