@@ -8,7 +8,7 @@ arch=('any')
 url='https://github.com/port19x/dotfiles'
 license=('Unlicense')
 
-# sorted by dependency strength: core > program > emacs-dep > utility > latex
+# sorted by dependency strength: core > program > languages > emacs-dep > utility > latex
 depends=(
 'base-devel'
 'emacs-nativecomp'
@@ -25,14 +25,15 @@ depends=(
 'man-pages'
 'mpv'
 'openssh'
+'slock'
+'zola'
+
 'python-matplotlib'
 'python-virtualenv'
 'ruff'
 'shellcheck'
 'shfmt'
-'slock'
 'uv'
-'zola'
 
 'aspell-en'
 'cmake'

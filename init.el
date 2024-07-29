@@ -2,7 +2,6 @@
 (setq gc-cons-threshold most-positive-fixnum
       package-native-compile t
       use-package-always-ensure t
-      use-package-always-demand t
       package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("nongnu" . "https://elpa.nongnu.org/nongnu/")
                          ("melpa" . "https://melpa.org/packages/")))
