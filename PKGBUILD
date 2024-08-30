@@ -26,6 +26,8 @@ depends=(
 'mpv'
 'openssh'
 'slock'
+'qemu-base'
+'qemu-ui-gtk'
 'zola'
 
 'chicken'
