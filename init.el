@@ -96,7 +96,7 @@
 (use-package lua-mode              :mode   "\\.lua\\'")
 (use-package ruby-mode             :mode   "\\.e?rb\\'")
 (use-package eros                  :hook   (emacs-lisp-mode . eros-mode))
-(use-package geiser-guile          :mode   ("\\.scm\\'" . scheme-mode))
+(use-package geiser-chicken        :mode   ("\\.scm\\'" . scheme-mode))
 (use-package sicp)
 
 (use-package exwm
