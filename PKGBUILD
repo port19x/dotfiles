@@ -1,14 +1,14 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r954.61b3cd1
+pkgver=r954.95b73e3
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
 url='https://github.com/port19x/dotfiles'
 license=('Unlicense')
 
-# sorted by dependency strength: core > program > languages > emacs-dep > utility > latex
+# sorted by dependency strength: core > program > languages > emacs-dep > utility
 depends=(
 'base-devel'
 'emacs-nativecomp'
@@ -58,23 +58,6 @@ depends=(
 'wget'
 'xorg-xrandr'
 'yt-dlp'
-
-'texlive-bibtexextra'
-'texlive-binextra'
-'texlive-context'
-'texlive-fontsextra'
-'texlive-fontutils'
-'texlive-formatsextra'
-'texlive-games'
-'texlive-humanities'
-'texlive-latexextra'
-'texlive-luatex'
-'texlive-mathscience'
-'texlive-metapost'
-'texlive-music'
-'texlive-pstricks'
-'texlive-publishers'
-'texlive-xetex'
 )
 
 source=('dotfiles::git+https://github.com/port19x/dotfiles')
