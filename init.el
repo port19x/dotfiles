@@ -97,6 +97,9 @@
 (use-package ruby-mode             :mode   "\\.e?rb\\'")
 (use-package eros                  :hook   (emacs-lisp-mode . eros-mode))
 (use-package geiser-guile          :mode   ("\\.scm\\'" . scheme-mode))
+(use-package rainbow-delimiters    :hook   (prog-mode))
+(use-package sly-overlay :custom (inferior-lisp-program "ros -Q run")
+  :hook (sly-mode . (lambda () (unless (sly-connected-p) (save-excursion (sly))))))
 (use-package sicp)
 
 (use-package exwm
@@ -202,6 +205,20 @@
       (define-key map (kbd "X") #'toggle-org-pdf-export-on-save)
       map))
 
+  (defvar my-lisp-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map (kbd "SPC") #'sly-overlay-eval-defun)
+      (define-key map (kbd "b") #'sly-eval-buffer)
+      (define-key map (kbd "c") #'mrepl-clear-repl)
+      (define-key map (kbd "d") #'sly-eval-defun)
+      (define-key map (kbd "v") #'sly-interrupt)
+      (define-key map (kbd "i") #'sly-inspect) ;TODO fix upstream profiler
+      (define-key map (kbd "f") #'sly-describe-function)
+      (define-key map (kbd "h") #'sly-apropos-all)
+      (define-key map (kbd "q") #'sly-quit-lisp)
+      (define-key map (kbd "s") #'sly-describe-symbol)
+      (define-key map (kbd "w") #'sly-hyperspec-lookup)))
+
   (general-define-key
    :states '(normal visual insert emacs)
    :prefix "SPC"
@@ -222,6 +239,7 @@
    "k" '(comment-region :which-key "comment region")
    "K" '(indent-region :which-key "indent region")
    "l" '(slock :which-key "lock screen")
+   "o" `(,my-org-map :which-key "Org Mode")
    "p" '(project-find-file :which-key "hop project file")
    "P" '(project-switch-project :which-key "hop project")
    "q" '(brave :which-key "launch browser")
@@ -235,7 +253,7 @@
    "x" '(consult-flymake :which-key "run linters (flymake)")
    "y" '(git-link :which-key "git link")
    "z" '(dashboard-refresh-buffer :which-key "Dashboard")
-   "SPC" `(,my-org-map :which-key "Org Mode")
+   "SPC" `(,my-lisp-map :which-key "lisp map")
    "<" '(paredit-forward-slurp-sexp :which-key "Paren Slurp")
    "<return>" '(consult-bookmark :which-key "jump to bookmark")
    "S-<return>" '(bookmark-set :which-key "set a bookmark")))

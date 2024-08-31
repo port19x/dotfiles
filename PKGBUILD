@@ -38,6 +38,8 @@ depends=(
 'python-docs'
 'python-matplotlib'
 'python-virtualenv'
+'roswell'
+'quicklisp'
 'ruby'
 'ruby-docs'
 'ruff'
