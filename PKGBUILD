@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r954.95b73e3
+pkgver=r957.eaf7078
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -30,7 +30,6 @@ depends=(
 'qemu-ui-gtk'
 'zola'
 
-'chicken'
 'elixir'
 'ghc'
 'go'
