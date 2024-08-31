@@ -96,7 +96,8 @@
 (use-package lua-mode              :mode   "\\.lua\\'")
 (use-package ruby-mode             :mode   "\\.e?rb\\'")
 (use-package eros                  :hook   (emacs-lisp-mode . eros-mode))
-(use-package geiser-chicken        :mode   ("\\.scm\\'" . scheme-mode))
+(use-package geiser-chicken        :mode   ("\\.scm\\'" . scheme-mode)
+                                   :custom (geiser-chicken-binary "/usr/bin/chicken-csi"))
 (use-package sicp)
 
 (use-package exwm
