@@ -175,7 +175,8 @@
       (define-key map (kbd "h") #'sly-apropos-all)
       (define-key map (kbd "q") #'sly-quit-lisp)
       (define-key map (kbd "s") #'sly-describe-symbol)
-      (define-key map (kbd "w") #'sly-hyperspec-lookup)))
+      (define-key map (kbd "w") #'sly-hyperspec-lookup)
+      map))
 
   (general-define-key
    :states '(normal visual insert emacs)
