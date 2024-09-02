@@ -191,15 +191,9 @@
   (defvar my-org-map
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "b") #'org-insert-structure-template)
-      (define-key map (kbd "c") #'org-cite-insert)
       (define-key map (kbd "e") #'org-babel-execute-src-block)
-      (define-key map (kbd "i") #'insert-char)
-      (define-key map (kbd "m") #'hl-todo-next)
-      (define-key map (kbd "p") #'org-latex-export-to-pdf)
       (define-key map (kbd "s") #'org-cut-subtree)
       (define-key map (kbd "t") #'org-time-stamp)
-      (define-key map (kbd "x") #'org-export-dispatch)
-      (define-key map (kbd "X") #'toggle-org-pdf-export-on-save)
       map))
 
   (defvar my-lisp-map
@@ -233,6 +227,7 @@
    "g" '(magit :which-key "magit")
    "G" '(consult-ripgrep :which-key "consult grep")
    "h" `(,my-help-map :which-key "Help")
+   "i" '(insert-char :which-key "unicode insert")
    "k" '(comment-region :which-key "comment region")
    "K" '(indent-region :which-key "indent region")
    "l" '(slock :which-key "lock screen")
