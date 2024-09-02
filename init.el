@@ -83,21 +83,13 @@
   (reformatter-define shfmt :program "shfmt" :args (list "--filename" (or (buffer-file-name) input-file) "-i" "4" "-ci"))
   (reformatter-define ruff :program "ruff" :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file) "--line-length" "320")))
 
-; already built-in: python-ts-mode, bash-ts-mode, javascript-mode, perl-modec-mode, asm-mode
 (use-package markdown-ts-mode      :mode   "\\.md\\'")
 (use-package web-mode              :mode   "\\.php\\'")
-(use-package haskell-mode          :mode   "\\.hs\\'")
-(use-package julia-ts-mode         :mode   "\\.jl\\'")
-(use-package elixir-ts-mode        :mode   "\\.exs?\\'")
 (use-package go-mode               :mode   "\\.go\\'")
-(use-package lua-mode              :mode   "\\.lua\\'")
-(use-package ruby-mode             :mode   "\\.e?rb\\'")
 (use-package eros                  :hook   (emacs-lisp-mode . eros-mode))
-(use-package geiser-guile          :mode   ("\\.scm\\'" . scheme-mode))
 (use-package rainbow-delimiters    :hook   (prog-mode))
 (use-package sly-overlay :custom (inferior-lisp-program "ros -Q run")
   :hook (sly-mode . (lambda () (unless (sly-connected-p) (save-excursion (sly))))))
-(use-package sicp)
 
 (use-package exwm
   :if (eq system-type 'gnu/linux)
