@@ -55,6 +55,7 @@
 (use-package tldr)
 (use-package embark-consult)
 (use-package wgrep)
+(use-package paredit)
 (use-package orderless            :custom (completion-styles '(orderless basic)))
 (use-package marginalia           :config (marginalia-mode))
 (use-package vertico              :config (vertico-mode))
@@ -108,7 +109,6 @@
           (evil-disable-insert-state-bindings t))
 (use-package evil-collection      :config (evil-collection-init))
 (use-package evil-goggles         :config (evil-goggles-mode))
-(use-package evil-cleverparens    :hook   (lisp-mode emacs-lisp-mode))
 (use-package general
   :config
   (defun my-info-read-manual () (interactive)
@@ -207,6 +207,7 @@
    "y" '(git-link :which-key "git link")
    "z" '(dashboard-refresh-buffer :which-key "Dashboard")
    "SPC" `(,my-lisp-map :which-key "lisp map")
+   "<" '(paredit-forward-slurp-sexp :which-key "Paren Slurp")
    "<return>" '(consult-bookmark :which-key "jump to bookmark")
    "S-<return>" '(bookmark-set :which-key "set a bookmark")))
 
