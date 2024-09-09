@@ -2,8 +2,8 @@
 (setq gc-cons-threshold most-positive-fixnum
       package-native-compile t
       use-package-always-ensure t
-      package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                         ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+      package-archives '(("gnu" . "https://elpa.gnu.org/devel/")
+                         ("nongnu" . "https://elpa.nongnu.org/nongnu-devel/")
                          ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
 (unless package-archive-contents (package-refresh-contents))
