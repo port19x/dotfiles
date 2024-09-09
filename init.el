@@ -35,6 +35,7 @@
   (treesit-language-source-alist '((bash "https://github.com/tree-sitter/tree-sitter-bash")
                                    (elisp "https://github.com/Wilfred/tree-sitter-elisp")
                                    (go "https://github.com/tree-sitter/tree-sitter-go")
+                                   (go-mod "https://github.com/camdencheek/tree-sitter-go-mod")
                                    (markdown "https://github.com/ikatyang/tree-sitter-markdown")
                                    (php "https://github.com/tree-sitter/tree-sitter-php")
                                    (python "https://github.com/tree-sitter/tree-sitter-python")
@@ -65,7 +66,7 @@
 (use-package marginalia           :config (marginalia-mode))
 (use-package vertico              :config (vertico-mode))
 (use-package corfu                :config (global-corfu-mode) :custom (corfu-auto t))
-(use-package which-key            :config (which-key-mode)    :custom (which-key-sort-order 'which-key-key-order-alpha))
+(use-package which-key            :config (which-key-mode)    :custom (which-key-sort-order 'which-key-key-order-alpha)) ;emacs30
 (use-package capf-autosuggest     :hook   shell-mode)
 (use-package git-gutter           :config (global-git-gutter-mode))
 (use-package git-link             :config (progn (add-to-list 'git-link-remote-alist '("git.*" git-link-gitea))
@@ -84,8 +85,7 @@
   (reformatter-define ruff :program "ruff" :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file) "--line-length" "320")))
 
 (use-package markdown-ts-mode      :mode   "\\.md\\'")
-(use-package web-mode              :mode   "\\.php\\'")
-(use-package go-mode               :mode   "\\.go\\'")
+(use-package web-mode              :mode   "\\.php\\'") ;emacs30 php-ts-mode
 (use-package eros                  :hook   (emacs-lisp-mode . eros-mode))
 (use-package rainbow-delimiters    :hook   (prog-mode))
 (use-package sly-overlay :custom (inferior-lisp-program "ros -Q run")
@@ -219,6 +219,5 @@
 ;; (progn
 ;;   (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 ;;   (pdf-loader-install t)
-;;   (nerd-icons-install-fonts)
 ;;   (project-remember-projects-under "~/git" t))
 ;;   (setq esup-user-init-file "~/dotfiles/init.el" esup-depth 0)
