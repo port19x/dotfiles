@@ -31,6 +31,7 @@
   (indent-tabs-mode nil)
   (uniquify-buffer-name-style 'forward)
   (visible-bell t)
+  (use-short-answers t)
   (python-flymake-command '("ruff" "--quiet" "--stdin-filename=stdin" "-"))
   (treesit-language-source-alist '((bash "https://github.com/tree-sitter/tree-sitter-bash")
                                    (elisp "https://github.com/Wilfred/tree-sitter-elisp")
@@ -43,10 +44,6 @@
   (major-mode-remap-alist '((sh-mode . bash-ts-mode)
                             (python-mode . python-ts-mode)))
   (org-startup-indented t)
-  (org-latex-pdf-process '("%latex -interaction nonstopmode -output-directory %o %f"
-                           "%bib %b"
-                           "%latex -interaction nonstopmode -output-directory %o %f"
-                           "%latex -interaction nonstopmode -output-directory %o %f"))
   :hook
   (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
   (dired-mode . dired-hide-details-mode)
@@ -86,7 +83,7 @@
 
 (use-package markdown-ts-mode      :mode   "\\.md\\'")
 (use-package web-mode              :mode   "\\.php\\'") ;emacs30 php-ts-mode
-(use-package eros                  :hook   (emacs-lisp-mode . eros-mode))
+(use-package eros                  :hook   (emacs-lisp-mode))
 (use-package rainbow-delimiters    :hook   (prog-mode))
 (use-package sly-overlay :custom (inferior-lisp-program "ros -Q run")
   :hook (sly-mode . (lambda () (unless (sly-connected-p) (save-excursion (sly))))))
