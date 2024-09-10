@@ -34,8 +34,6 @@ depends=(
 'php'
 'python-docs'
 'python-virtualenv'
-'roswell'
-'quicklisp'
 'ruff'
 'shellcheck'
 'shfmt'
