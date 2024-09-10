@@ -56,7 +56,6 @@
   (org-mode . visual-line-mode))
 
 (use-package define-word)
-(use-package tldr)
 (use-package embark-consult)
 (use-package wgrep)
 (use-package paredit)
@@ -76,11 +75,6 @@
                                           (dashboard-startup-banner "~/pic/dashboard.jpg")
                                   :hook   (after-init . dashboard-refresh-buffer))
 (use-package pdf-tools            :config (pdf-tools-install t))
-(use-package reformatter
-  :config
-  (reformatter-define shfmt :program "shfmt" :args (list "--filename" (or (buffer-file-name) input-file) "-i" "4" "-ci"))
-  (reformatter-define ruff :program "ruff" :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file) "--line-length" "320")))
-
 (use-package markdown-ts-mode      :mode   "\\.md\\'")
 (use-package web-mode              :mode   "\\.php\\'") ;emacs30 php-ts-mode
 (use-package eros                  :hook   (emacs-lisp-mode))
@@ -137,7 +131,6 @@
       (define-key map (kbd "h") #'describe-symbol)
       (define-key map (kbd "i") #'my-info-read-manual)
       (define-key map (kbd "m") #'man)
-      (define-key map (kbd "t") #'tldr)
       map))
   (defvar my-buffer-map
     (let ((map (make-sparse-keymap)))
