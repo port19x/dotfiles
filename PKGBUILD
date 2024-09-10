@@ -28,7 +28,9 @@ depends=(
 'zola'
 
 'aspell-en'
+'cmake'
 'fd'
+'libvterm'
 'poppler-glib'
 'ripgrep'
 )
