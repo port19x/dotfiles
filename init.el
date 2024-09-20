@@ -81,6 +81,7 @@
 (use-package markdown-ts-mode      :mode   "\\.md\\'")
 (use-package web-mode              :mode   "\\.php\\'") ;emacs30 php-ts-mode
 (use-package eros                  :hook   (emacs-lisp-mode))
+(use-package inspector             :custom (inspector-switch-to-buffer nil))
 (use-package rainbow-delimiters    :hook   (prog-mode))
 
 (use-package exwm
