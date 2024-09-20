@@ -73,6 +73,7 @@
 (use-package org-modern           :custom (org-modern-star 'replace) :hook   org-mode)
 (use-package dashboard            :custom (dashboard-center-content t)
                                           (dashboard-startup-banner "~/pic/dashboard.jpg")
+                                          (dashboard-image-banner-max-height 1000)
                                   :hook   (after-init . dashboard-refresh-buffer))
 (use-package vterm                :custom (vterm-always-compile-module t))
 (use-package shell-pop            :bind   ((:map shell-mode-map ("<right>" . capf-autosuggest-accept))))
