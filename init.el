@@ -127,6 +127,9 @@
   (defun slock () (interactive) (launch "slock"))
   (defun brave () (interactive) (launch "brave"))
   (defun flameshot () (interactive) (launch "flameshot gui"))
+  (defun insert-> () (interactive) (insert ">"))
+  (defun insert-< () (interactive) (insert "<"))
+  (defun insert-| () (interactive) (insert "|"))
 
  (defvar my-help-map
     (let ((map (make-sparse-keymap)))
@@ -165,6 +168,7 @@
    :states '(normal visual insert emacs)
    :prefix "SPC"
    :global-prefix "M-SPC"
+   "a" '(insert-| :which-key "|")
    "b" `(,my-buffer-map :which-key "Buffer")
    "B" '(magit-blame-addition :which-key "git blame")
    "c" '(comp-dwim :which-key "compile")
@@ -178,6 +182,8 @@
    "G" '(consult-ripgrep :which-key "consult grep")
    "h" `(,my-help-map :which-key "Help")
    "i" '(insert-char :which-key "unicode insert")
+   "j" '(insert-< :which-key "<")
+   "J" '(insert-> :which-key ">")
    "k" '(comment-region :which-key "comment region")
    "K" '(indent-region :which-key "indent region")
    "l" '(slock :which-key "lock screen")
