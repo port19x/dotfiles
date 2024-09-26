@@ -48,6 +48,8 @@ _manual () {
 }
 
 package() {
+    echo 'eval $(ssh-agent)' > $HOME/.bash_profile
+    echo "command -v vmtouch && vmtouch -i .cache -ftq /etc /home /opt /usr" > $HOME/.bash_profile
     echo "startx" > $HOME/.bash_profile
     echo "flameshot &" > $HOME/.xinitrc
     echo "exec emacs --fullscreen" >> $HOME/.xinitrc
