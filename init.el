@@ -82,11 +82,11 @@
 (use-package vterm                :custom (vterm-always-compile-module t))
 (use-package shell-pop            :bind   ((:map shell-mode-map ("<right>" . capf-autosuggest-accept))))
 (use-package pdf-tools            :config (pdf-tools-install t))
-(use-package markdown-ts-mode      :mode   "\\.md\\'")
-(use-package web-mode              :mode   "\\.php\\'") ;emacs30 php-ts-mode
-(use-package eros                  :hook   (emacs-lisp-mode))
-(use-package inspector             :custom (inspector-switch-to-buffer nil))
-(use-package rainbow-delimiters    :hook   (prog-mode))
+(use-package markdown-ts-mode     :mode   "\\.md\\'")
+(use-package web-mode             :mode   "\\.php\\'") ;emacs30 php-ts-mode
+(use-package eros-inspector       :hook   (emacs-lisp-mode . eros-mode)
+                                  :custom (inspector-switch-to-buffer nil))
+(use-package rainbow-delimiters   :hook   (prog-mode))
 
 (use-package exwm
   :if (eq system-type 'gnu/linux)
@@ -209,7 +209,7 @@
    "y" '(git-link :which-key "git link")
    "z" '(dashboard-refresh-buffer :which-key "Dashboard")
    "SPC" `(,my-org-map :which-key "org map")
-   "<" '(paredit-forward-slurp-sexp :which-key "Paren Slurp")
+   "<tab>" '(paredit-forward-slurp-sexp :which-key "Paren Slurp")
    "<return>" '(consult-bookmark :which-key "jump to bookmark")
    "S-<return>" '(bookmark-set :which-key "set a bookmark")))
 
