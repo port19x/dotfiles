@@ -131,9 +131,9 @@
   (defun slock () (interactive) (launch "slock"))
   (defun brave () (interactive) (launch "brave"))
   (defun flameshot () (interactive) (launch "flameshot gui"))
-  (defun insert-> () (interactive) (insert ">"))
-  (defun insert-< () (interactive) (insert "<"))
-  (defun insert-| () (interactive) (insert "|"))
+  (defun insert-> () (interactive) (if (string= (buffer-name) "*vterm*") (vterm-insert ">") (insert ">")))
+  (defun insert-< () (interactive) (if (string= (buffer-name) "*vterm*") (vterm-insert "<") (insert "<")))
+  (defun insert-| () (interactive) (if (string= (buffer-name) "*vterm*") (vterm-insert "|") (insert "|")))
   (defun org-preferred-agenda () (interactive) (org-agenda "" "n"))
 
  (defvar my-help-map
@@ -190,8 +190,8 @@
    "G" '(consult-ripgrep :which-key "consult grep")
    "h" `(,my-help-map :which-key "Help")
    "i" '(insert-char :which-key "unicode insert")
-   "j" '(insert-< :which-key "<")
-   "J" '(insert-> :which-key ">")
+   "j" '(insert-> :which-key ">")
+   "J" '(insert-< :which-key "<")
    "k" '(comment-region :which-key "comment region")
    "K" '(indent-region :which-key "indent region")
    "l" '(slock :which-key "lock screen")
