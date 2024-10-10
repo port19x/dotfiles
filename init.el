@@ -93,7 +93,7 @@
   :init
   (require 'exwm-randr)
   (exwm-randr-mode 1)
-  (start-process-shell-command "xrandr" nil "xrandr --output DP-1-1 --left-of eDP-1 --rotate right --output DP-1-2 --left-of DP-1-1 --rotate left")
+  (start-process-shell-command "xrandr" nil "xrandr --output DP-1-2 --left-of eDP-1 --rotate right --output DP-1-1 --left-of DP-1-2 --rotate left")
   (exwm-enable)
   :config
   (add-to-list 'exwm-input-prefix-keys ?\M- )
