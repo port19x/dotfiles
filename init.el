@@ -83,6 +83,7 @@
 (use-package shell-pop            :bind   ((:map shell-mode-map ("<right>" . capf-autosuggest-accept))))
 (use-package pdf-tools            :config (pdf-tools-install t))
 (use-package markdown-ts-mode     :mode   "\\.md\\'")
+(use-package yaml-ts-mode         :mode   "\\.ya?ml\\'")
 (use-package web-mode             :mode   "\\.php\\'") ;emacs30 php-ts-mode
 (use-package eros-inspector       :hook   (emacs-lisp-mode . eros-mode)
                                   :custom (inspector-switch-to-buffer nil))
