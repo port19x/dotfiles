@@ -90,17 +90,12 @@
 (use-package rainbow-delimiters   :hook   (prog-mode))
 
 (use-package exwm
-  :if (eq system-type 'gnu/linux)
   :init
-  (require 'exwm-randr)
-  (exwm-randr-mode 1)
-  (start-process-shell-command "xrandr" nil "xrandr --output DP-1-2 --left-of eDP-1 --rotate right --output DP-1-1 --left-of DP-1-2 --rotate left")
   (exwm-enable)
   :config
   (add-to-list 'exwm-input-prefix-keys ?\M- )
   :custom
   (exwm-workspace-number 3)
-  (exwm-randr-workspace-monitor-plist '(0 "eDP" 1 "DP-1-1" 2 "DP-1-2"))
   :hook
   (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
 
