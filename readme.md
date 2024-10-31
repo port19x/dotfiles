@@ -13,11 +13,15 @@ I'm currently trying out a more mainstream config on Linux Mint.
 bat
 brave-browser
 eza
+fd-find
+flameshot
 fzf
 git
+imagemagick
 keepassxc
 mpv
 neovim
+ripgrep
 wezterm-nightly
 xclip
 ```
