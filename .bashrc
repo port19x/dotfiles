@@ -43,6 +43,7 @@ f() {
 }
 
 alias v='nvim'
+alias vw="nvim $HOME/Documents/log/$(date +%V)"
 alias ap='ansible-playbook'
 alias br='brightnessctl set 0 && read && brightnessctl set 100%'
 alias ct='cd $(mktemp -d)'
