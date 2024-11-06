@@ -43,6 +43,7 @@ f() {
 }
 
 alias v='nvim'
+alias x='openssl x509 -text -noout -in'
 alias vw="nvim $HOME/Documents/log/$(date +%V)"
 alias ap='ansible-playbook'
 alias br='brightnessctl set 0 && read && brightnessctl set 100%'
