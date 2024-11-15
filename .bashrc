@@ -42,6 +42,7 @@ f() {
     "$@" "$(fzf)"
 }
 
+alias u='sudo apt update && sudo apt upgrade'
 alias v='nvim'
 alias x='openssl x509 -text -noout -in'
 alias vw="nvim $HOME/Documents/log/$(date +%V)"
