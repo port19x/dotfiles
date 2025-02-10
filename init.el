@@ -19,6 +19,7 @@
   (display-time-mode 1)
   (global-auto-revert-mode 1)
   (save-place-mode 1)
+  (org-babel-do-load-languages 'org-babel-load-languages '((python . t) (shell . t)))
   (show-paren-mode 1)
   (load-theme 'modus-vivendi t)
   (set-face-attribute 'default nil :font "Iosevka" :height 140)
@@ -71,8 +72,6 @@
 (use-package which-key            :config (which-key-mode)    :custom (which-key-sort-order 'which-key-key-order-alpha)) ;emacs30
 (use-package capf-autosuggest     :hook   (eat-mode))
 (use-package git-gutter           :config (global-git-gutter-mode))
-(use-package git-link             :config (progn (add-to-list 'git-link-remote-alist '("git.*" git-link-gitea))
-                                                 (add-to-list 'git-link-commit-remote-alist '("git.*" git-link-commit-gitea))))
 (use-package magit                :custom (magit-slow-confirm nil))
 (use-package org-modern           :custom (org-modern-star 'replace) :hook   org-mode)
 (use-package dashboard            :custom (dashboard-center-content t)
@@ -83,8 +82,6 @@
 (use-package shell-pop            :bind   ((:map shell-mode-map ("<right>" . capf-autosuggest-accept))))
 (use-package pdf-tools            :config (pdf-tools-install t))
 (use-package markdown-ts-mode     :mode   "\\.md\\'")
-(use-package yaml-ts-mode         :mode   "\\.ya?ml\\'")
-(use-package web-mode             :mode   "\\.php\\'") ;emacs30 php-ts-mode
 (use-package eros-inspector       :hook   (emacs-lisp-mode . eros-mode)
                                   :custom (inspector-switch-to-buffer nil))
 (use-package rainbow-delimiters   :hook   (prog-mode))
@@ -202,7 +199,6 @@
    "v" '(eval-last-sexp :which-key "(emacs) eval")
    "w" `(,my-window-map :which-key "Windows")
    "x" '(consult-flymake :which-key "run linters (flymake)")
-   "y" '(git-link :which-key "git link")
    "z" '(dashboard-refresh-buffer :which-key "Dashboard")
    "SPC" `(,my-org-map :which-key "org map")
    "<tab>" '(paredit-forward-slurp-sexp :which-key "Paren Slurp")
