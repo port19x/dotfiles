@@ -12,6 +12,8 @@ license=('Unlicense')
 depends=(
 'base-devel'
 'emacs-nativecomp'
+'noto-fonts'
+'noto-fonts-emoji'
 'ttc-iosevka'
 'xorg-server'
 'xorg-xinit'
