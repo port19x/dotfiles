@@ -67,6 +67,8 @@
 (use-package eros-inspector       :hook   (emacs-lisp-mode . eros-mode)
                                   :custom (inspector-switch-to-buffer nil))
 (use-package rainbow-delimiters   :hook   (prog-mode))
+(use-package sly-overlay :custom (inferior-lisp-program "ros -Q run")
+  :hook (sly-mode . (lambda () (unless (sly-connected-p) (save-excursion (sly))))))
 
 (use-package exwm
   :init
@@ -139,6 +141,21 @@
       (define-key map (kbd "t") #'org-time-stamp)
       map))
 
+  (defvar my-lisp-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map (kbd "SPC") #'sly-overlay-eval-defun)
+      (define-key map (kbd "b") #'sly-eval-buffer)
+      (define-key map (kbd "c") #'mrepl-clear-repl)
+      (define-key map (kbd "d") #'sly-eval-defun)
+      (define-key map (kbd "v") #'sly-interrupt)
+      (define-key map (kbd "i") #'sly-inspect) ;TODO fix upstream profiler
+      (define-key map (kbd "f") #'sly-describe-function)
+      (define-key map (kbd "h") #'sly-apropos-all)
+      (define-key map (kbd "q") #'sly-quit-lisp)
+      (define-key map (kbd "s") #'sly-describe-symbol)
+      (define-key map (kbd "w") #'sly-hyperspec-lookup)
+      map))
+
   (general-define-key
    :states '(normal visual insert emacs)
    :prefix "SPC"
@@ -173,7 +190,7 @@
    "v" '(eval-last-sexp :which-key "(emacs) eval")
    "w" `(,my-window-map :which-key "Windows")
    "z" '(dashboard-refresh-buffer :which-key "Dashboard")
-   "SPC" `(,my-org-map :which-key "org map")
+   "SPC" `(,my-lisp-map :which-key "lisp map")
    "<tab>" '(paredit-forward-slurp-sexp :which-key "Paren Slurp")
    "<return>" '(consult-bookmark :which-key "jump to bookmark")
    "S-<return>" '(bookmark-set :which-key "set a bookmark")))

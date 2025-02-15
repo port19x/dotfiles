@@ -26,6 +26,8 @@ depends=(
 'mpv'
 'openssh'
 'pulsemixer'
+'quicklisp'
+'roswell'
 'slock'
 'yt-dlp'
 'zola'
