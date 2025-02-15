@@ -35,12 +35,8 @@
   (visible-bell t)
   (use-short-answers t)
   (org-startup-indented t)
-  (org-agenda-files '("~/doc/master.org"))
-  (org-agenda-restore-windows-after-quit t)
   :hook
   (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
-  (org-clock-in . (lambda () (org-timer-set-timer 25)))
-  (org-clock-out .(lambda () (org-timer-stop)))
   (dired-mode . dired-hide-details-mode)
   (prog-mode . electric-pair-mode)
   (org-mode . hl-todo-mode)
@@ -109,7 +105,6 @@
   (defun insert-> () (interactive) (if (string= (buffer-name) "*vterm*") (vterm-insert ">") (insert ">")))
   (defun insert-< () (interactive) (if (string= (buffer-name) "*vterm*") (vterm-insert "<") (insert "<")))
   (defun insert-| () (interactive) (if (string= (buffer-name) "*vterm*") (vterm-insert "|") (insert "|")))
-  (defun org-preferred-agenda () (interactive) (org-agenda "" "n"))
 
  (defvar my-help-map
     (let ((map (make-sparse-keymap)))
@@ -138,11 +133,8 @@
 
   (defvar my-org-map
     (let ((map (make-sparse-keymap)))
-      (define-key map (kbd "a") #'org-preferred-agenda)
       (define-key map (kbd "b") #'org-insert-structure-template)
       (define-key map (kbd "e") #'org-babel-execute-src-block)
-      (define-key map (kbd "k") #'org-clock-in)
-      (define-key map (kbd "K") #'org-clock-out)
       (define-key map (kbd "s") #'org-cut-subtree)
       (define-key map (kbd "t") #'org-time-stamp)
       map))
