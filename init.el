@@ -23,7 +23,6 @@
   (show-paren-mode 1)
   (load-theme 'modus-vivendi t)
   (set-face-attribute 'default nil :font "Iosevka" :height 140)
-  (which-key-mode)
   :custom
   (custom-file (concat user-emacs-directory "/custom.el"))
   (dired-kill-when-opening-new-dired-buffer t)
@@ -36,7 +35,6 @@
   (visible-bell t)
   (use-short-answers t)
   (org-startup-indented t)
-  (which-key-sort-order 'which-key-key-order-alpha)
   :hook
   (after-init . (lambda () (setq gc-cons-threshold (* 8 1024 1024))))
   (dired-mode . dired-hide-details-mode)
@@ -53,6 +51,7 @@
 (use-package marginalia           :config (marginalia-mode))
 (use-package vertico              :config (vertico-mode))
 (use-package corfu                :config (global-corfu-mode) :custom (corfu-auto t))
+(use-package which-key            :config (which-key-mode)    :custom (which-key-sort-order 'which-key-key-order-alpha)) ;emacs30
 (use-package capf-autosuggest     :hook   (shell-mode))
 (use-package git-gutter           :config (global-git-gutter-mode))
 (use-package magit                :custom (magit-slow-confirm nil))
