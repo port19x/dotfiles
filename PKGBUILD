@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r992.f79f845
+pkgver=r999.4a8ba0d
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -11,7 +11,7 @@ license=('Unlicense')
 # sorted by dependency strength: core > program > emacs-dep
 depends=(
 'base-devel'
-'emacs-nativecomp'
+'emacs'
 'noto-fonts'
 'noto-fonts-emoji'
 'ttc-iosevka'
