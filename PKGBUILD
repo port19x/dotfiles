@@ -26,34 +26,24 @@ depends=(
 'mupdf'
 'noto-fonts'
 'pulsemixer'
-'zola'
 
 'flameshot'
-'libnotify'
 'slock'
-'songrec'
 
-'bat'
-'eza'
 'fzf'
 'neovim'
 'xclip'
 'yt-dlp'
 
-'asciiquarium'
 'aspell-en'
-'dfrs'
 'imagemagick'
-'pacman-contrib'
-'unzip'
-'xorg-xrandr'
 )
 makedepends=(
 'stow'
 )
 
 optdepends=(
-'brave-bin: webbrowser'
+'brave-bin: webbrowser' #librewolf on alpine
 'yay: aur helper'
 )
 
@@ -86,7 +76,7 @@ package() {
     printf "\33[2K\r\033[1;32m%s\033[0m\n" "[2/5] prepared supporting files"
 
     git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/zsh/zsh-autosuggestions 2>/dev/null || true
-    printf "\33[2K\r\033[1;32m%s\033[0m\n" "[3/5] downloaded zsh-autosuggestions" 
+    printf "\33[2K\r\033[1;32m%s\033[0m\n" "[3/5] downloaded zsh-autosuggestions" #available in alpine as package
 
     cd .. && stow -v --no-folding --ignore="PKGBUILD" --ignore="src" --ignore="dotfiles" --ignore="pkg" -t $HOME/.config .
     printf "\33[2K\r\033[1;32m%s\033[0m\n" "[4/4] symlinked config files"

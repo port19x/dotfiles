@@ -50,8 +50,6 @@ globalkeys = gears.table.join(
     awful.key({ "Mod4"            }, "q",       function () awful.spawn("brave") end, {description = "brave", group = "launcher"}),
     awful.key({ "Mod4",           }, "Return",  function () awful.spawn("wezterm") end, {description = "launch terminal", group = "launcher"}),
     awful.key({ "Mod4",           }, "s",       function () awful.spawn("flameshot gui") end, {description = "take a screenshot", group = "launcher"}),
-    awful.key({ "Mod4"            }, "m",       function () awful.spawn.with_shell('notify-send "$(timeout 10 songrec recognize -d default || echo song not found)"') end, {description = "songrec", group = "launcher"}),
-    awful.key({ "Mod4",           }, "t",       function () awful.spawn.with_shell("notify-send $(date +%H:%M_%d.%m.%y)") end, {description = "show time", group = "launcher"}),
     awful.key({ "Mod4",           }, "l",       function () awful.tag.incmwfact( 0.05)          end, {description = "increase master size", group = "layout"}),
     awful.key({ "Mod4",           }, "h",       function () awful.tag.incmwfact(-0.05)          end, {description = "decrease master size", group = "layout"}),
     awful.key({ "Mod4",           }, "Tab",     function () awful.layout.inc( 1)                end, {description = "select next layout", group = "layout"}),
@@ -93,5 +91,4 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 -- Autostart
-awful.spawn.with_shell('notify-send "$(checkupdates)"')
 awful.spawn.with_shell("command -v brave && pgrep -x brave || brave")
