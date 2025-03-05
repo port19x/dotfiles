@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r999.4a8ba0d
+pkgver=r1002.5dde4a0
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -10,12 +10,10 @@ license=('Unlicense')
 
 # sorted by dependency strength: core > program > keybind > alias > utility
 depends=(
-'awesome'
 'base-devel'
+'foot'
+'labwc'
 'ttc-iosevka'
-'wezterm'
-'xorg-server'
-'xorg-xinit'
 'zsh-completions'
 
 'git'
@@ -27,12 +25,11 @@ depends=(
 'noto-fonts'
 'pulsemixer'
 
-'flameshot'
-'slock'
+'swaylock'
 
 'fzf'
 'neovim'
-'xclip'
+'wl-clipboard'
 'yt-dlp'
 
 'aspell-en'
@@ -61,7 +58,6 @@ _manual () {
 
 package() {
     mkdir -p $pkgdir/etc/zsh
-    mkdir -p $HOME/.config/X11
     mkdir -p $HOME/.config/git
     mkdir -p $HOME/.local/state/zsh
     mkdir -p $HOME/.cache/zsh/zcompdump-5.9
@@ -71,7 +67,6 @@ package() {
 
     touch $HOME/.local/state/zsh/history
     touch $HOME/.config/git/config
-    echo "exec awesome" > $HOME/.config/X11/xinitrc
     echo "export ZDOTDIR=$HOME/.config/zsh" > $pkgdir/etc/zsh/zshenv
     printf "\33[2K\r\033[1;32m%s\033[0m\n" "[2/5] prepared supporting files"
 
@@ -82,7 +77,6 @@ package() {
     printf "\33[2K\r\033[1;32m%s\033[0m\n" "[4/4] symlinked config files"
 
     _manual 'chsh -s /bin/zsh'
-    _manual 'localectl set-x11-keymap de "" "" ctrl:nocaps'
     _manual 'configure autologin: https://wiki.archlinux.org/title/Getty'
     _manual 'git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si'
 }

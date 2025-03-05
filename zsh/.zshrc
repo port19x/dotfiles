@@ -24,7 +24,7 @@ pastebin() {
     curl --silent https://oshi.at -F f=@$* -F expire=120 \
     | grep DL \
     | cut -d " " -f 2 \
-    | xclip -selection c \
+    | wl-copy \
     && echo "link copied to clipboard"
 }
 
@@ -46,7 +46,6 @@ f() {
 }
 
 alias v='nvim'
-alias br='brightnessctl set 0 && read && brightnessctl set 100%'
 alias ct='cd $(mktemp -d)'
 alias la='ls -a'
 alias ll='ls -la'
@@ -63,6 +62,8 @@ alias gtpp='git push --force-with-lease'
 alias gts='git status'
 alias yta="yt-dlp --embed-thumbnail -f 'bestaudio/best' -f 'm4a'"
 alias ytd="yt-dlp -f 'bestvideo[height<=?1080]+bestaudio/best' -f 'mp4'"
-alias icat='wezterm imgcat'
 alias lofi='mpv --no-video https://www.youtube.com/live/jfKfPfyJRdk'
-alias yank='xclip -selection c < '
+alias yank='wl-copy < '
+alias gt='wl-copy ">"'
+alias lt='wl-copy "<"'
+alias pipe='wl-copy "|"'
