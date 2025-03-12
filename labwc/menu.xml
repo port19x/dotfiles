@@ -35,9 +35,6 @@
   <item label="Password Manager">
     <action name="Execute" command="keepassxc" />
   </item>
-  <item label="Steam">
-    <action name="Execute" command="steam" />
-  </item>
   <separator/>
   <item label="Lock">
     <action name="Execute" command="swaylock -c 000000" />
