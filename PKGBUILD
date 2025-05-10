@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r1002.5dde4a0
+pkgver=r1008.5519804
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -16,24 +16,33 @@ depends=(
 'ttc-iosevka'
 'zsh-completions'
 
+'gamemode'
 'git'
 'keepassxc'
 'man-db'
 'man-pages'
+'mangohud'
 'mpv'
 'mupdf'
 'noto-fonts'
 'pulsemixer'
+'syncplay'
 
 'swaylock'
 
 'fzf'
+'grim'
 'neovim'
+'slurp'
 'wl-clipboard'
 'yt-dlp'
 
 'aspell-en'
+'dfrs'
+'fd'
 'imagemagick'
+'unzip'
+'wget'
 )
 makedepends=(
 'stow'
