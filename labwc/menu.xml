@@ -38,6 +38,9 @@
   <item label="Steam">
     <action name="Execute" command="steam" />
   </item>
+  <item label="Syncplay">
+    <action name="Execute" command="syncplay" />
+  </item>
   <separator/>
   <item label="Lock">
     <action name="Execute" command="swaylock -c 000000" />
