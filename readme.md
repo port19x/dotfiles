@@ -2,11 +2,13 @@
 
 ## Terminal Programs
 
+- aspell
 - ffmpeg
 - gnupg
 - git
 - texlive
 - yt-dlp
+- zola
 - zsh-completions
 - zsh-autosuggestions
 - zstd
