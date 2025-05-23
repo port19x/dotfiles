@@ -2,18 +2,19 @@
 
 ## Terminal Programs
 
-- zstd
+- ffmpeg
 - gnupg
 - git
 - texlive
+- yt-dlp
 - zsh-completions
 - zsh-autosuggestions
-- yt-dlp
+- zstd
 
 ## Graphical Programs
 
 - brave
-- keepassxc
-- hot
 - dolphin
+- hot
 - iina
+- keepassxc
