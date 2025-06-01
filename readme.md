@@ -4,6 +4,7 @@
 
 - aspell
 - ffmpeg
+- fzf
 - gnupg
 - git
 - texlive
@@ -16,7 +17,7 @@
 ## Graphical Programs
 
 - brave
-- dolphin
 - hot
 - iina
 - keepassxc
+- syncplay
