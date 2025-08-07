@@ -7,6 +7,8 @@
 - fzf
 - gnupg
 - git
+- poppler
+- rename
 - texlive
 - yt-dlp
 - zola
@@ -20,4 +22,5 @@
 - hot
 - iina
 - keepassxc
+- libreoffice
 - syncplay
