@@ -32,10 +32,8 @@ depends=(
 
 'aspell-en'
 'cmake'
-'fd'
 'libvterm'
 'poppler-glib'
-'ripgrep'
 )
 
 source=('dotfiles::git+https://github.com/port19x/dotfiles')
