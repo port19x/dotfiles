@@ -1,0 +1,10 @@
+[gpg]
+	format = ssh
+[user]
+	signingkey = /home/port19/.ssh/github.pub
+	name = port19
+	email = port19@port19.xyz
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
