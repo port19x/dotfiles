@@ -44,21 +44,24 @@
   (org-mode . hl-todo-mode)
   (org-mode . visual-line-mode))
 
-(use-package define-word)
-(use-package helpful)
-(use-package consult)
-(use-package paredit)
+;; Completion
+(use-package consult-embark)
+(use-package wgrep)
 (use-package orderless            :custom (completion-styles '(orderless basic)))
 (use-package marginalia           :config (marginalia-mode))
 (use-package vertico              :config (vertico-mode))
 (use-package corfu                :config (global-corfu-mode) :custom (corfu-auto t))
-(use-package capf-autosuggest     :hook   (shell-mode))
+
+;; Git
 (use-package git-gutter           :config (global-git-gutter-mode))
 (use-package magit                :custom (magit-slow-confirm nil))
-(use-package doom-modeline        :config (doom-modeline-mode))
-(use-package org-modern           :custom (org-modern-star 'replace) :hook   org-mode)
-(use-package nerd-icons-dired     :hook   dired-mode)
-(use-package dired-filter         :hook   (dired-mode . dired-filter-by-dot-files))
+
+;; Shells
+(use-package shell-pop            :bind   ((:map shell-mode-map ("<right>" . capf-autosuggest-accept))))
+(use-package capf-autosuggest     :hook   (shell-mode))
+(use-package vterm                :custom (vterm-always-compile-module t))
+
+;; Interface Enhancements
 (use-package bible-gateway        :after  dashboard
                                   :custom (dashboard-footer-messages (list (bible-gateway-get-verse))))
 (use-package dashboard            :custom (dashboard-center-content t)
@@ -66,26 +69,27 @@
                                           (dashboard-startup-banner "~/pic/dashboard.jpg")
                                           (dashboard-image-banner-max-height 1000)
                                   :hook   (after-init . dashboard-refresh-buffer))
-(use-package vterm                :custom (vterm-always-compile-module t))
-(use-package shell-pop            :bind   ((:map shell-mode-map ("<right>" . capf-autosuggest-accept))))
-(use-package pdf-tools            :config (pdf-tools-install t))
-(use-package markdown-ts-mode     :mode   "\\.md\\'")
+(use-package evil-goggles         :config (evil-goggles-mode))
+(use-package org-modern           :custom (org-modern-star 'replace) :hook   org-mode)
+
+;; Lisp Development
+(use-package paredit)
 (use-package eros-inspector       :hook   (emacs-lisp-mode . eros-mode)
                                   :custom (inspector-switch-to-buffer nil))
 (use-package rainbow-delimiters   :hook   (prog-mode))
-(use-package sly-overlay :custom (inferior-lisp-program "ros -Q run")
-  :hook (sly-mode . (lambda () (unless (sly-connected-p) (save-excursion (sly))))))
+(use-package clippy)
+(use-package helpful)
 
+;; Misc (no-littering see near top)
+(use-package markdown-ts-mode     :mode   "\\.md\\'")
+(use-package define-word)
+(use-package pdf-tools            :config (pdf-tools-install t))
 (use-package exwm
-  :init
-  (exwm-enable)
-  :config
-  (add-to-list 'exwm-input-prefix-keys ?\M- )
-  :custom
-  (exwm-workspace-number 3)
-  :hook
-  (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
+  :init (exwm-wm-mode)
+  :config (add-to-list 'exwm-input-prefix-keys ?\M- )
+  :hook (exwm-update-class . (lambda () (exwm-workspace-rename-buffer exwm-class-name))))
 
+;; Keybindings
 (use-package evil
   :init (setq evil-want-keybinding nil)
   :config (evil-mode 1)
@@ -93,8 +97,6 @@
   :custom (evil-undo-system 'undo-redo)
           (evil-disable-insert-state-bindings t))
 (use-package evil-collection      :config (evil-collection-init))
-(use-package evil-goggles         :config (evil-goggles-mode))
-(use-package evil-vimish-fold     :config (global-evil-vimish-fold-mode))
 (use-package general
   :config
   (defun my-info-read-manual () (interactive)
@@ -119,6 +121,8 @@
     (let ((map (make-sparse-keymap)))
       (define-key map (kbd "d") #'define-word)
       (define-key map (kbd "D") #'define-word-at-point)
+      (define-key map (kbd "v") #'clippy-describe-variable)
+      (define-key map (kbd "f") #'clippy-describe-function)
       (define-key map (kbd "h") #'helpful-symbol)
       (define-key map (kbd "i") #'my-info-read-manual)
       (define-key map (kbd "m") #'man)
