@@ -11,6 +11,7 @@
 
 (use-package emacs
   :config
+  (which-key-mode 1)
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (scroll-bar-mode -1)
@@ -19,11 +20,11 @@
   (display-time-mode 1)
   (global-auto-revert-mode 1)
   (save-place-mode 1)
-  (org-babel-do-load-languages 'org-babel-load-languages '((python . t) (shell . t)))
   (show-paren-mode 1)
   (load-theme 'modus-vivendi t)
   (set-face-attribute 'default nil :font "Iosevka" :height 140)
   :custom
+  (which-key-sort-order 'which-key-key-order-alpha)
   (custom-file (concat user-emacs-directory "/custom.el"))
   (dired-kill-when-opening-new-dired-buffer t)
   (dired-vc-rename-file t)
@@ -44,14 +45,12 @@
 
 (use-package define-word)
 (use-package helpful)
-(use-package embark-consult)
-(use-package wgrep)
+(use-package consult)
 (use-package paredit)
 (use-package orderless            :custom (completion-styles '(orderless basic)))
 (use-package marginalia           :config (marginalia-mode))
 (use-package vertico              :config (vertico-mode))
 (use-package corfu                :config (global-corfu-mode) :custom (corfu-auto t))
-(use-package which-key            :config (which-key-mode)    :custom (which-key-sort-order 'which-key-key-order-alpha)) ;emacs30
 (use-package capf-autosuggest     :hook   (shell-mode))
 (use-package git-gutter           :config (global-git-gutter-mode))
 (use-package magit                :custom (magit-slow-confirm nil))
