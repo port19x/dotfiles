@@ -59,7 +59,10 @@
 (use-package org-modern           :custom (org-modern-star 'replace) :hook   org-mode)
 (use-package nerd-icons-dired     :hook   dired-mode)
 (use-package dired-filter         :hook   (dired-mode . dired-filter-by-dot-files))
+(use-package bible-gateway        :after  dashboard
+                                  :custom (dashboard-footer-messages (list (bible-gateway-get-verse))))
 (use-package dashboard            :custom (dashboard-center-content t)
+                                          (dashboard-items '((bookmarks . 5)))
                                           (dashboard-startup-banner "~/pic/dashboard.jpg")
                                           (dashboard-image-banner-max-height 1000)
                                   :hook   (after-init . dashboard-refresh-buffer))
