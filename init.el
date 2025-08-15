@@ -45,16 +45,16 @@
   (org-mode . visual-line-mode))
 
 ;; Completion
-(use-package consult-embark)
-(use-package wgrep)
-(use-package orderless            :custom (completion-styles '(orderless basic)))
-(use-package marginalia           :config (marginalia-mode))
 (use-package vertico              :config (vertico-mode))
+(use-package marginalia           :config (marginalia-mode))
+(use-package embark-consult)
+(use-package orderless            :custom (completion-styles '(orderless basic)))
 (use-package corfu                :config (global-corfu-mode) :custom (corfu-auto t))
+(use-package wgrep)
 
 ;; Git
-(use-package git-gutter           :config (global-git-gutter-mode))
 (use-package magit                :custom (magit-slow-confirm nil))
+(use-package git-gutter           :config (global-git-gutter-mode))
 
 ;; Shells
 (use-package shell-pop            :bind   ((:map shell-mode-map ("<right>" . capf-autosuggest-accept))))
@@ -62,26 +62,25 @@
 (use-package vterm                :custom (vterm-always-compile-module t))
 
 ;; Interface Enhancements
-(use-package bible-gateway        :after  dashboard
-                                  :custom (dashboard-footer-messages (list (bible-gateway-get-verse))))
 (use-package dashboard            :custom (dashboard-center-content t)
                                           (dashboard-items '((bookmarks . 5)))
                                           (dashboard-startup-banner "~/pic/dashboard.jpg")
                                           (dashboard-image-banner-max-height 1000)
                                   :hook   (after-init . dashboard-refresh-buffer))
-(use-package evil-goggles         :config (evil-goggles-mode))
+(use-package bible-gateway        :after  dashboard
+                                  :custom (dashboard-footer-messages (list (bible-gateway-get-verse))))
+(use-package evil-goggles         :config (evil-goggles-mode) :after evil)
 (use-package org-modern           :custom (org-modern-star 'replace) :hook   org-mode)
 
 ;; Lisp Development
 (use-package paredit)
+(use-package clippy)
+(use-package helpful)
 (use-package eros-inspector       :hook   (emacs-lisp-mode . eros-mode)
                                   :custom (inspector-switch-to-buffer nil))
 (use-package rainbow-delimiters   :hook   (prog-mode))
-(use-package clippy)
-(use-package helpful)
 
 ;; Misc (no-littering see near top)
-(use-package markdown-ts-mode     :mode   "\\.md\\'")
 (use-package define-word)
 (use-package pdf-tools            :config (pdf-tools-install t))
 (use-package exwm
