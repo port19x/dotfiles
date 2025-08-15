@@ -143,21 +143,6 @@
       (define-key map (kbd "t") #'org-time-stamp)
       map))
 
-  (defvar my-lisp-map
-    (let ((map (make-sparse-keymap)))
-      (define-key map (kbd "SPC") #'sly-overlay-eval-defun)
-      (define-key map (kbd "b") #'sly-eval-buffer)
-      (define-key map (kbd "c") #'mrepl-clear-repl)
-      (define-key map (kbd "d") #'sly-eval-defun)
-      (define-key map (kbd "v") #'sly-interrupt)
-      (define-key map (kbd "i") #'sly-inspect) ;TODO fix upstream profiler
-      (define-key map (kbd "f") #'sly-describe-function)
-      (define-key map (kbd "h") #'sly-apropos-all)
-      (define-key map (kbd "q") #'sly-quit-lisp)
-      (define-key map (kbd "s") #'sly-describe-symbol)
-      (define-key map (kbd "w") #'sly-hyperspec-lookup)
-      map))
-
   (general-define-key
    :states '(normal visual insert emacs)
    :prefix "SPC"
@@ -181,7 +166,6 @@
    "k" '(comment-region :which-key "comment region")
    "K" '(indent-region :which-key "indent region")
    "l" '(slock :which-key "lock screen")
-   "o" `(,my-org-map :which-key "Org Mode")
    "p" '(project-find-file :which-key "hop project file")
    "P" '(project-switch-project :which-key "hop project")
    "q" '(brave :which-key "launch browser")
@@ -192,7 +176,7 @@
    "v" '(eval-last-sexp :which-key "(emacs) eval")
    "w" `(,my-window-map :which-key "Windows")
    "z" '(dashboard-refresh-buffer :which-key "Dashboard")
-   "SPC" `(,my-lisp-map :which-key "lisp map")
+   "SPC" `(,my-org-map :which-key "Org Mode")
    "<tab>" '(paredit-forward-slurp-sexp :which-key "Paren Slurp")
    "<return>" '(consult-bookmark :which-key "jump to bookmark")
    "S-<return>" '(bookmark-set :which-key "set a bookmark")))
