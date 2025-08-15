@@ -67,6 +67,5 @@ package() {
 
     _manual 'localectl set-x11-keymap de "" "" ctrl:nocaps'
     _manual 'configure autologin: https://wiki.archlinux.org/title/Getty'
-    _manual 'git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si'
     _manual 'curl "https://api.github.com/users/port19x/repos?page=1&per_page=100" | grep -e "ssh_url*" | cut -d \" -f 4 | xargs -L1 git clone'
 }
