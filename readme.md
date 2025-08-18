@@ -1,6 +1,6 @@
 # Bootstrapping
 
-TODO: test procedure in practice and time it
+This currently takes 17 minutes, with 5 going to archinstall and 3 to my PKGBUILD.
 
 ## Booting
 
@@ -14,7 +14,7 @@ loadkeys de-latin1
 iwctl
 station wlan0 connect redacted
 ping -c1 archlinux.org
-archinstall --config-url https://github.com/port19x/dotfiles/blob/master/archinstall.json
+archinstall --config-url https://raw.githubusercontent.com/port19x/dotfiles/master/archinstall.json
 ```
 
 ## Archinstall
