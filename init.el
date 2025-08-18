@@ -187,7 +187,5 @@
    "<return>" '(consult-bookmark :which-key "jump to bookmark")
    "S-<return>" '(bookmark-set :which-key "set a bookmark")))
 
-;; (progn
-;;   (project-remember-projects-under "~/git" t)
-;;   (nerd-icons-install-fonts))
-;;   (setq esup-user-init-file "~/dotfiles/init.el" esup-depth 0)
+;; (project-remember-projects-under "~/git" t)
+;; (setq esup-user-init-file "~/dotfiles/init.el" esup-depth 0)
