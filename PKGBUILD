@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r1020.7f34ba4
+pkgver=r1028.b9d9c47
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -18,6 +18,7 @@ depends=(
 'xorg-server'
 'xorg-xinit'
 
+'brightnessctl'
 'flameshot'
 'git'
 'keepassxc'
@@ -26,7 +27,11 @@ depends=(
 'mpv'
 'openssh'
 'pulsemixer'
+'pyside6'
+'python-service-identity'
 'slock'
+'syncplay'
+'unzip'
 'yt-dlp'
 'zola'
 
