@@ -11,6 +11,7 @@
 
 (use-package emacs
   :config
+  (recentf-mode 1)
   (display-battery-mode 1)
   (which-key-mode 1)
   (menu-bar-mode -1)
