@@ -110,7 +110,9 @@
   (defun launch (command)
       (interactive (list (read-shell-command "$ ")))
       (start-process-shell-command command nil command))
-  (defun slock () (interactive) (launch "slock"))
+  (defun slock () (interactive)
+         (launch "sleep 43200 && reboot") ;12 hours
+         (launch "slock && killall sleep"))
   (defun brave () (interactive) (launch "brave"))
   (defun flameshot () (interactive) (launch "flameshot gui"))
   (defun insert-> () (interactive) (if (string= (buffer-name) "*vterm*") (vterm-insert ">") (insert ">")))
