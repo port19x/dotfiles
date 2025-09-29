@@ -1,7 +1,7 @@
 # Maintainer: port19 <port19 at port19 dot xyz>
 pkgname='port19-dotfiles-git'
 _pkgname='dotfiles'
-pkgver=r1031.4035cf6
+pkgver=r1034.8e32594
 pkgrel=1
 pkgdesc='My dotfiles package. Superior to an install script.'
 arch=('any')
@@ -67,7 +67,6 @@ _manual () {
 }
 
 package() {
-    echo "startx" > $HOME/.bash_profile
     echo "flameshot &" > $HOME/.xinitrc
     echo "exec emacs --fullscreen" >> $HOME/.xinitrc
     mkdir -p $HOME/.emacs.d $HOME/.config/keepassxc/ $HOME/.config/mpv/
