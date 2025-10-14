@@ -1,42 +1,22 @@
-# Bootstrapping
+[![linux mint](https://img.shields.io/badge/linux%20mint-68C174)](https://linuxmint.com/)
 
-This currently takes 17 minutes, with 5 going to archinstall and 3 to my PKGBUILD.
+# Graphical Programs
+- brave
+- keepassxc
+- mpv
+- steam
 
-## Booting
+# Terminal Programs
+- git
+- imagemagick
+- ffmpeg
 
-- Boot Ventoy USB Stick (F12/F2)
-- Select Arch Iso
+# Scripts
 
-## Live ISO
+- [Backup Script](https://gist.github.com/port19x/8a3160e83d8ebf3b85b84e06aa9ea115)
+- [Dictation Script](https://gist.github.com/port19x/ed5ccebea8ca54668645a17f3dd5ec5b)
 
-```sh
-loadkeys de-latin1
-iwctl
-station wlan0 connect redacted
-ping -c1 archlinux.org
-archinstall --config-url https://raw.githubusercontent.com/port19x/dotfiles/master/archinstall.json
-```
+# Older Versions
 
-## Archinstall
-
-- set up disk configuration
-- set up user
-- verify xorg drivers
-- hit install
-- exit & reboot
-
-## Postinstall
-
-```sh
-git clone --recurse-submodules https://github.com/port19x/dotfiles
-cd dotfiles
-makepkg -sci
-cd brave
-git pull
-makepkg -sci
-startx
-```
-
-Restore file backup and you're done
-
-[Backup Script](https://gist.github.com/port19x/8a3160e83d8ebf3b85b84e06aa9ea115)
+If you look into the git tags of this repository you will find several major increments of my dotfiles from the previous years.
+These may be more interesting to you than this rather short list of packages I added to my bare Linux Mint install.
