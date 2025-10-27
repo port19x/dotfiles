@@ -7,9 +7,11 @@
 - steam
 
 # Terminal Programs
+- ffmpeg
 - git
 - imagemagick
-- ffmpeg
+- texlive
+- vim
 
 # Scripts
 
