@@ -1,7 +1,7 @@
 [![linux mint](https://img.shields.io/badge/linux%20mint-68C174)](https://linuxmint.com/)
 
 # Graphical Programs
-- brave
+- librewolf (flatpak)
 - keepassxc
 - mpv
 - steam
