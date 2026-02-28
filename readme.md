@@ -3,7 +3,7 @@
 ## Terminal Programs
 
 - aspell
-- ffmpeg
+- ffmpeg-full
 - fzf
 - gnupg
 - git
@@ -18,13 +18,11 @@
 
 ## Graphical Programs
 
-- brave
-- crossover
+- brave-browser
 - dolphin
 - hot
 - iina
 - keepassxc
 - libreoffice
 - pcsx2
-- steam
 - syncplay
