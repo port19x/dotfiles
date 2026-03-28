@@ -1,28 +1,35 @@
 ![m4 macbook air badge](https://img.shields.io/badge/m4%20macbook%20air-8A2BE2)
 
-## Terminal Programs
+## Formulas
 
-- aspell
-- ffmpeg-full
-- fzf
-- gnupg
-- git
-- poppler
-- rename
-- texlive
-- yt-dlp
-- zola
-- zsh-completions
-- zsh-autosuggestions
-- zstd
+`brew list --formula --installed-on-request`
 
-## Graphical Programs
+```
+aspell
+ffmpeg-full
+fzf
+git
+gnupg
+mpv
+poppler
+rename
+wget
+yt-dlp
+zola
+zsh-autosuggestions
+zsh-completions
+zstd
+```
 
-- brave-browser
-- dolphin
-- hot
-- iina
-- keepassxc
-- libreoffice
-- pcsx2
-- syncplay
+## Casks
+
+`brew list --cask`
+
+```
+brave-browser
+hot
+iina
+keepassxc
+signal
+syncplay
+```
