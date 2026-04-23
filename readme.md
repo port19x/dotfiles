@@ -7,15 +7,10 @@
 ```
 aspell
 ffmpeg-full
-fzf
 git
 gnupg
-mpv
 poppler
 rename
-wget
-yt-dlp
-zola
 zsh-autosuggestions
 zsh-completions
 zstd
@@ -28,8 +23,7 @@ zstd
 ```
 brave-browser
 hot
-iina
 keepassxc
+kiwix
 signal
-syncplay
 ```
