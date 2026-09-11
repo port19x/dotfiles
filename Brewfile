@@ -20,6 +20,8 @@ brew "gnupg"
 brew "gource"
 # Tools and libraries to manipulate images in select formats
 brew "imagemagick"
+# Deep clean and optimize your Mac
+brew "mole"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
 # Media player based on MPlayer and mplayer2
@@ -28,6 +30,8 @@ brew "mpv"
 brew "poppler"
 # Perl-powered file rename script with many helpful built-ins
 brew "rename"
+# Free software distribution for the TeX typesetting system
+brew "texlive"
 # Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
 # Additional completion definitions for zsh
@@ -36,6 +40,8 @@ brew "zsh-completions"
 brew "port19x/zola-0.22.1-homebrew/zola", trusted: true
 # Web browser focusing on privacy
 cask "brave-browser"
+# Speech to text application
+cask "handy"
 # Menu bar application that displays the CPU speed limit due to thermal issues
 cask "hot"
 # Password manager app
@@ -46,7 +52,5 @@ cask "kiwix"
 cask "lm-studio"
 # Instant messaging application focusing on security
 cask "signal"
-# Video game digital distribution service
-cask "steam"
 # Synchronises media players
 cask "syncplay"
