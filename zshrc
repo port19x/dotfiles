@@ -19,6 +19,11 @@ precmd () { vcs_info }
 setopt PROMPT_SUBST
 PS1='%F{4}%3~ ${vcs_info_msg_0_}%fλ '
 
+gpr() {
+  git fetch origin "pull/$1/head" &&
+    git switch --detach FETCH_HEAD
+}
+
 alias v='vim'
 alias ct='cd $(mktemp -d)'
 alias la='ls -a'
