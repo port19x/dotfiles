@@ -1,0 +1,20 @@
+[gpg]
+	format = ssh
+[user]
+	signingkey = /Users/port19/.ssh/github.pub
+	name = port19
+	email = port19@port19.xyz
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+[alias]
+	a = add
+	c = commit -m
+	cc = commit --amend --no-edit
+	d = diff
+	l = log
+	p = push
+	pp = push --force-with-lease
+	s = status
+	pr = "!f() { git fetch origin pull/$1/head && git switch --detach FETCH_HEAD; }; f"

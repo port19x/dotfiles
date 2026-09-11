@@ -19,23 +19,10 @@ precmd () { vcs_info }
 setopt PROMPT_SUBST
 PS1='%F{4}%3~ ${vcs_info_msg_0_}%fλ '
 
-gpr() {
-  git fetch origin "pull/$1/head" &&
-    git switch --detach FETCH_HEAD
-}
-
 alias v='vim'
 alias ct='cd $(mktemp -d)'
 alias la='ls -a'
 alias ll='ls -la'
-alias gta='git add'
-alias gtc='git commit -m'
-alias gtcc='git commit --amend --no-edit'
-alias gtd='git diff'
-alias gtl='git log'
-alias gtp='git push'
-alias gtpp='git push --force-with-lease'
-alias gts='git status'
 alias yta="yt-dlp --embed-thumbnail -f 'bestaudio/best' -f 'm4a'"
 alias ytd="yt-dlp -f 'bestvideo[height<=?1080]+bestaudio/best' -f 'mp4'"
 alias dnb='iina https://youtube.com/@themanfromdelmonte'
