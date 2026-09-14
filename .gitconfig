@@ -10,11 +10,20 @@
 	gpgsign = true
 [alias]
 	a = add
+	ap = add -p
+	ai = add -i
 	c = commit -m
 	cc = commit --amend --no-edit
+	cv = commit -v
+	cl = clone
+	cl1 = clone --depth 1
+	cll = fetch --unshallow
 	d = diff
-	l = log
+	l = log --graph --pretty=format:"%h %ar %an : %s" --stat
+	ls = log -S
+	lss = log -S --pickaxe-regex
+	lg = log --grep
 	p = push
 	pp = push --force-with-lease
-	s = status
 	pr = "!f() { git fetch origin pull/$1/head && git switch --detach FETCH_HEAD; }; f"
+	s = status -s
