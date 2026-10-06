@@ -26,6 +26,7 @@
 	p = push
 	pp = push --force-with-lease
 	pr = "!f() { git fetch origin pull/$1/head && git switch --detach FETCH_HEAD; }; f"
+	prl = "!f() { git switch --detach origin/pr/$1; }; f"
 	s = status -s
 [remote "origin"]
 	fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
