@@ -40,6 +40,8 @@ brew "zsh-completions"
 brew "port19x/zola-0.22.1-homebrew/zola", trusted: true
 # Web browser focusing on privacy
 cask "brave-browser"
+# Run Stable Diffusion locally
+cask "draw-things"
 # Speech to text application
 cask "handy"
 # Menu bar application that displays the CPU speed limit due to thermal issues
