@@ -1,3 +1,4 @@
+tap "asherjn/recall", trusted: true
 tap "port19x/zola-0.22.1-homebrew"
 tap "pystardust/ani-cli", "https://github.com/pystardust/ani-cli.git", trusted: true
 # Download with resuming and segmented downloading
@@ -52,6 +53,8 @@ cask "keepassxc"
 cask "kiwix"
 # Discover, download, and run local LLMs
 cask "lm-studio"
+# Play Overwatch on Apple Silicon
+cask "asherjn/recall/recall", trusted: true
 # Instant messaging application focusing on security
 cask "signal"
 # Synchronises media players
