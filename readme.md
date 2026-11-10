@@ -1,4 +1,4 @@
-![m4 macbook air badge](https://img.shields.io/badge/m4%20macbook%20air-8A2BE2)
+![m5 max mac stuido badge](https://img.shields.io/badge/m5%20max%20mac%20studio-8A2BE2)
 
 Now using [Brew Bundles](https://docs.brew.sh/Brew-Bundle-and-Brewfile).
 
